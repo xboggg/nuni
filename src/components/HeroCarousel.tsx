@@ -100,8 +100,8 @@ const HeroCarousel = () => {
 
       {/* Content */}
       <div className="relative z-10 min-h-screen flex items-center">
-        <div className="container-custom pt-20">
-          <div className="max-w-2xl">
+        <div className="container-custom pt-20 pl-4 sm:pl-6 lg:pl-8">
+          <div className="max-w-2xl -ml-2 sm:ml-0 lg:-ml-4">
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
