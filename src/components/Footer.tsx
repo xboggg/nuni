@@ -1,11 +1,17 @@
 import { motion } from "framer-motion";
+import { Link, useLocation } from "react-router-dom";
 import logo from "@/assets/nuni-logo.png";
 import { products } from "@/data/products";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const location = useLocation();
 
   const handleNavClick = (href: string) => {
+    if (location.pathname !== "/") {
+      window.location.href = "/" + href;
+      return;
+    }
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -16,11 +22,12 @@ const Footer = () => {
     products: products.map((p) => ({ name: p.name, href: "#products" })),
     company: [
       { name: "About", href: "#about" },
+      { name: "Gallery", href: "/gallery", isRoute: true },
       { name: "Partners", href: "#partners" },
       { name: "Contact", href: "#contact" },
     ],
     support: [
-      { name: "FAQ", href: "#contact" },
+      { name: "FAQ", href: "#faq" },
       { name: "Shipping", href: "#contact" },
       { name: "Returns", href: "#contact" },
     ],
@@ -120,12 +127,21 @@ const Footer = () => {
             <ul className="space-y-2">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
-                  <button
-                    onClick={() => handleNavClick(link.href)}
-                    className="text-sm text-cream/60 hover:text-cream transition-colors"
-                  >
-                    {link.name}
-                  </button>
+                  {link.isRoute ? (
+                    <Link
+                      to={link.href}
+                      className="text-sm text-cream/60 hover:text-cream transition-colors"
+                    >
+                      {link.name}
+                    </Link>
+                  ) : (
+                    <button
+                      onClick={() => handleNavClick(link.href)}
+                      className="text-sm text-cream/60 hover:text-cream transition-colors"
+                    >
+                      {link.name}
+                    </button>
+                  )}
                 </li>
               ))}
             </ul>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 import logo from "@/assets/nuni-logo.png";
 import { getWhatsAppLink, GENERAL_INQUIRY_MESSAGE } from "@/data/products";
 
@@ -8,6 +9,7 @@ const navLinks = [
   { name: "About", href: "#about" },
   { name: "Products", href: "#products" },
   { name: "Benefits", href: "#benefits" },
+  { name: "Gallery", href: "/gallery", isRoute: true },
   { name: "Partners", href: "#partners" },
   { name: "Contact", href: "#contact" },
 ];
@@ -25,8 +27,18 @@ const Navigation = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleNavClick = (href: string) => {
+  const location = useLocation();
+
+  const handleNavClick = (href: string, isRoute?: boolean) => {
     setIsMobileMenuOpen(false);
+    if (isRoute) return; // Let Link handle routing
+    
+    // If we're not on home page, we need to navigate first
+    if (location.pathname !== "/") {
+      window.location.href = "/" + href;
+      return;
+    }
+    
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -60,15 +72,27 @@ const Navigation = () => {
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-8">
               {navLinks.map((link) => (
-                <button
-                  key={link.name}
-                  onClick={() => handleNavClick(link.href)}
-                  className={`text-sm font-medium transition-colors duration-200 hover:text-primary ${
-                    isScrolled ? "text-foreground" : "text-foreground"
-                  }`}
-                >
-                  {link.name}
-                </button>
+                link.isRoute ? (
+                  <Link
+                    key={link.name}
+                    to={link.href}
+                    className={`text-sm font-medium transition-colors duration-200 hover:text-primary ${
+                      isScrolled ? "text-foreground" : "text-foreground"
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                ) : (
+                  <button
+                    key={link.name}
+                    onClick={() => handleNavClick(link.href)}
+                    className={`text-sm font-medium transition-colors duration-200 hover:text-primary ${
+                      isScrolled ? "text-foreground" : "text-foreground"
+                    }`}
+                  >
+                    {link.name}
+                  </button>
+                )
               ))}
             </div>
 
@@ -108,13 +132,24 @@ const Navigation = () => {
             <div className="container-custom py-6">
               <div className="flex flex-col gap-4">
                 {navLinks.map((link) => (
-                  <button
-                    key={link.name}
-                    onClick={() => handleNavClick(link.href)}
-                    className="text-left py-3 px-4 text-foreground font-medium rounded-lg hover:bg-muted transition-colors"
-                  >
-                    {link.name}
-                  </button>
+                  link.isRoute ? (
+                    <Link
+                      key={link.name}
+                      to={link.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="text-left py-3 px-4 text-foreground font-medium rounded-lg hover:bg-muted transition-colors"
+                    >
+                      {link.name}
+                    </Link>
+                  ) : (
+                    <button
+                      key={link.name}
+                      onClick={() => handleNavClick(link.href)}
+                      className="text-left py-3 px-4 text-foreground font-medium rounded-lg hover:bg-muted transition-colors"
+                    >
+                      {link.name}
+                    </button>
+                  )
                 ))}
                 <a
                   href={getWhatsAppLink(GENERAL_INQUIRY_MESSAGE)}
