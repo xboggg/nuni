@@ -1,7 +1,10 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Check, Droplets, Leaf } from "lucide-react";
+import { X, Check, Droplets, Leaf, Star } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Product, getWhatsAppLink, getProductOrderMessage } from "@/data/products";
+import { getAverageRating, getReviewsForProduct } from "@/data/reviews";
+import ProductReviews from "./ProductReviews";
+import StarRating from "./StarRating";
 import hero1 from "@/assets/hero-1.jpeg";
 import hero3 from "@/assets/hero-3.jpeg";
 import hero4 from "@/assets/hero-4.png";
@@ -22,6 +25,7 @@ const tabs = [
   { id: "benefits", label: "Benefits", icon: Check },
   { id: "usage", label: "How to Use", icon: Droplets },
   { id: "ingredients", label: "Ingredients", icon: Leaf },
+  { id: "reviews", label: "Reviews", icon: Star },
 ];
 
 const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) => {
@@ -123,6 +127,21 @@ const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) => {
                 <h3 className="mt-2 text-2xl md:text-3xl font-serif font-bold text-foreground">
                   {product.name}
                 </h3>
+                
+                {/* Rating Summary */}
+                {(() => {
+                  const avgRating = getAverageRating(product.id);
+                  const reviewCount = getReviewsForProduct(product.id).length;
+                  return avgRating > 0 ? (
+                    <div className="flex items-center gap-2 mt-2">
+                      <StarRating rating={avgRating} size={16} />
+                      <span className="text-sm text-muted-foreground">
+                        {avgRating} ({reviewCount} {reviewCount === 1 ? "review" : "reviews"})
+                      </span>
+                    </div>
+                  ) : null;
+                })()}
+                
                 <p className="mt-3 text-muted-foreground leading-relaxed">
                   {product.description}
                 </p>
@@ -222,6 +241,20 @@ const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) => {
                               {ingredient}
                             </span>
                           ))}
+                        </motion.div>
+                      )}
+
+                      {activeTab === "reviews" && (
+                        <motion.div
+                          key="reviews"
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                        >
+                          <ProductReviews 
+                            productId={product.id} 
+                            productName={product.name} 
+                          />
                         </motion.div>
                       )}
                     </AnimatePresence>
