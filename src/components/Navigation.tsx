@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronRight } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "@/assets/nuni-logo.png";
 import { getWhatsAppLink, GENERAL_INQUIRY_MESSAGE } from "@/data/products";
@@ -8,9 +8,22 @@ import ThemeToggle from "./ThemeToggle";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useLanguage } from "@/lib/i18n";
 
+// Haptic feedback utility
+const triggerHaptic = (style: 'light' | 'medium' | 'heavy' = 'light') => {
+  if ('vibrate' in navigator) {
+    const patterns = {
+      light: [10],
+      medium: [20],
+      heavy: [30],
+    };
+    navigator.vibrate(patterns[style]);
+  }
+};
+
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeItem, setActiveItem] = useState<string | null>(null);
   const { t } = useLanguage();
 
   const navLinks = [
@@ -33,11 +46,11 @@ const Navigation = () => {
 
   const location = useLocation();
 
-  const handleNavClick = (href: string, isRoute?: boolean) => {
+  const handleNavClick = useCallback((href: string, isRoute?: boolean) => {
+    triggerHaptic('medium');
     setIsMobileMenuOpen(false);
-    if (isRoute) return; // Let Link handle routing
+    if (isRoute) return;
     
-    // If we're not on home page, we need to navigate first
     if (location.pathname !== "/") {
       window.location.href = "/" + href;
       return;
@@ -47,6 +60,20 @@ const Navigation = () => {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
+  }, [location.pathname]);
+
+  const handleMenuToggle = () => {
+    triggerHaptic('light');
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const handleItemPress = (name: string) => {
+    setActiveItem(name);
+    triggerHaptic('light');
+  };
+
+  const handleItemRelease = () => {
+    setActiveItem(null);
   };
 
   return (
@@ -119,13 +146,21 @@ const Navigation = () => {
             </div>
 
             {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`md:hidden p-2 ${isScrolled ? "text-foreground" : "text-white"}`}
+            <motion.button
+              onClick={handleMenuToggle}
+              whileTap={{ scale: 0.9 }}
+              className={`md:hidden p-2 rounded-lg transition-colors ${
+                isScrolled ? "text-foreground hover:bg-muted" : "text-white"
+              }`}
               style={{ textShadow: isScrolled ? 'none' : '1px 1px 3px rgba(0,0,0,0.5)' }}
             >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+              <motion.div
+                animate={{ rotate: isMobileMenuOpen ? 90 : 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </motion.div>
+            </motion.button>
           </div>
         </div>
       </motion.nav>
@@ -160,12 +195,16 @@ const Navigation = () => {
                     NUNI GLOBAL
                   </span>
                 </div>
-                <button
-                  onClick={() => setIsMobileMenuOpen(false)}
+                <motion.button
+                  onClick={() => {
+                    triggerHaptic('light');
+                    setIsMobileMenuOpen(false);
+                  }}
+                  whileTap={{ scale: 0.9, rotate: 90 }}
                   className="p-2 rounded-full hover:bg-muted transition-colors text-foreground"
                 >
                   <X size={24} />
-                </button>
+                </motion.button>
               </div>
 
               {/* Navigation Links */}
@@ -180,17 +219,57 @@ const Navigation = () => {
                     {link.isRoute ? (
                       <Link
                         to={link.href}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="flex items-center py-4 px-3 text-foreground font-medium text-lg border-b border-border/50 hover:bg-muted/50 hover:text-primary transition-colors"
+                        onClick={() => handleNavClick(link.href, true)}
+                        onTouchStart={() => handleItemPress(link.name)}
+                        onTouchEnd={handleItemRelease}
+                        onMouseDown={() => handleItemPress(link.name)}
+                        onMouseUp={handleItemRelease}
+                        onMouseLeave={handleItemRelease}
+                        className="relative overflow-hidden"
                       >
-                        {link.name}
+                        <motion.div
+                          animate={{
+                            scale: activeItem === link.name ? 0.98 : 1,
+                            backgroundColor: activeItem === link.name ? 'hsl(var(--muted))' : 'transparent',
+                          }}
+                          transition={{ duration: 0.1 }}
+                          className="flex items-center justify-between py-4 px-3 text-foreground font-medium text-lg border-b border-border/50 rounded-lg"
+                        >
+                          <span>{link.name}</span>
+                          <motion.div
+                            animate={{ x: activeItem === link.name ? 4 : 0 }}
+                            transition={{ duration: 0.1 }}
+                          >
+                            <ChevronRight size={18} className="text-muted-foreground" />
+                          </motion.div>
+                        </motion.div>
                       </Link>
                     ) : (
                       <button
                         onClick={() => handleNavClick(link.href)}
-                        className="flex items-center w-full py-4 px-3 text-foreground font-medium text-lg border-b border-border/50 hover:bg-muted/50 hover:text-primary transition-colors text-left"
+                        onTouchStart={() => handleItemPress(link.name)}
+                        onTouchEnd={handleItemRelease}
+                        onMouseDown={() => handleItemPress(link.name)}
+                        onMouseUp={handleItemRelease}
+                        onMouseLeave={handleItemRelease}
+                        className="relative overflow-hidden w-full text-left"
                       >
-                        {link.name}
+                        <motion.div
+                          animate={{
+                            scale: activeItem === link.name ? 0.98 : 1,
+                            backgroundColor: activeItem === link.name ? 'hsl(var(--muted))' : 'transparent',
+                          }}
+                          transition={{ duration: 0.1 }}
+                          className="flex items-center justify-between py-4 px-3 text-foreground font-medium text-lg border-b border-border/50 rounded-lg"
+                        >
+                          <span>{link.name}</span>
+                          <motion.div
+                            animate={{ x: activeItem === link.name ? 4 : 0 }}
+                            transition={{ duration: 0.1 }}
+                          >
+                            <ChevronRight size={18} className="text-muted-foreground" />
+                          </motion.div>
+                        </motion.div>
                       </button>
                     )}
                   </motion.div>
@@ -203,15 +282,25 @@ const Navigation = () => {
                   <LanguageSwitcher />
                   <ThemeToggle />
                 </div>
-                <a
+                <motion.a
                   href={getWhatsAppLink(GENERAL_INQUIRY_MESSAGE)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="flex items-center justify-center gap-2 w-full px-6 py-4 bg-primary text-primary-foreground rounded-xl font-semibold text-lg transition-all duration-200 hover:shadow-green"
+                  onClick={() => {
+                    triggerHaptic('heavy');
+                    setIsMobileMenuOpen(false);
+                  }}
+                  whileTap={{ scale: 0.97 }}
+                  whileHover={{ scale: 1.02 }}
+                  className="flex items-center justify-center gap-2 w-full px-6 py-4 bg-primary text-primary-foreground rounded-xl font-semibold text-lg transition-all duration-200 shadow-lg hover:shadow-green"
                 >
-                  {t.nav.orderNow}
-                </a>
+                  <motion.span
+                    animate={{ x: [0, 2, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                  >
+                    {t.nav.orderNow}
+                  </motion.span>
+                </motion.a>
               </div>
             </motion.div>
           </>
