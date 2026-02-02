@@ -5,19 +5,22 @@ import { Link, useLocation } from "react-router-dom";
 import logo from "@/assets/nuni-logo.png";
 import { getWhatsAppLink, GENERAL_INQUIRY_MESSAGE } from "@/data/products";
 import ThemeToggle from "./ThemeToggle";
-
-const navLinks = [
-  { name: "About", href: "#about" },
-  { name: "Products", href: "#products" },
-  { name: "Benefits", href: "#benefits" },
-  { name: "Gallery", href: "/gallery", isRoute: true },
-  { name: "Partners", href: "#partners" },
-  { name: "Contact", href: "/contact", isRoute: true },
-];
+import LanguageSwitcher from "./LanguageSwitcher";
+import { useLanguage } from "@/lib/i18n";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { t } = useLanguage();
+
+  const navLinks = [
+    { name: t.nav.about, href: "#about" },
+    { name: t.nav.products, href: "#products" },
+    { name: t.nav.benefits, href: "#benefits" },
+    { name: t.nav.gallery, href: "/gallery", isRoute: true },
+    { name: t.nav.partners, href: "#partners" },
+    { name: t.nav.contact, href: "/contact", isRoute: true },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -97,8 +100,9 @@ const Navigation = () => {
               ))}
             </div>
 
-            {/* Theme Toggle & CTA Button */}
-            <div className="hidden md:flex items-center gap-4">
+            {/* Language Switcher, Theme Toggle & CTA Button */}
+            <div className="hidden md:flex items-center gap-3">
+              <LanguageSwitcher />
               <ThemeToggle />
               <a
                 href={getWhatsAppLink(GENERAL_INQUIRY_MESSAGE)}
@@ -106,7 +110,7 @@ const Navigation = () => {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-2.5 bg-primary text-primary-foreground rounded-full font-medium text-sm transition-all duration-200 hover:shadow-green hover:scale-105"
               >
-                Order Now
+                {t.nav.orderNow}
               </a>
             </div>
 
@@ -153,13 +157,16 @@ const Navigation = () => {
                     </button>
                   )
                 ))}
+                <div className="flex items-center gap-3 mt-4">
+                  <LanguageSwitcher />
+                </div>
                 <a
                   href={getWhatsAppLink(GENERAL_INQUIRY_MESSAGE)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-4 inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-full font-medium transition-all duration-200 hover:shadow-green"
                 >
-                  Order Now
+                  {t.nav.orderNow}
                 </a>
               </div>
             </div>

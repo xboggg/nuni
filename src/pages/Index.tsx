@@ -10,6 +10,7 @@ import HowItWorks from "@/components/HowItWorks";
 import IngredientsSpotlight from "@/components/IngredientsSpotlight";
 import TestimonialsCarousel from "@/components/TestimonialsCarousel";
 import BeforeAfterSlider from "@/components/BeforeAfterSlider";
+import TrustBadges from "@/components/TrustBadges";
 import Partners from "@/components/Partners";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -47,6 +48,7 @@ const Index = () => {
             <StatsCounter />
             <HowItWorks />
             <IngredientsSpotlight />
+            <TrustBadges />
             <TestimonialsCarousel />
             <BeforeAfterSlider
               beforeImage={beforeImage}
