@@ -79,9 +79,9 @@ const HeroCarousel = () => {
               className="absolute inset-0 bg-cover bg-center"
               style={{ backgroundImage: `url(${heroImages[currentIndex]})` }}
             />
-            {/* Gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/50 via-transparent to-background/30" />
+            {/* Gradient overlay - reduced opacity for clearer images */}
+            <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/30 via-transparent to-background/10" />
           </motion.div>
         </motion.div>
       </AnimatePresence>
