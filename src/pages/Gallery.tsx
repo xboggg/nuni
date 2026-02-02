@@ -17,23 +17,26 @@ interface GalleryImage {
   id: number;
   src: string;
   alt: string;
-  category: "products" | "results" | "brand";
+  category: "events" | "partnership" | "soap" | "cream" | "cocoa-butter" | "products";
 }
 
 const galleryImages: GalleryImage[] = [
   { id: 1, src: hero1, alt: "Nuni Global Products Display", category: "products" },
-  { id: 2, src: hero2, alt: "Premium Skincare Collection", category: "products" },
-  { id: 3, src: hero3, alt: "Natural Ingredients", category: "brand" },
-  { id: 4, src: hero4, alt: "Acne Treatment Results", category: "results" },
+  { id: 2, src: hero2, alt: "Premium Skincare Collection", category: "soap" },
+  { id: 3, src: hero3, alt: "Natural Ingredients", category: "cocoa-butter" },
+  { id: 4, src: hero4, alt: "Acne Treatment Results", category: "cream" },
   { id: 5, src: hero5, alt: "Skincare Routine", category: "products" },
-  { id: 6, src: hero6, alt: "Brand Story", category: "brand" },
+  { id: 6, src: hero6, alt: "Brand Story", category: "partnership" },
 ];
 
 const categories = [
   { id: "all", label: "All" },
+  { id: "events", label: "Events" },
+  { id: "partnership", label: "Partnership" },
+  { id: "soap", label: "Soap" },
+  { id: "cream", label: "Cream" },
+  { id: "cocoa-butter", label: "Cocoa Butter" },
   { id: "products", label: "Products" },
-  { id: "results", label: "Results" },
-  { id: "brand", label: "Brand" },
 ];
 
 const Gallery = () => {
