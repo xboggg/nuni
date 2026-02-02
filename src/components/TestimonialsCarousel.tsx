@@ -4,7 +4,6 @@ import { useInView } from "framer-motion";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import { testimonials } from "@/data/testimonials";
 import { useLanguage } from "@/lib/i18n";
 
 const TestimonialsCarousel = () => {
@@ -12,6 +11,14 @@ const TestimonialsCarousel = () => {
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
   const [selectedIndex, setSelectedIndex] = useState(0);
   const { t } = useLanguage();
+
+  // Get testimonials from translations
+  const testimonials = t.testimonials.reviews.map((review, index) => ({
+    id: String(index + 1),
+    ...review,
+    initials: review.name.split(' ').map(n => n[0]).join(''),
+    rating: 5,
+  }));
 
   const autoplayPlugin = useRef(
     Autoplay({ delay: 5000, stopOnInteraction: true, stopOnMouseEnter: true })
