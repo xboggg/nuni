@@ -12,6 +12,7 @@ import TestimonialsCarousel from "@/components/TestimonialsCarousel";
 import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 import TrustBadges from "@/components/TrustBadges";
 import Partners from "@/components/Partners";
+import { useLanguage } from "@/lib/i18n";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import BackToTop from "@/components/BackToTop";
@@ -23,6 +24,7 @@ import afterImage from "@/assets/hero-2.jpeg";
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const { t } = useLanguage();
 
   useEffect(() => {
     // Simulate loading time
@@ -54,8 +56,8 @@ const Index = () => {
               beforeImage={beforeImage}
               afterImage={afterImage}
               testimonial={{
-                quote: "After just 4 weeks of using Nuni products, my skin has completely transformed. The natural glow is incredible!",
-                author: "Akua M., Accra"
+                quote: t.transformation.testimonialQuote,
+                author: t.transformation.testimonialAuthor
               }}
             />
             <Partners />

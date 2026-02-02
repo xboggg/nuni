@@ -202,6 +202,8 @@ export const translations = {
       description: "Drag the slider to see the incredible before and after results from our natural skincare products.",
       before: "Before",
       after: "After",
+      testimonialQuote: "After just 4 weeks of using Nuni products, my skin has completely transformed. The natural glow is incredible!",
+      testimonialAuthor: "Akua M., Accra",
     },
     // Partners
     partners: {
@@ -454,6 +456,8 @@ export const translations = {
       description: "Faites glisser le curseur pour voir les résultats avant et après de nos produits naturels.",
       before: "Avant",
       after: "Après",
+      testimonialQuote: "Après seulement 4 semaines d'utilisation des produits Nuni, ma peau s'est complètement transformée. L'éclat naturel est incroyable!",
+      testimonialAuthor: "Akua M., Accra",
     },
     // Partners
     partners: {
@@ -706,6 +710,8 @@ export const translations = {
       description: "Twe slider no hwɛ nsunsuansoɔ a edi kan ne akyire firi yɛn nneɛma ankasa.",
       before: "Ansa",
       after: "Akyire",
+      testimonialQuote: "Nnawɔtwe 4 pɛ akyi a mede Nuni nneɛma no dii dwuma, me honam asakra koraa. Hyerɛn ankasa no yɛ nwanwa!",
+      testimonialAuthor: "Akua M., Nkran",
     },
     // Partners
     partners: {
