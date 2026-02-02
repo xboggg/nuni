@@ -58,7 +58,7 @@ const Navigation = () => {
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
             ? "bg-card/95 backdrop-blur-md shadow-soft"
-            : "bg-transparent"
+            : "bg-black/20 backdrop-blur-sm"
         }`}
       >
         <div className="container-custom">
@@ -67,8 +67,10 @@ const Navigation = () => {
             <a href="#" className="flex items-center gap-2">
               <img src={logo} alt="Nuni Global" className="h-10 md:h-12 w-10 md:w-12 rounded-full object-cover" />
               <span className={`font-serif font-semibold text-lg md:text-xl transition-colors duration-300 ${
-                isScrolled ? "text-primary" : "text-primary"
-              }`}>
+                isScrolled ? "text-primary" : "text-white"
+              }`}
+              style={{ textShadow: isScrolled ? 'none' : '1px 1px 3px rgba(0,0,0,0.5)' }}
+              >
                 NUNI GLOBAL
               </span>
             </a>
@@ -81,8 +83,9 @@ const Navigation = () => {
                     key={link.name}
                     to={link.href}
                     className={`text-sm font-medium transition-colors duration-200 hover:text-primary ${
-                      isScrolled ? "text-foreground" : "text-foreground"
+                      isScrolled ? "text-foreground" : "text-white"
                     }`}
+                    style={{ textShadow: isScrolled ? 'none' : '1px 1px 3px rgba(0,0,0,0.5)' }}
                   >
                     {link.name}
                   </Link>
@@ -91,8 +94,9 @@ const Navigation = () => {
                     key={link.name}
                     onClick={() => handleNavClick(link.href)}
                     className={`text-sm font-medium transition-colors duration-200 hover:text-primary ${
-                      isScrolled ? "text-foreground" : "text-foreground"
+                      isScrolled ? "text-foreground" : "text-white"
                     }`}
+                    style={{ textShadow: isScrolled ? 'none' : '1px 1px 3px rgba(0,0,0,0.5)' }}
                   >
                     {link.name}
                   </button>
@@ -117,7 +121,8 @@ const Navigation = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 text-foreground"
+              className={`md:hidden p-2 ${isScrolled ? "text-foreground" : "text-white"}`}
+              style={{ textShadow: isScrolled ? 'none' : '1px 1px 3px rgba(0,0,0,0.5)' }}
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>

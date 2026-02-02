@@ -53,8 +53,6 @@ const Index = () => {
             <BeforeAfterSlider
               beforeImage={beforeImage}
               afterImage={afterImage}
-              beforeLabel="Before"
-              afterLabel="After"
               testimonial={{
                 quote: "After just 4 weeks of using Nuni products, my skin has completely transformed. The natural glow is incredible!",
                 author: "Akua M., Accra"
