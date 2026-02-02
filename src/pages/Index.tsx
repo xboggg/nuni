@@ -8,10 +8,9 @@ import Benefits from "@/components/Benefits";
 import StatsCounter from "@/components/StatsCounter";
 import TrustBadges from "@/components/TrustBadges";
 import HowItWorks from "@/components/HowItWorks";
+import IngredientsSpotlight from "@/components/IngredientsSpotlight";
 import TestimonialsCarousel from "@/components/TestimonialsCarousel";
-import FAQ from "@/components/FAQ";
 import Partners from "@/components/Partners";
-import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import BackToTop from "@/components/BackToTop";
@@ -42,10 +41,9 @@ const Index = () => {
           <Benefits />
           <StatsCounter />
           <HowItWorks />
+          <IngredientsSpotlight />
           <TestimonialsCarousel />
-          <FAQ />
           <Partners />
-          <Contact />
         </main>
         <Footer />
         <WhatsAppButton />

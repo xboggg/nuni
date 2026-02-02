@@ -11,7 +11,7 @@ const navLinks = [
   { name: "Benefits", href: "#benefits" },
   { name: "Gallery", href: "/gallery", isRoute: true },
   { name: "Partners", href: "#partners" },
-  { name: "Contact", href: "#contact" },
+  { name: "Contact", href: "/contact", isRoute: true },
 ];
 
 const Navigation = () => {

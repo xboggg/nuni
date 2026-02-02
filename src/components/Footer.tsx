@@ -24,12 +24,12 @@ const Footer = () => {
       { name: "About", href: "#about" },
       { name: "Gallery", href: "/gallery", isRoute: true },
       { name: "Partners", href: "#partners" },
-      { name: "Contact", href: "#contact" },
+      { name: "Contact", href: "/contact", isRoute: true },
     ],
     support: [
-      { name: "FAQ", href: "#faq" },
-      { name: "Shipping", href: "#contact" },
-      { name: "Returns", href: "#contact" },
+      { name: "FAQ", href: "/contact", isRoute: true },
+      { name: "Shipping", href: "/contact", isRoute: true },
+      { name: "Returns", href: "/contact", isRoute: true },
     ],
   };
 
@@ -153,12 +153,21 @@ const Footer = () => {
             <ul className="space-y-2">
               {footerLinks.support.map((link) => (
                 <li key={link.name}>
-                  <button
-                    onClick={() => handleNavClick(link.href)}
-                    className="text-sm text-cream/60 hover:text-cream transition-colors"
-                  >
-                    {link.name}
-                  </button>
+                  {link.isRoute ? (
+                    <Link
+                      to={link.href}
+                      className="text-sm text-cream/60 hover:text-cream transition-colors"
+                    >
+                      {link.name}
+                    </Link>
+                  ) : (
+                    <button
+                      onClick={() => handleNavClick(link.href)}
+                      className="text-sm text-cream/60 hover:text-cream transition-colors"
+                    >
+                      {link.name}
+                    </button>
+                  )}
                 </li>
               ))}
             </ul>
