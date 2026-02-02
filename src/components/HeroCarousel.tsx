@@ -50,18 +50,24 @@ const HeroCarousel = () => {
   }, [nextSlide, prevSlide]);
 
   return (
-    <section id="hero" className="relative min-h-screen overflow-hidden">
+    <section id="hero" className="relative min-h-screen overflow-hidden bg-neutral-900">
+      {/* Static background to prevent white flash */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center transition-none"
+        style={{ backgroundImage: `url(${heroImages[currentIndex]})` }}
+      />
+      
       {/* Falling Leaves Overlay */}
       <FallingLeaves />
 
       {/* Background Images with Breathing Effect */}
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="sync">
         <motion.div
           key={currentIndex}
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.95 }}
-          transition={{ duration: 1.2, ease: "easeInOut" }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
           className="absolute inset-0"
         >
           <motion.div
@@ -79,9 +85,9 @@ const HeroCarousel = () => {
               className="absolute inset-0 bg-cover bg-center"
               style={{ backgroundImage: `url(${heroImages[currentIndex]})` }}
             />
-            {/* Gradient overlay - minimal for clearer images, uses dark overlay for text readability */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent dark:from-background/80 dark:via-background/40 dark:to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent dark:from-background/30 dark:via-transparent dark:to-background/10" />
+            {/* Gradient overlay for text readability - stronger on left side */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20" />
           </motion.div>
         </motion.div>
       </AnimatePresence>
@@ -98,40 +104,44 @@ const HeroCarousel = () => {
         className="absolute bottom-40 left-10 w-48 h-48 bg-accent/10 rounded-full blur-3xl"
       />
 
-      {/* Content */}
+      {/* Content - positioned more to the left on desktop */}
       <div className="relative z-10 min-h-screen flex items-center">
-        <div className="container-custom pt-20 pl-4 sm:pl-6 lg:pl-8">
-          <div className="max-w-2xl -ml-2 sm:ml-0 lg:-ml-4">
+        <div className="container-custom pt-20">
+          <div className="max-w-2xl lg:max-w-xl xl:max-w-2xl ml-0 lg:-ml-8 xl:-ml-12">
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-card/80 backdrop-blur-sm rounded-full border border-border mb-6"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-white/90 backdrop-blur-sm rounded-full border border-white/20 mb-6 shadow-lg"
             >
-              <Sparkles size={16} className="text-accent" />
-              <span className="text-sm font-medium text-foreground">
+              <Sparkles size={16} className="text-primary" />
+              <span className="text-sm font-medium text-neutral-800">
                 Premium African Skincare
               </span>
             </motion.div>
 
-            {/* Headline */}
+            {/* Headline - with text shadow for better contrast */}
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-bold text-foreground leading-tight mb-6"
+              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-bold text-white leading-tight mb-6"
+              style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.5), 0 0 40px rgba(0,0,0,0.3)' }}
             >
               Radiant Skin,{" "}
-              <span className="text-gradient-green">Naturally Yours</span>
+              <span className="text-gradient-green" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.5)' }}>
+                Naturally Yours
+              </span>
             </motion.h1>
 
-            {/* Subheadline */}
+            {/* Subheadline - improved contrast */}
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8 max-w-xl"
+              className="text-lg md:text-xl text-white/90 leading-relaxed mb-8 max-w-xl"
+              style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.5)' }}
             >
               Discover the power of African botanicals. Premium skincare crafted
               with 100% natural ingredients for visibly healthier, glowing skin.
@@ -146,7 +156,7 @@ const HeroCarousel = () => {
             >
               <a
                 href="#products"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-full font-semibold text-lg transition-all duration-300 hover:shadow-green hover:scale-105"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-full font-semibold text-lg transition-all duration-300 hover:shadow-green hover:scale-105 shadow-lg"
               >
                 Explore Products
               </a>
@@ -154,7 +164,7 @@ const HeroCarousel = () => {
                 href={getWhatsAppLink(GENERAL_INQUIRY_MESSAGE)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-8 py-4 border-2 border-primary text-primary rounded-full font-semibold text-lg transition-all duration-300 hover:bg-primary hover:text-primary-foreground"
+                className="inline-flex items-center gap-2 px-8 py-4 border-2 border-white bg-white/10 backdrop-blur-sm text-white rounded-full font-semibold text-lg transition-all duration-300 hover:bg-white hover:text-primary shadow-lg"
               >
                 Contact Us
               </a>
@@ -165,12 +175,12 @@ const HeroCarousel = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.6 }}
-              className="inline-flex items-center gap-3 px-5 py-3 bg-secondary/20 rounded-2xl border border-secondary/30"
+              className="inline-flex items-center gap-3 px-5 py-3 bg-white/90 backdrop-blur-sm rounded-2xl border border-white/20 shadow-lg"
             >
-              <div className="w-10 h-10 bg-secondary rounded-full flex items-center justify-center">
-                <Leaf size={20} className="text-secondary-foreground" />
+              <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+                <Leaf size={20} className="text-primary-foreground" />
               </div>
-              <span className="text-sm font-medium text-foreground">
+              <span className="text-sm font-medium text-neutral-800">
                 100% Natural Ingredients
               </span>
             </motion.div>
