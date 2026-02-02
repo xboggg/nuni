@@ -1,39 +1,53 @@
-import { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
-import { Quote, Star, ChevronLeft, ChevronRight, Play } from "lucide-react";
+import { Quote, Star, Play } from "lucide-react";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
 import { testimonials } from "@/data/testimonials";
 import { tiktokVideos } from "@/data/products";
 
 const TestimonialsCarousel = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
-  const nextTestimonial = useCallback(() => {
-    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-  }, []);
+  const autoplayPlugin = useRef(
+    Autoplay({ delay: 5000, stopOnInteraction: true, stopOnMouseEnter: true })
+  );
 
-  const prevTestimonial = useCallback(() => {
-    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  }, []);
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    {
+      loop: true,
+      align: "start",
+      slidesToScroll: 1,
+      breakpoints: {
+        "(min-width: 768px)": { slidesToScroll: 1 },
+      },
+    },
+    [autoplayPlugin.current]
+  );
 
-  // Auto-play
   useEffect(() => {
-    if (!isAutoPlaying) return;
-    const timer = setInterval(nextTestimonial, 6000);
-    return () => clearInterval(timer);
-  }, [isAutoPlaying, nextTestimonial]);
+    if (!emblaApi) return;
 
-  const handleDotClick = (index: number) => {
-    setCurrentIndex(index);
-    setIsAutoPlaying(false);
-    setTimeout(() => setIsAutoPlaying(true), 10000);
+    const onSelect = () => {
+      setSelectedIndex(emblaApi.selectedScrollSnap());
+    };
+
+    emblaApi.on("select", onSelect);
+    onSelect();
+
+    return () => {
+      emblaApi.off("select", onSelect);
+    };
+  }, [emblaApi]);
+
+  const scrollTo = (index: number) => {
+    if (emblaApi) {
+      emblaApi.scrollTo(index);
+    }
   };
-
-  const currentTestimonial = testimonials[currentIndex];
 
   return (
     <section className="py-20 lg:py-32 bg-background overflow-hidden">
@@ -57,109 +71,93 @@ const TestimonialsCarousel = () => {
           </p>
         </motion.div>
 
-        {/* Testimonial Carousel */}
-        <div ref={ref} className="max-w-4xl mx-auto mb-20">
-          <div className="relative">
-            {/* Navigation Arrows */}
-            <button
-              onClick={() => {
-                prevTestimonial();
-                setIsAutoPlaying(false);
-                setTimeout(() => setIsAutoPlaying(true), 10000);
-              }}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 z-10 w-10 h-10 bg-card rounded-full flex items-center justify-center text-foreground hover:bg-muted transition-all duration-200 shadow-soft"
-              aria-label="Previous testimonial"
-            >
-              <ChevronLeft size={20} />
-            </button>
-            <button
-              onClick={() => {
-                nextTestimonial();
-                setIsAutoPlaying(false);
-                setTimeout(() => setIsAutoPlaying(true), 10000);
-              }}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 z-10 w-10 h-10 bg-card rounded-full flex items-center justify-center text-foreground hover:bg-muted transition-all duration-200 shadow-soft"
-              aria-label="Next testimonial"
-            >
-              <ChevronRight size={20} />
-            </button>
+        {/* Testimonial Carousel - 3 cards visible */}
+        <div ref={sectionRef} className="mb-20">
+          <div ref={emblaRef} className="overflow-hidden">
+            <div className="flex touch-pan-y">
+              {testimonials.map((testimonial, index) => (
+                <div
+                  key={testimonial.id}
+                  className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] min-w-0 pl-4 first:pl-0 md:first:pl-4"
+                >
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="h-full"
+                  >
+                    <div className="relative h-full bg-gradient-to-br from-primary/5 to-secondary/5 rounded-3xl p-6 md:p-8 mx-2">
+                      {/* Quote Icon */}
+                      <div className="absolute -top-4 left-6">
+                        <div className="w-10 h-10 bg-accent rounded-full flex items-center justify-center shadow-gold">
+                          <Quote size={18} className="text-accent-foreground" />
+                        </div>
+                      </div>
 
-            {/* Testimonial Card */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentIndex}
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -50 }}
-                transition={{ duration: 0.4 }}
-                className="relative bg-gradient-to-br from-primary/5 to-secondary/5 rounded-3xl p-8 md:p-12"
-              >
-                {/* Quote Icon */}
-                <div className="absolute -top-6 left-8 md:left-12">
-                  <div className="w-12 h-12 bg-accent rounded-full flex items-center justify-center shadow-gold">
-                    <Quote size={24} className="text-accent-foreground" />
-                  </div>
-                </div>
+                      {/* Stars */}
+                      <div className="flex gap-1 mb-4 mt-2">
+                        {[...Array(5)].map((_, i) => (
+                          <Star
+                            key={i}
+                            size={16}
+                            className={
+                              i < testimonial.rating
+                                ? "text-accent fill-accent"
+                                : "text-muted"
+                            }
+                          />
+                        ))}
+                      </div>
 
-                {/* Stars */}
-                <div className="flex gap-1 mb-6">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      size={20}
-                      className={
-                        i < currentTestimonial.rating
-                          ? "text-accent fill-accent"
-                          : "text-muted"
-                      }
-                    />
-                  ))}
-                </div>
+                      {/* Quote Text */}
+                      <blockquote className="text-base md:text-lg font-serif text-foreground leading-relaxed mb-6 line-clamp-4">
+                        "{testimonial.text}"
+                      </blockquote>
 
-                {/* Quote Text */}
-                <blockquote className="text-xl md:text-2xl lg:text-3xl font-serif text-foreground leading-relaxed mb-8">
-                  "{currentTestimonial.text}"
-                </blockquote>
+                      {/* Author */}
+                      <div className="flex items-center gap-3 mt-auto">
+                        <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
+                          <span className="text-sm font-semibold text-primary">
+                            {testimonial.initials}
+                          </span>
+                        </div>
+                        <div className="min-w-0">
+                          <p className="font-semibold text-foreground text-sm truncate">
+                            {testimonial.name}
+                          </p>
+                          <p className="text-xs text-muted-foreground truncate">
+                            {testimonial.location}
+                          </p>
+                        </div>
+                      </div>
 
-                {/* Author */}
-                <div className="flex items-center justify-between flex-wrap gap-4">
-                  <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 bg-primary/20 rounded-full flex items-center justify-center">
-                      <span className="text-lg font-semibold text-primary">
-                        {currentTestimonial.initials}
-                      </span>
+                      {/* Product Tag */}
+                      <div className="mt-4">
+                        <span className="text-xs font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">
+                          {testimonial.product}
+                        </span>
+                      </div>
                     </div>
-                    <div>
-                      <p className="font-semibold text-foreground">
-                        {currentTestimonial.name}
-                      </p>
-                      <p className="text-sm text-muted-foreground">
-                        {currentTestimonial.location}
-                      </p>
-                    </div>
-                  </div>
-                  <span className="text-sm font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">
-                    {currentTestimonial.product}
-                  </span>
+                  </motion.div>
                 </div>
-              </motion.div>
-            </AnimatePresence>
-
-            {/* Dots Navigation */}
-            <div className="flex justify-center gap-2 mt-8">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => handleDotClick(index)}
-                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                    index === currentIndex
-                      ? "bg-primary w-8"
-                      : "bg-muted hover:bg-muted-foreground/30"
-                  }`}
-                  aria-label={`Go to testimonial ${index + 1}`}
-                />
               ))}
             </div>
+          </div>
+
+          {/* Dots Navigation */}
+          <div className="flex justify-center gap-2 mt-8">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => scrollTo(index)}
+                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                  index === selectedIndex
+                    ? "bg-primary w-8"
+                    : "bg-muted hover:bg-muted-foreground/30"
+                }`}
+                aria-label={`Go to testimonial ${index + 1}`}
+              />
+            ))}
           </div>
         </div>
 
