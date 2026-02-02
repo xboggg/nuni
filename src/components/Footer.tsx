@@ -195,6 +195,16 @@ const Footer = () => {
               </a>
             </div>
           </div>
+          <div className="text-center mt-6">
+            <a
+              href="https://wa.me/233245817973"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-cream/40 hover:text-cream/70 transition-colors"
+            >
+              Designed by NovaStream
+            </a>
+          </div>
         </div>
       </div>
     </footer>
