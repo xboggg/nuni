@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ChevronLeft, ChevronRight, ZoomIn, ArrowLeft } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, ZoomIn, ArrowLeft, Settings } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -14,13 +14,21 @@ import hero5 from "@/assets/hero-5.png";
 import hero6 from "@/assets/hero-6.jpeg";
 
 interface GalleryImage {
-  id: number;
+  id: number | string;
   src: string;
   alt: string;
   category: "events" | "partnership" | "soap" | "cream" | "cocoa-butter" | "products";
 }
 
-const galleryImages: GalleryImage[] = [
+interface UploadedImage {
+  id: string;
+  src: string;
+  alt: string;
+  category: string;
+  createdAt: number;
+}
+
+const defaultGalleryImages: GalleryImage[] = [
   { id: 1, src: hero1, alt: "Nuni Global Products Display", category: "products" },
   { id: 2, src: hero2, alt: "Premium Skincare Collection", category: "soap" },
   { id: 3, src: hero3, alt: "Natural Ingredients", category: "cocoa-butter" },
@@ -44,11 +52,31 @@ const Gallery = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isZoomed, setIsZoomed] = useState(false);
+  const [uploadedImages, setUploadedImages] = useState<UploadedImage[]>([]);
+
+  // Load uploaded images from localStorage
+  useEffect(() => {
+    const stored = localStorage.getItem("gallery-images");
+    if (stored) {
+      setUploadedImages(JSON.parse(stored));
+    }
+  }, []);
+
+  // Combine default and uploaded images
+  const allImages: GalleryImage[] = [
+    ...defaultGalleryImages,
+    ...uploadedImages.map((img) => ({
+      id: img.id,
+      src: img.src,
+      alt: img.alt,
+      category: img.category as GalleryImage["category"],
+    })),
+  ];
 
   const filteredImages =
     activeCategory === "all"
-      ? galleryImages
-      : galleryImages.filter((img) => img.category === activeCategory);
+      ? allImages
+      : allImages.filter((img) => img.category === activeCategory);
 
   const openLightbox = (index: number) => {
     setCurrentImageIndex(index);
@@ -97,13 +125,22 @@ const Gallery = () => {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <Link
-              to="/"
-              className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mb-6"
-            >
-              <ArrowLeft size={20} />
-              <span className="font-medium">Back to Home</span>
-            </Link>
+            <div className="flex items-center justify-between mb-6">
+              <Link
+                to="/"
+                className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
+              >
+                <ArrowLeft size={20} />
+                <span className="font-medium">Back to Home</span>
+              </Link>
+              <Link
+                to="/gallery/admin"
+                className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <Settings size={20} />
+                <span className="font-medium">Admin</span>
+              </Link>
+            </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-4">
               Our Gallery
             </h1>
