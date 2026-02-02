@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Leaf, Sparkles } from "lucide-react";
 import { getWhatsAppLink, GENERAL_INQUIRY_MESSAGE } from "@/data/products";
 import FallingLeaves from "./FallingLeaves";
+import { useLanguage } from "@/lib/i18n";
 
 // Import all hero images
 import hero1 from "@/assets/hero-1.jpeg";
@@ -17,6 +18,7 @@ const heroImages = [hero1, hero2, hero3, hero4, hero5, hero6];
 const HeroCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const { t } = useLanguage();
 
   const nextSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % heroImages.length);
@@ -117,7 +119,7 @@ const HeroCarousel = () => {
             >
               <Sparkles size={16} className="text-primary" />
               <span className="text-sm font-medium text-neutral-800">
-                Premium African Skincare
+                {t.hero.badge}
               </span>
             </motion.div>
 
@@ -129,9 +131,9 @@ const HeroCarousel = () => {
               className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-bold text-white leading-tight mb-6"
               style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.5), 0 0 40px rgba(0,0,0,0.3)' }}
             >
-              Radiant Skin,{" "}
+              {t.hero.headline}{" "}
               <span className="text-gradient-green" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.5)' }}>
-                Naturally Yours
+                {t.hero.headlineHighlight}
               </span>
             </motion.h1>
 
@@ -143,8 +145,7 @@ const HeroCarousel = () => {
               className="text-lg md:text-xl text-white/90 leading-relaxed mb-8 max-w-xl"
               style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.5)' }}
             >
-              Discover the power of African botanicals. Premium skincare crafted
-              with 100% natural ingredients for visibly healthier, glowing skin.
+              {t.hero.subheadline}
             </motion.p>
 
             {/* CTA Buttons */}
@@ -158,7 +159,7 @@ const HeroCarousel = () => {
                 href="#products"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-full font-semibold text-lg transition-all duration-300 hover:shadow-green hover:scale-105 shadow-lg"
               >
-                Explore Products
+                {t.hero.exploreProducts}
               </a>
               <a
                 href={getWhatsAppLink(GENERAL_INQUIRY_MESSAGE)}
@@ -166,7 +167,7 @@ const HeroCarousel = () => {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-8 py-4 border-2 border-white bg-white/10 backdrop-blur-sm text-white rounded-full font-semibold text-lg transition-all duration-300 hover:bg-white hover:text-primary shadow-lg"
               >
-                Contact Us
+                {t.hero.contactUs}
               </a>
             </motion.div>
 
@@ -181,7 +182,7 @@ const HeroCarousel = () => {
                 <Leaf size={20} className="text-primary-foreground" />
               </div>
               <span className="text-sm font-medium text-neutral-800">
-                100% Natural Ingredients
+                {t.hero.naturalBadge}
               </span>
             </motion.div>
           </div>

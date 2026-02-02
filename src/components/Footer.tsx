@@ -2,10 +2,12 @@ import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 import logo from "@/assets/nuni-logo.png";
 import { products } from "@/data/products";
+import { useLanguage } from "@/lib/i18n";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const location = useLocation();
+  const { t } = useLanguage();
 
   const handleNavClick = (href: string) => {
     if (location.pathname !== "/") {
@@ -21,15 +23,15 @@ const Footer = () => {
   const footerLinks = {
     products: products.map((p) => ({ name: p.name, href: "#products" })),
     company: [
-      { name: "About", href: "#about" },
-      { name: "Gallery", href: "/gallery", isRoute: true },
-      { name: "Partners", href: "#partners" },
-      { name: "Contact", href: "/contact", isRoute: true },
+      { name: t.footer.about, href: "#about" },
+      { name: t.footer.gallery, href: "/gallery", isRoute: true },
+      { name: t.footer.partners, href: "#partners" },
+      { name: t.footer.contact, href: "/contact", isRoute: true },
     ],
     support: [
-      { name: "FAQ", href: "/contact", isRoute: true },
-      { name: "Shipping", href: "/contact", isRoute: true },
-      { name: "Returns", href: "/contact", isRoute: true },
+      { name: t.footer.faq, href: "/contact", isRoute: true },
+      { name: t.footer.shipping, href: "/contact", isRoute: true },
+      { name: t.footer.returns, href: "/contact", isRoute: true },
     ],
   };
 
@@ -85,8 +87,7 @@ const Footer = () => {
               </span>
             </div>
             <p className="text-sm text-cream/60 leading-relaxed mb-4">
-              Premium African skincare crafted with 100% natural ingredients.
-              From Nature To You.
+              {t.footer.tagline}
             </p>
             <div className="flex gap-3">
               {socialLinks.map((social) => (
@@ -106,7 +107,7 @@ const Footer = () => {
 
           {/* Products */}
           <div>
-            <h4 className="font-semibold text-cream mb-4">Products</h4>
+            <h4 className="font-semibold text-cream mb-4">{t.footer.products}</h4>
             <ul className="space-y-2">
               {footerLinks.products.map((link) => (
                 <li key={link.name}>
@@ -123,7 +124,7 @@ const Footer = () => {
 
           {/* Company */}
           <div>
-            <h4 className="font-semibold text-cream mb-4">Company</h4>
+            <h4 className="font-semibold text-cream mb-4">{t.footer.company}</h4>
             <ul className="space-y-2">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
@@ -149,7 +150,7 @@ const Footer = () => {
 
           {/* Support */}
           <div>
-            <h4 className="font-semibold text-cream mb-4">Support</h4>
+            <h4 className="font-semibold text-cream mb-4">{t.footer.support}</h4>
             <ul className="space-y-2">
               {footerLinks.support.map((link) => (
                 <li key={link.name}>
@@ -178,20 +179,20 @@ const Footer = () => {
         <div className="border-t border-cream/10 pt-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-cream/60">
-              © {currentYear} Nuni Global. All rights reserved.
+              © {currentYear} Nuni Global. {t.footer.copyright}
             </p>
             <div className="flex gap-6">
               <a
                 href="#"
                 className="text-sm text-cream/60 hover:text-cream transition-colors"
               >
-                Privacy Policy
+                {t.footer.privacyPolicy}
               </a>
               <a
                 href="#"
                 className="text-sm text-cream/60 hover:text-cream transition-colors"
               >
-                Terms of Service
+                {t.footer.termsOfService}
               </a>
             </div>
           </div>
@@ -202,7 +203,7 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="text-sm text-cream/40 hover:text-cream/70 transition-colors"
             >
-              Designed by NovaStream
+              {t.footer.designedBy}
             </a>
           </div>
         </div>

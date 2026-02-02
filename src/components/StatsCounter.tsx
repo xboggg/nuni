@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { Users, Leaf, Award, Heart } from "lucide-react";
+import { useLanguage } from "@/lib/i18n";
 
 interface StatItem {
   icon: React.ReactNode;
@@ -9,33 +10,6 @@ interface StatItem {
   suffix: string;
   label: string;
 }
-
-const stats: StatItem[] = [
-  {
-    icon: <Users className="w-8 h-8" />,
-    value: 5000,
-    suffix: "+",
-    label: "Happy Customers",
-  },
-  {
-    icon: <Leaf className="w-8 h-8" />,
-    value: 100,
-    suffix: "%",
-    label: "Natural Ingredients",
-  },
-  {
-    icon: <Award className="w-8 h-8" />,
-    value: 3,
-    suffix: "+",
-    label: "Years of Excellence",
-  },
-  {
-    icon: <Heart className="w-8 h-8" />,
-    value: 98,
-    suffix: "%",
-    label: "Customer Satisfaction",
-  },
-];
 
 const AnimatedCounter = ({
   value,
@@ -80,6 +54,34 @@ const AnimatedCounter = ({
 const StatsCounter = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { t } = useLanguage();
+
+  const stats: StatItem[] = [
+    {
+      icon: <Users className="w-8 h-8" />,
+      value: 5000,
+      suffix: "+",
+      label: t.stats.happyCustomers,
+    },
+    {
+      icon: <Leaf className="w-8 h-8" />,
+      value: 100,
+      suffix: "%",
+      label: t.stats.naturalIngredients,
+    },
+    {
+      icon: <Award className="w-8 h-8" />,
+      value: 3,
+      suffix: "+",
+      label: t.stats.yearsExcellence,
+    },
+    {
+      icon: <Heart className="w-8 h-8" />,
+      value: 98,
+      suffix: "%",
+      label: t.stats.customerSatisfaction,
+    },
+  ];
 
   return (
     <section className="py-20 bg-gradient-to-br from-primary via-primary to-navy relative overflow-hidden">

@@ -2,33 +2,35 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Shield, Leaf, Heart, Sparkles } from "lucide-react";
-
-const features = [
-  {
-    icon: Shield,
-    title: "FDA Approved",
-    description: "All products certified by Ghana FDA for safety and quality",
-  },
-  {
-    icon: Leaf,
-    title: "100% Natural",
-    description: "Pure African botanicals with no harsh chemicals",
-  },
-  {
-    icon: Heart,
-    title: "All Skin Types",
-    description: "Gentle formulas suitable for every skin type",
-  },
-  {
-    icon: Sparkles,
-    title: "Visible Results",
-    description: "See improvement in your skin within weeks",
-  },
-];
+import { useLanguage } from "@/lib/i18n";
 
 const About = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { t } = useLanguage();
+
+  const features = [
+    {
+      icon: Shield,
+      title: t.about.features.fdaApproved,
+      description: t.about.features.fdaDesc,
+    },
+    {
+      icon: Leaf,
+      title: t.about.features.natural,
+      description: t.about.features.naturalDesc,
+    },
+    {
+      icon: Heart,
+      title: t.about.features.allSkinTypes,
+      description: t.about.features.allSkinTypesDesc,
+    },
+    {
+      icon: Sparkles,
+      title: t.about.features.visibleResults,
+      description: t.about.features.visibleResultsDesc,
+    },
+  ];
 
   return (
     <section id="about" className="py-20 lg:py-32 bg-card">
@@ -40,7 +42,7 @@ const About = () => {
             transition={{ duration: 0.5 }}
             className="inline-block text-sm font-medium tracking-widest text-accent uppercase mb-4"
           >
-            Our Story
+            {t.about.subtitle}
           </motion.span>
 
           <motion.h2
@@ -49,7 +51,7 @@ const About = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-foreground mb-6"
           >
-            From Nature <span className="text-gradient-gold">To You</span>
+            {t.about.title} <span className="text-gradient-gold">{t.about.titleHighlight}</span>
           </motion.h2>
 
           <motion.p
@@ -58,12 +60,7 @@ const About = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-lg text-muted-foreground leading-relaxed"
           >
-            At Nuni Global, we believe that nature holds the key to radiant,
-            healthy skin. Our products blend centuries-old African botanical
-            wisdom with modern skincare science, creating premium formulas that
-            deliver real results. Every ingredient is carefully sourced and
-            crafted right here in Ghana, bringing you the authentic power of
-            African beauty traditions.
+            {t.about.description}
           </motion.p>
         </div>
 
