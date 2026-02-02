@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "@/assets/nuni-logo.png";
 import { getWhatsAppLink, GENERAL_INQUIRY_MESSAGE } from "@/data/products";
+import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
   { name: "About", href: "#about" },
@@ -96,8 +97,9 @@ const Navigation = () => {
               ))}
             </div>
 
-            {/* CTA Button */}
-            <div className="hidden md:block">
+            {/* Theme Toggle & CTA Button */}
+            <div className="hidden md:flex items-center gap-4">
+              <ThemeToggle />
               <a
                 href={getWhatsAppLink(GENERAL_INQUIRY_MESSAGE)}
                 target="_blank"
