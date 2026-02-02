@@ -84,43 +84,66 @@ const TestimonialsCarousel = () => {
                     initial={{ opacity: 0, y: 30 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
+                    whileHover={{ y: -8, transition: { duration: 0.3 } }}
                     className="h-full"
                   >
-                    <div className="relative h-full bg-gradient-to-br from-primary/5 to-secondary/5 rounded-3xl p-6 md:p-8 mx-2">
-                      {/* Quote Icon */}
-                      <div className="absolute -top-4 left-6">
-                        <div className="w-10 h-10 bg-accent rounded-full flex items-center justify-center shadow-gold">
-                          <Quote size={18} className="text-accent-foreground" />
-                        </div>
+                    <div className="relative h-full bg-card rounded-3xl p-6 md:p-8 mx-2 shadow-soft hover:shadow-card transition-all duration-300 border border-border/50 overflow-hidden group">
+                      {/* Animated background on hover */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                      {/* Large Quote Icon - More Visible */}
+                      <div className="absolute top-4 right-4 opacity-20 group-hover:opacity-30 transition-opacity duration-300">
+                        <Quote size={60} className="text-primary" />
                       </div>
 
+                      {/* Small Quote Badge */}
+                      <motion.div 
+                        className="absolute -top-3 left-6"
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                      >
+                        <div className="w-12 h-12 bg-accent rounded-full flex items-center justify-center shadow-gold">
+                          <Quote size={20} className="text-accent-foreground" />
+                        </div>
+                      </motion.div>
+
                       {/* Stars */}
-                      <div className="flex gap-1 mb-4 mt-2">
+                      <div className="flex gap-1 mb-4 mt-4 relative z-10">
                         {[...Array(5)].map((_, i) => (
-                          <Star
+                          <motion.div
                             key={i}
-                            size={16}
-                            className={
-                              i < testimonial.rating
-                                ? "text-accent fill-accent"
-                                : "text-muted"
-                            }
-                          />
+                            initial={{ opacity: 0, scale: 0 }}
+                            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                            transition={{ delay: 0.5 + i * 0.1 }}
+                          >
+                            <Star
+                              size={18}
+                              className={
+                                i < testimonial.rating
+                                  ? "text-accent fill-accent"
+                                  : "text-muted"
+                              }
+                            />
+                          </motion.div>
                         ))}
                       </div>
 
-                      {/* Quote Text */}
-                      <blockquote className="text-base md:text-lg font-serif text-foreground leading-relaxed mb-6 line-clamp-4">
-                        "{testimonial.text}"
+                      {/* Quote Text with visible quotation marks */}
+                      <blockquote className="text-base md:text-lg font-serif text-foreground leading-relaxed mb-6 line-clamp-4 relative z-10">
+                        <span className="text-2xl text-primary font-bold leading-none mr-1">"</span>
+                        {testimonial.text}
+                        <span className="text-2xl text-primary font-bold leading-none ml-1">"</span>
                       </blockquote>
 
                       {/* Author */}
-                      <div className="flex items-center gap-3 mt-auto">
-                        <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
-                          <span className="text-sm font-semibold text-primary">
+                      <div className="flex items-center gap-3 mt-auto relative z-10">
+                        <motion.div 
+                          className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center flex-shrink-0 shadow-soft"
+                          whileHover={{ scale: 1.1 }}
+                        >
+                          <span className="text-sm font-semibold text-primary-foreground">
                             {testimonial.initials}
                           </span>
-                        </div>
+                        </motion.div>
                         <div className="min-w-0">
                           <p className="font-semibold text-foreground text-sm truncate">
                             {testimonial.name}
@@ -132,11 +155,14 @@ const TestimonialsCarousel = () => {
                       </div>
 
                       {/* Product Tag */}
-                      <div className="mt-4">
-                        <span className="text-xs font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">
+                      <motion.div 
+                        className="mt-4 relative z-10"
+                        whileHover={{ scale: 1.05 }}
+                      >
+                        <span className="text-xs font-medium text-primary bg-primary/10 px-3 py-1.5 rounded-full border border-primary/20">
                           {testimonial.product}
                         </span>
-                      </div>
+                      </motion.div>
                     </div>
                   </motion.div>
                 </div>
@@ -195,22 +221,28 @@ const TestimonialsCarousel = () => {
           className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"
         >
           {tiktokVideos.slice(0, 6).map((url, index) => (
-            <a
+            <motion.a
               key={index}
               href={url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative aspect-[9/16] bg-muted rounded-2xl overflow-hidden shadow-soft hover:shadow-card transition-all duration-300"
+              whileHover={{ scale: 1.05, y: -5 }}
+              transition={{ duration: 0.3 }}
+              className="group relative aspect-[9/16] bg-muted rounded-2xl overflow-hidden shadow-soft hover:shadow-card"
             >
               {/* Placeholder with play button */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                <div className="w-12 h-12 bg-card/90 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <motion.div 
+                  className="w-12 h-12 bg-card/90 backdrop-blur-sm rounded-full flex items-center justify-center"
+                  whileHover={{ scale: 1.2 }}
+                  transition={{ duration: 0.3 }}
+                >
                   <Play
                     size={20}
                     className="text-primary ml-1"
                     fill="currentColor"
                   />
-                </div>
+                </motion.div>
               </div>
 
               {/* TikTok branding */}
@@ -226,7 +258,7 @@ const TestimonialsCarousel = () => {
                   Watch
                 </div>
               </div>
-            </a>
+            </motion.a>
           ))}
         </motion.div>
       </div>

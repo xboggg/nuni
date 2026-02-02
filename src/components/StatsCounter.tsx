@@ -70,7 +70,7 @@ const AnimatedCounter = ({
   }, [inView, value]);
 
   return (
-    <span className="text-4xl md:text-5xl font-serif font-bold text-foreground">
+    <span className="text-4xl md:text-5xl font-serif font-bold text-accent">
       {count.toLocaleString()}
       {suffix}
     </span>
@@ -82,12 +82,21 @@ const StatsCounter = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-20 bg-gradient-to-br from-primary to-navy text-primary-foreground relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-10 left-10 w-32 h-32 border border-current rounded-full" />
-        <div className="absolute bottom-10 right-10 w-48 h-48 border border-current rounded-full" />
-        <div className="absolute top-1/2 left-1/4 w-20 h-20 border border-current rounded-full" />
+    <section className="py-20 bg-card border-y border-border relative overflow-hidden">
+      {/* Decorative Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
+          className="absolute -top-20 -left-20 w-64 h-64 border border-primary/10 rounded-full"
+        />
+        <motion.div
+          animate={{ rotate: -360 }}
+          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+          className="absolute -bottom-32 -right-32 w-96 h-96 border border-secondary/10 rounded-full"
+        />
+        <div className="absolute top-1/2 left-1/4 w-32 h-32 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/3 right-1/4 w-48 h-48 bg-accent/5 rounded-full blur-3xl" />
       </div>
 
       <div ref={ref} className="container-custom relative z-10">
@@ -103,11 +112,16 @@ const StatsCounter = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="text-center"
+              whileHover={{ scale: 1.05 }}
+              className="text-center group"
             >
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-foreground/10 rounded-2xl mb-4">
+              <motion.div 
+                className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-2xl mb-4 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300"
+                whileHover={{ rotate: [0, -5, 5, 0] }}
+                transition={{ duration: 0.5 }}
+              >
                 {stat.icon}
-              </div>
+              </motion.div>
               <div className="mb-2">
                 <AnimatedCounter
                   value={stat.value}
@@ -115,7 +129,7 @@ const StatsCounter = () => {
                   inView={isInView}
                 />
               </div>
-              <p className="text-primary-foreground/80 font-medium">
+              <p className="text-muted-foreground font-medium">
                 {stat.label}
               </p>
             </motion.div>
