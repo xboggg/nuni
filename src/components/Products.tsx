@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useCallback } from "react";
 import { products, Product } from "@/data/products";
 import ProductModal from "./ProductModal";
 import ProductCard from "./ProductCard";
+import PullToRefresh from "./PullToRefresh";
 import { useLanguage } from "@/lib/i18n";
 import hero1 from "@/assets/hero-1.jpeg";
 import hero3 from "@/assets/hero-3.jpeg";
@@ -20,6 +21,7 @@ const Products = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(0);
   const { t } = useLanguage();
 
   const handleViewDetails = (product: Product) => {
@@ -31,6 +33,13 @@ const Products = () => {
     setIsModalOpen(false);
     setTimeout(() => setSelectedProduct(null), 300);
   };
+
+  const handleRefresh = useCallback(async () => {
+    // Simulate refresh - in real app this would fetch new data
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    setRefreshKey(prev => prev + 1);
+  }, []);
+
 
   return (
     <section id="products" className="py-20 lg:py-32 bg-background">
@@ -65,19 +74,21 @@ const Products = () => {
           </motion.p>
         </div>
 
-        {/* Product Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {products.map((product, index) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              productImage={productImages[product.image]}
-              onViewDetails={handleViewDetails}
-              index={index}
-              isInView={isInView}
-            />
-          ))}
-        </div>
+        {/* Product Cards with Pull to Refresh */}
+        <PullToRefresh onRefresh={handleRefresh}>
+          <div key={refreshKey} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {products.map((product, index) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                productImage={productImages[product.image]}
+                onViewDetails={handleViewDetails}
+                index={index}
+                isInView={isInView}
+              />
+            ))}
+          </div>
+        </PullToRefresh>
       </div>
 
       {/* Product Modal */}
