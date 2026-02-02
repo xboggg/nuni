@@ -79,7 +79,7 @@ const Footer = () => {
           {/* Brand Column */}
           <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
-              <img src={logo} alt="Nuni Global" className="h-10 w-auto" />
+              <img src={logo} alt="Nuni Global" className="h-10 w-10 rounded-full object-cover" />
               <span className="font-serif font-semibold text-lg">
                 NUNI GLOBAL
               </span>
