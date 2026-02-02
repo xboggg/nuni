@@ -14,25 +14,33 @@ const Benefits = () => {
       icon: ShieldCheck,
       title: t.benefits.items.fdaCertified,
       description: t.benefits.items.fdaCertifiedDesc,
-      color: "bg-primary/10 text-primary",
+      iconBg: "linear-gradient(to bottom right, #3b82f6, #2563eb)",
+      cardBg: "#eff6ff",
+      borderColor: "#bfdbfe",
     },
     {
       icon: Leaf,
       title: t.benefits.items.natural,
       description: t.benefits.items.naturalDesc,
-      color: "bg-secondary/10 text-secondary",
+      iconBg: "linear-gradient(to bottom right, #10b981, #059669)",
+      cardBg: "#d1fae5",
+      borderColor: "#a7f3d0",
     },
     {
       icon: TrendingUp,
       title: t.benefits.items.visibleResults,
       description: t.benefits.items.visibleResultsDesc,
-      color: "bg-accent/10 text-accent",
+      iconBg: "linear-gradient(to bottom right, #a855f7, #9333ea)",
+      cardBg: "#faf5ff",
+      borderColor: "#e9d5ff",
     },
     {
       icon: Users,
       title: t.benefits.items.forEveryone,
       description: t.benefits.items.forEveryoneDesc,
-      color: "bg-navy/10 text-navy",
+      iconBg: "linear-gradient(to bottom right, #f97316, #ea580c)",
+      cardBg: "#ffedd5",
+      borderColor: "#fed7aa",
     },
   ];
 
@@ -73,26 +81,79 @@ const Benefits = () => {
           {benefits.map((benefit, index) => (
             <motion.div
               key={benefit.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-              className="group p-8 bg-background rounded-3xl shadow-soft hover:shadow-card transition-all duration-300"
+              initial={{ opacity: 0, y: 50, scale: 0.95 }}
+              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+              transition={{
+                duration: 0.6,
+                delay: 0.3 + index * 0.15,
+                type: "spring",
+                stiffness: 100
+              }}
+              whileHover={{
+                y: -8,
+                scale: 1.02,
+                transition: { duration: 0.3 }
+              }}
+              className="group relative p-8 rounded-3xl border-2 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden"
+              style={{
+                backgroundColor: benefit.cardBg,
+                borderColor: benefit.borderColor,
+              }}
             >
-              <div className="flex items-start gap-5">
-                <div
-                  className={`w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0 ${benefit.color} group-hover:scale-110 transition-transform duration-300`}
+              {/* Animated background gradient */}
+              <motion.div
+                className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300"
+                style={{
+                  background: `radial-gradient(circle at 50% 50%, currentColor 0%, transparent 70%)`
+                }}
+              />
+
+              <div className="relative flex items-start gap-5">
+                <motion.div
+                  whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
+                  transition={{ duration: 0.5 }}
+                  className="w-20 h-20 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg"
+                  style={{
+                    background: benefit.iconBg,
+                  }}
                 >
-                  <benefit.icon size={32} />
-                </div>
-                <div>
-                  <h3 className="text-xl font-serif font-bold text-foreground mb-3">
+                  <benefit.icon size={36} className="text-white" strokeWidth={2.5} />
+                </motion.div>
+                <div className="flex-1">
+                  <motion.h3
+                    className="text-xl font-serif font-bold text-foreground mb-3"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={isInView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ delay: 0.4 + index * 0.15, duration: 0.5 }}
+                  >
                     {benefit.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                  </motion.h3>
+                  <motion.p
+                    className="text-muted-foreground leading-relaxed"
+                    initial={{ opacity: 0 }}
+                    animate={isInView ? { opacity: 1 } : {}}
+                    transition={{ delay: 0.5 + index * 0.15, duration: 0.5 }}
+                  >
                     {benefit.description}
-                  </p>
+                  </motion.p>
                 </div>
               </div>
+
+              {/* Decorative corner accent */}
+              <motion.div
+                className="absolute -bottom-8 -right-8 w-32 h-32 rounded-full opacity-20 group-hover:opacity-30 transition-opacity duration-300"
+                animate={{
+                  scale: [1, 1.2, 1],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                style={{
+                  background: `radial-gradient(circle, currentColor 0%, transparent 70%)`
+                }}
+              />
             </motion.div>
           ))}
         </div>

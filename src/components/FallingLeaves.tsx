@@ -18,7 +18,8 @@ const LeafSVG = memo(({ type, size }: { type: string; size: number }) => {
     height: size,
     viewBox: "0 0 24 24",
     fill: "currentColor",
-    className: "text-primary/40",
+    className: "text-lime-400 drop-shadow-[0_0_8px_rgba(141,198,63,0.8)]",
+    style: { filter: "drop-shadow(0 0 8px rgba(141,198,63,0.8))" }
   };
 
   if (type === "leaf1") {
@@ -48,15 +49,15 @@ const FallingLeaves = () => {
   const [leaves, setLeaves] = useState<Leaf[]>([]);
 
   useEffect(() => {
-    // Create initial leaves
-    const initialLeaves: Leaf[] = Array.from({ length: 15 }, (_, i) => ({
+    // Create initial leaves - increased count and made more visible
+    const initialLeaves: Leaf[] = Array.from({ length: 25 }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       delay: Math.random() * 10,
-      duration: 10 + Math.random() * 10,
-      size: 16 + Math.random() * 16,
+      duration: 8 + Math.random() * 8,
+      size: 24 + Math.random() * 24, // Larger size (24-48px)
       rotation: Math.random() * 360,
-      opacity: 0.3 + Math.random() * 0.4,
+      opacity: 0.6 + Math.random() * 0.4, // Higher opacity (0.6-1.0)
       type: ["leaf1", "leaf2", "leaf3"][Math.floor(Math.random() * 3)] as Leaf["type"],
     }));
     setLeaves(initialLeaves);

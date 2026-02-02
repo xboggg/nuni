@@ -11,7 +11,6 @@ import Gallery from "./pages/Gallery";
 import GalleryAdmin from "./pages/GalleryAdmin";
 import ContactPage from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
-import CookieConsent from "@/components/CookieConsent";
 import StickyProductBar from "@/components/StickyProductBar";
 
 const queryClient = new QueryClient();
@@ -35,7 +34,7 @@ const AnimatedRoutes = () => {
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+    <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
       <LanguageProvider>
         <TooltipProvider>
           <Toaster />
@@ -44,7 +43,6 @@ const App = () => (
             <AnimatedRoutes />
             <StickyProductBar />
           </BrowserRouter>
-          <CookieConsent />
         </TooltipProvider>
       </LanguageProvider>
     </ThemeProvider>
