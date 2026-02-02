@@ -135,6 +135,38 @@ export const translations = {
       seeInAction: "See Our Products in Action",
       watchVideo: "Watch",
       followTiktok: "Follow @nuniglobalc",
+      reviews: [
+        {
+          text: "I've struggled with acne and dark spots for years. After using Nuni Global products for just 6 weeks, my skin has never looked better. The natural ingredients are gentle but so effective!",
+          name: "Akosua M.",
+          location: "Accra, Ghana",
+          product: "Acne Dark Soap + Facial Cream",
+        },
+        {
+          text: "The Acne Dark Soap cleared my stubborn breakouts within a month. I've tried so many products before, but nothing worked like this. My confidence is back!",
+          name: "Kwame A.",
+          location: "Kumasi, Ghana",
+          product: "Acne Dark Soap",
+        },
+        {
+          text: "I use the Cocoa Butter on my 8-month-old baby and myself. It's so gentle and moisturizing! No more dry, flaky skin for either of us. A family favorite now.",
+          name: "Efua O.",
+          location: "Takoradi, Ghana",
+          product: "Cocoa Butter",
+        },
+        {
+          text: "Finally found something that actually works for razor bumps! The Acne Facial Cream has completely transformed my neck area. Smooth skin after just 3 weeks of use.",
+          name: "Kofi M.",
+          location: "Tema, Ghana",
+          product: "Acne Facial Cream",
+        },
+        {
+          text: "My dark spots from years of sun exposure are visibly fading. The results are amazing! I recommend Nuni Global to everyone who asks about my glowing skin.",
+          name: "Ama K.",
+          location: "Cape Coast, Ghana",
+          product: "Acne Dark Soap + Facial Cream",
+        },
+      ],
     },
     // Ingredients
     ingredients: {
@@ -355,6 +387,38 @@ export const translations = {
       seeInAction: "Voyez Nos Produits en Action",
       watchVideo: "Regarder",
       followTiktok: "Suivez @nuniglobalc",
+      reviews: [
+        {
+          text: "J'ai lutté contre l'acné et les taches sombres pendant des années. Après avoir utilisé les produits Nuni Global pendant seulement 6 semaines, ma peau n'a jamais été aussi belle. Les ingrédients naturels sont doux mais tellement efficaces!",
+          name: "Akosua M.",
+          location: "Accra, Ghana",
+          product: "Savon Anti-Acné + Crème Faciale",
+        },
+        {
+          text: "Le Savon Anti-Acné a éliminé mes boutons tenaces en un mois. J'ai essayé tellement de produits avant, mais rien n'a fonctionné comme ça. Ma confiance est de retour!",
+          name: "Kwame A.",
+          location: "Kumasi, Ghana",
+          product: "Savon Anti-Acné",
+        },
+        {
+          text: "J'utilise le Beurre de Cacao sur mon bébé de 8 mois et moi-même. C'est tellement doux et hydratant! Plus de peau sèche et squameuse pour nous deux. Un favori familial maintenant.",
+          name: "Efua O.",
+          location: "Takoradi, Ghana",
+          product: "Beurre de Cacao",
+        },
+        {
+          text: "J'ai enfin trouvé quelque chose qui fonctionne vraiment contre les poils incarnés! La Crème Faciale Anti-Acné a complètement transformé mon cou. Peau lisse après seulement 3 semaines.",
+          name: "Kofi M.",
+          location: "Tema, Ghana",
+          product: "Crème Faciale Anti-Acné",
+        },
+        {
+          text: "Mes taches sombres dues à des années d'exposition au soleil s'estompent visiblement. Les résultats sont incroyables! Je recommande Nuni Global à tous ceux qui me demandent mon secret.",
+          name: "Ama K.",
+          location: "Cape Coast, Ghana",
+          product: "Savon Anti-Acné + Crème Faciale",
+        },
+      ],
     },
     // Ingredients
     ingredients: {
@@ -575,6 +639,38 @@ export const translations = {
       seeInAction: "Hwɛ Yɛn Nneɛma Wɔ Adwuma Mu",
       watchVideo: "Hwɛ",
       followTiktok: "Di @nuniglobalc Akyi",
+      reviews: [
+        {
+          text: "Meko tiaa acne ne dark spots mfeɛ pii. Mede Nuni Global nneɛma dii dwuma nnawɔtwe 6 pɛ akyi, me honam nyɛɛ fɛ sɛnea ɛnyɛɛ da. Nneɛma ankasa no yɛ dɛ nanso ɛyɛ adwuma yie!",
+          name: "Akosua M.",
+          location: "Accra, Ghana",
+          product: "Acne Dark Soap + Facial Cream",
+        },
+        {
+          text: "Acne Dark Soap no yii me acne a ɛkyeree mu wɔ bosome baako mu. Mede nneɛma pii ayɛ hwɛ ansa, nanso biara anyɛ adwuma sɛ wei. Me boldness asan aba!",
+          name: "Kwame A.",
+          location: "Kumasi, Ghana",
+          product: "Acne Dark Soap",
+        },
+        {
+          text: "Mede Cocoa Butter no di dwuma ma me abɔfra a wadi abosome 8 ne me ankasa. Ɛyɛ dɛ na ɛma nsradeɛ! Honam a ɛwo ne a ɛpae nni hɔ bio. Abusua nyinaa pɛ no.",
+          name: "Efua O.",
+          location: "Takoradi, Ghana",
+          product: "Cocoa Butter",
+        },
+        {
+          text: "Menyaa biribi a ɛyɛ adwuma ma razor bumps! Acne Facial Cream no asesa me kɔn ho. Honam a ɛtew wɔ nnawɔtwe 3 pɛ akyi.",
+          name: "Kofi M.",
+          location: "Tema, Ghana",
+          product: "Acne Facial Cream",
+        },
+        {
+          text: "Me dark spots a mfeɛ pii owia ama no reyera. Nsunsuansoɔ no yɛ nwonwa! Meka Nuni Global ho asɛm kyerɛ obiara a ɔbisa me honam a ɛhyerɛn ho.",
+          name: "Ama K.",
+          location: "Cape Coast, Ghana",
+          product: "Acne Dark Soap + Facial Cream",
+        },
+      ],
     },
     // Ingredients
     ingredients: {
