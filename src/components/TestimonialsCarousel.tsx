@@ -1,11 +1,21 @@
 import { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { Quote, Star, Play } from "lucide-react";
+import { Star, Play, ChevronLeft, ChevronRight } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { testimonials } from "@/data/testimonials";
 import { tiktokVideos } from "@/data/products";
+
+// Import hero images for TikTok thumbnails
+import hero1 from "@/assets/hero-1.jpeg";
+import hero2 from "@/assets/hero-2.jpeg";
+import hero3 from "@/assets/hero-3.jpeg";
+import hero4 from "@/assets/hero-4.png";
+import hero5 from "@/assets/hero-5.png";
+import hero6 from "@/assets/hero-6.jpeg";
+
+const tiktokThumbnails = [hero1, hero2, hero3, hero4, hero5, hero6];
 
 const TestimonialsCarousel = () => {
   const sectionRef = useRef(null);
@@ -49,6 +59,9 @@ const TestimonialsCarousel = () => {
     }
   };
 
+  const scrollPrev = () => emblaApi?.scrollPrev();
+  const scrollNext = () => emblaApi?.scrollNext();
+
   return (
     <section className="py-20 lg:py-32 bg-background overflow-hidden">
       <div className="container-custom">
@@ -72,7 +85,23 @@ const TestimonialsCarousel = () => {
         </motion.div>
 
         {/* Testimonial Carousel - 3 cards visible */}
-        <div ref={sectionRef} className="mb-20">
+        <div ref={sectionRef} className="mb-20 relative">
+          {/* Navigation Arrows */}
+          <button
+            onClick={scrollPrev}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-10 h-10 bg-card rounded-full shadow-soft flex items-center justify-center text-foreground hover:bg-primary hover:text-primary-foreground transition-colors hidden md:flex"
+            aria-label="Previous testimonial"
+          >
+            <ChevronLeft size={20} />
+          </button>
+          <button
+            onClick={scrollNext}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-10 h-10 bg-card rounded-full shadow-soft flex items-center justify-center text-foreground hover:bg-primary hover:text-primary-foreground transition-colors hidden md:flex"
+            aria-label="Next testimonial"
+          >
+            <ChevronRight size={20} />
+          </button>
+
           <div ref={emblaRef} className="overflow-hidden">
             <div className="flex touch-pan-y">
               {testimonials.map((testimonial, index) => (
@@ -91,23 +120,8 @@ const TestimonialsCarousel = () => {
                       {/* Animated background on hover */}
                       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                      {/* Large Quote Icon - More Visible */}
-                      <div className="absolute top-4 right-4 opacity-20 group-hover:opacity-30 transition-opacity duration-300">
-                        <Quote size={60} className="text-primary" />
-                      </div>
-
-                      {/* Small Quote Badge */}
-                      <motion.div 
-                        className="absolute -top-3 left-6"
-                        whileHover={{ scale: 1.1, rotate: 5 }}
-                      >
-                        <div className="w-12 h-12 bg-accent rounded-full flex items-center justify-center shadow-gold">
-                          <Quote size={20} className="text-accent-foreground" />
-                        </div>
-                      </motion.div>
-
                       {/* Stars */}
-                      <div className="flex gap-1 mb-4 mt-4 relative z-10">
+                      <div className="flex gap-1 mb-4 relative z-10">
                         {[...Array(5)].map((_, i) => (
                           <motion.div
                             key={i}
@@ -127,11 +141,11 @@ const TestimonialsCarousel = () => {
                         ))}
                       </div>
 
-                      {/* Quote Text with visible quotation marks */}
+                      {/* Quote Text with prominent quotation marks */}
                       <blockquote className="text-base md:text-lg font-serif text-foreground leading-relaxed mb-6 line-clamp-4 relative z-10">
-                        <span className="text-2xl text-primary font-bold leading-none mr-1">"</span>
+                        <span className="text-3xl text-accent font-serif font-bold leading-none align-top mr-1">"</span>
                         {testimonial.text}
-                        <span className="text-2xl text-primary font-bold leading-none ml-1">"</span>
+                        <span className="text-3xl text-accent font-serif font-bold leading-none align-bottom ml-1">"</span>
                       </blockquote>
 
                       {/* Author */}
@@ -213,7 +227,7 @@ const TestimonialsCarousel = () => {
           </a>
         </motion.div>
 
-        {/* Video Grid */}
+        {/* Video Grid with actual thumbnails */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -230,8 +244,18 @@ const TestimonialsCarousel = () => {
               transition={{ duration: 0.3 }}
               className="group relative aspect-[9/16] bg-muted rounded-2xl overflow-hidden shadow-soft hover:shadow-card"
             >
-              {/* Placeholder with play button */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+              {/* Actual thumbnail image */}
+              <img
+                src={tiktokThumbnails[index]}
+                alt={`TikTok video ${index + 1}`}
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              
+              {/* Overlay gradient */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              
+              {/* Play button */}
+              <div className="absolute inset-0 flex items-center justify-center">
                 <motion.div 
                   className="w-12 h-12 bg-card/90 backdrop-blur-sm rounded-full flex items-center justify-center"
                   whileHover={{ scale: 1.2 }}
@@ -247,7 +271,7 @@ const TestimonialsCarousel = () => {
 
               {/* TikTok branding */}
               <div className="absolute bottom-3 left-3 right-3">
-                <div className="flex items-center gap-2 text-card text-xs font-medium">
+                <div className="flex items-center gap-2 text-white text-xs font-medium">
                   <svg
                     viewBox="0 0 24 24"
                     className="w-4 h-4"
@@ -255,7 +279,7 @@ const TestimonialsCarousel = () => {
                   >
                     <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z" />
                   </svg>
-                  Watch
+                  Watch Now
                 </div>
               </div>
             </motion.a>
