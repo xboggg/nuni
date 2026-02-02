@@ -1,11 +1,10 @@
 import { useState, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/lib/i18n";
 
 interface BeforeAfterSliderProps {
   beforeImage: string;
   afterImage: string;
-  beforeLabel?: string;
-  afterLabel?: string;
   testimonial?: {
     quote: string;
     author: string;
@@ -15,13 +14,12 @@ interface BeforeAfterSliderProps {
 const BeforeAfterSlider = ({
   beforeImage,
   afterImage,
-  beforeLabel = "Before",
-  afterLabel = "After",
   testimonial,
 }: BeforeAfterSliderProps) => {
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
 
   const handleMove = useCallback(
     (clientX: number) => {
@@ -59,13 +57,13 @@ const BeforeAfterSlider = ({
           className="text-center mb-12"
         >
           <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
-            Real Results
+            {t.transformation.subtitle}
           </span>
           <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
-            See The <span className="text-gradient-gold">Transformation</span>
+            {t.transformation.title} <span className="text-gradient-gold">{t.transformation.titleHighlight}</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Drag the slider to see the incredible before and after results from our natural skincare products.
+            {t.transformation.description}
           </p>
         </motion.div>
 
@@ -88,7 +86,7 @@ const BeforeAfterSlider = ({
             {/* After Image (Background) */}
             <img
               src={afterImage}
-              alt={afterLabel}
+              alt={t.transformation.after}
               className="absolute inset-0 w-full h-full object-cover"
               draggable={false}
             />
@@ -100,7 +98,7 @@ const BeforeAfterSlider = ({
             >
               <img
                 src={beforeImage}
-                alt={beforeLabel}
+                alt={t.transformation.before}
                 className="absolute inset-0 w-full h-full object-cover"
                 style={{ width: `${100 / (sliderPosition / 100)}%` }}
                 draggable={false}
@@ -134,10 +132,10 @@ const BeforeAfterSlider = ({
 
             {/* Labels */}
             <div className="absolute top-4 left-4 px-3 py-1.5 bg-card/90 backdrop-blur-sm rounded-full text-sm font-medium text-foreground">
-              {beforeLabel}
+              {t.transformation.before}
             </div>
             <div className="absolute top-4 right-4 px-3 py-1.5 bg-primary text-primary-foreground rounded-full text-sm font-medium">
-              {afterLabel}
+              {t.transformation.after}
             </div>
           </motion.div>
 

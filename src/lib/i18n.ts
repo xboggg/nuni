@@ -128,12 +128,62 @@ export const translations = {
     },
     // Testimonials
     testimonials: {
-      subtitle: "What Our Customers Say",
-      title: "Real Results,",
-      titleHighlight: "Real Stories",
+      subtitle: "Customer Love",
+      title: "What Our Customers Say",
+      description: "Real results from real people. See why thousands trust Nuni Global for their skincare journey.",
       followJourney: "Follow Our Journey",
       seeInAction: "See Our Products in Action",
       watchVideo: "Watch",
+      followTiktok: "Follow @nuniglobalc",
+    },
+    // Ingredients
+    ingredients: {
+      subtitle: "Natural Ingredients",
+      title: "The Power of African",
+      titleHighlight: "Botanicals",
+      description: "We harness the finest natural ingredients from Ghana, carefully selected for their proven skincare benefits.",
+      bottomNote: "All our ingredients are ethically sourced and FDA approved. No harsh chemicals, no parabens, no sulfates.",
+      shea: {
+        name: "Shea Butter",
+        origin: "Northern Ghana",
+        description: "Rich in vitamins A & E, our pure African shea butter deeply moisturizes and restores skin elasticity. Sourced directly from Ghana.",
+        benefits: ["Deep hydration", "Anti-aging properties", "Skin healing", "Natural UV protection"],
+      },
+      cocoa: {
+        name: "Cocoa Butter",
+        origin: "Ashanti Region",
+        description: "Extracted from premium Ghanaian cocoa beans, our cocoa butter is packed with antioxidants that fight free radicals and nourish skin.",
+        benefits: ["Rich antioxidants", "Stretch mark prevention", "Skin smoothing", "Natural fragrance"],
+      },
+      charcoal: {
+        name: "Activated Charcoal",
+        origin: "Coconut-derived",
+        description: "Our activated charcoal draws out impurities, unclogs pores, and detoxifies skin. Perfect for acne-prone and oily skin types.",
+        benefits: ["Deep pore cleansing", "Toxin removal", "Oil control", "Acne treatment"],
+      },
+    },
+    // Transformation
+    transformation: {
+      subtitle: "Real Results",
+      title: "See The",
+      titleHighlight: "Transformation",
+      description: "Drag the slider to see the incredible before and after results from our natural skincare products.",
+      before: "Before",
+      after: "After",
+    },
+    // Partners
+    partners: {
+      badge: "Partnership Opportunity",
+      title: "Become a Nuni Global",
+      titleHighlight: "Partner",
+      description: "Join our growing network of resellers across Ghana and beyond. Partner with us to bring premium African skincare to your community and build a profitable business.",
+      cta: "Become a Partner",
+      benefits: [
+        "Competitive wholesale pricing",
+        "Marketing materials provided",
+        "Product training and support",
+        "Flexible ordering options",
+      ],
     },
     // FAQ
     faq: {
@@ -298,12 +348,62 @@ export const translations = {
     },
     // Testimonials
     testimonials: {
-      subtitle: "Ce Que Disent Nos Clients",
-      title: "Vrais Résultats,",
-      titleHighlight: "Vraies Histoires",
+      subtitle: "L'Amour des Clients",
+      title: "Ce Que Disent Nos Clients",
+      description: "De vrais résultats de vraies personnes. Découvrez pourquoi des milliers font confiance à Nuni Global.",
       followJourney: "Suivez Notre Parcours",
       seeInAction: "Voyez Nos Produits en Action",
       watchVideo: "Regarder",
+      followTiktok: "Suivez @nuniglobalc",
+    },
+    // Ingredients
+    ingredients: {
+      subtitle: "Ingrédients Naturels",
+      title: "Le Pouvoir des",
+      titleHighlight: "Plantes Africaines",
+      description: "Nous utilisons les meilleurs ingrédients naturels du Ghana, soigneusement sélectionnés pour leurs bienfaits prouvés.",
+      bottomNote: "Tous nos ingrédients sont d'origine éthique et approuvés FDA. Sans produits chimiques agressifs, sans parabènes, sans sulfates.",
+      shea: {
+        name: "Beurre de Karité",
+        origin: "Nord du Ghana",
+        description: "Riche en vitamines A & E, notre beurre de karité africain pur hydrate en profondeur et restaure l'élasticité de la peau.",
+        benefits: ["Hydratation profonde", "Propriétés anti-âge", "Cicatrisation", "Protection UV naturelle"],
+      },
+      cocoa: {
+        name: "Beurre de Cacao",
+        origin: "Région Ashanti",
+        description: "Extrait de fèves de cacao ghanéennes premium, notre beurre de cacao est riche en antioxydants.",
+        benefits: ["Antioxydants riches", "Prévention des vergetures", "Lissage de la peau", "Parfum naturel"],
+      },
+      charcoal: {
+        name: "Charbon Actif",
+        origin: "Dérivé de noix de coco",
+        description: "Notre charbon actif élimine les impuretés, débouche les pores et détoxifie la peau.",
+        benefits: ["Nettoyage des pores", "Élimination des toxines", "Contrôle du sébum", "Traitement de l'acné"],
+      },
+    },
+    // Transformation
+    transformation: {
+      subtitle: "Vrais Résultats",
+      title: "Voyez La",
+      titleHighlight: "Transformation",
+      description: "Faites glisser le curseur pour voir les résultats avant et après de nos produits naturels.",
+      before: "Avant",
+      after: "Après",
+    },
+    // Partners
+    partners: {
+      badge: "Opportunité de Partenariat",
+      title: "Devenez Partenaire",
+      titleHighlight: "Nuni Global",
+      description: "Rejoignez notre réseau croissant de revendeurs au Ghana et au-delà. Associez-vous à nous pour apporter des soins premium à votre communauté.",
+      cta: "Devenir Partenaire",
+      benefits: [
+        "Prix de gros compétitifs",
+        "Matériel marketing fourni",
+        "Formation et support produit",
+        "Options de commande flexibles",
+      ],
     },
     // FAQ
     faq: {
@@ -468,12 +568,62 @@ export const translations = {
     },
     // Testimonials
     testimonials: {
-      subtitle: "Deɛ Yɛn Adefodeɛ Ka",
-      title: "Nsunsuansoɔ Ankasa,",
-      titleHighlight: "Nsɛm Ankasa",
+      subtitle: "Adefodeɛ Dɔ",
+      title: "Deɛ Yɛn Adefodeɛ Ka",
+      description: "Nsunsuansoɔ ankasa firi nnipa ankasa. Hwɛ adɛn nti na mpempem gye Nuni Global di wɔn honam nhweren akwantu mu.",
       followJourney: "Di Yɛn Akwantu Akyi",
       seeInAction: "Hwɛ Yɛn Nneɛma Wɔ Adwuma Mu",
       watchVideo: "Hwɛ",
+      followTiktok: "Di @nuniglobalc Akyi",
+    },
+    // Ingredients
+    ingredients: {
+      subtitle: "Nneɛma Ankasa",
+      title: "Afrika Afifide",
+      titleHighlight: "Tumi",
+      description: "Yɛde Ghana nneɛma ankasa a ɛyɛ papa a wɔapɛpɛw mu yiye ama honam nhweren mfaso.",
+      bottomNote: "Yɛn nneɛma nyinaa yɛ firi baabi a ɛyɛ na FDA apene so. Chemical bɔne biara nni mu.",
+      shea: {
+        name: "Shea Butter",
+        origin: "Atifi Ghana",
+        description: "Vitamin A & E wɔ mu pii, yɛn shea butter kronkron ma nsradeɛ ne honam elasticity.",
+        benefits: ["Nsradeɛ a ɛkɔ mu", "Anti-aging", "Honam ayaresa", "UV banbɔ"],
+      },
+      cocoa: {
+        name: "Cocoa Butter",
+        origin: "Ashanti Region",
+        description: "Yɛyi firi Ghana cocoa aba papa mu, yɛn cocoa butter wɔ antioxidants a ɛko free radicals.",
+        benefits: ["Antioxidants pii", "Stretch mark banbɔ", "Honam a ɛtew", "Huam ankasa"],
+      },
+      charcoal: {
+        name: "Activated Charcoal",
+        origin: "Coconut mu",
+        description: "Yɛn activated charcoal yi fi, bue pores, na ɛhohoro honam. Ɛyɛ papa ma acne honam.",
+        benefits: ["Pore hohoro", "Poison yi", "Oil control", "Acne ayaresa"],
+      },
+    },
+    // Transformation
+    transformation: {
+      subtitle: "Nsunsuansoɔ Ankasa",
+      title: "Hwɛ",
+      titleHighlight: "Nsakraeɛ",
+      description: "Twe slider no hwɛ nsunsuansoɔ a edi kan ne akyire firi yɛn nneɛma ankasa.",
+      before: "Ansa",
+      after: "Akyire",
+    },
+    // Partners
+    partners: {
+      badge: "Ayɔnkofa Kwan",
+      title: "Bɛyɛ Nuni Global",
+      titleHighlight: "Ayɔnko",
+      description: "Bɛka yɛn resellers a yɛdɔɔso wɔ Ghana ne akyiri nyinaa ho. Ka yɛn ho de Afrika honam nhweren titiriw brɛ wo kuro mu.",
+      cta: "Bɛyɛ Ayɔnko",
+      benefits: [
+        "Wholesale boɔ papa",
+        "Marketing nneɛma",
+        "Training ne support",
+        "Order a ɛyɛ mmerɛw",
+      ],
     },
     // FAQ
     faq: {
