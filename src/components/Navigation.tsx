@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { motion, AnimatePresence, PanInfo, useAnimation } from "framer-motion";
 import { Menu, X, ChevronRight } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "@/assets/nuni-logo.png";
@@ -24,6 +24,8 @@ const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeItem, setActiveItem] = useState<string | null>(null);
+  const menuControls = useAnimation();
+  const menuRef = useRef<HTMLDivElement>(null);
   const { t } = useLanguage();
 
   const navLinks = [
@@ -75,6 +77,42 @@ const Navigation = () => {
   const handleItemRelease = () => {
     setActiveItem(null);
   };
+
+  // Swipe gesture handlers
+  const handleDragEnd = useCallback(
+    (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+      const threshold = 100;
+      const velocity = info.velocity.x;
+      const offset = info.offset.x;
+
+      // Close if swiped right with enough velocity or distance
+      if (offset > threshold || velocity > 500) {
+        triggerHaptic('medium');
+        setIsMobileMenuOpen(false);
+      } else {
+        // Snap back if not enough
+        menuControls.start({ x: 0 });
+      }
+    },
+    [menuControls]
+  );
+
+  const handleDrag = useCallback(
+    (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+      // Only allow dragging to the right
+      if (info.offset.x > 0) {
+        menuControls.set({ x: info.offset.x });
+      }
+    },
+    [menuControls]
+  );
+
+  // Reset animation when menu opens
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      menuControls.start({ x: 0 });
+    }
+  }, [isMobileMenuOpen, menuControls]);
 
   return (
     <>
@@ -179,14 +217,23 @@ const Navigation = () => {
               onClick={() => setIsMobileMenuOpen(false)}
             />
             
-            {/* Menu Panel */}
+            {/* Menu Panel with Swipe Gesture */}
             <motion.div
+              ref={menuRef}
               initial={{ x: "100%" }}
-              animate={{ x: 0 }}
+              animate={menuControls}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed inset-y-0 right-0 w-[85%] max-w-sm z-50 bg-card shadow-2xl md:hidden"
+              drag="x"
+              dragDirectionLock
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={{ left: 0, right: 0.5 }}
+              onDrag={handleDrag}
+              onDragEnd={handleDragEnd}
+              className="fixed inset-y-0 right-0 w-[85%] max-w-sm z-50 bg-card shadow-2xl md:hidden touch-pan-y"
             >
+              {/* Swipe Indicator */}
+              <div className="absolute left-2 top-1/2 -translate-y-1/2 w-1 h-16 bg-muted-foreground/20 rounded-full" />
               {/* Menu Header */}
               <div className="flex items-center justify-between p-5 border-b border-border">
                 <div className="flex items-center gap-2">
