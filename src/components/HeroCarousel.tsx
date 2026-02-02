@@ -109,7 +109,7 @@ const HeroCarousel = () => {
       {/* Content - positioned more to the left on desktop */}
       <div className="relative z-10 min-h-screen flex items-center">
         <div className="container-custom pt-20">
-          <div className="max-w-2xl lg:max-w-xl xl:max-w-2xl ml-0 lg:-ml-8 xl:-ml-12">
+          <div className="max-w-2xl lg:max-w-xl xl:max-w-2xl lg:pl-0 xl:pl-0 lg:mr-auto xl:mr-auto lg:-translate-x-8 xl:-translate-x-16">
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
