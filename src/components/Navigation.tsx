@@ -61,7 +61,7 @@ const Navigation = () => {
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
             <a href="#" className="flex items-center gap-2">
-              <img src={logo} alt="Nuni Global" className="h-10 md:h-12 w-auto" />
+              <img src={logo} alt="Nuni Global" className="h-10 md:h-12 w-10 md:w-12 rounded-full object-cover" />
               <span className={`font-serif font-semibold text-lg md:text-xl transition-colors duration-300 ${
                 isScrolled ? "text-primary" : "text-primary"
               }`}>
