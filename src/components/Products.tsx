@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { products, Product } from "@/data/products";
 import ProductModal from "./ProductModal";
+import { useLanguage } from "@/lib/i18n";
 import hero1 from "@/assets/hero-1.jpeg";
 import hero3 from "@/assets/hero-3.jpeg";
 import hero4 from "@/assets/hero-4.png";
@@ -19,6 +20,7 @@ const Products = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { t } = useLanguage();
 
   const handleViewDetails = (product: Product) => {
     setSelectedProduct(product);
@@ -40,7 +42,7 @@ const Products = () => {
             transition={{ duration: 0.5 }}
             className="inline-block text-sm font-medium tracking-widest text-accent uppercase mb-4"
           >
-            Our Collection
+            {t.products.subtitle}
           </motion.span>
 
           <motion.h2
@@ -49,8 +51,8 @@ const Products = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-foreground mb-6"
           >
-            Premium <span className="text-gradient-green">Skincare</span>{" "}
-            Products
+            {t.products.title} <span className="text-gradient-green">{t.products.titleHighlight}</span>{" "}
+            {t.products.titleEnd}
           </motion.h2>
 
           <motion.p
@@ -59,8 +61,7 @@ const Products = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-lg text-muted-foreground leading-relaxed"
           >
-            Each product is carefully formulated with the finest African
-            botanicals to deliver visible results for all skin types.
+            {t.products.description}
           </motion.p>
         </div>
 
@@ -132,7 +133,7 @@ const Products = () => {
                   onClick={() => handleViewDetails(product)}
                   className="w-full flex items-center justify-center gap-2 py-3 border-2 border-primary text-primary rounded-xl font-medium transition-all duration-200 hover:bg-primary hover:text-primary-foreground group"
                 >
-                  View Details
+                  {t.products.viewDetails}
                   <ArrowRight
                     size={18}
                     className="transition-transform group-hover:translate-x-1"
