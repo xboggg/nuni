@@ -1,33 +1,6 @@
 import { motion } from "framer-motion";
-import { Shield, Leaf, Award, Truck, Lock } from "lucide-react";
-
-const badges = [
-  {
-    icon: <Shield className="w-8 h-8" />,
-    label: "FDA Approved",
-    description: "Certified Safe",
-  },
-  {
-    icon: <Award className="w-8 h-8" />,
-    label: "Made in Ghana",
-    description: "African Excellence",
-  },
-  {
-    icon: <Leaf className="w-8 h-8" />,
-    label: "100% Natural",
-    description: "Pure Ingredients",
-  },
-  {
-    icon: <Lock className="w-8 h-8" />,
-    label: "Secure Ordering",
-    description: "Protected Checkout",
-  },
-  {
-    icon: <Truck className="w-8 h-8" />,
-    label: "Fast Delivery",
-    description: "Swift Shipping",
-  },
-];
+import { Shield, Leaf, Award, Truck, Lock, BadgeCheck, CreditCard } from "lucide-react";
+import { useLanguage } from "@/lib/i18n";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -58,6 +31,41 @@ const cardVariants = {
 };
 
 const TrustBadges = () => {
+  const { t } = useLanguage();
+
+  const badges = [
+    {
+      icon: <Shield className="w-8 h-8" />,
+      label: t.trust.fdaApproved,
+      description: t.trust.fdaDesc,
+      gradient: "from-emerald-500 to-teal-500",
+    },
+    {
+      icon: <Award className="w-8 h-8" />,
+      label: t.trust.madeInGhana,
+      description: t.trust.madeInGhanaDesc,
+      gradient: "from-amber-500 to-yellow-500",
+    },
+    {
+      icon: <Leaf className="w-8 h-8" />,
+      label: t.trust.natural,
+      description: t.trust.naturalDesc,
+      gradient: "from-green-500 to-emerald-500",
+    },
+    {
+      icon: <Lock className="w-8 h-8" />,
+      label: t.trust.secureOrdering,
+      description: t.trust.secureOrderingDesc,
+      gradient: "from-blue-500 to-indigo-500",
+    },
+    {
+      icon: <Truck className="w-8 h-8" />,
+      label: t.trust.fastDelivery,
+      description: t.trust.fastDeliveryDesc,
+      gradient: "from-purple-500 to-pink-500",
+    },
+  ];
+
   return (
     <section className="py-16 bg-gradient-to-b from-background to-muted/30 overflow-hidden">
       <div className="container-custom">
@@ -70,10 +78,10 @@ const TrustBadges = () => {
           className="text-center mb-12"
         >
           <span className="inline-block text-sm font-medium tracking-widest text-accent uppercase mb-3">
-            Our Promise
+            {t.trust.subtitle}
           </span>
           <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground">
-            From Nature to You
+            {t.trust.title}
           </h2>
         </motion.div>
 
@@ -115,11 +123,11 @@ const TrustBadges = () => {
               />
 
               <div className="relative z-10 flex flex-col items-center text-center">
-                {/* Icon with pulse animation */}
+                {/* Icon with pulse animation and gradient background */}
                 <motion.div
                   whileHover={{ rotate: [0, -10, 10, 0] }}
                   transition={{ duration: 0.5 }}
-                  className="w-16 h-16 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-2xl flex items-center justify-center mb-4 text-primary group-hover:from-primary/20 group-hover:to-secondary/20 transition-all duration-300"
+                  className={`w-16 h-16 bg-gradient-to-br ${badge.gradient} rounded-2xl flex items-center justify-center mb-4 text-white shadow-lg`}
                 >
                   <motion.div
                     animate={{
@@ -145,17 +153,52 @@ const TrustBadges = () => {
                 <p className="text-xs text-muted-foreground">
                   {badge.description}
                 </p>
+
+                {/* Verified checkmark */}
+                <motion.div
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  transition={{ delay: 0.3 + index * 0.1, type: "spring" }}
+                  className="absolute -top-2 -right-2 w-6 h-6 bg-primary rounded-full flex items-center justify-center"
+                >
+                  <BadgeCheck size={14} className="text-primary-foreground" />
+                </motion.div>
               </div>
 
               {/* Bottom accent line */}
               <motion.div
-                className="absolute bottom-0 left-1/2 -translate-x-1/2 h-1 bg-gradient-to-r from-primary to-secondary rounded-full"
+                className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-1 bg-gradient-to-r ${badge.gradient} rounded-full`}
                 initial={{ width: 0 }}
                 whileHover={{ width: "60%" }}
                 transition={{ duration: 0.3 }}
               />
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* Payment Icons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5 }}
+          className="flex items-center justify-center gap-6 mt-10 pt-8 border-t border-border/50"
+        >
+          <div className="flex items-center gap-2 text-muted-foreground">
+            <CreditCard size={20} />
+            <span className="text-sm">Secure Payments</span>
+          </div>
+          <div className="flex items-center gap-4">
+            {/* Payment method icons represented as text badges */}
+            {["Visa", "Mastercard", "MoMo"].map((method) => (
+              <div
+                key={method}
+                className="px-3 py-1 bg-muted rounded-md text-xs font-medium text-foreground"
+              >
+                {method}
+              </div>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>
