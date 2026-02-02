@@ -14,33 +14,29 @@ const Benefits = () => {
       icon: ShieldCheck,
       title: t.benefits.items.fdaCertified,
       description: t.benefits.items.fdaCertifiedDesc,
-      iconBg: "linear-gradient(to bottom right, #3b82f6, #2563eb)",
-      cardBg: "#eff6ff",
-      borderColor: "#bfdbfe",
+      cardClass: "benefit-card-blue",
+      iconClass: "benefit-icon-blue",
     },
     {
       icon: Leaf,
       title: t.benefits.items.natural,
       description: t.benefits.items.naturalDesc,
-      iconBg: "linear-gradient(to bottom right, #10b981, #059669)",
-      cardBg: "#d1fae5",
-      borderColor: "#a7f3d0",
+      cardClass: "benefit-card-green",
+      iconClass: "benefit-icon-green",
     },
     {
       icon: TrendingUp,
       title: t.benefits.items.visibleResults,
       description: t.benefits.items.visibleResultsDesc,
-      iconBg: "linear-gradient(to bottom right, #a855f7, #9333ea)",
-      cardBg: "#faf5ff",
-      borderColor: "#e9d5ff",
+      cardClass: "benefit-card-purple",
+      iconClass: "benefit-icon-purple",
     },
     {
       icon: Users,
       title: t.benefits.items.forEveryone,
       description: t.benefits.items.forEveryoneDesc,
-      iconBg: "linear-gradient(to bottom right, #f97316, #ea580c)",
-      cardBg: "#ffedd5",
-      borderColor: "#fed7aa",
+      cardClass: "benefit-card-orange",
+      iconClass: "benefit-icon-orange",
     },
   ];
 
@@ -94,11 +90,7 @@ const Benefits = () => {
                 scale: 1.02,
                 transition: { duration: 0.3 }
               }}
-              className="group relative p-8 rounded-3xl border-2 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden"
-              style={{
-                backgroundColor: benefit.cardBg,
-                borderColor: benefit.borderColor,
-              }}
+              className={`group relative p-8 rounded-3xl border-2 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden ${benefit.cardClass}`}
             >
               {/* Animated background gradient */}
               <motion.div
@@ -112,10 +104,7 @@ const Benefits = () => {
                 <motion.div
                   whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
                   transition={{ duration: 0.5 }}
-                  className="w-20 h-20 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg"
-                  style={{
-                    background: benefit.iconBg,
-                  }}
+                  className={`w-20 h-20 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg ${benefit.iconClass}`}
                 >
                   <benefit.icon size={36} className="text-white" strokeWidth={2.5} />
                 </motion.div>

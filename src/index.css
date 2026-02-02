@@ -271,6 +271,43 @@
   .parallax-layer {
     transform-style: preserve-3d;
   }
+
+  /* Benefit Cards - Vibrant Colors */
+  .benefit-card-blue {
+    background-color: #eff6ff !important;
+    border-color: #bfdbfe !important;
+  }
+
+  .benefit-card-green {
+    background-color: #d1fae5 !important;
+    border-color: #a7f3d0 !important;
+  }
+
+  .benefit-card-purple {
+    background-color: #faf5ff !important;
+    border-color: #e9d5ff !important;
+  }
+
+  .benefit-card-orange {
+    background-color: #ffedd5 !important;
+    border-color: #fed7aa !important;
+  }
+
+  .benefit-icon-blue {
+    background: linear-gradient(to bottom right, #3b82f6, #2563eb) !important;
+  }
+
+  .benefit-icon-green {
+    background: linear-gradient(to bottom right, #10b981, #059669) !important;
+  }
+
+  .benefit-icon-purple {
+    background: linear-gradient(to bottom right, #a855f7, #9333ea) !important;
+  }
+
+  .benefit-icon-orange {
+    background: linear-gradient(to bottom right, #f97316, #ea580c) !important;
+  }
 }
 
 /* Custom scrollbar - Light mode */
