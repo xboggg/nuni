@@ -6,7 +6,7 @@ import About from "@/components/About";
 import Products from "@/components/Products";
 import Benefits from "@/components/Benefits";
 import StatsCounter from "@/components/StatsCounter";
-import TrustBadges from "@/components/TrustBadges";
+
 import HowItWorks from "@/components/HowItWorks";
 import IngredientsSpotlight from "@/components/IngredientsSpotlight";
 import TestimonialsCarousel from "@/components/TestimonialsCarousel";
@@ -35,7 +35,7 @@ const Index = () => {
         <Navigation />
         <main>
           <HeroCarousel />
-          <TrustBadges />
+          
           <About />
           <Products />
           <Benefits />
