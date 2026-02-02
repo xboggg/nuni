@@ -70,7 +70,7 @@ const TrustBadges = () => {
           className="text-center mb-12"
         >
           <span className="inline-block text-sm font-medium tracking-widest text-accent uppercase mb-3">
-            Why Choose Us
+            Our Promise
           </span>
           <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground">
             From Nature to You
