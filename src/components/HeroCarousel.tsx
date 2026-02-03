@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Leaf, Sparkles } from "lucide-react";
-import { getWhatsAppLink, GENERAL_INQUIRY_MESSAGE } from "@/data/products";
+import { Link } from "react-router-dom";
 import FallingLeaves from "./FallingLeaves";
 import { useLanguage } from "@/lib/i18n";
 
@@ -159,14 +159,12 @@ const HeroCarousel = () => {
               >
                 {t.hero.exploreProducts}
               </a>
-              <a
-                href={getWhatsAppLink(GENERAL_INQUIRY_MESSAGE)}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/contact"
                 className="inline-flex items-center gap-2 px-8 py-4 border-2 border-white bg-white/10 backdrop-blur-sm text-white rounded-full font-semibold text-lg transition-all duration-300 hover:bg-white hover:text-primary shadow-lg"
               >
                 {t.hero.contactUs}
-              </a>
+              </Link>
             </motion.div>
 
             {/* Natural Badge */}

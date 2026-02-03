@@ -87,7 +87,7 @@ export const products: Product[] = [
   }
 ];
 
-export const WHATSAPP_NUMBER = "233540501872";
+export const WHATSAPP_NUMBER = "233554753634";
 
 export const getWhatsAppLink = (message: string) => {
   const encodedMessage = encodeURIComponent(message);

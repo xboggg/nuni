@@ -19,14 +19,20 @@ const contactMethods = [
   {
     icon: Phone,
     title: "Phone",
+    value: "+233 55 475 3634",
+    href: "tel:+233554753634",
+  },
+  {
+    icon: Phone,
+    title: "Phone",
     value: "+233 54 050 1872",
-    href: `tel:+${WHATSAPP_NUMBER}`,
+    href: "tel:+233540501872",
   },
   {
     icon: Mail,
     title: "Email",
-    value: "info@nuniglobal.com",
-    href: "mailto:info@nuniglobal.com",
+    value: "Kofiideas2017@gmail.com",
+    href: "mailto:Kofiideas2017@gmail.com",
   },
   {
     icon: MapPin,
@@ -123,7 +129,7 @@ Message: ${formData.message}`;
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="grid sm:grid-cols-3 gap-6 max-w-4xl mx-auto"
+              className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto"
             >
               {contactMethods.map((method) => (
                 <a
