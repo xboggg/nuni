@@ -35,7 +35,7 @@ export const products: Product[] = [
       "Palm Kernel Oil",
       "Vitamin E"
     ],
-    image: "hero-1"
+    image: "product-1"
   },
   {
     id: "acne-facial-cream",
@@ -60,7 +60,7 @@ export const products: Product[] = [
       "Hyaluronic Acid",
       "Green Tea Extract"
     ],
-    image: "hero-4"
+    image: "product-2"
   },
   {
     id: "cocoa-butter",
@@ -83,7 +83,7 @@ export const products: Product[] = [
       "Vitamin E",
       "Jojoba Oil"
     ],
-    image: "hero-3"
+    image: "product-3"
   }
 ];
 

@@ -197,34 +197,6 @@ const TestimonialsCarousel = () => {
             ))}
           </div>
         </div>
-
-        {/* TikTok Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-center"
-        >
-          <span className="inline-block text-sm font-medium tracking-widest text-accent uppercase mb-4">
-            {t.testimonials.followJourney}
-          </span>
-          <h3 className="text-2xl md:text-3xl font-serif font-bold text-foreground mb-6">
-            {t.testimonials.seeInAction}
-          </h3>
-          <motion.a
-            href="https://www.tiktok.com/@nuniglobalc"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.98 }}
-            className="inline-flex items-center gap-3 px-8 py-4 bg-foreground text-background rounded-full font-semibold text-lg transition-all duration-300 hover:shadow-card"
-          >
-            <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-              <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z" />
-            </svg>
-            {t.testimonials.followTiktok}
-          </motion.a>
-        </motion.div>
       </div>
     </section>
   );

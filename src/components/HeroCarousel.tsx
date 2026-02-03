@@ -10,10 +10,12 @@ import hero1 from "@/assets/hero-1.jpeg";
 import hero2 from "@/assets/hero-2.jpeg";
 import hero3 from "@/assets/hero-3.jpeg";
 import hero4 from "@/assets/hero-4.png";
-import hero5 from "@/assets/hero-5.png";
+import hero5 from "@/assets/hero-5.jpeg";
 import hero6 from "@/assets/hero-6.jpeg";
+import hero7 from "@/assets/hero-7.png";
+import hero8 from "@/assets/hero-8.png";
 
-const heroImages = [hero1, hero2, hero3, hero4, hero5, hero6];
+const heroImages = [hero1, hero2, hero3, hero4, hero5, hero6, hero7, hero8];
 
 const HeroCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -54,11 +56,11 @@ const HeroCarousel = () => {
   return (
     <section id="hero" className="relative min-h-screen overflow-hidden bg-neutral-900">
       {/* Static background to prevent white flash */}
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-center transition-none"
         style={{ backgroundImage: `url(${heroImages[currentIndex]})` }}
       />
-      
+
       {/* Falling Leaves Overlay */}
       <FallingLeaves />
 
@@ -93,18 +95,6 @@ const HeroCarousel = () => {
           </motion.div>
         </motion.div>
       </AnimatePresence>
-
-      {/* Parallax Decorative Elements */}
-      <motion.div
-        animate={{ y: [0, -20, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-20 right-10 w-32 h-32 bg-primary/10 rounded-full blur-3xl"
-      />
-      <motion.div
-        animate={{ y: [0, 15, 0] }}
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        className="absolute bottom-40 left-10 w-48 h-48 bg-accent/10 rounded-full blur-3xl"
-      />
 
       {/* Content - positioned to the left on desktop */}
       <div className="relative z-10 min-h-screen flex items-center">

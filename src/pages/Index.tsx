@@ -10,7 +10,6 @@ import HowItWorks from "@/components/HowItWorks";
 import IngredientsSpotlight from "@/components/IngredientsSpotlight";
 import TestimonialsCarousel from "@/components/TestimonialsCarousel";
 import BeforeAfterSlider from "@/components/BeforeAfterSlider";
-import TrustBadges from "@/components/TrustBadges";
 import Partners from "@/components/Partners";
 import { useLanguage } from "@/lib/i18n";
 import Footer from "@/components/Footer";
@@ -18,9 +17,9 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import BackToTop from "@/components/BackToTop";
 import PageTransition from "@/components/PageTransition";
 
-// Import before/after images (using existing hero images as placeholders)
+// Import before/after images
 import beforeImage from "@/assets/hero-1.jpeg";
-import afterImage from "@/assets/hero-2.jpeg";
+import afterImage from "@/assets/transformation-after.jpeg";
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -50,7 +49,6 @@ const Index = () => {
             <StatsCounter />
             <HowItWorks />
             <IngredientsSpotlight />
-            <TrustBadges />
             <TestimonialsCarousel />
             <BeforeAfterSlider
               beforeImage={beforeImage}

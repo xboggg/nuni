@@ -60,30 +60,73 @@ const HowItWorks = () => {
             {steps.map((step, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
+                initial={{ opacity: 0, y: 50, scale: 0.8 }}
+                animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+                transition={{
+                  duration: 0.7,
+                  delay: index * 0.2,
+                  type: "spring",
+                  stiffness: 100
+                }}
+                whileHover={{
+                  scale: 1.05,
+                  y: -10,
+                  transition: { duration: 0.3 }
+                }}
                 className="relative"
               >
-                <div className="bg-card rounded-3xl p-8 text-center shadow-soft border border-border relative z-10">
+                <div className="bg-card rounded-3xl p-8 text-center shadow-soft border border-border relative z-10 hover:shadow-elevated transition-shadow duration-300">
                   {/* Step Number */}
-                  <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-2xl mb-6 shadow-green">
-                    {step.icon}
-                  </div>
+                  <motion.div
+                    className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-2xl mb-6 shadow-green"
+                    whileHover={{
+                      rotate: 360,
+                      scale: 1.1
+                    }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <motion.div
+                      animate={{
+                        scale: [1, 1.1, 1],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                    >
+                      {step.icon}
+                    </motion.div>
+                  </motion.div>
 
                   {/* Step Badge */}
-                  <div className="absolute -top-3 -right-3 w-10 h-10 bg-accent rounded-full flex items-center justify-center shadow-gold">
+                  <motion.div
+                    className="absolute -top-3 -right-3 w-10 h-10 bg-accent rounded-full flex items-center justify-center shadow-gold"
+                    initial={{ scale: 0, rotate: -180 }}
+                    animate={isInView ? { scale: 1, rotate: 0 } : {}}
+                    transition={{ delay: index * 0.2 + 0.4, type: "spring" }}
+                  >
                     <span className="text-xs font-bold text-accent-foreground">
                       {step.step}
                     </span>
-                  </div>
+                  </motion.div>
 
-                  <h3 className="text-xl font-serif font-bold text-foreground mb-3">
+                  <motion.h3
+                    className="text-xl font-serif font-bold text-foreground mb-3"
+                    initial={{ opacity: 0 }}
+                    animate={isInView ? { opacity: 1 } : {}}
+                    transition={{ delay: index * 0.2 + 0.3 }}
+                  >
                     {step.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                  </motion.h3>
+                  <motion.p
+                    className="text-muted-foreground leading-relaxed"
+                    initial={{ opacity: 0 }}
+                    animate={isInView ? { opacity: 1 } : {}}
+                    transition={{ delay: index * 0.2 + 0.4 }}
+                  >
                     {step.description}
-                  </p>
+                  </motion.p>
                 </div>
               </motion.div>
             ))}

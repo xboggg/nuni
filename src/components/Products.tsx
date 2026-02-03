@@ -1,37 +1,31 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { products, Product } from "@/data/products";
-import ProductModal from "./ProductModal";
 import ProductCard from "./ProductCard";
 import PullToRefresh from "./PullToRefresh";
 import { useLanguage } from "@/lib/i18n";
-import hero1 from "@/assets/hero-1.jpeg";
-import hero3 from "@/assets/hero-3.jpeg";
-import hero4 from "@/assets/hero-4.png";
+import product1 from "@/assets/product-1.png";
+import product2 from "@/assets/product-2.png";
+import product3 from "@/assets/product-3.png";
 
 const productImages: Record<string, string> = {
-  "hero-1": hero1,
-  "hero-3": hero3,
-  "hero-4": hero4,
+  "product-1": product1,
+  "product-2": product2,
+  "product-3": product3,
 };
 
 const Products = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
   const { t } = useLanguage();
+  const navigate = useNavigate();
 
   const handleViewDetails = (product: Product) => {
-    setSelectedProduct(product);
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    setTimeout(() => setSelectedProduct(null), 300);
+    // Navigate to dedicated product page
+    navigate(`/products/${product.id}`);
   };
 
   const handleRefresh = useCallback(async () => {
@@ -90,13 +84,6 @@ const Products = () => {
           </div>
         </PullToRefresh>
       </div>
-
-      {/* Product Modal */}
-      <ProductModal
-        product={selectedProduct}
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-      />
     </section>
   );
 };

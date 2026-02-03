@@ -6,7 +6,7 @@ export const translations = {
   en: {
     // Navigation
     nav: {
-      about: "About",
+      about: "Home",
       products: "Products",
       benefits: "Benefits",
       gallery: "Gallery",

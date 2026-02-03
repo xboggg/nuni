@@ -11,24 +11,36 @@ import Gallery from "./pages/Gallery";
 import GalleryAdmin from "./pages/GalleryAdmin";
 import ContactPage from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
+import ProductAcneSoap from "./pages/ProductAcneSoap";
+import ProductAcneCream from "./pages/ProductAcneCream";
+import ProductCocoaButter from "./pages/ProductCocoaButter";
 import StickyProductBar from "@/components/StickyProductBar";
+import ScrollToTop from "@/components/ScrollToTop";
+import PromoBar from "@/components/PromoBar";
 
 const queryClient = new QueryClient();
 
 const AnimatedRoutes = () => {
   const location = useLocation();
-  
+
   return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<Index />} />
-        <Route path="/gallery" element={<Gallery />} />
-        <Route path="/gallery/admin" element={<GalleryAdmin />} />
-        <Route path="/contact" element={<ContactPage />} />
-        {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </AnimatePresence>
+    <>
+      <PromoBar />
+      <ScrollToTop />
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<Index />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/gallery/admin" element={<GalleryAdmin />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/products/acne-dark-soap" element={<ProductAcneSoap />} />
+          <Route path="/products/acne-facial-cream" element={<ProductAcneCream />} />
+          <Route path="/products/cocoa-butter" element={<ProductCocoaButter />} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </AnimatePresence>
+    </>
   );
 };
 

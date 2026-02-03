@@ -58,7 +58,7 @@ const FallingLeaves = () => {
       size: 24 + Math.random() * 24, // Larger size (24-48px)
       rotation: Math.random() * 360,
       opacity: 0.6 + Math.random() * 0.4, // Higher opacity (0.6-1.0)
-      type: ["leaf1", "leaf2", "leaf3"][Math.floor(Math.random() * 3)] as Leaf["type"],
+      type: ["leaf1", "leaf2"][Math.floor(Math.random() * 2)] as Leaf["type"],
     }));
     setLeaves(initialLeaves);
   }, []);

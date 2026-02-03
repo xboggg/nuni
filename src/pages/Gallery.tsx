@@ -5,13 +5,83 @@ import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 
-// Import all images
-import hero1 from "@/assets/hero-1.jpeg";
-import hero2 from "@/assets/hero-2.jpeg";
-import hero3 from "@/assets/hero-3.jpeg";
-import hero4 from "@/assets/hero-4.png";
-import hero5 from "@/assets/hero-5.png";
-import hero6 from "@/assets/hero-6.jpeg";
+// Import gallery images
+import cocoaButter1 from "@/assets/gallery/nuni-cocoabutter1.jpeg";
+import cocoaButter2 from "@/assets/gallery/nuni-cocoabutter2.png";
+import cocoaButter3 from "@/assets/gallery/nuni-cocoabutter3.png";
+import cocoaButter4 from "@/assets/gallery/nuni-cocoabutter4.png";
+import cocoaButter6 from "@/assets/gallery/nuni-cocoabutter6.jpeg";
+import cocoaButter7 from "@/assets/gallery/nuni-cocoabutter7.jpeg";
+import cocoaButter8 from "@/assets/gallery/nuni-cocoabutter8.jpeg";
+import cocoaButter9 from "@/assets/gallery/nuni-cocoabutter9.jpeg";
+import cocoaButter10 from "@/assets/gallery/nuni-cocoabutter10.jpeg";
+import cocoaButter11 from "@/assets/gallery/nuni-cocoabutter11.jpeg";
+import cocoaButter12 from "@/assets/gallery/nuni-cocoabutter12.jpeg";
+import cocoaButter13 from "@/assets/gallery/nuni-cocoabutter13.jpeg";
+import cocoaButter14 from "@/assets/gallery/nuni-cocoabutter14.jpeg";
+import cocoaButter15 from "@/assets/gallery/nuni-cocoabutter15.jpeg";
+import cocoaButter16 from "@/assets/gallery/nuni-cocoabutter16.jpeg";
+import cocoaButter17 from "@/assets/gallery/nuni-cocoabutter17.jpeg";
+import cocoaButter18 from "@/assets/gallery/nuni-cocoabutter18.jpeg";
+import cocoaButter19 from "@/assets/gallery/nuni-cocoabutter19.png";
+import cocoaButter20 from "@/assets/gallery/nuni-cocoabutter20.png";
+import cocoaButter21 from "@/assets/gallery/nuni-cocoabutter21.png";
+import cocoaButter22 from "@/assets/gallery/nuni-cocoabutter22.png";
+import cocoaButter23 from "@/assets/gallery/nuni-cocoabutter23.png";
+import cocoaButter24 from "@/assets/gallery/nuni-cocoabutter24.png";
+
+import soap1 from "@/assets/gallery/nuni-darksoap1.png";
+import soap2 from "@/assets/gallery/nuni-darksoap2.jpeg";
+import soap3 from "@/assets/gallery/nuni-darksoap3.jpeg";
+import soap4 from "@/assets/gallery/nuni-darksoap4.jpeg";
+import soap5 from "@/assets/gallery/nuni-darksoap5.jpeg";
+import soap6 from "@/assets/gallery/nuni-darksoap6.jpeg";
+import soap7 from "@/assets/gallery/nuni-darksoap7.png";
+import soap8 from "@/assets/gallery/nuni-darksoap8.png";
+import soap9 from "@/assets/gallery/nuni-darksoap9.png";
+import soap10 from "@/assets/gallery/nuni-darksoap10.png";
+import soap11 from "@/assets/gallery/nuni-darksoap11.jpeg";
+import soap12 from "@/assets/gallery/nuni-darksoap12.png";
+import soap13 from "@/assets/gallery/nuni-darksoap13.jpeg";
+import soap14 from "@/assets/gallery/nuni-darksoap14.jpeg";
+import soap15 from "@/assets/gallery/nuni-darksoap15.jpeg";
+import soap16 from "@/assets/gallery/nuni-darksoap16.jpeg";
+import soap17 from "@/assets/gallery/nuni-darksoap17.jpeg";
+import soap18 from "@/assets/gallery/nuni-darksoap18.jpeg";
+import soap19 from "@/assets/gallery/nuni-darksoap19.jpeg";
+import soap20 from "@/assets/gallery/nuni-darksoap20.jpeg";
+import soap21 from "@/assets/gallery/nuni-darksoap21.jpeg";
+import soap22 from "@/assets/gallery/nuni-darksoap22.jpeg";
+import soap23 from "@/assets/gallery/nuni-darksoap23.jpeg";
+import soap24 from "@/assets/gallery/nuni-darksoap24.jpeg";
+
+import cream1 from "@/assets/gallery/nuni-facialacne1.png";
+import cream2 from "@/assets/gallery/nuni-facialacne2.png";
+import cream3 from "@/assets/gallery/nuni-facialacne3.png";
+import cream4 from "@/assets/gallery/nuni-facialacne4.png";
+import cream5 from "@/assets/gallery/nuni-facialacne5.png";
+import cream6 from "@/assets/gallery/nuni-facialacne6.jpeg";
+import cream7 from "@/assets/gallery/nuni-facialacne7.jpeg";
+import cream8 from "@/assets/gallery/nuni-facialacne8.png";
+import cream9 from "@/assets/gallery/nuni-facialacne9.png";
+import cream10 from "@/assets/gallery/nuni-facialacne10.png";
+import cream11 from "@/assets/gallery/nuni-facialacne11.jpeg";
+import cream12 from "@/assets/gallery/nuni-facialacne12.jpeg";
+import cream13 from "@/assets/gallery/nuni-facialacne13.jpeg";
+import cream14 from "@/assets/gallery/nuni-facialacne14.jpeg";
+import cream15 from "@/assets/gallery/nuni-facialacne15.jpeg";
+import cream16 from "@/assets/gallery/nuni-facialacne16.jpeg";
+import cream17 from "@/assets/gallery/nuni-facialacne17.jpeg";
+import cream18 from "@/assets/gallery/nuni-facialacne18.jpeg";
+import cream19 from "@/assets/gallery/nuni-facialacne19.jpeg";
+import cream20 from "@/assets/gallery/nuni-facialacne20.jpeg";
+import cream21 from "@/assets/gallery/nuni-facialacne21.jpeg";
+import cream22 from "@/assets/gallery/nuni-facialacne22.jpeg";
+import cream23 from "@/assets/gallery/nuni-facialacne23.jpeg";
+import cream24 from "@/assets/gallery/nuni-facialacne24.jpeg";
+import cream25 from "@/assets/gallery/nuni-facialacne25.jpeg";
+import cream26 from "@/assets/gallery/nuni-facialacne26.png";
+import cream27 from "@/assets/gallery/nuni-facialacne27.jpeg";
 
 interface GalleryImage {
   id: number | string;
@@ -29,12 +99,85 @@ interface UploadedImage {
 }
 
 const defaultGalleryImages: GalleryImage[] = [
-  { id: 1, src: hero1, alt: "Nuni Global Products Display", category: "products" },
-  { id: 2, src: hero2, alt: "Premium Skincare Collection", category: "soap" },
-  { id: 3, src: hero3, alt: "Natural Ingredients", category: "cocoa-butter" },
-  { id: 4, src: hero4, alt: "Acne Treatment Results", category: "cream" },
-  { id: 5, src: hero5, alt: "Skincare Routine", category: "products" },
-  { id: 6, src: hero6, alt: "Brand Story", category: "partnership" },
+  // Cocoa Butter (23 images)
+  { id: "cb1", src: cocoaButter1, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
+  { id: "cb2", src: cocoaButter2, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
+  { id: "cb3", src: cocoaButter3, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
+  { id: "cb4", src: cocoaButter4, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
+  { id: "cb6", src: cocoaButter6, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
+  { id: "cb7", src: cocoaButter7, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
+  { id: "cb8", src: cocoaButter8, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
+  { id: "cb9", src: cocoaButter9, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
+  { id: "cb10", src: cocoaButter10, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
+  { id: "cb11", src: cocoaButter11, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
+  { id: "cb12", src: cocoaButter12, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
+  { id: "cb13", src: cocoaButter13, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
+  { id: "cb14", src: cocoaButter14, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
+  { id: "cb15", src: cocoaButter15, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
+  { id: "cb16", src: cocoaButter16, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
+  { id: "cb17", src: cocoaButter17, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
+  { id: "cb18", src: cocoaButter18, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
+  { id: "cb19", src: cocoaButter19, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
+  { id: "cb20", src: cocoaButter20, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
+  { id: "cb21", src: cocoaButter21, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
+  { id: "cb22", src: cocoaButter22, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
+  { id: "cb23", src: cocoaButter23, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
+  { id: "cb24", src: cocoaButter24, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
+
+  // Acne Dark Soap (24 images)
+  { id: "soap1", src: soap1, alt: "Nuni Global Acne Dark Soap", category: "soap" },
+  { id: "soap2", src: soap2, alt: "Nuni Global Acne Dark Soap", category: "soap" },
+  { id: "soap3", src: soap3, alt: "Nuni Global Acne Dark Soap", category: "soap" },
+  { id: "soap4", src: soap4, alt: "Nuni Global Acne Dark Soap", category: "soap" },
+  { id: "soap5", src: soap5, alt: "Nuni Global Acne Dark Soap", category: "soap" },
+  { id: "soap6", src: soap6, alt: "Nuni Global Acne Dark Soap", category: "soap" },
+  { id: "soap7", src: soap7, alt: "Nuni Global Acne Dark Soap", category: "soap" },
+  { id: "soap8", src: soap8, alt: "Nuni Global Acne Dark Soap", category: "soap" },
+  { id: "soap9", src: soap9, alt: "Nuni Global Acne Dark Soap", category: "soap" },
+  { id: "soap10", src: soap10, alt: "Nuni Global Acne Dark Soap", category: "soap" },
+  { id: "soap11", src: soap11, alt: "Nuni Global Acne Dark Soap", category: "soap" },
+  { id: "soap12", src: soap12, alt: "Nuni Global Acne Dark Soap", category: "soap" },
+  { id: "soap13", src: soap13, alt: "Nuni Global Acne Dark Soap", category: "soap" },
+  { id: "soap14", src: soap14, alt: "Nuni Global Acne Dark Soap", category: "soap" },
+  { id: "soap15", src: soap15, alt: "Nuni Global Acne Dark Soap", category: "soap" },
+  { id: "soap16", src: soap16, alt: "Nuni Global Acne Dark Soap", category: "soap" },
+  { id: "soap17", src: soap17, alt: "Nuni Global Acne Dark Soap", category: "soap" },
+  { id: "soap18", src: soap18, alt: "Nuni Global Acne Dark Soap", category: "soap" },
+  { id: "soap19", src: soap19, alt: "Nuni Global Acne Dark Soap", category: "soap" },
+  { id: "soap20", src: soap20, alt: "Nuni Global Acne Dark Soap", category: "soap" },
+  { id: "soap21", src: soap21, alt: "Nuni Global Acne Dark Soap", category: "soap" },
+  { id: "soap22", src: soap22, alt: "Nuni Global Acne Dark Soap", category: "soap" },
+  { id: "soap23", src: soap23, alt: "Nuni Global Acne Dark Soap", category: "soap" },
+  { id: "soap24", src: soap24, alt: "Nuni Global Acne Dark Soap", category: "soap" },
+
+  // Acne Facial Cream (27 images)
+  { id: "cream1", src: cream1, alt: "Nuni Global Acne Facial Cream", category: "cream" },
+  { id: "cream2", src: cream2, alt: "Nuni Global Acne Facial Cream", category: "cream" },
+  { id: "cream3", src: cream3, alt: "Nuni Global Acne Facial Cream", category: "cream" },
+  { id: "cream4", src: cream4, alt: "Nuni Global Acne Facial Cream", category: "cream" },
+  { id: "cream5", src: cream5, alt: "Nuni Global Acne Facial Cream", category: "cream" },
+  { id: "cream6", src: cream6, alt: "Nuni Global Acne Facial Cream", category: "cream" },
+  { id: "cream7", src: cream7, alt: "Nuni Global Acne Facial Cream", category: "cream" },
+  { id: "cream8", src: cream8, alt: "Nuni Global Acne Facial Cream", category: "cream" },
+  { id: "cream9", src: cream9, alt: "Nuni Global Acne Facial Cream", category: "cream" },
+  { id: "cream10", src: cream10, alt: "Nuni Global Acne Facial Cream", category: "cream" },
+  { id: "cream11", src: cream11, alt: "Nuni Global Acne Facial Cream", category: "cream" },
+  { id: "cream12", src: cream12, alt: "Nuni Global Acne Facial Cream", category: "cream" },
+  { id: "cream13", src: cream13, alt: "Nuni Global Acne Facial Cream", category: "cream" },
+  { id: "cream14", src: cream14, alt: "Nuni Global Acne Facial Cream", category: "cream" },
+  { id: "cream15", src: cream15, alt: "Nuni Global Acne Facial Cream", category: "cream" },
+  { id: "cream16", src: cream16, alt: "Nuni Global Acne Facial Cream", category: "cream" },
+  { id: "cream17", src: cream17, alt: "Nuni Global Acne Facial Cream", category: "cream" },
+  { id: "cream18", src: cream18, alt: "Nuni Global Acne Facial Cream", category: "cream" },
+  { id: "cream19", src: cream19, alt: "Nuni Global Acne Facial Cream", category: "cream" },
+  { id: "cream20", src: cream20, alt: "Nuni Global Acne Facial Cream", category: "cream" },
+  { id: "cream21", src: cream21, alt: "Nuni Global Acne Facial Cream", category: "cream" },
+  { id: "cream22", src: cream22, alt: "Nuni Global Acne Facial Cream", category: "cream" },
+  { id: "cream23", src: cream23, alt: "Nuni Global Acne Facial Cream", category: "cream" },
+  { id: "cream24", src: cream24, alt: "Nuni Global Acne Facial Cream", category: "cream" },
+  { id: "cream25", src: cream25, alt: "Nuni Global Acne Facial Cream", category: "cream" },
+  { id: "cream26", src: cream26, alt: "Nuni Global Acne Facial Cream", category: "cream" },
+  { id: "cream27", src: cream27, alt: "Nuni Global Acne Facial Cream", category: "cream" },
 ];
 
 const categories = [
@@ -47,12 +190,15 @@ const categories = [
   { id: "products", label: "Products" },
 ];
 
+const ITEMS_PER_PAGE = 12;
+
 const Gallery = () => {
   const [activeCategory, setActiveCategory] = useState("all");
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isZoomed, setIsZoomed] = useState(false);
   const [uploadedImages, setUploadedImages] = useState<UploadedImage[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
   // Load uploaded images from localStorage
   useEffect(() => {
@@ -77,6 +223,22 @@ const Gallery = () => {
     activeCategory === "all"
       ? allImages
       : allImages.filter((img) => img.category === activeCategory);
+
+  // Reset to page 1 when category changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [activeCategory]);
+
+  // Calculate pagination
+  const totalPages = Math.ceil(filteredImages.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+  const paginatedImages = filteredImages.slice(startIndex, endIndex);
+
+  const goToPage = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const openLightbox = (index: number) => {
     setCurrentImageIndex(index);
@@ -176,12 +338,19 @@ const Gallery = () => {
       {/* Gallery Grid */}
       <section className="py-16">
         <div className="container-custom">
+          {/* Results count */}
+          <div className="mb-6 text-center">
+            <p className="text-muted-foreground">
+              Showing {startIndex + 1}-{Math.min(endIndex, filteredImages.length)} of {filteredImages.length} images
+            </p>
+          </div>
+
           <motion.div
             layout
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             <AnimatePresence>
-              {filteredImages.map((image, index) => (
+              {paginatedImages.map((image, index) => (
                 <motion.div
                   key={image.id}
                   layout
@@ -192,7 +361,7 @@ const Gallery = () => {
                   className={`group relative overflow-hidden rounded-2xl cursor-pointer ${
                     index % 3 === 0 ? "row-span-2" : ""
                   }`}
-                  onClick={() => openLightbox(index)}
+                  onClick={() => openLightbox(startIndex + index)}
                 >
                   <div
                     className={`relative ${
@@ -223,6 +392,68 @@ const Gallery = () => {
               ))}
             </AnimatePresence>
           </motion.div>
+
+          {/* Pagination Controls */}
+          {totalPages > 1 && (
+            <div className="mt-12 flex items-center justify-center gap-2">
+              {/* Previous Button */}
+              <button
+                onClick={() => goToPage(currentPage - 1)}
+                disabled={currentPage === 1}
+                className="px-4 py-2 rounded-lg bg-card border border-border text-foreground hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+              >
+                <ChevronLeft size={20} />
+              </button>
+
+              {/* Page Numbers */}
+              <div className="flex gap-2">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
+                  // Show first page, last page, current page, and pages around current
+                  const showPage =
+                    page === 1 ||
+                    page === totalPages ||
+                    (page >= currentPage - 1 && page <= currentPage + 1);
+
+                  // Show ellipsis
+                  const showEllipsisBefore = page === currentPage - 2 && currentPage > 3;
+                  const showEllipsisAfter = page === currentPage + 2 && currentPage < totalPages - 2;
+
+                  if (showEllipsisBefore || showEllipsisAfter) {
+                    return (
+                      <span key={page} className="px-4 py-2 text-muted-foreground">
+                        ...
+                      </span>
+                    );
+                  }
+
+                  if (!showPage) return null;
+
+                  return (
+                    <button
+                      key={page}
+                      onClick={() => goToPage(page)}
+                      className={`min-w-[40px] px-4 py-2 rounded-lg font-medium transition-all ${
+                        currentPage === page
+                          ? "bg-primary text-primary-foreground shadow-green"
+                          : "bg-card border border-border text-foreground hover:bg-muted"
+                      }`}
+                    >
+                      {page}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Next Button */}
+              <button
+                onClick={() => goToPage(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className="px-4 py-2 rounded-lg bg-card border border-border text-foreground hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+              >
+                <ChevronRight size={20} />
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
