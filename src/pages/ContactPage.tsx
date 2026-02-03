@@ -35,14 +35,6 @@ const contactMethods = [
     isWhatsApp: true,
   },
   {
-    icon: Phone,
-    title: "Phone / WhatsApp",
-    value: "+233 54 050 1872",
-    href: "tel:+233540501872",
-    whatsappHref: "https://wa.me/233540501872?text=" + encodeURIComponent("Hello! I'd like to inquire about your products."),
-    isWhatsApp: true,
-  },
-  {
     icon: Mail,
     title: "Email",
     value: "Kofiideas2017@gmail.com",
@@ -145,7 +137,7 @@ Message: ${formData.message}`;
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto"
+              className="grid sm:grid-cols-3 gap-6 max-w-4xl mx-auto"
             >
               {contactMethods.map((method, index) => (
                 <div
