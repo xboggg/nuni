@@ -268,7 +268,7 @@ const ProductsPage = () => {
       </section>
 
       {/* Wholesale CTA */}
-      <section className="py-20 bg-charcoal">
+      <section className="py-20 bg-gradient-to-br from-primary/90 to-primary">
         <div className="container-custom text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -277,22 +277,25 @@ const ProductsPage = () => {
             transition={{ duration: 0.6 }}
           >
             <Package size={48} className="text-accent mx-auto mb-6" />
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-cream mb-4">
-              Interested in <span className="text-gradient-gold">Wholesale?</span>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-4">
+              Interested in <span className="text-accent">Wholesale?</span>
             </h2>
-            <p className="text-cream/70 mb-8 max-w-xl mx-auto">
+            <p className="text-white/80 mb-8 max-w-xl mx-auto">
               Become a Nuni Global partner and enjoy special wholesale pricing. Join our network of 68+ partners across Ghana.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
-                onClick={() => setShowWholesale(true)}
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-white rounded-full font-semibold transition-all duration-200 hover:shadow-green hover:scale-105"
+                onClick={() => {
+                  setShowWholesale(true);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-primary rounded-full font-semibold transition-all duration-200 hover:bg-white/90 hover:scale-105 cursor-pointer"
               >
                 View Wholesale Prices
               </button>
               <Link
                 to="/partners"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-cream/10 text-cream rounded-full font-semibold transition-all duration-200 hover:bg-cream/20"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/20 text-white rounded-full font-semibold transition-all duration-200 hover:bg-white/30"
               >
                 Become a Partner
               </Link>
