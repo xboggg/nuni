@@ -42,7 +42,7 @@ const products: Product[] = [
     image: soapImage,
     wholesaleImage: soapImageWholesale,
     prices: [
-      { size: "750g", retailPrice: 150, wholesalePrice: 140, wholesaleQty: "24 in a carton" },
+      { size: "750g", retailPrice: 170, wholesalePrice: 140, wholesaleQty: "24 in a carton" },
       { size: "500g", retailPrice: 100, wholesalePrice: 80, wholesaleQty: "36 in a carton" },
     ],
     features: [
