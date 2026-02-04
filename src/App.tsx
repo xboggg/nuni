@@ -14,7 +14,9 @@ import NotFound from "./pages/NotFound";
 import ProductAcneSoap from "./pages/ProductAcneSoap";
 import ProductAcneCream from "./pages/ProductAcneCream";
 import ProductCocoaButter from "./pages/ProductCocoaButter";
-import StickyProductBar from "@/components/StickyProductBar";
+import PartnersPage from "./pages/PartnersPage";
+import WhyNuniPage from "./pages/WhyNuniPage";
+import ProductsPage from "./pages/ProductsPage";
 import ScrollToTop from "@/components/ScrollToTop";
 import PromoBar from "@/components/PromoBar";
 
@@ -36,6 +38,9 @@ const AnimatedRoutes = () => {
           <Route path="/products/acne-dark-soap" element={<ProductAcneSoap />} />
           <Route path="/products/acne-facial-cream" element={<ProductAcneCream />} />
           <Route path="/products/cocoa-butter" element={<ProductCocoaButter />} />
+          <Route path="/partners" element={<PartnersPage />} />
+          <Route path="/why-nuni" element={<WhyNuniPage />} />
+          <Route path="/products" element={<ProductsPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
@@ -53,7 +58,6 @@ const App = () => (
           <Sonner />
           <BrowserRouter>
             <AnimatedRoutes />
-            <StickyProductBar />
           </BrowserRouter>
         </TooltipProvider>
       </LanguageProvider>

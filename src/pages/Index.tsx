@@ -4,7 +4,7 @@ import Navigation from "@/components/Navigation";
 import HeroCarousel from "@/components/HeroCarousel";
 import About from "@/components/About";
 import Products from "@/components/Products";
-import Benefits from "@/components/Benefits";
+import VideoCarousel from "@/components/VideoCarousel";
 import StatsCounter from "@/components/StatsCounter";
 import HowItWorks from "@/components/HowItWorks";
 import IngredientsSpotlight from "@/components/IngredientsSpotlight";
@@ -45,7 +45,7 @@ const Index = () => {
             <HeroCarousel />
             <About />
             <Products />
-            <Benefits />
+            <VideoCarousel />
             <StatsCounter />
             <HowItWorks />
             <IngredientsSpotlight />

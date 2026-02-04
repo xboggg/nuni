@@ -21,11 +21,12 @@ const Footer = () => {
   };
 
   const footerLinks = {
-    products: products.map((p) => ({ name: p.name, href: "#products" })),
+    products: products.map((p) => ({ name: p.name, href: `/products/${p.id}`, isRoute: true })),
     company: [
       { name: t.footer.about, href: "#about" },
+      { name: "Why Nuni", href: "/why-nuni", isRoute: true },
       { name: t.footer.gallery, href: "/gallery", isRoute: true },
-      { name: t.footer.partners, href: "#partners" },
+      { name: t.footer.partners, href: "/partners", isRoute: true },
       { name: t.footer.contact, href: "/contact", isRoute: true },
     ],
     support: [
