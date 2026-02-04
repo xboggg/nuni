@@ -26,7 +26,7 @@ export const products: Product[] = [
       "Fades stretch marks",
       "Clears razor bumps and dark inner thighs"
     ],
-    usage: "Lather in hands, massage for 90 seconds, rinse with cool water. Use daily for best results.",
+    usage: "Lather in hands, massage on face for 90 seconds, rinse with cool water. Use daily for best results.",
     ingredients: [
       "Activated Charcoal",
       "Raw Shea Butter",
