@@ -33,7 +33,6 @@ export const partners: Partner[] = [
   // Greater Accra Region
   { id: "p1", name: "Adwoa Konadu", phone: ["0208959898"], locations: ["Ablekuma Olebu"], region: "greater-accra" },
   { id: "p2", name: "Thess", phone: ["0530184098"], locations: ["Madina"], region: "greater-accra" },
-  { id: "p3", name: "Jessica", phone: ["0553287428"], locations: ["Ablekuma"], region: "greater-accra" },
   { id: "p4", name: "Ruth", phone: ["0530184098"], locations: ["Madina", "Dodowa", "Oyarifa", "Oyibi", "Adenta", "Amrahia"], region: "greater-accra" },
   { id: "p5", name: "Ajoh", phone: ["0246959438"], locations: ["Dzorwulu"], region: "greater-accra" },
   { id: "p6", name: "Leen", phone: ["0595191518"], locations: ["Dome Kwabenya Ashomang"], region: "greater-accra" },
