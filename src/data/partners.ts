@@ -49,7 +49,7 @@ export const partners: Partner[] = [
   { id: "p16", name: "Tilly", phone: ["0540501872"], locations: ["Weija", "Scc"], region: "greater-accra" },
 
   // Tema
-  { id: "p17", name: "Peddy", phone: ["0248001159"], locations: ["Community 25"], region: "tema" },
+  { id: "p17", name: "Mzz Peddy", phone: ["0248001159"], locations: ["Community 25"], region: "tema" },
   { id: "p18", name: "Gladys Nyame", phone: ["0240246165", "0267037734"], momoPhone: "0240246165", locations: ["Tema Communities", "Tema Newtown"], region: "tema" },
   { id: "p19", name: "Regina Sedoh", phone: ["0548273170"], locations: ["Ashaiman", "Lebanon", "Zenu", "Atadeka", "Newyork", "Washington", "Katamanso", "Apolonia", "PeaceLand", "Aviation"], region: "tema" },
   { id: "p20", name: "AdwoaLyn", phone: ["0553962747", "0257159449"], momoPhone: "0257159449", locations: ["Ashaiman-Afienya", "C22"], region: "tema" },
