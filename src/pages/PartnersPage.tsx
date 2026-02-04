@@ -343,21 +343,29 @@ const PartnersPage = () => {
                             ))}
                           </div>
 
-                          {/* Phone Numbers */}
+                          {/* Phone Numbers - WhatsApp Links */}
                           <div className="space-y-1">
-                            {partner.phone.map((phone, i) => (
-                              <a
-                                key={i}
-                                href={`tel:${phone}`}
-                                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-                              >
-                                <Phone size={14} />
-                                {phone}
-                                {partner.momoPhone === phone && (
-                                  <span className="text-xs bg-accent/20 text-accent px-1.5 py-0.5 rounded">MoMo</span>
-                                )}
-                              </a>
-                            ))}
+                            {partner.phone.map((phone, i) => {
+                              // Convert phone to WhatsApp format (add 233 prefix, remove leading 0)
+                              const whatsappNumber = phone.startsWith('0')
+                                ? `233${phone.slice(1)}`
+                                : phone;
+                              return (
+                                <a
+                                  key={i}
+                                  href={`https://wa.me/${whatsappNumber}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="flex items-center gap-2 text-sm text-muted-foreground hover:text-green-600 transition-colors"
+                                >
+                                  <Phone size={14} />
+                                  {phone}
+                                  {partner.momoPhone === phone && (
+                                    <span className="text-xs bg-accent/20 text-accent px-1.5 py-0.5 rounded">MoMo</span>
+                                  )}
+                                </a>
+                              );
+                            })}
                           </div>
                         </motion.div>
                       ))}

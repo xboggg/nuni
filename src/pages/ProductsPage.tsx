@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, Package, ShoppingBag, Check } from "lucide-react";
+import { ArrowLeft, Package, ShoppingBag, Check, MessageCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -96,9 +96,17 @@ const ProductsPage = () => {
   const [showWholesale, setShowWholesale] = useState(false);
   const { t } = useLanguage();
 
+  // Wholesale WhatsApp numbers (primary first)
+  const WHOLESALE_NUMBERS = ["233554753634", "233540501872"];
+
   const handleOrderClick = (productName: string, size: string, price: number) => {
     const message = `Hello! I would like to order:\n\nProduct: ${productName}\nSize: ${size}\nPrice: GH₵${price}\n\nPlease confirm availability.`;
     window.open(getWhatsAppLink(message), "_blank");
+  };
+
+  const handleWholesaleOrder = (productName: string, phoneNumber: string) => {
+    const message = `Hello! I'm interested in wholesale ordering:\n\nProduct: ${productName}\n\nPlease provide wholesale pricing and availability.`;
+    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
   };
 
   return (
@@ -253,6 +261,31 @@ const ProductsPage = () => {
                       </div>
                     ))}
                   </div>
+
+                  {/* Wholesale WhatsApp Order Buttons */}
+                  {showWholesale && (
+                    <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/20 rounded-xl border border-green-200 dark:border-green-800">
+                      <p className="text-sm text-green-800 dark:text-green-200 font-medium mb-3">
+                        Order via WhatsApp for wholesale inquiries:
+                      </p>
+                      <div className="flex flex-wrap gap-3">
+                        <button
+                          onClick={() => handleWholesaleOrder(product.name, WHOLESALE_NUMBERS[0])}
+                          className="inline-flex items-center gap-2 px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-full hover:bg-green-700 transition-colors"
+                        >
+                          <MessageCircle size={16} />
+                          0554753634 (Primary)
+                        </button>
+                        <button
+                          onClick={() => handleWholesaleOrder(product.name, WHOLESALE_NUMBERS[1])}
+                          className="inline-flex items-center gap-2 px-4 py-2 bg-green-500 text-white text-sm font-medium rounded-full hover:bg-green-600 transition-colors"
+                        >
+                          <MessageCircle size={16} />
+                          0540501872
+                        </button>
+                      </div>
+                    </div>
+                  )}
 
                   {/* Link to product detail page */}
                   <Link
