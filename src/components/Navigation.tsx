@@ -30,8 +30,8 @@ const Navigation = () => {
 
   const navLinks = [
     { name: t.nav.about, href: "#about" },
-    { name: t.nav.products, href: "/products", isRoute: true },
     { name: "Why Nuni", href: "/why-nuni", isRoute: true },
+    { name: t.nav.products, href: "/products", isRoute: true },
     { name: t.nav.gallery, href: "/gallery", isRoute: true },
     { name: t.nav.partners, href: "/partners", isRoute: true },
     { name: t.nav.contact, href: "/contact", isRoute: true },
