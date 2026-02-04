@@ -70,6 +70,7 @@ export const partners: Partner[] = [
   // Kasoa
   { id: "p32", name: "Tilly", phone: ["0540501872"], locations: ["Kasoa"], region: "kasoa" },
   { id: "p33", name: "Tabitha Mizpah", phone: ["0249496872"], locations: ["Kasoa Liberia Camp", "Tuba", "Nyanyano", "Amanfrom", "Opeikuma", "Fetteh Kakraba"], region: "kasoa" },
+  { id: "p69", name: "AJ", phone: ["0557634949", "0540335671"], momoPhone: "0557634949", locations: ["Kasoa", "Lamptey Mills", "Kasoa Market", "Domeabra"], region: "kasoa" },
 
   // Ashanti Region
   { id: "p34", name: "Rosina", phone: ["0544855670"], locations: ["Bremang"], region: "ashanti" },
