@@ -6,7 +6,9 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 
 // Import gallery images
+// Cocoa Butter (JPEG)
 import cocoaButter1 from "@/assets/gallery/nuni-cocoabutter1.jpeg";
+// Cocoa Butter (PNG)
 import cocoaButter2 from "@/assets/gallery/nuni-cocoabutter2.png";
 import cocoaButter3 from "@/assets/gallery/nuni-cocoabutter3.png";
 import cocoaButter4 from "@/assets/gallery/nuni-cocoabutter4.png";
@@ -29,8 +31,12 @@ import cocoaButter21 from "@/assets/gallery/nuni-cocoabutter21.png";
 import cocoaButter22 from "@/assets/gallery/nuni-cocoabutter22.png";
 import cocoaButter23 from "@/assets/gallery/nuni-cocoabutter23.png";
 import cocoaButter24 from "@/assets/gallery/nuni-cocoabutter24.png";
+import cocoaButter25 from "@/assets/gallery/nuni-cocoabutter25.jpeg";
+import cocoaButter26 from "@/assets/gallery/nuni-cocoabutter26.jpeg";
 
+// Soap (PNG)
 import soap1 from "@/assets/gallery/nuni-darksoap1.png";
+// Soap (JPEG)
 import soap2 from "@/assets/gallery/nuni-darksoap2.jpeg";
 import soap3 from "@/assets/gallery/nuni-darksoap3.jpeg";
 import soap4 from "@/assets/gallery/nuni-darksoap4.jpeg";
@@ -54,12 +60,15 @@ import soap21 from "@/assets/gallery/nuni-darksoap21.jpeg";
 import soap22 from "@/assets/gallery/nuni-darksoap22.jpeg";
 import soap23 from "@/assets/gallery/nuni-darksoap23.jpeg";
 import soap24 from "@/assets/gallery/nuni-darksoap24.jpeg";
+import soap25 from "@/assets/gallery/nuni-darksoap25.jpeg";
 
+// Cream (PNG)
 import cream1 from "@/assets/gallery/nuni-facialacne1.png";
 import cream2 from "@/assets/gallery/nuni-facialacne2.png";
 import cream3 from "@/assets/gallery/nuni-facialacne3.png";
 import cream4 from "@/assets/gallery/nuni-facialacne4.png";
 import cream5 from "@/assets/gallery/nuni-facialacne5.png";
+// Cream (JPEG)
 import cream6 from "@/assets/gallery/nuni-facialacne6.jpeg";
 import cream7 from "@/assets/gallery/nuni-facialacne7.jpeg";
 import cream8 from "@/assets/gallery/nuni-facialacne8.png";
@@ -82,12 +91,42 @@ import cream24 from "@/assets/gallery/nuni-facialacne24.jpeg";
 import cream25 from "@/assets/gallery/nuni-facialacne25.jpeg";
 import cream26 from "@/assets/gallery/nuni-facialacne26.png";
 import cream27 from "@/assets/gallery/nuni-facialacne27.jpeg";
+import cream28 from "@/assets/gallery/nuni-facialacne28.jpeg";
+
+import ambassador50 from "@/assets/gallery/nuni-ambassador50.jpeg";
+import ambassador52 from "@/assets/gallery/nuni-ambassador52.jpeg";
+import ambassador53 from "@/assets/gallery/nuni-ambassador53.jpeg";
+
+import products1 from "@/assets/gallery/nuni-products1.jpeg";
+import products2 from "@/assets/gallery/nuni-products2.png";
+import products3 from "@/assets/gallery/nuni-products3.png";
+import products4 from "@/assets/gallery/nuni-products4.jpeg";
+import products5 from "@/assets/gallery/nuni-products5.png";
+import products6 from "@/assets/gallery/nuni-products6.jpeg";
+import products7 from "@/assets/gallery/nuni-products7.png";
+import products8 from "@/assets/gallery/nuni-products8.jpeg";
+import products9 from "@/assets/gallery/nuni-products9.png";
+import products10 from "@/assets/gallery/nuni-products10.jpeg";
+import products11 from "@/assets/gallery/nuni-products11.png";
+import products12 from "@/assets/gallery/nuni-products12.jpeg";
+import products13 from "@/assets/gallery/nuni-products13.png";
+import products14 from "@/assets/gallery/nuni-products14.jpeg";
+import products15 from "@/assets/gallery/nuni-products15.png";
+import products16 from "@/assets/gallery/nuni-products16.jpeg";
+import products17 from "@/assets/gallery/nuni-products17.png";
+import products18 from "@/assets/gallery/nuni-products18.png";
+
+import kid1 from "@/assets/gallery/nuni-kid1.jpeg";
+import kid2 from "@/assets/gallery/nuni-kid2.jpeg";
+import kid3 from "@/assets/gallery/nuni-kid3.jpeg";
+import kid4 from "@/assets/gallery/nuni-kid4.jpeg";
+import kid5 from "@/assets/gallery/nuni-kid5.jpeg";
 
 interface GalleryImage {
   id: number | string;
   src: string;
   alt: string;
-  category: "events" | "partnership" | "soap" | "cream" | "cocoa-butter" | "products";
+  category: "events" | "partnership" | "soap" | "cream" | "cocoa-butter" | "products" | "ambassadors" | "vendors" | "kids";
 }
 
 interface UploadedImage {
@@ -99,7 +138,14 @@ interface UploadedImage {
 }
 
 const defaultGalleryImages: GalleryImage[] = [
-  // Cocoa Butter (23 images)
+  // Ambassadors (3 images)
+  { id: "amb50", src: ambassador50, alt: "Nuni Global Ambassador", category: "ambassadors" },
+  { id: "amb52", src: ambassador52, alt: "Nuni Global Ambassador", category: "ambassadors" },
+  { id: "amb53", src: ambassador53, alt: "Nuni Global Ambassador", category: "ambassadors" },
+
+  // Cocoa Butter (25 images)
+  { id: "cb25", src: cocoaButter25, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
+  { id: "cb26", src: cocoaButter26, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
   { id: "cb1", src: cocoaButter1, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
   { id: "cb2", src: cocoaButter2, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
   { id: "cb3", src: cocoaButter3, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
@@ -124,7 +170,8 @@ const defaultGalleryImages: GalleryImage[] = [
   { id: "cb23", src: cocoaButter23, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
   { id: "cb24", src: cocoaButter24, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
 
-  // Acne Dark Soap (24 images)
+  // Acne Dark Soap (25 images)
+  { id: "soap25", src: soap25, alt: "Nuni Global Acne Dark Soap", category: "soap" },
   { id: "soap1", src: soap1, alt: "Nuni Global Acne Dark Soap", category: "soap" },
   { id: "soap2", src: soap2, alt: "Nuni Global Acne Dark Soap", category: "soap" },
   { id: "soap3", src: soap3, alt: "Nuni Global Acne Dark Soap", category: "soap" },
@@ -150,7 +197,8 @@ const defaultGalleryImages: GalleryImage[] = [
   { id: "soap23", src: soap23, alt: "Nuni Global Acne Dark Soap", category: "soap" },
   { id: "soap24", src: soap24, alt: "Nuni Global Acne Dark Soap", category: "soap" },
 
-  // Acne Facial Cream (27 images)
+  // Acne Facial Cream (28 images)
+  { id: "cream28", src: cream28, alt: "Nuni Global Acne Facial Cream", category: "cream" },
   { id: "cream1", src: cream1, alt: "Nuni Global Acne Facial Cream", category: "cream" },
   { id: "cream2", src: cream2, alt: "Nuni Global Acne Facial Cream", category: "cream" },
   { id: "cream3", src: cream3, alt: "Nuni Global Acne Facial Cream", category: "cream" },
@@ -178,16 +226,46 @@ const defaultGalleryImages: GalleryImage[] = [
   { id: "cream25", src: cream25, alt: "Nuni Global Acne Facial Cream", category: "cream" },
   { id: "cream26", src: cream26, alt: "Nuni Global Acne Facial Cream", category: "cream" },
   { id: "cream27", src: cream27, alt: "Nuni Global Acne Facial Cream", category: "cream" },
+
+  // All Products (18 images)
+  { id: "prod1", src: products1, alt: "Nuni Global Products", category: "products" },
+  { id: "prod2", src: products2, alt: "Nuni Global Products", category: "products" },
+  { id: "prod3", src: products3, alt: "Nuni Global Products", category: "products" },
+  { id: "prod4", src: products4, alt: "Nuni Global Products", category: "products" },
+  { id: "prod5", src: products5, alt: "Nuni Global Products", category: "products" },
+  { id: "prod6", src: products6, alt: "Nuni Global Products", category: "products" },
+  { id: "prod7", src: products7, alt: "Nuni Global Products", category: "products" },
+  { id: "prod8", src: products8, alt: "Nuni Global Products", category: "products" },
+  { id: "prod9", src: products9, alt: "Nuni Global Products", category: "products" },
+  { id: "prod10", src: products10, alt: "Nuni Global Products", category: "products" },
+  { id: "prod11", src: products11, alt: "Nuni Global Products", category: "products" },
+  { id: "prod12", src: products12, alt: "Nuni Global Products", category: "products" },
+  { id: "prod13", src: products13, alt: "Nuni Global Products", category: "products" },
+  { id: "prod14", src: products14, alt: "Nuni Global Products", category: "products" },
+  { id: "prod15", src: products15, alt: "Nuni Global Products", category: "products" },
+  { id: "prod16", src: products16, alt: "Nuni Global Products", category: "products" },
+  { id: "prod17", src: products17, alt: "Nuni Global Products", category: "products" },
+  { id: "prod18", src: products18, alt: "Nuni Global Products", category: "products" },
+
+  // Kids (5 images)
+  { id: "kid1", src: kid1, alt: "Nuni Global Kids", category: "kids" },
+  { id: "kid2", src: kid2, alt: "Nuni Global Kids", category: "kids" },
+  { id: "kid3", src: kid3, alt: "Nuni Global Kids", category: "kids" },
+  { id: "kid4", src: kid4, alt: "Nuni Global Kids", category: "kids" },
+  { id: "kid5", src: kid5, alt: "Nuni Global Kids", category: "kids" },
 ];
 
 const categories = [
   { id: "all", label: "All" },
   { id: "events", label: "Events" },
   { id: "partnership", label: "Partnership" },
+  { id: "ambassadors", label: "Ambassadors" },
+  { id: "vendors", label: "Vendors" },
   { id: "soap", label: "Soap" },
   { id: "cream", label: "Cream" },
   { id: "cocoa-butter", label: "Cocoa Butter" },
   { id: "products", label: "Products" },
+  { id: "kids", label: "Kids" },
 ];
 
 const ITEMS_PER_PAGE = 12;
@@ -366,12 +444,12 @@ const Gallery = () => {
                   <div
                     className={`relative ${
                       index % 3 === 0 ? "aspect-[3/4]" : "aspect-square"
-                    } overflow-hidden`}
+                    } overflow-hidden bg-white`}
                   >
                     <img
                       src={image.src}
                       alt={image.alt}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 bg-white"
                     />
                     {/* Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
