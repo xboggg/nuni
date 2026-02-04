@@ -36,7 +36,7 @@ export const partners: Partner[] = [
   { id: "p3", name: "Jessica", phone: ["0553287428"], locations: ["Ablekuma"], region: "greater-accra" },
   { id: "p4", name: "Ruth", phone: ["0530184098"], locations: ["Madina", "Dodowa", "Oyarifa", "Oyibi", "Adenta", "Amrahia"], region: "greater-accra" },
   { id: "p5", name: "Ajoh", phone: ["0246959438"], locations: ["Dzorwulu"], region: "greater-accra" },
-  { id: "p6", name: "Leen Dome", phone: ["0595191518"], locations: ["Ashorg"], region: "greater-accra" },
+  { id: "p6", name: "Leen", phone: ["0595191518"], locations: ["Dome Kwabenya Ashomang"], region: "greater-accra" },
   { id: "p7", name: "Valerie", phone: ["0550937098"], locations: ["Ablekuma Joma"], region: "greater-accra" },
   { id: "p8", name: "Nana Yeboah", phone: ["0244867787"], locations: ["Abokobi"], region: "greater-accra" },
   { id: "p9", name: "Blacklove", phone: ["0504989122"], locations: ["Spintex", "Lashibi", "Teshie"], region: "greater-accra" },
