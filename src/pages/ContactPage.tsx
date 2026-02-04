@@ -8,6 +8,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import BackToTop from "@/components/BackToTop";
 import { getWhatsAppLink, WHATSAPP_NUMBER } from "@/data/products";
 import { faqData, categoryLabels } from "@/data/faq";
+import { useLanguage } from "@/lib/i18n";
 import {
   Accordion,
   AccordionContent,
@@ -25,45 +26,53 @@ const WhatsAppIcon = () => (
   </svg>
 );
 
-const contactMethods = [
+const getContactMethods = (t: any) => [
   {
     icon: Phone,
-    title: "Phone / WhatsApp",
+    title: t.contactPage.phoneWhatsApp,
     value: "+233 55 475 3634",
     href: "tel:+233554753634",
     whatsappHref: getWhatsAppLink("Hello! I'd like to inquire about your products."),
     isWhatsApp: true,
+    callLabel: t.contactPage.call,
+    whatsappLabel: t.contactPage.whatsApp,
   },
   {
     icon: Mail,
-    title: "Email",
+    title: t.contactPage.email,
     value: "Kofiideas2017@gmail.com",
     href: "mailto:Kofiideas2017@gmail.com",
     isWhatsApp: false,
+    linkLabel: t.contactPage.emailUs,
   },
   {
     icon: MapPin,
-    title: "Location",
+    title: t.contactPage.locationLabel,
     value: "Accra, Ghana",
     href: "#",
     isWhatsApp: false,
+    linkLabel: t.contactPage.viewLocation,
   },
 ];
 
-const interestOptions = [
-  { value: "buying", label: "Buying Products" },
-  { value: "wholesale", label: "Wholesale/Reseller" },
-  { value: "partnership", label: "Partnership" },
-  { value: "other", label: "Other" },
+const getInterestOptions = (t: any) => [
+  { value: "buying", label: t.contactPage.buyingProducts },
+  { value: "wholesale", label: t.contactPage.wholesaleReseller },
+  { value: "partnership", label: t.contactPage.partnership },
+  { value: "other", label: t.contactPage.other },
 ];
 
 const ContactPage = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     interest: "",
     message: "",
   });
+
+  const contactMethods = getContactMethods(t);
+  const interestOptions = getInterestOptions(t);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -110,21 +119,20 @@ Message: ${formData.message}`;
               {/* Breadcrumb */}
               <nav className="flex justify-center items-center gap-2 text-sm text-muted-foreground mb-8">
                 <Link to="/" className="hover:text-primary transition-colors">
-                  Home
+                  {t.contactPage.breadcrumbHome}
                 </Link>
                 <span>/</span>
-                <span className="text-foreground">Contact</span>
+                <span className="text-foreground">{t.contactPage.breadcrumbContact}</span>
               </nav>
 
               <span className="inline-block text-sm font-medium tracking-widest text-accent uppercase mb-4">
-                Get in Touch
+                {t.contactPage.badge}
               </span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-6">
-                Contact <span className="text-gradient-green">Us</span>
+                {t.contactPage.title} <span className="text-gradient-green">{t.contactPage.titleHighlight}</span>
               </h1>
               <p className="text-lg text-muted-foreground">
-                Have questions? We'd love to hear from you. Send us a message
-                and we'll respond as soon as possible.
+                {t.contactPage.description}
               </p>
             </motion.div>
           </div>
@@ -159,7 +167,7 @@ Message: ${formData.message}`;
                         className="flex items-center justify-center gap-2 px-3 py-2 text-xs font-medium text-primary hover:text-primary/80 transition-colors"
                       >
                         <Phone size={14} />
-                        Call
+                        {method.callLabel}
                       </a>
                       <a
                         href={method.whatsappHref}
@@ -168,7 +176,7 @@ Message: ${formData.message}`;
                         className="flex items-center justify-center gap-2 px-3 py-2 bg-[#25D366] text-white rounded-lg text-xs font-medium hover:bg-[#20BA5A] transition-colors"
                       >
                         <WhatsAppIcon />
-                        WhatsApp
+                        {method.whatsappLabel}
                       </a>
                     </div>
                   ) : (
@@ -176,7 +184,7 @@ Message: ${formData.message}`;
                       href={method.href}
                       className="inline-flex items-center justify-center gap-2 px-3 py-2 text-xs font-medium text-primary hover:text-primary/80 transition-colors"
                     >
-                      {method.icon === Mail ? "Email Us" : "View Location"}
+                      {method.linkLabel}
                     </a>
                   )}
                 </div>
@@ -199,7 +207,7 @@ Message: ${formData.message}`;
                 className="bg-card rounded-3xl p-8 md:p-10 shadow-soft"
               >
                 <h2 className="text-2xl font-serif font-bold text-foreground mb-6 text-center">
-                  Send Us a Message
+                  {t.contactPage.sendMessage}
                 </h2>
 
                 <div className="grid sm:grid-cols-2 gap-6 mb-6">
@@ -208,7 +216,7 @@ Message: ${formData.message}`;
                       htmlFor="name"
                       className="block text-sm font-medium text-foreground mb-2"
                     >
-                      Name *
+                      {t.contactPage.name} *
                     </label>
                     <input
                       type="text"
@@ -218,7 +226,7 @@ Message: ${formData.message}`;
                       value={formData.name}
                       onChange={handleChange}
                       className="w-full px-4 py-3 bg-background border border-border rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
-                      placeholder="Your name"
+                      placeholder={t.contactPage.yourName}
                     />
                   </div>
                   <div>
@@ -226,7 +234,7 @@ Message: ${formData.message}`;
                       htmlFor="email"
                       className="block text-sm font-medium text-foreground mb-2"
                     >
-                      Email
+                      {t.contactPage.email}
                     </label>
                     <input
                       type="email"
@@ -235,7 +243,7 @@ Message: ${formData.message}`;
                       value={formData.email}
                       onChange={handleChange}
                       className="w-full px-4 py-3 bg-background border border-border rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
-                      placeholder="your@email.com"
+                      placeholder={t.contactPage.yourEmail}
                     />
                   </div>
                 </div>
@@ -245,7 +253,7 @@ Message: ${formData.message}`;
                     htmlFor="interest"
                     className="block text-sm font-medium text-foreground mb-2"
                   >
-                    I'm interested in
+                    {t.contactPage.interestedIn}
                   </label>
                   <select
                     id="interest"
@@ -254,7 +262,7 @@ Message: ${formData.message}`;
                     onChange={handleChange}
                     className="w-full px-4 py-3 bg-background border border-border rounded-xl text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all appearance-none cursor-pointer"
                   >
-                    <option value="">Select an option</option>
+                    <option value="">{t.common.selectOption}</option>
                     {interestOptions.map((option) => (
                       <option key={option.value} value={option.value}>
                         {option.label}
@@ -268,7 +276,7 @@ Message: ${formData.message}`;
                     htmlFor="message"
                     className="block text-sm font-medium text-foreground mb-2"
                   >
-                    Message
+                    {t.contactPage.message}
                   </label>
                   <textarea
                     id="message"
@@ -277,7 +285,7 @@ Message: ${formData.message}`;
                     value={formData.message}
                     onChange={handleChange}
                     className="w-full px-4 py-3 bg-background border border-border rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all resize-none"
-                    placeholder="Tell us more about your inquiry..."
+                    placeholder={t.contactPage.messagePlaceholder}
                   />
                 </div>
 
@@ -286,7 +294,7 @@ Message: ${formData.message}`;
                   className="w-full flex items-center justify-center gap-2 py-4 bg-primary text-primary-foreground rounded-xl font-semibold text-lg transition-all duration-200 hover:shadow-green hover:scale-[1.02]"
                 >
                   <Send size={20} />
-                  Send via WhatsApp
+                  {t.common.sendViaWhatsApp}
                 </button>
               </form>
             </motion.div>
@@ -303,14 +311,13 @@ Message: ${formData.message}`;
               className="text-center mb-12"
             >
               <span className="inline-block text-sm font-medium tracking-widest text-accent uppercase mb-4">
-                FAQ
+                {t.contactPage.faqBadge}
               </span>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-foreground mb-6">
-                Frequently Asked <span className="text-gradient-green">Questions</span>
+                {t.contactPage.faqTitle} <span className="text-gradient-green">{t.contactPage.faqTitleHighlight}</span>
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Find answers to common questions about our products, shipping, and
-                partnership opportunities.
+                {t.contactPage.faqDescription}
               </p>
             </motion.div>
 

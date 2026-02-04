@@ -4,6 +4,7 @@ import { X, ChevronLeft, ChevronRight, ZoomIn, ArrowLeft, Settings } from "lucid
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { useLanguage } from "@/lib/i18n";
 
 // Import gallery images
 // Cocoa Butter (JPEG)
@@ -255,19 +256,6 @@ const defaultGalleryImages: GalleryImage[] = [
   { id: "kid5", src: kid5, alt: "Nuni Global Kids", category: "kids" },
 ];
 
-const categories = [
-  { id: "all", label: "All" },
-  { id: "events", label: "Events" },
-  { id: "partnership", label: "Partnership" },
-  { id: "ambassadors", label: "Ambassadors" },
-  { id: "vendors", label: "Vendors" },
-  { id: "soap", label: "Soap" },
-  { id: "cream", label: "Cream" },
-  { id: "cocoa-butter", label: "Cocoa Butter" },
-  { id: "products", label: "Products" },
-  { id: "kids", label: "Kids" },
-];
-
 const ITEMS_PER_PAGE = 12;
 
 const Gallery = () => {
@@ -277,6 +265,17 @@ const Gallery = () => {
   const [isZoomed, setIsZoomed] = useState(false);
   const [uploadedImages, setUploadedImages] = useState<UploadedImage[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const { t } = useLanguage();
+
+  const categories = [
+    { id: "all", label: t.galleryPage.all },
+    { id: "ambassadors", label: t.galleryPage.ambassadors },
+    { id: "soap", label: t.galleryPage.soap },
+    { id: "cream", label: t.galleryPage.cream },
+    { id: "cocoa-butter", label: t.galleryPage.cocoaButter },
+    { id: "products", label: t.galleryPage.products },
+    { id: "kids", label: t.galleryPage.kids },
+  ];
 
   // Load uploaded images from localStorage
   useEffect(() => {
@@ -371,22 +370,21 @@ const Gallery = () => {
                 className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
               >
                 <ArrowLeft size={20} />
-                <span className="font-medium">Back to Home</span>
+                <span className="font-medium">{t.common.backToHome}</span>
               </Link>
               <Link
                 to="/gallery/admin"
                 className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
               >
                 <Settings size={20} />
-                <span className="font-medium">Admin</span>
+                <span className="font-medium">{t.galleryPage.admin}</span>
               </Link>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-4">
-              Our Gallery
+              {t.galleryPage.title}
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Explore our collection of premium African skincare products and see
-              the amazing results our customers achieve.
+              {t.galleryPage.description}
             </p>
           </motion.div>
         </div>
@@ -419,7 +417,7 @@ const Gallery = () => {
           {/* Results count */}
           <div className="mb-6 text-center">
             <p className="text-muted-foreground">
-              Showing {startIndex + 1}-{Math.min(endIndex, filteredImages.length)} of {filteredImages.length} images
+              {t.galleryPage.showing} {startIndex + 1}-{Math.min(endIndex, filteredImages.length)} {t.galleryPage.of} {filteredImages.length} {t.galleryPage.images}
             </p>
           </div>
 

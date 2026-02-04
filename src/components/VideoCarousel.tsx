@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/lib/i18n";
 
 // Import videos
 import video1 from "@/assets/videos/nuni-vid1.mp4";
@@ -26,6 +27,7 @@ const VideoCarousel = () => {
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+  const { t } = useLanguage();
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % videos.length);
@@ -88,7 +90,7 @@ const VideoCarousel = () => {
             transition={{ duration: 0.5 }}
             className="inline-block text-sm font-medium tracking-widest text-accent uppercase mb-4"
           >
-            NG COSMETICS
+            {t.videoCarousel.badge}
           </motion.span>
 
           <motion.h2
@@ -97,7 +99,7 @@ const VideoCarousel = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-cream mb-6"
           >
-            See the <span className="text-gradient-gold">Transformation</span>
+            {t.videoCarousel.title} <span className="text-gradient-gold">{t.videoCarousel.titleHighlight}</span>
           </motion.h2>
 
           <motion.p
@@ -106,7 +108,7 @@ const VideoCarousel = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-lg text-cream/70 leading-relaxed"
           >
-            Watch how NG Cosmetics products are changing lives across Ghana
+            {t.videoCarousel.description}
           </motion.p>
         </div>
 
@@ -208,7 +210,7 @@ const VideoCarousel = () => {
             to="/why-nuni"
             className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-full font-semibold transition-all duration-200 hover:shadow-green hover:scale-105"
           >
-            Discover Why Nuni
+            {t.videoCarousel.discoverWhyNuni}
             <ChevronRight size={20} />
           </Link>
         </motion.div>

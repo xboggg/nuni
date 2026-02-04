@@ -47,18 +47,18 @@ const WhyNuniPage = () => {
   const additionalReasons = [
     {
       icon: Award,
-      title: "Quality Assurance",
-      description: "Every NG Cosmetics product undergoes rigorous testing to ensure the highest quality standards. We never compromise on what touches your skin.",
+      title: t.whyNuni.qualityAssurance,
+      description: t.whyNuni.qualityAssuranceDesc,
     },
     {
       icon: Heart,
-      title: "Made with Love in Ghana",
-      description: "Proudly Ghanaian, our products are formulated locally using traditional African skincare wisdom combined with modern science.",
+      title: t.whyNuni.madeWithLove,
+      description: t.whyNuni.madeWithLoveDesc,
     },
     {
       icon: Sparkles,
-      title: "Proven Track Record",
-      description: "Thousands of satisfied customers across Ghana trust NG Cosmetics for their skincare needs. Join the community of glowing skin.",
+      title: t.whyNuni.provenTrackRecord,
+      description: t.whyNuni.provenTrackRecordDesc,
     },
   ];
 
@@ -79,7 +79,7 @@ const WhyNuniPage = () => {
               className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mb-6"
             >
               <ArrowLeft size={20} />
-              <span className="font-medium">Back to Home</span>
+              <span className="font-medium">{t.common.backToHome}</span>
             </Link>
 
             <div className="text-center">
@@ -89,14 +89,14 @@ const WhyNuniPage = () => {
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="inline-block text-sm font-medium tracking-widest text-accent uppercase mb-4"
               >
-                NG COSMETICS
+                {t.whyNuni.badge}
               </motion.span>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-4">
-                Why Choose <span className="text-gradient-gold">Nuni Global</span>
+                {t.whyNuni.title} <span className="text-gradient-gold">{t.whyNuni.titleHighlight}</span>
               </h1>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Discover what sets NG Cosmetics apart. Our commitment to quality, nature, and your skin's health makes us Ghana's trusted skincare brand.
+                {t.whyNuni.description}
               </p>
             </div>
           </motion.div>
@@ -180,33 +180,33 @@ const WhyNuniPage = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <span className="inline-block text-sm font-medium tracking-widest text-accent uppercase mb-4">
-                MEET THE VISIONARY
+                {t.whyNuni.meetVisionary}
               </span>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-foreground mb-6">
-                Kofi Ideas
+                {t.whyNuni.ceoName}
                 <span className="block text-xl md:text-2xl text-primary mt-2 font-normal">
-                  Founder & CEO, NG Cosmetics
+                  {t.whyNuni.ceoRole}
                 </span>
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                With a passion for natural beauty and African skincare traditions, Kofi Ideas founded NG Cosmetics to bring premium, FDA-certified skincare products to Ghana and beyond.
+                {t.whyNuni.ceoBio}
               </p>
               <p className="text-muted-foreground leading-relaxed mb-8">
-                "Our mission is simple: to help every Ghanaian achieve healthy, glowing skin using the power of nature. We believe that quality skincare should be accessible to everyone, which is why we've built a network of partners across the country."
+                {t.whyNuni.ceoQuote}
               </p>
 
               <div className="flex flex-wrap gap-6">
                 <div className="text-center">
                   <span className="block text-3xl font-bold text-primary">68+</span>
-                  <span className="text-sm text-muted-foreground">Partners Nationwide</span>
+                  <span className="text-sm text-muted-foreground">{t.whyNuni.partnersNationwide}</span>
                 </div>
                 <div className="text-center">
                   <span className="block text-3xl font-bold text-primary">3</span>
-                  <span className="text-sm text-muted-foreground">Premium Products</span>
+                  <span className="text-sm text-muted-foreground">{t.whyNuni.premiumProducts}</span>
                 </div>
                 <div className="text-center">
                   <span className="block text-3xl font-bold text-primary">12</span>
-                  <span className="text-sm text-muted-foreground">Regions Covered</span>
+                  <span className="text-sm text-muted-foreground">{t.whyNuni.regionsCovered}</span>
                 </div>
               </div>
             </motion.div>
@@ -295,10 +295,10 @@ const WhyNuniPage = () => {
               transition={{ duration: 0.5 }}
               className="text-3xl md:text-4xl font-serif font-bold text-cream mb-4"
             >
-              More Reasons to <span className="text-gradient-gold">Trust Us</span>
+              {t.whyNuni.moreReasons} <span className="text-gradient-gold">{t.whyNuni.trustUs}</span>
             </motion.h2>
             <p className="text-cream/70 max-w-2xl mx-auto">
-              NG Cosmetics is more than a brand - it's a commitment to your skin's health and beauty.
+              {t.whyNuni.moreReasonsDesc}
             </p>
           </div>
 
@@ -333,23 +333,23 @@ const WhyNuniPage = () => {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-4">
-              Ready to Transform Your Skin?
+              {t.whyNuni.readyToTransform}
             </h2>
             <p className="text-white/80 mb-8 max-w-xl mx-auto">
-              Join thousands of satisfied customers who trust NG Cosmetics for their skincare journey.
+              {t.whyNuni.readyToTransformDesc}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/products"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-primary rounded-full font-semibold transition-all duration-200 hover:shadow-lg hover:scale-105"
               >
-                Explore Products
+                {t.common.exploreProducts}
               </Link>
               <Link
                 to="/partners"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/20 text-white rounded-full font-semibold transition-all duration-200 hover:bg-white/30"
               >
-                Find a Partner
+                {t.common.findPartner}
               </Link>
             </div>
           </motion.div>

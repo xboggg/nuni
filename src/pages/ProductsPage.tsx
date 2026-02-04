@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { getWhatsAppLink } from "@/data/products";
+import { useLanguage } from "@/lib/i18n";
 
 // Import product images - retail
 import soapImage from "@/assets/nuni-darksoap25.jpeg";
@@ -93,6 +94,7 @@ const products: Product[] = [
 
 const ProductsPage = () => {
   const [showWholesale, setShowWholesale] = useState(false);
+  const { t } = useLanguage();
 
   const handleOrderClick = (productName: string, size: string, price: number) => {
     const message = `Hello! I would like to order:\n\nProduct: ${productName}\nSize: ${size}\nPrice: GH₵${price}\n\nPlease confirm availability.`;
@@ -116,7 +118,7 @@ const ProductsPage = () => {
               className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mb-6"
             >
               <ArrowLeft size={20} />
-              <span className="font-medium">Back to Home</span>
+              <span className="font-medium">{t.common.backToHome}</span>
             </Link>
 
             <div className="text-center">
@@ -126,14 +128,14 @@ const ProductsPage = () => {
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="inline-block text-sm font-medium tracking-widest text-accent uppercase mb-4"
               >
-                NG COSMETICS
+                {t.productsPage.badge}
               </motion.span>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-4">
-                Our <span className="text-gradient-gold">Products</span>
+                {t.productsPage.title} <span className="text-gradient-gold">{t.productsPage.titleHighlight}</span>
               </h1>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-                Premium skincare products made with 100% natural African botanicals. FDA certified for your peace of mind.
+                {t.productsPage.description}
               </p>
 
               {/* Price Toggle */}
@@ -147,7 +149,7 @@ const ProductsPage = () => {
                   }`}
                 >
                   <ShoppingBag size={16} className="inline mr-2" />
-                  Retail Prices
+                  {t.productsPage.retailPrices}
                 </button>
                 <button
                   onClick={() => setShowWholesale(true)}
@@ -158,7 +160,7 @@ const ProductsPage = () => {
                   }`}
                 >
                   <Package size={16} className="inline mr-2" />
-                  Wholesale Prices
+                  {t.productsPage.wholesalePrices}
                 </button>
               </div>
             </div>
@@ -246,7 +248,7 @@ const ProductsPage = () => {
                           }
                           className="w-full mt-2 px-4 py-2 bg-primary text-white text-sm font-medium rounded-full hover:bg-primary/90 transition-colors"
                         >
-                          Order Now
+                          {t.common.orderNow}
                         </button>
                       </div>
                     ))}
@@ -257,7 +259,7 @@ const ProductsPage = () => {
                     to={`/products/${product.id}`}
                     className="inline-flex items-center gap-2 mt-6 text-primary hover:text-primary/80 font-medium transition-colors"
                   >
-                    View full product details
+                    {t.common.viewDetails}
                     <ArrowLeft size={16} className="rotate-180" />
                   </Link>
                 </div>
@@ -278,10 +280,10 @@ const ProductsPage = () => {
           >
             <Package size={48} className="text-accent mx-auto mb-6" />
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-4">
-              Interested in <span className="text-accent">Wholesale?</span>
+              {t.productsPage.wholesaleCta} <span className="text-accent">{t.productsPage.wholesaleCtaHighlight}</span>
             </h2>
             <p className="text-white/80 mb-8 max-w-xl mx-auto">
-              Become a Nuni Global partner and enjoy special wholesale pricing. Join our network of 68+ partners across Ghana.
+              {t.productsPage.wholesaleCtaDesc}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
@@ -291,13 +293,13 @@ const ProductsPage = () => {
                 }}
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-primary rounded-full font-semibold transition-all duration-200 hover:bg-white/90 hover:scale-105 cursor-pointer"
               >
-                View Wholesale Prices
+                {t.productsPage.viewWholesalePrices}
               </button>
               <Link
                 to="/partners"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/20 text-white rounded-full font-semibold transition-all duration-200 hover:bg-white/30"
               >
-                Become a Partner
+                {t.productsPage.becomePartner}
               </Link>
             </div>
           </motion.div>
