@@ -105,8 +105,8 @@ export const partners: Partner[] = [
   { id: "p57", name: "Tricia", phone: ["0545002786"], locations: ["Bibiani"], region: "western-north" },
 
   // Western Region
-  { id: "p58", name: "Naa Shika", phone: ["0241238392"], locations: ["Takoradi"], region: "western" },
-  { id: "p59", name: "Cookies", phone: ["0245336077"], locations: ["Takoradi"], region: "western" },
+  { id: "p58", name: "Naa Shika", phone: ["0241238392"], locations: ["Anaji", "Lagos Town", "Ayedur", "Pipe Ano", "Assakae"], region: "western" },
+  { id: "p59", name: "Cookies", phone: ["0245336077"], locations: ["Takoradi Habour", "Sekondi Taxi Station", "Mapees", "Ntankoful"], region: "western" },
   { id: "p60", name: "Sandy", phone: ["0532330504"], locations: ["Bogoso"], region: "western" },
   { id: "p61", name: "Vybshair Plug", phone: ["0532622357"], locations: ["Tarkwa"], region: "western" },
 
