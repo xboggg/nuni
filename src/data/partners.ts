@@ -34,7 +34,7 @@ export const partners: Partner[] = [
   { id: "p1", name: "Adwoa Konadu", phone: ["0208959898"], locations: ["Ablekuma Olebu"], region: "greater-accra" },
   { id: "p2", name: "Thess", phone: ["0530184098"], locations: ["Madina"], region: "greater-accra" },
   { id: "p3", name: "Jessica", phone: ["0553287428"], locations: ["Ablekuma"], region: "greater-accra" },
-  { id: "p4", name: "Ruth Dodowa", phone: ["0530184098"], locations: ["Madina"], region: "greater-accra" },
+  { id: "p4", name: "Ruth", phone: ["0530184098"], locations: ["Madina", "Dodowa", "Oyarifa", "Oyibi", "Adenta", "Amrahia"], region: "greater-accra" },
   { id: "p5", name: "Ajoh", phone: ["0246959438"], locations: ["Dzorwulu"], region: "greater-accra" },
   { id: "p6", name: "Leen Dome", phone: ["0595191518"], locations: ["Ashorg"], region: "greater-accra" },
   { id: "p7", name: "Valerie", phone: ["0550937098"], locations: ["Ablekuma Joma"], region: "greater-accra" },
@@ -45,14 +45,17 @@ export const partners: Partner[] = [
   { id: "p12", name: "Estees", phone: ["0246867009"], locations: ["37", "Burma Camp", "Cantonments"], region: "greater-accra" },
   { id: "p13", name: "Sampson Armoo", phone: ["0544657874"], locations: ["Odorkor", "Darkuman"], region: "greater-accra" },
   { id: "p14", name: "KTee", phone: ["0248314765"], locations: ["Lapaz"], region: "greater-accra" },
-  { id: "p15", name: "Judy", phone: ["0246230300", "0545561662"], locations: ["Mallam", "Gbawe"], region: "greater-accra" },
+  { id: "p15", name: "Judy", phone: ["0246430300", "0545561662"], locations: ["Mallam", "Gbawe"], region: "greater-accra" },
   { id: "p16", name: "Tilly", phone: ["0540501872"], locations: ["Weija", "Scc"], region: "greater-accra" },
+  { id: "p70", name: "Linda", phone: ["0551890990"], locations: ["Osu", "Ablekuma"], region: "greater-accra" },
+  { id: "p71", name: "Candy", phone: ["0249112240"], locations: ["Dormi Kwabenya"], region: "greater-accra" },
 
   // Tema
-  { id: "p17", name: "Mzz Peddy", phone: ["0248001159"], locations: ["Community 25"], region: "tema" },
+  { id: "p17", name: "Mzz Peddy", phone: ["0248001159"], locations: ["Community 25", "Dorwenya", "Prampram", "Miotso", "Ningo"], region: "tema" },
   { id: "p18", name: "Gladys Nyame", phone: ["0240246165", "0267037734"], momoPhone: "0240246165", locations: ["Tema Communities", "Tema Newtown"], region: "tema" },
   { id: "p19", name: "Regina Sedoh", phone: ["0548273170"], locations: ["Ashaiman", "Lebanon", "Zenu", "Atadeka", "Newyork", "Washington", "Katamanso", "Apolonia", "PeaceLand", "Aviation"], region: "tema" },
   { id: "p20", name: "AdwoaLyn", phone: ["0553962747", "0257159449"], momoPhone: "0257159449", locations: ["Ashaiman-Afienya", "C22"], region: "tema" },
+  { id: "p72", name: "Harriet", phone: ["0548342996"], locations: ["Kpone", "Shanghai", "Affordable", "Asorgli"], region: "tema" },
 
   // Central Region
   { id: "p21", name: "Tina", phone: ["0203158693"], locations: ["Agona Swedru"], region: "central" },
@@ -64,7 +67,7 @@ export const partners: Partner[] = [
   { id: "p27", name: "Gifty", phone: ["0243788859"], locations: ["Mankessim"], region: "central" },
   { id: "p28", name: "V's Closet", phone: ["0593560248"], locations: ["Twifo Praso"], region: "central" },
   { id: "p29", name: "Sakina", phone: ["0246480265"], locations: ["Mankessim"], region: "central" },
-  { id: "p30", name: "Midwife Anas", phone: ["0244029744"], locations: ["Assin Fosu"], region: "central" },
+  { id: "p30", name: "Midwife Anas", phone: ["0596617943"], locations: ["Assin Fosu"], region: "central" },
   { id: "p31", name: "Ohemaa", phone: ["0550265877"], locations: ["Cape Coast"], region: "central" },
 
   // Kasoa
@@ -120,8 +123,8 @@ export const partners: Partner[] = [
   { id: "p66", name: "Angela", phone: ["0542354959"], locations: ["Tamale"], region: "northern" },
 
   // Volta Region
-  { id: "p67", name: "Ama Gold", phone: ["0548342996"], locations: ["Ho"], region: "volta" },
-  { id: "p68", name: "Adepa", phone: ["0245713291"], locations: ["Aflao"], region: "volta" },
+  { id: "p67", name: "Ama Gold", phone: ["0548342996"], locations: ["Ho", "Hohoe", "DZemeni", "Kpong", "Sogakoper", "Adidome"], region: "volta" },
+  { id: "p68", name: "Adepa", phone: ["0245713291"], locations: ["Aflao", "Keta", "Anlonga", "Nogokpo", "Agbezorme", "Akatsi", "Lome"], region: "volta" },
 ];
 
 export const WHATSAPP_NUMBER = "233554753634";
