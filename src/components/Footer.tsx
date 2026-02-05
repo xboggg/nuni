@@ -112,12 +112,12 @@ const Footer = () => {
             <ul className="space-y-2">
               {footerLinks.products.map((link) => (
                 <li key={link.name}>
-                  <button
-                    onClick={() => handleNavClick(link.href)}
+                  <Link
+                    to={link.href}
                     className="text-sm text-cream/60 hover:text-cream transition-colors"
                   >
                     {link.name}
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>
