@@ -153,7 +153,7 @@ const CoupleCard = ({ image, alt, onClick }: { image: string; alt: string; onCli
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
         <div className="absolute bottom-4 left-4 right-4">
           <p className="text-white font-serif text-lg md:text-xl font-semibold">The Power Couple</p>
-          <p className="text-white/80 text-sm">Building Nuni Global together</p>
+          <p className="text-white/80 text-sm">Building NG Cosmetics & Nuni Global together</p>
         </div>
       </div>
     </motion.div>
@@ -344,7 +344,7 @@ const WhyNuniPage = () => {
                   >
                     <img
                       src={ceoImage}
-                      alt="Kofi Ideas - CEO of Nuni Global"
+                      alt="Kofi Ideas - CEO of NG Cosmetics"
                       className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
                     />
                   </div>
@@ -408,13 +408,13 @@ const WhyNuniPage = () => {
             className="text-center mb-16"
           >
             <span className="inline-block text-sm font-medium tracking-widest text-accent uppercase mb-4">
-              The Faces Behind the Brand
+              The Faces Behind NG Cosmetics
             </span>
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
               Meet the <span className="text-gradient-gold">Leadership</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Behind every successful brand is a dedicated team. At Nuni Global, it's a family united by passion, purpose, and the commitment to transform African skincare.
+              Behind every successful brand is a dedicated team. At NG Cosmetics, creators of the Nuni Global product line, it's a family united by passion, purpose, and the commitment to transform African skincare.
             </p>
           </motion.div>
 
@@ -486,10 +486,10 @@ const WhyNuniPage = () => {
             </h2>
             <p className="text-cream/70 max-w-3xl mx-auto leading-relaxed">
               Kofi Ideas' unwavering dedication to quality, innovation, and community empowerment has not gone unnoticed.
-              His tireless efforts in building Nuni Global from the ground up, while creating opportunities for over 72 partners
+              His tireless efforts in building NG Cosmetics and its flagship Nuni Global product line from the ground up, while creating opportunities for over 72 partners
               across Ghana, earned him the prestigious <strong className="text-accent">Outstanding CEO of the Year 2025</strong> award.
               This recognition celebrates his visionary leadership, commitment to African excellence, and the positive impact
-              Nuni Global continues to make in communities nationwide.
+              NG Cosmetics and Nuni Global continue to make in communities nationwide.
             </p>
           </motion.div>
 
