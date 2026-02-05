@@ -157,6 +157,7 @@ interface UploadedImage {
 const defaultGalleryImages: GalleryImage[] = [
   // Partners
   { id: "ceo8", src: ceo8, alt: "Nuni Global CEO", category: "partners" },
+  { id: "pa1", src: pa1, alt: "Tilly - PA", category: "partners" },
   { id: "amb50", src: ambassador50, alt: "Nuni Global Ambassador", category: "partners" },
   { id: "amb52", src: ambassador52, alt: "Nuni Global Ambassador", category: "partners" },
   { id: "amb53", src: ambassador53, alt: "Nuni Global Ambassador", category: "partners" },
@@ -168,7 +169,6 @@ const defaultGalleryImages: GalleryImage[] = [
   { id: "amb9", src: ambassador9, alt: "Nana Yeboah - Ambassador", category: "partners" },
   { id: "amb10", src: ambassador10, alt: "Ohemaa - Ambassador", category: "partners" },
   { id: "amb11", src: ambassador11, alt: "Adwoa Konadu - Ambassador", category: "partners" },
-  { id: "pa1", src: pa1, alt: "Tilly - PA", category: "partners" },
   { id: "pa2", src: pa2, alt: "Nuni Global PA", category: "partners" },
   { id: "hovendor", src: hovendor, alt: "Nuni Global Ambassador", category: "partners" },
   { id: "ceo", src: ceo, alt: "Nuni Global CEO", category: "partners" },
