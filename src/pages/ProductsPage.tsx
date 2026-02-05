@@ -99,13 +99,15 @@ const ProductsPage = () => {
   // Wholesale WhatsApp numbers (primary first)
   const WHOLESALE_NUMBERS = ["233554753634", "233540501872"];
 
-  const handleOrderClick = (productName: string, size: string, price: number) => {
-    const message = `Hello! I would like to order:\n\nProduct: ${productName}\nSize: ${size}\nPrice: GH₵${price}\n\nPlease confirm availability.`;
+  const handleOrderClick = (productName: string, size: string, price: number, isWholesale: boolean, wholesaleQty?: string) => {
+    const orderType = isWholesale ? "[ WHOLESALE ORDER ]" : "[ RETAIL ORDER ]";
+    const qtyInfo = isWholesale && wholesaleQty ? `\nQuantity: ${wholesaleQty}` : "";
+    const message = `${orderType}\n\nHello! I would like to order:\n\nProduct: ${productName}\nSize: ${size}\nPrice: GH${price}${qtyInfo}\n\nPlease confirm availability.`;
     window.open(getWhatsAppLink(message), "_blank");
   };
 
   const handleWholesaleOrder = (productName: string, phoneNumber: string) => {
-    const message = `Hello! I'm interested in wholesale ordering:\n\nProduct: ${productName}\n\nPlease provide wholesale pricing and availability.`;
+    const message = `[ WHOLESALE INQUIRY ]\n\nHello! I'm interested in wholesale ordering:\n\nProduct: ${productName}\n\nPlease provide wholesale pricing, minimum order quantities, and availability.`;
     window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
   };
 
@@ -251,7 +253,9 @@ const ProductsPage = () => {
                             handleOrderClick(
                               product.name,
                               price.size,
-                              showWholesale ? price.wholesalePrice : price.retailPrice
+                              showWholesale ? price.wholesalePrice : price.retailPrice,
+                              showWholesale,
+                              price.wholesaleQty
                             )
                           }
                           className="w-full mt-2 px-4 py-2 bg-primary text-white text-sm font-medium rounded-full hover:bg-primary/90 transition-colors"

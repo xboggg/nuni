@@ -17,6 +17,9 @@ import ProductCocoaButter from "./pages/ProductCocoaButter";
 import PartnersPage from "./pages/PartnersPage";
 import WhyNuniPage from "./pages/WhyNuniPage";
 import ProductsPage from "./pages/ProductsPage";
+import TestimonialsPage from "./pages/TestimonialsPage";
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+import TermsOfServicePage from "./pages/TermsOfServicePage";
 import ScrollToTop from "@/components/ScrollToTop";
 import PromoBar from "@/components/PromoBar";
 
@@ -41,6 +44,9 @@ const AnimatedRoutes = () => {
           <Route path="/partners" element={<PartnersPage />} />
           <Route path="/why-nuni" element={<WhyNuniPage />} />
           <Route path="/products" element={<ProductsPage />} />
+          <Route path="/testimonials" element={<TestimonialsPage />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+          <Route path="/terms-of-service" element={<TermsOfServicePage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

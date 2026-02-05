@@ -183,18 +183,18 @@ const Footer = () => {
               © {currentYear} Nuni Global. {t.footer.copyright}
             </p>
             <div className="flex gap-6">
-              <a
-                href="#"
+              <Link
+                to="/privacy-policy"
                 className="text-sm text-cream/60 hover:text-cream transition-colors"
               >
                 {t.footer.privacyPolicy}
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                to="/terms-of-service"
                 className="text-sm text-cream/60 hover:text-cream transition-colors"
               >
                 {t.footer.termsOfService}
-              </a>
+              </Link>
             </div>
           </div>
           <div className="text-center mt-6">

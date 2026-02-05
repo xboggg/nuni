@@ -72,18 +72,53 @@ const Partners = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="relative"
           >
-            <div className="relative rounded-3xl overflow-hidden shadow-elevated">
-              <img
+            <motion.div
+              className="relative rounded-3xl overflow-hidden shadow-elevated"
+              animate={{
+                y: [0, -10, 0],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              <motion.img
                 src={heroImage}
                 alt="Nuni Global Product Collection"
                 className="w-full h-[500px] object-cover"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.4 }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-charcoal/30 to-transparent" />
-            </div>
+            </motion.div>
 
-            {/* Decorative */}
-            <div className="absolute -top-6 -right-6 w-24 h-24 bg-accent/20 rounded-full blur-2xl" />
-            <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-secondary/20 rounded-full blur-2xl" />
+            {/* Decorative - Animated blobs */}
+            <motion.div
+              className="absolute -top-6 -right-6 w-24 h-24 bg-accent/20 rounded-full blur-2xl"
+              animate={{
+                scale: [1, 1.2, 1],
+                opacity: [0.5, 0.8, 0.5]
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+            <motion.div
+              className="absolute -bottom-6 -left-6 w-32 h-32 bg-secondary/20 rounded-full blur-2xl"
+              animate={{
+                scale: [1, 1.3, 1],
+                opacity: [0.5, 0.7, 0.5]
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 1
+              }}
+            />
           </motion.div>
         </div>
       </div>
