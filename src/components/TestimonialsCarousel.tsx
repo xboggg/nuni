@@ -1,7 +1,8 @@
 import { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { Star, ChevronLeft, ChevronRight } from "lucide-react";
+import { Star, ChevronLeft, ChevronRight, Camera } from "lucide-react";
+import { Link } from "react-router-dom";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { useLanguage } from "@/lib/i18n";
@@ -196,6 +197,22 @@ const TestimonialsCarousel = () => {
               />
             ))}
           </div>
+
+          {/* View All Testimonials Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex justify-center mt-10"
+          >
+            <Link
+              to="/testimonials"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-full font-medium transition-all duration-200 hover:bg-primary/90 hover:scale-105 hover:shadow-green"
+            >
+              <Camera size={18} />
+              {t.testimonials?.viewAll || "View All Testimonials"}
+            </Link>
+          </motion.div>
         </div>
       </div>
     </section>

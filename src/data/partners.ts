@@ -1,3 +1,5 @@
+export type PartnerRole = "distributor" | "ambassador" | "vendor";
+
 export interface Partner {
   id: string;
   name: string;
@@ -5,6 +7,8 @@ export interface Partner {
   momoPhone?: string;
   locations: string[];
   region: string;
+  roles?: PartnerRole[];
+  image?: string;
 }
 
 export interface Region {
@@ -29,15 +33,23 @@ export const regions: Region[] = [
   { id: "volta", name: "Volta Region" },
 ];
 
+// Ambassador images
+import ambassador1 from "@/assets/ambassadors/nuni-ambassador1.jpeg"; // Bene Hooper
+import ambassador2 from "@/assets/ambassadors/nuni-ambassador2.jpeg"; // Tina
+import ambassador4 from "@/assets/ambassadors/nuni-ambassador4.jpeg"; // Rosina
+import ambassador9 from "@/assets/ambassadors/nuni-ambassador9.jpeg"; // Nana Yeboah
+import ambassador10 from "@/assets/ambassadors/nuni-ambassador10.png"; // Ohemaa
+import ambassador11 from "@/assets/ambassadors/nuni-ambassador11.jpeg"; // Adwoa Konadu
+
 export const partners: Partner[] = [
   // Greater Accra Region
-  { id: "p1", name: "Adwoa Konadu", phone: ["0208959898"], locations: ["Ablekuma Olebu"], region: "greater-accra" },
+  { id: "p1", name: "Adwoa Konadu", phone: ["0208959898"], locations: ["Ablekuma Olebu"], region: "greater-accra", roles: ["distributor", "ambassador"], image: ambassador11 },
   { id: "p2", name: "Thess", phone: ["0530184098"], locations: ["Madina"], region: "greater-accra" },
   { id: "p4", name: "Ruth", phone: ["0530184098"], locations: ["Madina", "Dodowa", "Oyarifa", "Oyibi", "Adenta", "Amrahia"], region: "greater-accra" },
   { id: "p5", name: "Ajoh", phone: ["0246959438"], locations: ["Dzorwulu"], region: "greater-accra" },
   { id: "p6", name: "Leen", phone: ["0595191518"], locations: ["Dome Kwabenya Ashomang"], region: "greater-accra" },
   { id: "p7", name: "Valerie", phone: ["0550937098"], locations: ["Ablekuma Joma"], region: "greater-accra" },
-  { id: "p8", name: "Nana Yeboah", phone: ["0244867787"], locations: ["Abokobi"], region: "greater-accra" },
+  { id: "p8", name: "Nana Yeboah", phone: ["0244867787"], locations: ["Abokobi"], region: "greater-accra", roles: ["ambassador"], image: ambassador9 },
   { id: "p9", name: "Blacklove", phone: ["0504989122"], locations: ["Spintex", "Lashibi", "Teshie"], region: "greater-accra" },
   { id: "p10", name: "Pep", phone: ["0544689863"], locations: ["Awoshie"], region: "greater-accra" },
   { id: "p11", name: "Nana Yaa", phone: ["0248204384"], locations: ["Kaneshie"], region: "greater-accra" },
@@ -45,19 +57,19 @@ export const partners: Partner[] = [
   { id: "p13", name: "Sampson Armoo", phone: ["0544657874"], locations: ["Odorkor", "Darkuman"], region: "greater-accra" },
   { id: "p14", name: "KTee", phone: ["0248314765"], locations: ["Lapaz"], region: "greater-accra" },
   { id: "p15", name: "Judy", phone: ["0246430300", "0545561662"], locations: ["Mallam", "Gbawe"], region: "greater-accra" },
-  { id: "p16", name: "Tilly", phone: ["0540501872"], locations: ["Weija", "Scc"], region: "greater-accra" },
+  { id: "p16", name: "Tilly", phone: ["0540501872"], locations: ["Weija", "Scc"], region: "greater-accra", roles: ["distributor"] },
   { id: "p70", name: "Linda", phone: ["0551890990"], locations: ["Osu", "Ablekuma"], region: "greater-accra" },
   { id: "p71", name: "Candy", phone: ["0249112240"], locations: ["Dormi Kwabenya"], region: "greater-accra" },
 
   // Tema
-  { id: "p17", name: "Mzz Peddy", phone: ["0248001159"], locations: ["Community 25", "Dorwenya", "Prampram", "Miotso", "Ningo"], region: "tema" },
+  { id: "p17", name: "Mzz Peddy", phone: ["0248001159"], locations: ["Community 25", "Dorwenya", "Prampram", "Miotso", "Ningo"], region: "tema", roles: ["distributor", "ambassador"] },
   { id: "p18", name: "Gladys Nyame", phone: ["0240246165", "0267037734"], momoPhone: "0240246165", locations: ["Tema Communities", "Tema Newtown"], region: "tema" },
   { id: "p19", name: "Regina Sedoh", phone: ["0548273170"], locations: ["Ashaiman", "Lebanon", "Zenu", "Atadeka", "Newyork", "Washington", "Katamanso", "Apolonia", "PeaceLand", "Aviation"], region: "tema" },
   { id: "p20", name: "AdwoaLyn", phone: ["0553962747", "0257159449"], momoPhone: "0257159449", locations: ["Ashaiman-Afienya", "C22"], region: "tema" },
   { id: "p72", name: "Harriet", phone: ["0548342996"], locations: ["Kpone", "Shanghai", "Affordable", "Asorgli"], region: "tema" },
 
   // Central Region
-  { id: "p21", name: "Tina", phone: ["0203158693"], locations: ["Agona Swedru"], region: "central" },
+  { id: "p21", name: "Tina", phone: ["0203158693"], locations: ["Agona Swedru"], region: "central", roles: ["distributor", "ambassador"], image: ambassador2 },
   { id: "p22", name: "Alisco", phone: ["0242185824"], locations: ["Apam", "Winneba"], region: "central" },
   { id: "p23", name: "Justina", phone: ["0249210659"], locations: ["Agona Swedru"], region: "central" },
   { id: "p24", name: "Benfot Pharmacy", phone: ["0246396869"], locations: ["Agona Swedru"], region: "central" },
@@ -66,16 +78,16 @@ export const partners: Partner[] = [
   { id: "p27", name: "Gifty", phone: ["0243788859"], locations: ["Mankessim"], region: "central" },
   { id: "p28", name: "V's Closet", phone: ["0593560248"], locations: ["Twifo Praso"], region: "central" },
   { id: "p29", name: "Sakina", phone: ["0246480265"], locations: ["Mankessim"], region: "central" },
-  { id: "p30", name: "Midwife Anas", phone: ["0596617943"], locations: ["Assin Fosu"], region: "central" },
-  { id: "p31", name: "Ohemaa", phone: ["0550265877"], locations: ["Cape Coast"], region: "central" },
+  { id: "p30", name: "Midwife Anas", phone: ["0596617943"], locations: ["Assin Fosu"], region: "central", roles: ["ambassador"] },
+  { id: "p31", name: "Ohemaa", phone: ["0550265877"], locations: ["Cape Coast"], region: "central", roles: ["ambassador"], image: ambassador10 },
 
   // Kasoa
-  { id: "p32", name: "Tilly", phone: ["0540501872"], locations: ["Kasoa", "Nyanyano"], region: "kasoa" },
+  { id: "p32", name: "Tilly", phone: ["0540501872"], locations: ["Kasoa", "Nyanyano"], region: "kasoa", roles: ["distributor"] },
   { id: "p33", name: "Tabitha Mizpah", phone: ["0249496872"], locations: ["Kasoa Liberia Camp", "Tuba", "Nyanyano", "Amanfrom", "Opeikuma", "Fetteh Kakraba"], region: "kasoa" },
-  { id: "p69", name: "AJ", phone: ["0557634949", "0540335671"], momoPhone: "0557634949", locations: ["Kasoa", "Lamptey Mills", "Kasoa Market", "Domeabra"], region: "kasoa" },
+  { id: "p69", name: "AJ", phone: ["0557634949", "0540335671"], momoPhone: "0557634949", locations: ["Kasoa", "Lamptey Mills", "Kasoa Market", "Domeabra"], region: "kasoa", roles: ["ambassador"] },
 
   // Ashanti Region
-  { id: "p34", name: "Rosina", phone: ["0544855670"], locations: ["Bremang"], region: "ashanti" },
+  { id: "p34", name: "Rosina", phone: ["0544855670"], locations: ["Bremang"], region: "ashanti", roles: ["distributor", "ambassador"], image: ambassador4 },
   { id: "p35", name: "Estella", phone: ["0598738884"], locations: ["Sokoban"], region: "ashanti" },
   { id: "p36", name: "Nana Achiaa Adepa", phone: ["0553121649"], locations: ["Atonsu Area"], region: "ashanti" },
   { id: "p37", name: "Opoku Sandra", phone: ["0596760694"], locations: ["Offinso"], region: "ashanti" },
@@ -114,7 +126,7 @@ export const partners: Partner[] = [
   { id: "p61", name: "Vybshair Plug", phone: ["0532622357"], locations: ["Tarkwa"], region: "western" },
 
   // Eastern Region
-  { id: "p62", name: "Bene Hooper", phone: ["0244356886"], locations: ["Koforidua"], region: "eastern" },
+  { id: "p62", name: "Bene Hooper", phone: ["0244356886"], locations: ["Koforidua"], region: "eastern", roles: ["distributor", "ambassador"], image: ambassador1 },
   { id: "p63", name: "Faustina Abena Boateng", phone: ["0248799300"], locations: ["Nkawkaw"], region: "eastern" },
   { id: "p64", name: "Nana Ama Mantebea", phone: ["0249799789"], locations: ["Nsawam"], region: "eastern" },
   { id: "p65", name: "Amponsah Gifty", phone: ["0553238409"], locations: ["Koforidua"], region: "eastern" },

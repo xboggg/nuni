@@ -1,45 +1,83 @@
-import { useState, useMemo, useEffect, useRef } from "react";
+import { useState, useMemo, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, MapPin, Phone, ChevronLeft, ChevronRight, Users, Handshake, ArrowLeft, Pause, Play, X } from "lucide-react";
+import { Search, MapPin, Phone, Handshake, ArrowLeft, X, Star, Package, Store } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { partners, regions, getPartnerApplicationWhatsAppLink, Partner } from "@/data/partners";
 import { useLanguage } from "@/lib/i18n";
 
-// Import ambassador images
-import ambassador1 from "@/assets/ambassadors/nuni-ambassador1.jpeg";
-import ambassador2 from "@/assets/ambassadors/nuni-ambassador2.jpeg";
-import ambassador3 from "@/assets/ambassadors/nuni-ambassador3.png";
-import ambassador4 from "@/assets/ambassadors/nuni-ambassador4.jpeg";
-import ambassador5 from "@/assets/ambassadors/nuni-ambassador5.jpeg";
-import ambassador6 from "@/assets/ambassadors/nuni-ambassador6.jpeg";
-import ambassador7 from "@/assets/ambassadors/nuni-ambassador7.jpeg";
-import ambassador8 from "@/assets/ambassadors/nuni-ambassador8.png";
-import ambassador9 from "@/assets/ambassadors/nuni-ambassador9.jpeg";
-import ambassador10 from "@/assets/ambassadors/nuni-ambassador10.png";
+// Partner Card Component
+const PartnerCard = ({ partner, openLightbox }: { partner: Partner; openLightbox: (img: string) => void }) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="bg-card border border-border rounded-xl p-4 hover:shadow-lg hover:border-primary/30 transition-all"
+    >
+      <div className="flex items-start justify-between mb-2">
+        <h4 className="font-semibold text-foreground">{partner.name}</h4>
+        {partner.image && (
+          <img
+            src={partner.image}
+            alt={partner.name}
+            className="w-10 h-10 rounded-full object-cover border-2 border-accent/30 cursor-pointer"
+            onClick={() => partner.image && openLightbox(partner.image)}
+          />
+        )}
+      </div>
 
-// Top performing partners/ambassadors carousel data
-const topPartners = [
-  { id: 1, image: ambassador1 },
-  { id: 2, image: ambassador2 },
-  { id: 3, image: ambassador3 },
-  { id: 4, image: ambassador4 },
-  { id: 5, image: ambassador5 },
-  { id: 6, image: ambassador6 },
-  { id: 7, image: ambassador7 },
-  { id: 8, image: ambassador8 },
-  { id: 9, image: ambassador9 },
-  { id: 10, image: ambassador10 },
-];
+      {/* Locations */}
+      <div className="flex flex-wrap gap-1 mb-3">
+        {partner.locations.map((location, i) => (
+          <span
+            key={i}
+            className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full"
+          >
+            {location}
+          </span>
+        ))}
+      </div>
+
+      {/* Region */}
+      <p className="text-xs text-muted-foreground mb-2 flex items-center gap-1">
+        <MapPin size={12} />
+        {regions.find(r => r.id === partner.region)?.name || partner.region}
+      </p>
+
+      {/* Phone Numbers - WhatsApp Links */}
+      <div className="space-y-1">
+        {partner.phone.map((phone, i) => {
+          const whatsappNumber = phone.startsWith('0')
+            ? `233${phone.slice(1)}`
+            : phone;
+          return (
+            <a
+              key={i}
+              href={`https://wa.me/${whatsappNumber}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-green-600 transition-colors"
+            >
+              <Phone size={14} />
+              {phone}
+              {partner.momoPhone === phone && (
+                <span className="text-xs bg-accent/20 text-accent px-1.5 py-0.5 rounded">MoMo</span>
+              )}
+            </a>
+          );
+        })}
+      </div>
+    </motion.div>
+  );
+};
 
 const PartnersPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("all");
-  const [carouselIndex, setCarouselIndex] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
-  const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
+  const ambassadorScrollRef = useRef<HTMLDivElement>(null);
   const { t } = useLanguage();
 
   // Application form state
@@ -50,37 +88,40 @@ const PartnersPage = () => {
     region: "",
   });
 
+  // Get partners by category
+  const ambassadors = useMemo(() => {
+    return partners.filter(p => p.roles?.includes("ambassador"));
+  }, []);
+
+  const distributors = useMemo(() => {
+    return partners.filter(p => p.roles?.includes("distributor"));
+  }, []);
+
+  const vendors = useMemo(() => {
+    return partners.filter(p =>
+      !p.roles || p.roles.length === 0 ||
+      (!p.roles.includes("distributor") && !p.roles.includes("ambassador"))
+    );
+  }, []);
+
+  // Get ambassadors with photos for featured section
+  const ambassadorsWithPhotos = useMemo(() => {
+    return partners.filter(p => p.roles?.includes("ambassador") && p.image);
+  }, []);
+
   const openLightbox = (image: string) => {
     setLightboxImage(image);
-    setIsAutoPlaying(false);
   };
 
   const closeLightbox = () => {
     setLightboxImage(null);
   };
 
-  // Auto-slide carousel
-  useEffect(() => {
-    if (isAutoPlaying) {
-      autoPlayRef.current = setInterval(() => {
-        setCarouselIndex((prev) => (prev + 1) % topPartners.length);
-      }, 3000);
-    }
-    return () => {
-      if (autoPlayRef.current) {
-        clearInterval(autoPlayRef.current);
-      }
-    };
-  }, [isAutoPlaying]);
-
-  const toggleAutoPlay = () => {
-    setIsAutoPlaying((prev) => !prev);
-  };
-
-  // Filter partners based on search and region
-  const filteredPartners = useMemo(() => {
-    return partners.filter((partner) => {
+  // Filter function for search and region
+  const filterPartners = (partnerList: Partner[]) => {
+    return partnerList.filter((partner) => {
       const matchesSearch =
+        searchQuery === "" ||
         partner.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         partner.locations.some(loc => loc.toLowerCase().includes(searchQuery.toLowerCase()));
 
@@ -90,21 +131,11 @@ const PartnersPage = () => {
 
       return matchesSearch && matchesRegion;
     });
-  }, [searchQuery, selectedRegion]);
+  };
 
-  // Group partners by region for display
-  const partnersByRegion = useMemo(() => {
-    const grouped: Record<string, Partner[]> = {};
-
-    filteredPartners.forEach((partner) => {
-      if (!grouped[partner.region]) {
-        grouped[partner.region] = [];
-      }
-      grouped[partner.region].push(partner);
-    });
-
-    return grouped;
-  }, [filteredPartners]);
+  const filteredAmbassadors = filterPartners(ambassadors);
+  const filteredDistributors = filterPartners(distributors);
+  const filteredVendors = filterPartners(vendors);
 
   const getRegionName = (regionId: string) => {
     const region = regions.find(r => r.id === regionId);
@@ -116,25 +147,6 @@ const PartnersPage = () => {
     if (formData.name && formData.phone && formData.location && formData.region) {
       window.open(getPartnerApplicationWhatsAppLink(formData), "_blank");
     }
-  };
-
-  const nextSlide = () => {
-    setCarouselIndex((prev) => {
-      // Reset to 0 when reaching the end of the duplicated array
-      if (prev >= topPartners.length - 1) {
-        return 0;
-      }
-      return prev + 1;
-    });
-  };
-
-  const prevSlide = () => {
-    setCarouselIndex((prev) => {
-      if (prev <= 0) {
-        return topPartners.length - 1;
-      }
-      return prev - 1;
-    });
   };
 
   return (
@@ -174,58 +186,35 @@ const PartnersPage = () => {
         </div>
       </section>
 
-      {/* Top Performers Carousel */}
-      <section className="py-12 bg-primary/5 border-y border-border">
+      {/* Search and Filter - Sticky */}
+      <section className="py-6 border-b border-border bg-background sticky top-16 z-30">
         <div className="container-custom">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-serif font-bold text-foreground flex items-center gap-2">
-              <Users size={24} className="text-accent" />
-              {t.partnersPage.topPerformers}
-            </h2>
-            <div className="flex gap-2">
-              <button
-                onClick={toggleAutoPlay}
-                className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center hover:bg-muted transition-colors"
-                title={isAutoPlaying ? "Pause" : "Play"}
-              >
-                {isAutoPlaying ? <Pause size={18} /> : <Play size={18} />}
-              </button>
-              <button
-                onClick={prevSlide}
-                className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center hover:bg-muted transition-colors"
-              >
-                <ChevronLeft size={20} />
-              </button>
-              <button
-                onClick={nextSlide}
-                className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center hover:bg-muted transition-colors"
-              >
-                <ChevronRight size={20} />
-              </button>
+          <div className="flex flex-col md:flex-row gap-4">
+            {/* Search Input */}
+            <div className="relative flex-1">
+              <Search size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
+              <input
+                type="text"
+                placeholder={t.common.searchPlaceholder}
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-12 pr-4 py-3 rounded-full border border-border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+              />
             </div>
-          </div>
 
-          <div className="relative overflow-hidden">
-            <motion.div
-              className="flex gap-4"
-              animate={{ x: `-${carouselIndex * 204}px` }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            {/* Region Filter */}
+            <select
+              value={selectedRegion}
+              onChange={(e) => setSelectedRegion(e.target.value)}
+              className="px-6 py-3 rounded-full border border-border bg-card text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all cursor-pointer"
             >
-              {/* Duplicate images for infinite loop effect */}
-              {[...topPartners, ...topPartners].map((item, index) => (
-                <div
-                  key={`${item.id}-${index}`}
-                  className="flex-shrink-0 w-[200px] h-[280px] rounded-2xl overflow-hidden border border-border shadow-lg group cursor-pointer"
-                  onClick={() => openLightbox(item.image)}
-                >
-                  <img
-                    src={item.image}
-                    alt={`Partner ${item.id}`}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                </div>
+              <option value="all">{t.common.allRegions}</option>
+              {regions.map((region) => (
+                <option key={region.id} value={region.id}>
+                  {region.name} {region.isCity ? "(City)" : ""}
+                </option>
               ))}
-            </motion.div>
+            </select>
           </div>
         </div>
       </section>
@@ -259,138 +248,179 @@ const PartnersPage = () => {
         )}
       </AnimatePresence>
 
-      {/* Search and Filter */}
-      <section className="py-8 border-b border-border bg-card sticky top-16 z-30">
+      {/* SECTION 1: Brand Ambassadors */}
+      <section className="py-16 bg-gradient-to-b from-accent/10 to-transparent">
         <div className="container-custom">
-          <div className="flex flex-col md:flex-row gap-4">
-            {/* Search Input */}
-            <div className="relative flex-1">
-              <Search size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
-              <input
-                type="text"
-                placeholder={t.common.searchPlaceholder}
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 rounded-full border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
-              />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-10"
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent/20 rounded-full mb-4">
+              <Star size={18} className="text-accent fill-accent" />
+              <span className="text-sm font-medium text-accent">Brand Representatives</span>
             </div>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-3">
+              Our <span className="text-gradient-gold">Ambassadors</span>
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Meet the faces behind Nuni Global. Our ambassadors represent the brand across Ghana.
+            </p>
+          </motion.div>
 
-            {/* Region Filter */}
-            <select
-              value={selectedRegion}
-              onChange={(e) => setSelectedRegion(e.target.value)}
-              className="px-6 py-3 rounded-full border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all cursor-pointer"
+          {/* Featured Ambassador Photos - Horizontal scroll */}
+          {ambassadorsWithPhotos.length > 0 && (
+            <div
+              ref={ambassadorScrollRef}
+              className="flex gap-4 overflow-x-auto pb-6 scrollbar-hide md:grid md:grid-cols-3 lg:grid-cols-6 md:overflow-visible mb-10"
             >
-              <option value="all">{t.common.allRegions}</option>
-              {regions.map((region) => (
-                <option key={region.id} value={region.id}>
-                  {region.name} {region.isCity ? "(City)" : ""}
-                </option>
+              {ambassadorsWithPhotos.map((ambassador, index) => (
+                <motion.div
+                  key={ambassador.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="flex-shrink-0 w-[160px] md:w-full group cursor-pointer"
+                  onClick={() => ambassador.image && openLightbox(ambassador.image)}
+                >
+                  <div className="relative rounded-2xl overflow-hidden shadow-lg border-2 border-accent/30 aspect-[3/4]">
+                    <img
+                      src={ambassador.image}
+                      alt={ambassador.name}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                    <div className="absolute top-2 right-2 bg-accent text-white text-xs px-2 py-1 rounded-full font-medium flex items-center gap-1">
+                      <Star size={10} className="fill-current" />
+                      Ambassador
+                    </div>
+                    <div className="absolute bottom-0 left-0 right-0 p-3 text-white">
+                      <h3 className="font-semibold text-sm">{ambassador.name}</h3>
+                      <p className="text-xs text-white/80 flex items-center gap-1 mt-0.5">
+                        <MapPin size={10} />
+                        {ambassador.locations[0]}
+                      </p>
+                    </div>
+                  </div>
+                  <a
+                    href={`https://wa.me/233${ambassador.phone[0].slice(1)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="mt-2 flex items-center justify-center gap-1 text-xs text-green-600 hover:text-green-700 transition-colors"
+                  >
+                    <Phone size={12} />
+                    {ambassador.phone[0]}
+                  </a>
+                </motion.div>
               ))}
-            </select>
-          </div>
+            </div>
+          )}
 
-          {/* Results count */}
-          <p className="mt-4 text-sm text-muted-foreground">
-            {t.common.showing} {filteredPartners.length} {t.common.partners}
-            {selectedRegion !== "all" && ` in ${getRegionName(selectedRegion)}`}
-          </p>
+          {/* All Ambassadors List */}
+          {filteredAmbassadors.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              {filteredAmbassadors.map((partner) => (
+                <PartnerCard key={partner.id} partner={partner} openLightbox={openLightbox} />
+              ))}
+            </div>
+          ) : (
+            <p className="text-center text-muted-foreground py-8">
+              No ambassadors found matching your search criteria.
+            </p>
+          )}
+
+          <div className="text-center mt-6">
+            <span className="text-sm text-muted-foreground">
+              {filteredAmbassadors.length} Ambassador{filteredAmbassadors.length !== 1 ? 's' : ''}
+              {selectedRegion !== "all" && ` in ${getRegionName(selectedRegion)}`}
+            </span>
+          </div>
         </div>
       </section>
 
-      {/* Partners Directory */}
+      {/* SECTION 2: Distributors */}
+      <section className="py-16 bg-primary/5">
+        <div className="container-custom">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-10"
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/20 rounded-full mb-4">
+              <Package size={18} className="text-primary" />
+              <span className="text-sm font-medium text-primary">Wholesale Partners</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-3">
+              Our <span className="text-gradient-green">Distributors</span>
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Our distributors handle bulk orders and wholesale supplies across their regions.
+            </p>
+          </motion.div>
+
+          {filteredDistributors.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              {filteredDistributors.map((partner) => (
+                <PartnerCard key={partner.id} partner={partner} openLightbox={openLightbox} />
+              ))}
+            </div>
+          ) : (
+            <p className="text-center text-muted-foreground py-8">
+              No distributors found matching your search criteria.
+            </p>
+          )}
+
+          <div className="text-center mt-6">
+            <span className="text-sm text-muted-foreground">
+              {filteredDistributors.length} Distributor{filteredDistributors.length !== 1 ? 's' : ''}
+              {selectedRegion !== "all" && ` in ${getRegionName(selectedRegion)}`}
+            </span>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 3: Vendors */}
       <section className="py-16">
         <div className="container-custom">
-          <AnimatePresence mode="wait">
-            {Object.keys(partnersByRegion).length > 0 ? (
-              <motion.div
-                key="results"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="space-y-12"
-              >
-                {Object.entries(partnersByRegion).map(([regionId, regionPartners]) => (
-                  <div key={regionId}>
-                    <h3 className="text-xl font-serif font-bold text-foreground mb-6 flex items-center gap-2">
-                      <MapPin size={20} className="text-primary" />
-                      {getRegionName(regionId)}
-                      <span className="text-sm font-normal text-muted-foreground">
-                        ({regionPartners.length})
-                      </span>
-                    </h3>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-10"
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-muted rounded-full mb-4">
+              <Store size={18} className="text-muted-foreground" />
+              <span className="text-sm font-medium text-muted-foreground">Retail Partners</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-3">
+              Our <span className="text-foreground">Vendors</span>
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Find our trusted retail vendors across Ghana. Connect with a vendor near you for authentic Nuni Global products.
+            </p>
+          </motion.div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                      {regionPartners.map((partner, index) => (
-                        <motion.div
-                          key={partner.id}
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: index * 0.05 }}
-                          className="bg-card border border-border rounded-xl p-4 hover:shadow-lg hover:border-primary/30 transition-all"
-                        >
-                          <h4 className="font-semibold text-foreground mb-2">{partner.name}</h4>
+          {filteredVendors.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              {filteredVendors.map((partner) => (
+                <PartnerCard key={partner.id} partner={partner} openLightbox={openLightbox} />
+              ))}
+            </div>
+          ) : (
+            <p className="text-center text-muted-foreground py-8">
+              No vendors found matching your search criteria.
+            </p>
+          )}
 
-                          {/* Locations */}
-                          <div className="flex flex-wrap gap-1 mb-3">
-                            {partner.locations.map((location, i) => (
-                              <span
-                                key={i}
-                                className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full"
-                              >
-                                {location}
-                              </span>
-                            ))}
-                          </div>
-
-                          {/* Phone Numbers - WhatsApp Links */}
-                          <div className="space-y-1">
-                            {partner.phone.map((phone, i) => {
-                              // Convert phone to WhatsApp format (add 233 prefix, remove leading 0)
-                              const whatsappNumber = phone.startsWith('0')
-                                ? `233${phone.slice(1)}`
-                                : phone;
-                              return (
-                                <a
-                                  key={i}
-                                  href={`https://wa.me/${whatsappNumber}`}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="flex items-center gap-2 text-sm text-muted-foreground hover:text-green-600 transition-colors"
-                                >
-                                  <Phone size={14} />
-                                  {phone}
-                                  {partner.momoPhone === phone && (
-                                    <span className="text-xs bg-accent/20 text-accent px-1.5 py-0.5 rounded">MoMo</span>
-                                  )}
-                                </a>
-                              );
-                            })}
-                          </div>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </motion.div>
-            ) : (
-              <motion.div
-                key="no-results"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="text-center py-16"
-              >
-                <div className="w-20 h-20 rounded-full bg-muted mx-auto mb-4 flex items-center justify-center">
-                  <Search size={32} className="text-muted-foreground" />
-                </div>
-                <h3 className="text-xl font-semibold text-foreground mb-2">{t.common.noResults}</h3>
-                <p className="text-muted-foreground">
-                  {t.common.tryAdjusting}
-                </p>
-              </motion.div>
-            )}
-          </AnimatePresence>
+          <div className="text-center mt-6">
+            <span className="text-sm text-muted-foreground">
+              {filteredVendors.length} Vendor{filteredVendors.length !== 1 ? 's' : ''}
+              {selectedRegion !== "all" && ` in ${getRegionName(selectedRegion)}`}
+            </span>
+          </div>
         </div>
       </section>
 

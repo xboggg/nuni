@@ -9,21 +9,22 @@ import StatsCounter from "@/components/StatsCounter";
 import HowItWorks from "@/components/HowItWorks";
 import IngredientsSpotlight from "@/components/IngredientsSpotlight";
 import TestimonialsCarousel from "@/components/TestimonialsCarousel";
-import BeforeAfterSlider from "@/components/BeforeAfterSlider";
+// import RealResults from "@/components/RealResults"; // Moved to dedicated /testimonials page
+// import BeforeAfterSlider from "@/components/BeforeAfterSlider"; // Moved to dedicated /testimonials page
 import Partners from "@/components/Partners";
-import { useLanguage } from "@/lib/i18n";
+// import { useLanguage } from "@/lib/i18n"; // Only used for BeforeAfterSlider (moved to /testimonials)
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import BackToTop from "@/components/BackToTop";
 import PageTransition from "@/components/PageTransition";
 
-// Import before/after images
-import beforeImage from "@/assets/hero-1.jpeg";
-import afterImage from "@/assets/transformation-after.jpeg";
+// Import before/after images - commented out (moved to /testimonials page)
+// import beforeImage from "@/assets/hero-1.jpeg";
+// import afterImage from "@/assets/transformation-after.jpeg";
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const { t } = useLanguage();
+  // const { t } = useLanguage(); // Only used for BeforeAfterSlider (moved to /testimonials)
 
   useEffect(() => {
     // Simulate loading time
@@ -50,14 +51,15 @@ const Index = () => {
             <HowItWorks />
             <IngredientsSpotlight />
             <TestimonialsCarousel />
-            <BeforeAfterSlider
+            {/* <RealResults /> - Moved to dedicated /testimonials page */}
+            {/* <BeforeAfterSlider
               beforeImage={beforeImage}
               afterImage={afterImage}
               testimonial={{
                 quote: t.transformation.testimonialQuote,
                 author: t.transformation.testimonialAuthor
               }}
-            />
+            /> - Moved to dedicated /testimonials page */}
             <Partners />
           </main>
         </PageTransition>

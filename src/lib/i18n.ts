@@ -31,6 +31,9 @@ export const translations = {
       title: "From Nature",
       titleHighlight: "To You",
       description: "NG Cosmetics is a proudly Ghanaian skincare company dedicated to bringing you premium, natural beauty solutions. Through our flagship brand Nuni Global, we offer three exceptional skincare products crafted with centuries-old African botanical wisdom and modern skincare science. Every ingredient is carefully sourced and crafted right here in Ghana, bringing you the authentic power of African beauty traditions.",
+      exportTitle: "Beyond Skincare",
+      exportDescription: "NG Cosmetics is also a trusted exporter of premium Ghanaian raw materials. We supply high-quality shea butter, cocoa powder, and traditional African black soap to international markets, connecting the world with Ghana's finest natural resources.",
+      exportCta: "Learn About Our Exports",
       features: {
         fdaApproved: "FDA Approved",
         fdaDesc: "All products certified by Ghana FDA for safety and quality",
@@ -543,6 +546,9 @@ export const translations = {
       title: "De la Nature",
       titleHighlight: "À Vous",
       description: "NG Cosmetics est une entreprise ghanéenne de soins de la peau dédiée à vous apporter des solutions de beauté naturelles premium. À travers notre marque phare Nuni Global, nous offrons trois produits de soins exceptionnels fabriqués avec la sagesse séculaire des plantes africaines et la science moderne des soins de la peau. Chaque ingrédient est soigneusement sélectionné et fabriqué ici au Ghana.",
+      exportTitle: "Au-delà des Soins",
+      exportDescription: "NG Cosmetics est également un exportateur de confiance de matières premières ghanéennes premium. Nous fournissons du beurre de karité de haute qualité, de la poudre de cacao et du savon noir africain traditionnel aux marchés internationaux, connectant le monde aux meilleures ressources naturelles du Ghana.",
+      exportCta: "Découvrir Nos Exportations",
       features: {
         fdaApproved: "Approuvé FDA",
         fdaDesc: "Tous les produits certifiés par la FDA du Ghana pour la sécurité et la qualité",

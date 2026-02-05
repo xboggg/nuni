@@ -310,6 +310,16 @@
   }
 }
 
+/* Hide scrollbar utility for horizontal scroll */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 /* Custom scrollbar - Light mode */
 ::-webkit-scrollbar {
   width: 8px;
