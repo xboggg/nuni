@@ -20,6 +20,7 @@ import ProductsPage from "./pages/ProductsPage";
 import TestimonialsPage from "./pages/TestimonialsPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import TermsOfServicePage from "./pages/TermsOfServicePage";
+import ExportPage from "./pages/ExportPage";
 import ScrollToTop from "@/components/ScrollToTop";
 import PromoBar from "@/components/PromoBar";
 
@@ -47,6 +48,7 @@ const AnimatedRoutes = () => {
           <Route path="/testimonials" element={<TestimonialsPage />} />
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+          <Route path="/export" element={<ExportPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
