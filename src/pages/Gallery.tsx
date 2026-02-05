@@ -155,7 +155,8 @@ interface UploadedImage {
 }
 
 const defaultGalleryImages: GalleryImage[] = [
-  // Ambassadors
+  // Partners
+  { id: "ceo8", src: ceo8, alt: "Nuni Global CEO", category: "partners" },
   { id: "amb50", src: ambassador50, alt: "Nuni Global Ambassador", category: "partners" },
   { id: "amb52", src: ambassador52, alt: "Nuni Global Ambassador", category: "partners" },
   { id: "amb53", src: ambassador53, alt: "Nuni Global Ambassador", category: "partners" },
@@ -171,7 +172,6 @@ const defaultGalleryImages: GalleryImage[] = [
   { id: "pa2", src: pa2, alt: "Nuni Global PA", category: "partners" },
   { id: "hovendor", src: hovendor, alt: "Nuni Global Ambassador", category: "partners" },
   { id: "ceo", src: ceo, alt: "Nuni Global CEO", category: "partners" },
-  { id: "ceo8", src: ceo8, alt: "Nuni Global CEO", category: "partners" },
 
   // Cocoa Butter (25 images)
   { id: "cb25", src: cocoaButter25, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
