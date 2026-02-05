@@ -11,7 +11,7 @@ import { useLanguage } from "@/lib/i18n";
 import ceoImage from "@/assets/nuni-kofi.png";
 import ceoImage2 from "@/assets/ceo/nuni-ceo1.jpeg";
 import wifeImage1 from "@/assets/ceo/nuni-ceo7.jpeg";
-import coupleImage from "@/assets/ceo/nuni-ceo5.jpeg";
+import coupleImage from "@/assets/ceo/nuni-ceo9.jpeg";
 
 // Award Images
 import awardImage1 from "@/assets/ceo/nuni-award1.jpeg";
