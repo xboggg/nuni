@@ -94,11 +94,21 @@ export const getWhatsAppLink = (message: string) => {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
 };
 
-export const getProductOrderMessage = (productName: string, size?: string) => {
-  if (size) {
-    return `Hello! I'd like to order ${productName} (${size}). Please let me know the price and delivery options.`;
+export const getProductOrderMessage = (productName: string, size?: string, price?: number) => {
+  if (size && price) {
+    return `Hello! I would like to order:\n\nProduct: ${productName}\nSize: ${size}\nPrice: GH₵${price}\n\nPlease confirm availability and delivery options.`;
   }
-  return `Hello! I'd like to order ${productName}. Please let me know the available sizes, price and delivery options.`;
+  if (size) {
+    return `Hello! I would like to order ${productName} (${size}). Please confirm availability and delivery options.`;
+  }
+  return `Hello! I'm interested in ${productName}. Please let me know the available sizes and delivery options.`;
+};
+
+// Price lookup for individual product pages
+export const productPrices: Record<string, Record<string, number>> = {
+  "acne-dark-soap": { "500g": 100, "750g": 170 },
+  "acne-facial-cream": { "25ml": 80, "50ml": 140, "100ml": 270 },
+  "cocoa-butter": { "180ml": 110, "300ml": 150 },
 };
 
 export const GENERAL_INQUIRY_MESSAGE = "Hello! I'm interested in Nuni Global products.";

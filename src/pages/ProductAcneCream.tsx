@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { getWhatsAppLink, getProductOrderMessage } from "@/data/products";
+import { getWhatsAppLink, getProductOrderMessage, productPrices } from "@/data/products";
 import acneCream1 from "@/assets/acne-cream-1.png";
 import acneCream2 from "@/assets/acne-cream-2.png";
 import acneCream3 from "@/assets/acne-cream-3.png";
@@ -90,7 +90,8 @@ const ProductAcneCream = () => {
   };
 
   const handleOrder = () => {
-    const message = getProductOrderMessage(product.name, selectedSize);
+    const price = productPrices["acne-facial-cream"]?.[selectedSize];
+    const message = getProductOrderMessage(product.name, selectedSize, price);
     window.open(getWhatsAppLink(message), "_blank");
   };
 

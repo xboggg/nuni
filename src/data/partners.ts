@@ -40,7 +40,7 @@ import ambassador4 from "@/assets/ambassadors/nuni-ambassador4.jpeg"; // Rosina
 import ambassador5 from "@/assets/ambassadors/nuni-ambassador5.jpeg"; // Mzz Peddy
 import ambassador6 from "@/assets/ambassadors/nuni-ambassador6.jpeg"; // Midwife Anas
 import ambassador9 from "@/assets/ambassadors/nuni-ambassador9.jpeg"; // Nana Yeboah
-import ambassador10 from "@/assets/ambassadors/nuni-ambassador10.png"; // Ohemaa
+import ambassador10 from "@/assets/ambassadors/nuni-ambassador10.jpeg"; // Ohemaa
 import ambassador11 from "@/assets/ambassadors/nuni-ambassador11.jpeg"; // Adwoa Konadu
 
 export const partners: Partner[] = [
