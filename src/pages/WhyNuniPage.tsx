@@ -11,7 +11,6 @@ import { useLanguage } from "@/lib/i18n";
 import ceoImage from "@/assets/nuni-kofi.png";
 import ceoImage2 from "@/assets/ceo/nuni-ceo1.jpeg";
 import wifeImage1 from "@/assets/ceo/nuni-ceo7.jpeg";
-import wifeImage2 from "@/assets/ceo/nuni-ceo8.jpeg";
 import coupleImage from "@/assets/ceo/nuni-ceo5.jpeg";
 
 // Award Images
@@ -419,53 +418,37 @@ const WhyNuniPage = () => {
             </p>
           </motion.div>
 
-          {/* Artistic Layout of Photos */}
+          {/* Artistic Layout of Photos - CEO on left, Couple in center (big), Wife on right */}
           <div className="relative">
-            {/* Row 1: CEO photos */}
-            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 mb-12">
-              <FloatingCard
-                image={ceoImage2}
-                alt="Kofi Ideas - CEO"
-                size="lg"
-                delay={0}
-                onClick={() => setLightboxImage(ceoImage2)}
-              />
-              <div className="hidden md:block">
+            <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-6 lg:gap-12">
+              {/* CEO - Left side (smaller) */}
+              <div className="order-2 md:order-1">
                 <FloatingCard
-                  image={wifeImage1}
-                  alt="CEO's Wife"
+                  image={ceoImage2}
+                  alt="Kofi Ideas - CEO"
                   size="md"
-                  delay={0.3}
-                  onClick={() => setLightboxImage(wifeImage1)}
-                />
-              </div>
-              <FloatingCard
-                image={wifeImage2}
-                alt="CEO's Wife"
-                size="lg"
-                delay={0.5}
-                onClick={() => setLightboxImage(wifeImage2)}
-              />
-            </div>
-
-            {/* Row 2: Wife photo (mobile) and Couple Card */}
-            <div className="flex flex-col items-center gap-8">
-              <div className="md:hidden">
-                <FloatingCard
-                  image={wifeImage1}
-                  alt="CEO's Wife"
-                  size="md"
-                  delay={0.3}
-                  onClick={() => setLightboxImage(wifeImage1)}
+                  delay={0}
+                  onClick={() => setLightboxImage(ceoImage2)}
                 />
               </div>
 
-              {/* Couple Card - Full Width */}
-              <div className="w-full max-w-2xl">
+              {/* Couple - Center (biggest) */}
+              <div className="order-1 md:order-2 w-full max-w-md md:max-w-lg">
                 <CoupleCard
                   image={coupleImage}
                   alt="The Power Couple"
                   onClick={() => setLightboxImage(coupleImage)}
+                />
+              </div>
+
+              {/* Wife - Right side (smaller) */}
+              <div className="order-3">
+                <FloatingCard
+                  image={wifeImage1}
+                  alt="CEO's Wife"
+                  size="md"
+                  delay={0.3}
+                  onClick={() => setLightboxImage(wifeImage1)}
                 />
               </div>
             </div>
