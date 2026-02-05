@@ -23,8 +23,7 @@ const Footer = () => {
   const footerLinks = {
     products: products.map((p) => ({ name: p.name, href: `/products/${p.id}`, isRoute: true })),
     company: [
-      { name: t.footer.about, href: "#about" },
-      { name: "Why Nuni", href: "/why-nuni", isRoute: true },
+      { name: t.footer.about, href: "/why-nuni", isRoute: true },
       { name: t.footer.gallery, href: "/gallery", isRoute: true },
       { name: t.footer.partners, href: "/partners", isRoute: true },
       { name: t.footer.export || "Raw Materials Export", href: "/export", isRoute: true },

@@ -7,6 +7,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/lib/i18n";
+import { WHATSAPP_NUMBER } from "@/data/products";
 
 // Import placeholder images - using existing assets
 import sheaButterImg from "@/assets/cocoa-butter-1.jpeg";
@@ -79,7 +80,7 @@ const ExportPage = () => {
       "- Destination country:\n\n" +
       "Looking forward to your response."
     );
-    window.open(`https://wa.me/233245817973?text=${message}`, "_blank");
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, "_blank");
   };
 
   return (

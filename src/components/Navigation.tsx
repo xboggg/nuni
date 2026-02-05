@@ -29,7 +29,6 @@ const Navigation = () => {
   const { t } = useLanguage();
 
   const navLinks = [
-    { name: t.nav.about, href: "#about" },
     { name: t.nav.aboutUs, href: "/why-nuni", isRoute: true },
     { name: t.nav.products, href: "/products", isRoute: true },
     { name: t.nav.gallery, href: "/gallery", isRoute: true },
