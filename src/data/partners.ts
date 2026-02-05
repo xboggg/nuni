@@ -37,6 +37,8 @@ export const regions: Region[] = [
 import ambassador1 from "@/assets/ambassadors/nuni-ambassador1.jpeg"; // Bene Hooper
 import ambassador2 from "@/assets/ambassadors/nuni-ambassador2.jpeg"; // Tina
 import ambassador4 from "@/assets/ambassadors/nuni-ambassador4.jpeg"; // Rosina
+import ambassador5 from "@/assets/ambassadors/nuni-ambassador5.jpeg"; // Mzz Peddy
+import ambassador6 from "@/assets/ambassadors/nuni-ambassador6.jpeg"; // Midwife Anas
 import ambassador9 from "@/assets/ambassadors/nuni-ambassador9.jpeg"; // Nana Yeboah
 import ambassador10 from "@/assets/ambassadors/nuni-ambassador10.png"; // Ohemaa
 import ambassador11 from "@/assets/ambassadors/nuni-ambassador11.jpeg"; // Adwoa Konadu
@@ -62,7 +64,7 @@ export const partners: Partner[] = [
   { id: "p71", name: "Candy", phone: ["0249112240"], locations: ["Dormi Kwabenya"], region: "greater-accra" },
 
   // Tema
-  { id: "p17", name: "Mzz Peddy", phone: ["0248001159"], locations: ["Community 25", "Dorwenya", "Prampram", "Miotso", "Ningo"], region: "tema", roles: ["distributor", "ambassador"] },
+  { id: "p17", name: "Mzz Peddy", phone: ["0248001159"], locations: ["Community 25", "Dorwenya", "Prampram", "Miotso", "Ningo"], region: "tema", roles: ["distributor", "ambassador"], image: ambassador5 },
   { id: "p18", name: "Gladys Nyame", phone: ["0240246165", "0267037734"], momoPhone: "0240246165", locations: ["Tema Communities", "Tema Newtown"], region: "tema" },
   { id: "p19", name: "Regina Sedoh", phone: ["0548273170"], locations: ["Ashaiman", "Lebanon", "Zenu", "Atadeka", "Newyork", "Washington", "Katamanso", "Apolonia", "PeaceLand", "Aviation"], region: "tema" },
   { id: "p20", name: "AdwoaLyn", phone: ["0553962747", "0257159449"], momoPhone: "0257159449", locations: ["Ashaiman-Afienya", "C22"], region: "tema" },
@@ -78,7 +80,7 @@ export const partners: Partner[] = [
   { id: "p27", name: "Gifty", phone: ["0243788859"], locations: ["Mankessim"], region: "central" },
   { id: "p28", name: "V's Closet", phone: ["0593560248"], locations: ["Twifo Praso"], region: "central" },
   { id: "p29", name: "Sakina", phone: ["0246480265"], locations: ["Mankessim"], region: "central" },
-  { id: "p30", name: "Midwife Anas", phone: ["0596617943"], locations: ["Assin Fosu"], region: "central", roles: ["ambassador"] },
+  { id: "p30", name: "Midwife Anas", phone: ["0596617943"], locations: ["Assin Fosu"], region: "central", roles: ["ambassador"], image: ambassador6 },
   { id: "p31", name: "Ohemaa", phone: ["0550265877"], locations: ["Cape Coast"], region: "central", roles: ["ambassador"], image: ambassador10 },
 
   // Kasoa

@@ -43,7 +43,7 @@ const AnimatedRoutes = () => {
           <Route path="/products/acne-facial-cream" element={<ProductAcneCream />} />
           <Route path="/products/cocoa-butter" element={<ProductCocoaButter />} />
           <Route path="/partners" element={<PartnersPage />} />
-          <Route path="/why-nuni" element={<WhyNuniPage />} />
+          <Route path="/about-us" element={<WhyNuniPage />} />
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/testimonials" element={<TestimonialsPage />} />
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />

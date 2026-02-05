@@ -207,7 +207,7 @@ const VideoCarousel = () => {
           className="text-center mt-10"
         >
           <Link
-            to="/why-nuni"
+            to="/about-us"
             className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-full font-semibold transition-all duration-200 hover:shadow-green hover:scale-105"
           >
             {t.videoCarousel.discoverWhyNuni}
