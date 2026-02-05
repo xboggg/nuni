@@ -24,6 +24,12 @@
     <!-- Theme Color -->
     <meta name="theme-color" content="#2d5a3d" />
 
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://wa.me https://www.tiktok.com https://*.vercel.app; frame-src https://www.tiktok.com; frame-ancestors 'none';" />
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/src/assets/nuni-logo.png" />
   </head>

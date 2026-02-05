@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Upload, Trash2, Image as ImageIcon } from "lucide-react";
+import { ArrowLeft, Upload, Trash2, Image as ImageIcon, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -13,6 +13,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
+
+// Simple admin password - in production, use proper authentication
+const ADMIN_PASSWORD_HASH = "nuniglobal2026"; // Change this to a secure password
 
 interface UploadedImage {
   id: string;
@@ -32,12 +35,94 @@ const categories = [
 ];
 
 const GalleryAdmin = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [password, setPassword] = useState("");
+  const [loginError, setLoginError] = useState("");
   const [images, setImages] = useState<UploadedImage[]>([]);
   const [selectedCategory, setSelectedCategory] = useState("products");
   const [altText, setAltText] = useState("");
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const { toast } = useToast();
+
+  // Check if already authenticated in session
+  useEffect(() => {
+    const authStatus = sessionStorage.getItem("gallery-admin-auth");
+    if (authStatus === "authenticated") {
+      setIsAuthenticated(true);
+    }
+  }, []);
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password === ADMIN_PASSWORD_HASH) {
+      setIsAuthenticated(true);
+      sessionStorage.setItem("gallery-admin-auth", "authenticated");
+      setLoginError("");
+    } else {
+      setLoginError("Incorrect password");
+      setPassword("");
+    }
+  };
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    sessionStorage.removeItem("gallery-admin-auth");
+  };
+
+  // Login screen
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center p-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="w-full max-w-md"
+        >
+          <div className="bg-card rounded-2xl shadow-elevated p-8">
+            <div className="text-center mb-8">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Lock className="w-8 h-8 text-primary" />
+              </div>
+              <h1 className="text-2xl font-serif font-bold text-foreground">Gallery Admin</h1>
+              <p className="text-muted-foreground mt-2">Enter password to access</p>
+            </div>
+
+            <form onSubmit={handleLogin} className="space-y-4">
+              <div>
+                <Label htmlFor="password">Password</Label>
+                <Input
+                  id="password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Enter admin password"
+                  className="mt-1"
+                  autoFocus
+                />
+                {loginError && (
+                  <p className="text-sm text-destructive mt-2">{loginError}</p>
+                )}
+              </div>
+
+              <Button type="submit" className="w-full">
+                Access Admin Panel
+              </Button>
+            </form>
+
+            <div className="mt-6 text-center">
+              <Link
+                to="/gallery"
+                className="text-sm text-muted-foreground hover:text-primary transition-colors"
+              >
+                Back to Gallery
+              </Link>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    );
+  }
 
   useEffect(() => {
     const stored = localStorage.getItem("gallery-images");
@@ -129,9 +214,14 @@ const GalleryAdmin = () => {
           animate={{ opacity: 1, y: 0 }}
           className="max-w-4xl mx-auto"
         >
-          <h1 className="font-serif text-3xl md:text-4xl text-charcoal mb-8">
-            Gallery Admin
-          </h1>
+          <div className="flex items-center justify-between mb-8">
+            <h1 className="font-serif text-3xl md:text-4xl text-charcoal">
+              Gallery Admin
+            </h1>
+            <Button variant="outline" onClick={handleLogout} size="sm">
+              Logout
+            </Button>
+          </div>
 
           {/* Upload Section */}
           <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg mb-8">
