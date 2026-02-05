@@ -234,6 +234,14 @@ const ProductCocoaButter = () => {
                 Order on WhatsApp
               </Button>
 
+              {/* View Pricing Link */}
+              <Link
+                to="/products"
+                className="block text-center mt-4 text-primary hover:text-primary/80 font-medium transition-colors"
+              >
+                View All Pricing Options
+              </Link>
+
               {/* Benefits */}
               <div className="mt-12">
                 <h3 className="text-2xl font-serif font-bold text-foreground mb-6">Benefits</h3>
@@ -294,27 +302,25 @@ const ProductCocoaButter = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
+            className="max-w-4xl"
           >
             <h3 className="text-3xl font-serif font-bold text-foreground mb-8">Customer Reviews</h3>
-            <div className="space-y-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {reviews.map((review, index) => (
                 <motion.div
                   key={review.id}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.6 + index * 0.1 }}
-                  className="bg-card p-6 rounded-2xl shadow-card"
+                  className="bg-card p-5 rounded-2xl shadow-card"
                 >
-                  <div className="flex items-start justify-between mb-3">
-                    <div>
-                      <h4 className="font-semibold text-foreground">{review.name}</h4>
-                      <p className="text-sm text-muted-foreground">{review.date}</p>
-                    </div>
-                    <div className="flex gap-1">
+                  <div className="flex items-center justify-between mb-2">
+                    <h4 className="font-semibold text-foreground text-sm">{review.name}</h4>
+                    <div className="flex gap-0.5">
                       {[...Array(5)].map((_, i) => (
                         <Star
                           key={i}
-                          className={`w-4 h-4 ${
+                          className={`w-3.5 h-3.5 ${
                             i < review.rating
                               ? "fill-accent text-accent"
                               : "fill-none text-border"
@@ -323,7 +329,8 @@ const ProductCocoaButter = () => {
                       ))}
                     </div>
                   </div>
-                  <p className="text-muted-foreground">{review.comment}</p>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{review.comment}</p>
+                  <p className="text-xs text-muted-foreground/70 mt-2">{review.date}</p>
                 </motion.div>
               ))}
             </div>
