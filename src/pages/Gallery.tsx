@@ -122,6 +122,20 @@ import kid2 from "@/assets/gallery/nuni-kid2.jpeg";
 import kid3 from "@/assets/gallery/nuni-kid3.jpeg";
 import kid4 from "@/assets/gallery/nuni-kid4.jpeg";
 import kid5 from "@/assets/gallery/nuni-kid5.jpeg";
+import kid6 from "@/assets/gallery/nuni-kid.jpeg";
+
+// Ambassador images from partners page
+import ambassador1 from "@/assets/gallery/nuni-ambassador1.jpeg";
+import ambassador2 from "@/assets/gallery/nuni-ambassador2.jpeg";
+import ambassador4 from "@/assets/gallery/nuni-ambassador4.jpeg";
+import ambassador5 from "@/assets/gallery/nuni-ambassador5.jpeg";
+import ambassador6 from "@/assets/gallery/nuni-ambassador6.jpeg";
+import ambassador9 from "@/assets/gallery/nuni-ambassador9.jpeg";
+import ambassador10 from "@/assets/gallery/nuni-ambassador10.jpeg";
+import ambassador11 from "@/assets/gallery/nuni-ambassador11.jpeg";
+import pa1 from "@/assets/gallery/nuni-pa1.png";
+import pa2 from "@/assets/gallery/nuni-pa2.png";
+import hovendor from "@/assets/gallery/nuni-hovendor.jpeg";
 
 interface GalleryImage {
   id: number | string;
@@ -139,10 +153,21 @@ interface UploadedImage {
 }
 
 const defaultGalleryImages: GalleryImage[] = [
-  // Ambassadors (3 images)
+  // Ambassadors
   { id: "amb50", src: ambassador50, alt: "Nuni Global Ambassador", category: "ambassadors" },
   { id: "amb52", src: ambassador52, alt: "Nuni Global Ambassador", category: "ambassadors" },
   { id: "amb53", src: ambassador53, alt: "Nuni Global Ambassador", category: "ambassadors" },
+  { id: "amb1", src: ambassador1, alt: "Bene Hooper - Ambassador", category: "ambassadors" },
+  { id: "amb2", src: ambassador2, alt: "Tina - Ambassador", category: "ambassadors" },
+  { id: "amb4", src: ambassador4, alt: "Rosina - Ambassador", category: "ambassadors" },
+  { id: "amb5", src: ambassador5, alt: "Mzz Peddy - Ambassador", category: "ambassadors" },
+  { id: "amb6", src: ambassador6, alt: "Midwife Anas - Ambassador", category: "ambassadors" },
+  { id: "amb9", src: ambassador9, alt: "Nana Yeboah - Ambassador", category: "ambassadors" },
+  { id: "amb10", src: ambassador10, alt: "Ohemaa - Ambassador", category: "ambassadors" },
+  { id: "amb11", src: ambassador11, alt: "Adwoa Konadu - Ambassador", category: "ambassadors" },
+  { id: "pa1", src: pa1, alt: "Tilly - PA", category: "ambassadors" },
+  { id: "pa2", src: pa2, alt: "Nuni Global PA", category: "ambassadors" },
+  { id: "hovendor", src: hovendor, alt: "Nuni Global Ambassador", category: "ambassadors" },
 
   // Cocoa Butter (25 images)
   { id: "cb25", src: cocoaButter25, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
@@ -254,6 +279,7 @@ const defaultGalleryImages: GalleryImage[] = [
   { id: "kid3", src: kid3, alt: "Nuni Global Kids", category: "kids" },
   { id: "kid4", src: kid4, alt: "Nuni Global Kids", category: "kids" },
   { id: "kid5", src: kid5, alt: "Nuni Global Kids", category: "kids" },
+  { id: "kid6", src: kid6, alt: "Nuni Global Kids", category: "kids" },
 ];
 
 const ITEMS_PER_PAGE = 12;

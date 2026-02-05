@@ -104,9 +104,9 @@ const PartnersPage = () => {
     );
   }, []);
 
-  // Get ambassadors with photos for featured section
+  // Get ambassadors with photos for featured section (includes PA)
   const ambassadorsWithPhotos = useMemo(() => {
-    return partners.filter(p => p.roles?.includes("ambassador") && p.image);
+    return partners.filter(p => (p.roles?.includes("ambassador") || p.roles?.includes("pa")) && p.image);
   }, []);
 
   const openLightbox = (image: string) => {
@@ -293,7 +293,7 @@ const PartnersPage = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                     <div className="absolute top-2 right-2 bg-accent text-white text-xs px-2 py-1 rounded-full font-medium flex items-center gap-1">
                       <Star size={10} className="fill-current" />
-                      Ambassador
+                      {ambassador.roles?.includes("pa") ? "PA" : "Ambassador"}
                     </div>
                     <div className="absolute bottom-0 left-0 right-0 p-3 text-white">
                       <h3 className="font-semibold text-sm">{ambassador.name}</h3>

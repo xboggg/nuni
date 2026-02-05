@@ -1,4 +1,4 @@
-export type PartnerRole = "distributor" | "ambassador" | "vendor";
+export type PartnerRole = "distributor" | "ambassador" | "vendor" | "pa";
 
 export interface Partner {
   id: string;
@@ -42,6 +42,7 @@ import ambassador6 from "@/assets/ambassadors/nuni-ambassador6.jpeg"; // Midwife
 import ambassador9 from "@/assets/ambassadors/nuni-ambassador9.jpeg"; // Nana Yeboah
 import ambassador10 from "@/assets/ambassadors/nuni-ambassador10.jpeg"; // Ohemaa
 import ambassador11 from "@/assets/ambassadors/nuni-ambassador11.jpeg"; // Adwoa Konadu
+import pa1 from "@/assets/ambassadors/nuni-pa1.png"; // Tilly (PA)
 
 export const partners: Partner[] = [
   // Greater Accra Region
@@ -59,8 +60,7 @@ export const partners: Partner[] = [
   { id: "p13", name: "Sampson Armoo", phone: ["0544657874"], locations: ["Odorkor", "Darkuman"], region: "greater-accra" },
   { id: "p14", name: "KTee", phone: ["0248314765"], locations: ["Lapaz"], region: "greater-accra" },
   { id: "p15", name: "Judy", phone: ["0246430300", "0545561662"], locations: ["Mallam", "Gbawe"], region: "greater-accra" },
-  { id: "p16", name: "Tilly", phone: ["0540501872"], locations: ["Weija", "Scc"], region: "greater-accra", roles: ["distributor"] },
-  { id: "p70", name: "Linda", phone: ["0551890990"], locations: ["Osu", "Ablekuma"], region: "greater-accra" },
+    { id: "p70", name: "Linda", phone: ["0551890990"], locations: ["Osu", "Ablekuma"], region: "greater-accra" },
   { id: "p71", name: "Candy", phone: ["0249112240"], locations: ["Dormi Kwabenya"], region: "greater-accra" },
 
   // Tema
@@ -84,7 +84,7 @@ export const partners: Partner[] = [
   { id: "p31", name: "Ohemaa", phone: ["0550265877"], locations: ["Cape Coast"], region: "central", roles: ["ambassador"], image: ambassador10 },
 
   // Kasoa
-  { id: "p32", name: "Tilly", phone: ["0540501872"], locations: ["Kasoa", "Nyanyano"], region: "kasoa", roles: ["distributor"] },
+  { id: "p32", name: "Tilly", phone: ["0540501872"], locations: ["Kasoa", "Nyanyano"], region: "kasoa", roles: ["distributor", "pa"], image: pa1 },
   { id: "p33", name: "Tabitha Mizpah", phone: ["0249496872"], locations: ["Kasoa Liberia Camp", "Tuba", "Nyanyano", "Amanfrom", "Opeikuma", "Fetteh Kakraba"], region: "kasoa" },
   { id: "p69", name: "AJ", phone: ["0557634949", "0540335671"], momoPhone: "0557634949", locations: ["Kasoa", "Lamptey Mills", "Kasoa Market", "Domeabra"], region: "kasoa", roles: ["ambassador"] },
 
