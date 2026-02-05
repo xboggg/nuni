@@ -12,7 +12,7 @@ const PromoBar = () => {
     seconds: 0,
   });
 
-  // Set end date to February 14, 2026, 11:59:59 PM
+  // Set end date to February 14, 2026, 11:59:59 PM (Valentine's Day Promo)
   const endDate = new Date("2026-02-14T23:59:59").getTime();
 
   useEffect(() => {
