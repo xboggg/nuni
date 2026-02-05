@@ -136,12 +136,14 @@ import ambassador11 from "@/assets/gallery/nuni-ambassador11.jpeg";
 import pa1 from "@/assets/gallery/nuni-pa1.png";
 import pa2 from "@/assets/gallery/nuni-pa2.png";
 import hovendor from "@/assets/gallery/nuni-hovendor.jpeg";
+import ceo from "@/assets/gallery/nuni-ceo.jpeg";
+import ceo8 from "@/assets/gallery/nuni-ceo8.jpeg";
 
 interface GalleryImage {
   id: number | string;
   src: string;
   alt: string;
-  category: "events" | "partnership" | "soap" | "cream" | "cocoa-butter" | "products" | "ambassadors" | "vendors" | "kids";
+  category: "events" | "partnership" | "soap" | "cream" | "cocoa-butter" | "products" | "partners" | "vendors" | "kids";
 }
 
 interface UploadedImage {
@@ -154,20 +156,22 @@ interface UploadedImage {
 
 const defaultGalleryImages: GalleryImage[] = [
   // Ambassadors
-  { id: "amb50", src: ambassador50, alt: "Nuni Global Ambassador", category: "ambassadors" },
-  { id: "amb52", src: ambassador52, alt: "Nuni Global Ambassador", category: "ambassadors" },
-  { id: "amb53", src: ambassador53, alt: "Nuni Global Ambassador", category: "ambassadors" },
-  { id: "amb1", src: ambassador1, alt: "Bene Hooper - Ambassador", category: "ambassadors" },
-  { id: "amb2", src: ambassador2, alt: "Tina - Ambassador", category: "ambassadors" },
-  { id: "amb4", src: ambassador4, alt: "Rosina - Ambassador", category: "ambassadors" },
-  { id: "amb5", src: ambassador5, alt: "Mzz Peddy - Ambassador", category: "ambassadors" },
-  { id: "amb6", src: ambassador6, alt: "Midwife Anas - Ambassador", category: "ambassadors" },
-  { id: "amb9", src: ambassador9, alt: "Nana Yeboah - Ambassador", category: "ambassadors" },
-  { id: "amb10", src: ambassador10, alt: "Ohemaa - Ambassador", category: "ambassadors" },
-  { id: "amb11", src: ambassador11, alt: "Adwoa Konadu - Ambassador", category: "ambassadors" },
-  { id: "pa1", src: pa1, alt: "Tilly - PA", category: "ambassadors" },
-  { id: "pa2", src: pa2, alt: "Nuni Global PA", category: "ambassadors" },
-  { id: "hovendor", src: hovendor, alt: "Nuni Global Ambassador", category: "ambassadors" },
+  { id: "amb50", src: ambassador50, alt: "Nuni Global Ambassador", category: "partners" },
+  { id: "amb52", src: ambassador52, alt: "Nuni Global Ambassador", category: "partners" },
+  { id: "amb53", src: ambassador53, alt: "Nuni Global Ambassador", category: "partners" },
+  { id: "amb1", src: ambassador1, alt: "Bene Hooper - Ambassador", category: "partners" },
+  { id: "amb2", src: ambassador2, alt: "Tina - Ambassador", category: "partners" },
+  { id: "amb4", src: ambassador4, alt: "Rosina - Ambassador", category: "partners" },
+  { id: "amb5", src: ambassador5, alt: "Mzz Peddy - Ambassador", category: "partners" },
+  { id: "amb6", src: ambassador6, alt: "Midwife Anas - Ambassador", category: "partners" },
+  { id: "amb9", src: ambassador9, alt: "Nana Yeboah - Ambassador", category: "partners" },
+  { id: "amb10", src: ambassador10, alt: "Ohemaa - Ambassador", category: "partners" },
+  { id: "amb11", src: ambassador11, alt: "Adwoa Konadu - Ambassador", category: "partners" },
+  { id: "pa1", src: pa1, alt: "Tilly - PA", category: "partners" },
+  { id: "pa2", src: pa2, alt: "Nuni Global PA", category: "partners" },
+  { id: "hovendor", src: hovendor, alt: "Nuni Global Ambassador", category: "partners" },
+  { id: "ceo", src: ceo, alt: "Nuni Global CEO", category: "partners" },
+  { id: "ceo8", src: ceo8, alt: "Nuni Global CEO", category: "partners" },
 
   // Cocoa Butter (25 images)
   { id: "cb25", src: cocoaButter25, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
@@ -295,7 +299,7 @@ const Gallery = () => {
 
   const categories = [
     { id: "all", label: t.galleryPage.all },
-    { id: "ambassadors", label: t.galleryPage.ambassadors },
+    { id: "partners", label: t.galleryPage.partners },
     { id: "soap", label: t.galleryPage.soap },
     { id: "cream", label: t.galleryPage.cream },
     { id: "cocoa-butter", label: t.galleryPage.cocoaButter },
@@ -460,15 +464,11 @@ const Gallery = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.4 }}
-                  className={`group relative overflow-hidden rounded-2xl cursor-pointer ${
-                    index % 3 === 0 ? "row-span-2" : ""
-                  }`}
+                  className="group relative overflow-hidden rounded-2xl cursor-pointer"
                   onClick={() => openLightbox(startIndex + index)}
                 >
                   <div
-                    className={`relative ${
-                      index % 3 === 0 ? "aspect-[3/4]" : "aspect-square"
-                    } overflow-hidden`}
+                    className="relative aspect-square overflow-hidden"
                     style={{ backgroundColor: '#ffffff' }}
                   >
                     <img
