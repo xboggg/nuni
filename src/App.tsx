@@ -8,7 +8,6 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { LanguageProvider } from "@/components/LanguageProvider";
 import Index from "./pages/Index";
 import Gallery from "./pages/Gallery";
-import GalleryAdmin from "./pages/GalleryAdmin";
 import ContactPage from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
 import ProductAcneSoap from "./pages/ProductAcneSoap";
@@ -37,7 +36,6 @@ const AnimatedRoutes = () => {
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Index />} />
           <Route path="/gallery" element={<Gallery />} />
-          <Route path="/gallery/admin" element={<GalleryAdmin />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/products/acne-dark-soap" element={<ProductAcneSoap />} />
           <Route path="/products/acne-facial-cream" element={<ProductAcneCream />} />

@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ChevronLeft, ChevronRight, ZoomIn, ArrowLeft, Settings } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, ZoomIn, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -148,15 +148,7 @@ interface GalleryImage {
   category: "events" | "partnership" | "soap" | "cream" | "cocoa-butter" | "products" | "partners" | "vendors" | "kids";
 }
 
-interface UploadedImage {
-  id: string;
-  src: string;
-  alt: string;
-  category: string;
-  createdAt: number;
-}
-
-const defaultGalleryImages: GalleryImage[] = [
+const galleryImages: GalleryImage[] = [
   // Partners
   { id: "ceo8", src: ceo8, alt: "Nuni Global CEO", category: "partners" },
   { id: "pa1", src: pa1, alt: "Tilly - PA", category: "partners" },
@@ -297,7 +289,6 @@ const Gallery = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isZoomed, setIsZoomed] = useState(false);
-  const [uploadedImages, setUploadedImages] = useState<UploadedImage[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const { t } = useLanguage();
 
@@ -311,29 +302,10 @@ const Gallery = () => {
     { id: "kids", label: t.galleryPage.kids },
   ];
 
-  // Load uploaded images from localStorage
-  useEffect(() => {
-    const stored = localStorage.getItem("gallery-images");
-    if (stored) {
-      setUploadedImages(JSON.parse(stored));
-    }
-  }, []);
-
-  // Combine default and uploaded images
-  const allImages: GalleryImage[] = [
-    ...defaultGalleryImages,
-    ...uploadedImages.map((img) => ({
-      id: img.id,
-      src: img.src,
-      alt: img.alt,
-      category: img.category as GalleryImage["category"],
-    })),
-  ];
-
   const filteredImages =
     activeCategory === "all"
-      ? allImages
-      : allImages.filter((img) => img.category === activeCategory);
+      ? galleryImages
+      : galleryImages.filter((img) => img.category === activeCategory);
 
   // Reset to page 1 when category changes
   useEffect(() => {
@@ -398,22 +370,13 @@ const Gallery = () => {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <div className="flex items-center justify-between mb-6">
-              <Link
-                to="/"
-                className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
-              >
-                <ArrowLeft size={20} />
-                <span className="font-medium">{t.common.backToHome}</span>
-              </Link>
-              <Link
-                to="/gallery/admin"
-                className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
-              >
-                <Settings size={20} />
-                <span className="font-medium">{t.galleryPage.admin}</span>
-              </Link>
-            </div>
+            <Link
+              to="/"
+              className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mb-6"
+            >
+              <ArrowLeft size={20} />
+              <span className="font-medium">{t.common.backToHome}</span>
+            </Link>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-4">
               {t.galleryPage.title} <span className="text-gradient-gold">{t.galleryPage.titleHighlight}</span>
             </h1>
