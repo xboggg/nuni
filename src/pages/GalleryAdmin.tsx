@@ -26,12 +26,12 @@ interface UploadedImage {
 }
 
 const categories = [
-  { id: "events", label: "Events" },
-  { id: "partnership", label: "Partnership" },
+  { id: "partners", label: "Partners" },
   { id: "soap", label: "Soap" },
   { id: "cream", label: "Cream" },
   { id: "cocoa-butter", label: "Cocoa Butter" },
   { id: "products", label: "Products" },
+  { id: "kids", label: "NG Kids" },
 ];
 
 const GalleryAdmin = () => {
