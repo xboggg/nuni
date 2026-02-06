@@ -401,7 +401,8 @@ export const translations = {
     },
     // Gallery Page
     galleryPage: {
-      title: "Our Gallery",
+      title: "Our",
+      titleHighlight: "Gallery",
       description: "Explore our collection of premium African skincare products and see the amazing results our customers achieve.",
       admin: "Admin",
       all: "All",
@@ -952,7 +953,8 @@ export const translations = {
     },
     // Gallery Page
     galleryPage: {
-      title: "Notre Galerie",
+      title: "Notre",
+      titleHighlight: "Galerie",
       description: "Explorez notre collection de produits de soins africains premium et découvrez les résultats incroyables que nos clients obtiennent.",
       admin: "Admin",
       all: "Tous",
@@ -1503,7 +1505,8 @@ export const translations = {
     },
     // Gallery Page
     galleryPage: {
-      title: "Yɛn Mfonini",
+      title: "Yɛn",
+      titleHighlight: "Mfonini",
       description: "Hwehwɛ yɛn Afrika skincare nneɛma titiriw collection mu na hu nsunsuansoɔ nwonwa a yɛn adefodeɛ nya.",
       admin: "Admin",
       all: "Nyinaa",

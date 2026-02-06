@@ -415,7 +415,7 @@ const Gallery = () => {
               </Link>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-4">
-              {t.galleryPage.title}
+              {t.galleryPage.title} <span className="text-gradient-gold">{t.galleryPage.titleHighlight}</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               {t.galleryPage.description}
