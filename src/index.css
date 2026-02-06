@@ -147,6 +147,11 @@
     background: var(--gradient-cream);
   }
 
+  /* Dark mode version of gradient-cream - uses dark theme colors */
+  .dark .bg-gradient-cream {
+    background: linear-gradient(180deg, hsl(0 0% 8%) 0%, hsl(0 0% 5%) 100%);
+  }
+
   .shadow-soft {
     box-shadow: var(--shadow-soft);
   }
