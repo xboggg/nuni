@@ -8,7 +8,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import BackToTop from "@/components/BackToTop";
 import { getWhatsAppLink, WHATSAPP_NUMBER } from "@/data/products";
 import { faqData, categoryLabels } from "@/data/faq";
-import { useLanguage } from "@/lib/i18n";
+import { useLanguage, type Translations } from "@/lib/i18n";
 import {
   Accordion,
   AccordionContent,
@@ -26,7 +26,7 @@ const WhatsAppIcon = () => (
   </svg>
 );
 
-const getContactMethods = (t: any) => [
+const getContactMethods = (t: Translations) => [
   {
     icon: Phone,
     title: t.contactPage.phoneWhatsApp,
@@ -55,7 +55,7 @@ const getContactMethods = (t: any) => [
   },
 ];
 
-const getInterestOptions = (t: any) => [
+const getInterestOptions = (t: Translations) => [
   { value: "buying", label: t.contactPage.buyingProducts },
   { value: "wholesale", label: t.contactPage.wholesaleReseller },
   { value: "partnership", label: t.contactPage.partnership },

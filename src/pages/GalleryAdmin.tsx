@@ -53,6 +53,20 @@ const GalleryAdmin = () => {
     }
   }, []);
 
+  // Load stored images - must be before any conditional returns
+  useEffect(() => {
+    if (isAuthenticated) {
+      const stored = localStorage.getItem("gallery-images");
+      if (stored) {
+        try {
+          setImages(JSON.parse(stored));
+        } catch {
+          // Invalid JSON, ignore
+        }
+      }
+    }
+  }, [isAuthenticated]);
+
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     if (password === ADMIN_PASSWORD_HASH) {
@@ -123,13 +137,6 @@ const GalleryAdmin = () => {
       </div>
     );
   }
-
-  useEffect(() => {
-    const stored = localStorage.getItem("gallery-images");
-    if (stored) {
-      setImages(JSON.parse(stored));
-    }
-  }, []);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];

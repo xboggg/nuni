@@ -138,6 +138,8 @@ import pa2 from "@/assets/gallery/nuni-pa2.png";
 import hovendor from "@/assets/gallery/nuni-hovendor.jpeg";
 import ceo from "@/assets/gallery/nuni-ceo.jpeg";
 import ceo8 from "@/assets/gallery/nuni-ceo8.jpeg";
+import ambassador13 from "@/assets/gallery/nuni-ambassador13.jpeg";
+import ambassador14 from "@/assets/gallery/nuni-ambassador14.jpeg";
 
 interface GalleryImage {
   id: number | string;
@@ -158,6 +160,8 @@ const defaultGalleryImages: GalleryImage[] = [
   // Partners
   { id: "ceo8", src: ceo8, alt: "Nuni Global CEO", category: "partners" },
   { id: "pa1", src: pa1, alt: "Tilly - PA", category: "partners" },
+  { id: "amb13", src: ambassador13, alt: "Truth Ofori - Ambassador", category: "partners" },
+  { id: "amb14", src: ambassador14, alt: "Byzkit - Ambassador", category: "partners" },
   { id: "amb50", src: ambassador50, alt: "Nuni Global Ambassador", category: "partners" },
   { id: "amb52", src: ambassador52, alt: "Nuni Global Ambassador", category: "partners" },
   { id: "amb53", src: ambassador53, alt: "Nuni Global Ambassador", category: "partners" },

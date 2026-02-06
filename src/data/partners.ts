@@ -43,6 +43,8 @@ import ambassador9 from "@/assets/ambassadors/nuni-ambassador9.jpeg"; // Nana Ye
 import ambassador10 from "@/assets/ambassadors/nuni-ambassador10.jpeg"; // Ohemaa
 import ambassador11 from "@/assets/ambassadors/nuni-ambassador11.jpeg"; // Adwoa Konadu
 import pa1 from "@/assets/ambassadors/nuni-pa1.png"; // Tilly (PA)
+import ambassador13 from "@/assets/gallery/nuni-ambassador13.jpeg"; // Truth Ofori
+import ambassador14 from "@/assets/gallery/nuni-ambassador14.jpeg"; // Byzkit
 
 export const partners: Partner[] = [
   // Greater Accra Region
@@ -139,6 +141,10 @@ export const partners: Partner[] = [
   // Volta Region
   { id: "p67", name: "Ama Gold", phone: ["0548342996"], locations: ["Ho", "Hohoe", "DZemeni", "Kpong", "Sogakoper", "Adidome"], region: "volta" },
   { id: "p68", name: "Adepa", phone: ["0245713291"], locations: ["Aflao", "Keta", "Anlonga", "Nogokpo", "Agbezorme", "Akatsi", "Lome"], region: "volta" },
+
+  // New Ambassadors
+  { id: "p74", name: "Truth Ofori", phone: ["0554753634"], locations: ["Ghana"], region: "greater-accra", roles: ["ambassador"], image: ambassador13 },
+  { id: "p75", name: "Byzkit", phone: ["0554753634"], locations: ["Ghana"], region: "greater-accra", roles: ["ambassador"], image: ambassador14 },
 ];
 
 export const WHATSAPP_NUMBER = "233554753634";
