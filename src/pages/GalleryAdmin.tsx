@@ -204,12 +204,12 @@ const GalleryAdmin = () => {
   };
 
   return (
-    <div className="min-h-screen bg-cream py-20">
+    <div className="min-h-screen bg-background py-20">
       <div className="container-custom">
         <div className="mb-8">
           <Link
             to="/gallery"
-            className="inline-flex items-center gap-2 text-charcoal/60 hover:text-charcoal transition-colors"
+            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Gallery
@@ -222,7 +222,7 @@ const GalleryAdmin = () => {
           className="max-w-4xl mx-auto"
         >
           <div className="flex items-center justify-between mb-8">
-            <h1 className="font-serif text-3xl md:text-4xl text-charcoal">
+            <h1 className="font-serif text-3xl md:text-4xl text-foreground">
               Gallery Admin
             </h1>
             <Button variant="outline" onClick={handleLogout} size="sm">
@@ -231,8 +231,8 @@ const GalleryAdmin = () => {
           </div>
 
           {/* Upload Section */}
-          <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg mb-8">
-            <h2 className="font-semibold text-xl text-charcoal mb-6">
+          <div className="bg-card rounded-2xl p-6 md:p-8 shadow-lg mb-8">
+            <h2 className="font-semibold text-xl text-foreground mb-6">
               Upload New Image
             </h2>
 
@@ -249,7 +249,7 @@ const GalleryAdmin = () => {
                       className="cursor-pointer"
                     />
                   </div>
-                  <p className="text-sm text-charcoal/60 mt-1">
+                  <p className="text-sm text-muted-foreground mt-1">
                     Max file size: 5MB
                   </p>
                 </div>
@@ -302,7 +302,7 @@ const GalleryAdmin = () => {
                     className="max-h-64 rounded-lg object-contain"
                   />
                 ) : (
-                  <div className="w-full h-64 bg-charcoal/5 rounded-lg flex flex-col items-center justify-center text-charcoal/40">
+                  <div className="w-full h-64 bg-muted rounded-lg flex flex-col items-center justify-center text-muted-foreground">
                     <ImageIcon className="w-12 h-12 mb-2" />
                     <p>Image preview</p>
                   </div>
@@ -312,13 +312,13 @@ const GalleryAdmin = () => {
           </div>
 
           {/* Uploaded Images */}
-          <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg">
-            <h2 className="font-semibold text-xl text-charcoal mb-6">
+          <div className="bg-card rounded-2xl p-6 md:p-8 shadow-lg">
+            <h2 className="font-semibold text-xl text-foreground mb-6">
               Uploaded Images ({images.length})
             </h2>
 
             {images.length === 0 ? (
-              <p className="text-charcoal/60 text-center py-8">
+              <p className="text-muted-foreground text-center py-8">
                 No images uploaded yet. Upload your first image above!
               </p>
             ) : (
@@ -355,7 +355,7 @@ const GalleryAdmin = () => {
             )}
           </div>
 
-          <p className="text-center text-charcoal/60 text-sm mt-6">
+          <p className="text-center text-muted-foreground text-sm mt-6">
             Note: Images are stored locally in your browser and will persist
             until you clear your browser data.
           </p>

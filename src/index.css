@@ -310,6 +310,27 @@
   }
 }
 
+/* Dark mode variants for benefit cards */
+.dark .benefit-card-blue {
+  background-color: rgba(59, 130, 246, 0.15) !important;
+  border-color: rgba(59, 130, 246, 0.3) !important;
+}
+
+.dark .benefit-card-green {
+  background-color: rgba(16, 185, 129, 0.15) !important;
+  border-color: rgba(16, 185, 129, 0.3) !important;
+}
+
+.dark .benefit-card-purple {
+  background-color: rgba(168, 85, 247, 0.15) !important;
+  border-color: rgba(168, 85, 247, 0.3) !important;
+}
+
+.dark .benefit-card-orange {
+  background-color: rgba(249, 115, 22, 0.15) !important;
+  border-color: rgba(249, 115, 22, 0.3) !important;
+}
+
 /* Hide scrollbar utility for horizontal scroll */
 .scrollbar-hide {
   -ms-overflow-style: none;

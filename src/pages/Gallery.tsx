@@ -472,14 +472,12 @@ const Gallery = () => {
                   onClick={() => openLightbox(startIndex + index)}
                 >
                   <div
-                    className="relative aspect-square overflow-hidden"
-                    style={{ backgroundColor: '#ffffff' }}
+                    className="relative aspect-square overflow-hidden bg-muted"
                   >
                     <img
                       src={image.src}
                       alt={image.alt}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      style={{ backgroundColor: '#ffffff' }}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 bg-muted"
                     />
                     {/* Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -624,10 +622,9 @@ const Gallery = () => {
               <img
                 src={filteredImages[currentImageIndex]?.src}
                 alt={filteredImages[currentImageIndex]?.alt}
-                className={`max-w-full max-h-[85vh] object-contain transition-transform duration-300 rounded-lg ${
+                className={`max-w-full max-h-[85vh] object-contain transition-transform duration-300 rounded-lg bg-muted ${
                   isZoomed ? "scale-150" : "scale-100"
                 }`}
-                style={{ backgroundColor: '#ffffff' }}
               />
             </motion.div>
 
@@ -646,18 +643,16 @@ const Gallery = () => {
                     setCurrentImageIndex(index);
                     setIsZoomed(false);
                   }}
-                  className={`w-12 h-12 rounded-lg overflow-hidden transition-all duration-200 ${
+                  className={`w-12 h-12 rounded-lg overflow-hidden transition-all duration-200 bg-muted ${
                     index === currentImageIndex
                       ? "ring-2 ring-card opacity-100"
                       : "opacity-50 hover:opacity-80"
                   }`}
-                  style={{ backgroundColor: '#ffffff' }}
                 >
                   <img
                     src={image.src}
                     alt={image.alt}
-                    className="w-full h-full object-cover"
-                    style={{ backgroundColor: '#ffffff' }}
+                    className="w-full h-full object-cover bg-muted"
                   />
                 </button>
               ))}
