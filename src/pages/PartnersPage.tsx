@@ -4,6 +4,7 @@ import { Search, MapPin, Phone, Handshake, ArrowLeft, X, Star, Package, Store } 
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import { partners, regions, getPartnerApplicationWhatsAppLink, Partner } from "@/data/partners";
 import { useLanguage } from "@/lib/i18n";
 
@@ -151,6 +152,12 @@ const PartnersPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Partners & Distributors - Find Vendors Near You"
+        description="Find Nuni Global authorized vendors, distributors, and brand ambassadors across Ghana. Become a partner and join our growing network."
+        keywords="Nuni Global partners, Ghana skincare distributors, brand ambassadors, authorized vendors, wholesale partners"
+        url="/partners"
+      />
       <Navigation />
 
       {/* Hero Section */}

@@ -4,6 +4,7 @@ import { Phone, Mail, MapPin, Send, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import BackToTop from "@/components/BackToTop";
 import { getWhatsAppLink, WHATSAPP_NUMBER } from "@/data/products";
@@ -105,6 +106,12 @@ Message: ${formData.message}`;
 
   return (
     <>
+      <SEO
+        title="Contact Us - Get in Touch"
+        description="Contact Nuni Global for product inquiries, wholesale orders, or partnership opportunities. Reach us via WhatsApp, email, or visit us in Ghana."
+        keywords="contact Nuni Global, Ghana skincare contact, wholesale inquiry, WhatsApp order"
+        url="/contact"
+      />
       <Navigation />
       <main className="pt-20">
         {/* Hero Section */}

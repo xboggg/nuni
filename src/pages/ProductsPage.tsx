@@ -4,6 +4,7 @@ import { ArrowLeft, Package, ShoppingBag, Check, MessageCircle } from "lucide-re
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import { getWhatsAppLink } from "@/data/products";
 import { useLanguage } from "@/lib/i18n";
 
@@ -113,6 +114,12 @@ const ProductsPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Products & Pricing - Retail & Wholesale"
+        description="Browse Nuni Global skincare products with retail and wholesale pricing. Acne Dark Soap, Acne Facial Cream, and Cocoa Butter. Order via WhatsApp. Made in Ghana."
+        keywords="Nuni Global products, wholesale skincare, Ghana skincare prices, acne soap price, cocoa butter price"
+        url="/products"
+      />
       <Navigation />
 
       {/* Hero Section */}

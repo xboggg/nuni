@@ -4,6 +4,7 @@ import { ArrowLeft, Play, X, ChevronLeft, ChevronRight, Camera, Video, Star, Quo
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import { useLanguage } from "@/lib/i18n";
 import { testimonials, visualTestimonials, videoTestimonials, imageTestimonials } from "@/data/testimonials";
 
@@ -137,6 +138,12 @@ const TestimonialsPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Testimonials - Real Results from Real Customers"
+        description="See real testimonials and before/after results from Nuni Global customers. Discover how our natural skincare products have transformed skin across Ghana."
+        keywords="Nuni Global reviews, skincare testimonials, before after results, customer reviews Ghana"
+        url="/testimonials"
+      />
       <Navigation />
 
       {/* Hero Section */}

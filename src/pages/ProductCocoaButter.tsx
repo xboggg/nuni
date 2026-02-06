@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight, Star, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { getWhatsAppLink, getProductOrderMessage, productPrices } from "@/data/products";
 import cocoaButter1 from "@/assets/cocoa-butter-1.jpeg";
@@ -86,8 +87,40 @@ const ProductCocoaButter = () => {
     window.open(getWhatsAppLink(message), "_blank");
   };
 
+  const productStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    description: product.description,
+    brand: { "@type": "Brand", name: "Nuni Global" },
+    category: "Skincare",
+    offers: {
+      "@type": "AggregateOffer",
+      priceCurrency: "GHS",
+      lowPrice: 110,
+      highPrice: 150,
+      offerCount: 2,
+      availability: "https://schema.org/InStock",
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: product.rating,
+      reviewCount: product.reviewCount,
+      bestRating: 5,
+      worstRating: 1,
+    },
+  };
+
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Cocoa Butter - Natural Moisturizer"
+        description="Pure Ghanaian cocoa butter for deep moisturizing. Rich in antioxidants, soothes irritation, fades stretch marks. Safe for babies 6 months+. Made in Ghana."
+        keywords="cocoa butter, natural moisturizer, stretch mark cream, Ghana cocoa butter, shea butter, baby safe skincare"
+        url="/products/cocoa-butter"
+        type="product"
+        structuredData={productStructuredData}
+      />
       <Navigation />
 
       <main className="pt-24 pb-20">

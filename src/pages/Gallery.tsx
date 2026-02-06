@@ -4,6 +4,7 @@ import { X, ChevronLeft, ChevronRight, ZoomIn, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import { useLanguage } from "@/lib/i18n";
 
 // Import gallery images
@@ -359,6 +360,12 @@ const Gallery = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Gallery - Product Photos & Ambassadors"
+        description="Browse our gallery of Nuni Global skincare products, brand ambassadors, and happy customers. See real results from our natural African skincare line."
+        keywords="Nuni Global gallery, skincare photos, product images, brand ambassadors, Ghana skincare"
+        url="/gallery"
+      />
       <Navigation />
 
       {/* Hero Header */}

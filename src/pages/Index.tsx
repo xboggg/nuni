@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import LoadingScreen from "@/components/LoadingScreen";
 import Navigation from "@/components/Navigation";
+import SEO from "@/components/SEO";
 import HeroCarousel from "@/components/HeroCarousel";
 import About from "@/components/About";
 import Products from "@/components/Products";
@@ -37,6 +38,10 @@ const Index = () => {
 
   return (
     <>
+      <SEO
+        url="/"
+        keywords="African skincare, natural skincare, Ghana skincare, acne treatment, dark spot removal, shea butter, cocoa butter, organic skincare, Nuni Global"
+      />
       <LoadingScreen isLoading={isLoading} />
       
       <div className={isLoading ? "opacity-0" : "opacity-100 transition-opacity duration-500"}>

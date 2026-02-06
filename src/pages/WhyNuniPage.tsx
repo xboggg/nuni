@@ -5,6 +5,7 @@ import { ShieldCheck, Leaf, TrendingUp, Users, ArrowLeft, Award, Heart, Sparkles
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import { useLanguage } from "@/lib/i18n";
 
 // CEO and Family Images
@@ -219,6 +220,12 @@ const WhyNuniPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="About Us - Why Choose Nuni Global"
+        description="Learn about Nuni Global's story, our commitment to natural skincare, and why we're Ghana's trusted skincare brand. FDA Certified, 100% natural ingredients."
+        keywords="about Nuni Global, Ghana skincare brand, natural skincare company, FDA certified skincare, African beauty brand"
+        url="/about-us"
+      />
       <Navigation />
 
       {/* Lightbox Modal */}

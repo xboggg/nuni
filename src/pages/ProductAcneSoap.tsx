@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight, Star, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { getWhatsAppLink, getProductOrderMessage, productPrices } from "@/data/products";
 import acneSoap1 from "@/assets/acne-soap-1.png";
@@ -81,8 +82,40 @@ const ProductAcneSoap = () => {
     window.open(getWhatsAppLink(message), "_blank");
   };
 
+  const productStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    description: product.description,
+    brand: { "@type": "Brand", name: "Nuni Global" },
+    category: "Skincare",
+    offers: {
+      "@type": "AggregateOffer",
+      priceCurrency: "GHS",
+      lowPrice: 100,
+      highPrice: 170,
+      offerCount: 2,
+      availability: "https://schema.org/InStock",
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: product.rating,
+      reviewCount: product.reviewCount,
+      bestRating: 5,
+      worstRating: 1,
+    },
+  };
+
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Acne Dark Soap - Natural Acne Treatment"
+        description="Powerful charcoal-based soap with shea butter, coconut oil, and salicylic acid. Fights acne, fades dark spots, and clears razor bumps. FDA Approved. Made in Ghana."
+        keywords="acne soap, dark spot soap, natural acne treatment, charcoal soap, shea butter soap, Ghana skincare"
+        url="/products/acne-dark-soap"
+        type="product"
+        structuredData={productStructuredData}
+      />
       <Navigation />
 
       <main className="pt-24 pb-20">

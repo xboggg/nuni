@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight, Star, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { getWhatsAppLink, getProductOrderMessage, productPrices } from "@/data/products";
 import acneCream1 from "@/assets/acne-cream-1.png";
@@ -95,8 +96,40 @@ const ProductAcneCream = () => {
     window.open(getWhatsAppLink(message), "_blank");
   };
 
+  const productStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    description: product.description,
+    brand: { "@type": "Brand", name: "Nuni Global" },
+    category: "Skincare",
+    offers: {
+      "@type": "AggregateOffer",
+      priceCurrency: "GHS",
+      lowPrice: 80,
+      highPrice: 270,
+      offerCount: 3,
+      availability: "https://schema.org/InStock",
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: product.rating,
+      reviewCount: product.reviewCount,
+      bestRating: 5,
+      worstRating: 1,
+    },
+  };
+
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Acne Facial & Skin Cream - Dark Spot Treatment"
+        description="Targeted acne treatment with salicylic acid and niacinamide. Reduces breakouts, fades hyperpigmentation, and promotes smoother skin. FDA Approved. Made in Ghana."
+        keywords="acne cream, facial cream, dark spot treatment, hyperpigmentation cream, salicylic acid cream, Ghana skincare"
+        url="/products/acne-facial-cream"
+        type="product"
+        structuredData={productStructuredData}
+      />
       <Navigation />
 
       <main className="pt-24 pb-20">
