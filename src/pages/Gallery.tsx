@@ -103,6 +103,7 @@ import allproducts1 from "@/assets/gallery/nuni-allproducts1.jpeg";
 import allproducts2 from "@/assets/gallery/nuni-allproducts2.png";
 import allproducts3 from "@/assets/gallery/nuni-allproducts3.jpeg";
 import allproducts4 from "@/assets/gallery/nuni-allproducts4.jpeg";
+import allproducts5 from "@/assets/gallery/nuni-allproducts5.png";
 
 import kid1 from "@/assets/gallery/nuni-kid1.jpeg";
 import kid2 from "@/assets/gallery/nuni-kid2.jpeg";
@@ -239,11 +240,12 @@ const galleryImages: GalleryImage[] = [
   { id: "cream26", src: cream26, alt: "Nuni Global Acne Facial Cream", category: "cream" },
   { id: "cream27", src: cream27, alt: "Nuni Global Acne Facial Cream", category: "cream" },
 
-  // All Products (4 images)
+  // All Products (5 images)
   { id: "allprod1", src: allproducts1, alt: "Nuni Global Products", category: "products" },
   { id: "allprod2", src: allproducts2, alt: "Nuni Global Products", category: "products" },
   { id: "allprod3", src: allproducts3, alt: "Nuni Global Products", category: "products" },
   { id: "allprod4", src: allproducts4, alt: "Nuni Global Products", category: "products" },
+  { id: "allprod5", src: allproducts5, alt: "Nuni Global Products", category: "products" },
 
   // Kids (5 images)
   { id: "kid1", src: kid1, alt: "Nuni Global Kids", category: "kids" },
