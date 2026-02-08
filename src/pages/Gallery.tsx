@@ -62,7 +62,7 @@ import soap21 from "@/assets/gallery/nuni-darksoap21.jpeg";
 import soap22 from "@/assets/gallery/nuni-darksoap22.jpeg";
 import soap23 from "@/assets/gallery/nuni-darksoap23.jpeg";
 import soap24 from "@/assets/gallery/nuni-darksoap24.jpeg";
-import soap25 from "@/assets/gallery/nuni-darksoap25.jpeg";
+import soap25 from "@/assets/gallery/nuni-darksoap25.png";
 
 // Cream (PNG)
 import cream1 from "@/assets/gallery/nuni-facialacne1.png";
