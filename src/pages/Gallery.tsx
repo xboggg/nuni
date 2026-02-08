@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight, ZoomIn, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -266,6 +266,10 @@ const Gallery = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const { t } = useLanguage();
 
+  // Touch swipe support
+  const touchStartX = useRef<number>(0);
+  const touchEndX = useRef<number>(0);
+
   const categories = [
     { id: "all", label: t.galleryPage.all },
     { id: "partners", label: t.galleryPage.partners },
@@ -330,6 +334,28 @@ const Gallery = () => {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [lightboxOpen, nextImage, prevImage]);
+
+  // Touch swipe handlers
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const swipeDistance = touchStartX.current - touchEndX.current;
+    const minSwipeDistance = 50;
+
+    if (Math.abs(swipeDistance) > minSwipeDistance) {
+      if (swipeDistance > 0) {
+        nextImage();
+      } else {
+        prevImage();
+      }
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -561,6 +587,9 @@ const Gallery = () => {
                 e.stopPropagation();
                 setIsZoomed(!isZoomed);
               }}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
             >
               <img
                 src={filteredImages[currentImageIndex]?.src}

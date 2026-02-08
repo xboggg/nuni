@@ -18,6 +18,10 @@ const TestimonialsPage = () => {
   const [activeFilter, setActiveFilter] = useState<"all" | "images" | "videos">("all");
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  // Touch swipe support
+  const touchStartX = useRef<number>(0);
+  const touchEndX = useRef<number>(0);
+
   // Pagination states
   const [reviewsPage, setReviewsPage] = useState(1);
   const [imagesPage, setImagesPage] = useState(1);
@@ -69,6 +73,28 @@ const TestimonialsPage = () => {
   const goToNext = () => {
     if (videoRef.current) videoRef.current.pause();
     setCurrentIndex((prev) => (prev === filteredTestimonials.length - 1 ? 0 : prev + 1));
+  };
+
+  // Touch swipe handlers
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const swipeDistance = touchStartX.current - touchEndX.current;
+    const minSwipeDistance = 50;
+
+    if (Math.abs(swipeDistance) > minSwipeDistance) {
+      if (swipeDistance > 0) {
+        goToNext();
+      } else {
+        goToPrevious();
+      }
+    }
   };
 
   const currentItem = filteredTestimonials[currentIndex];
@@ -432,6 +458,9 @@ const TestimonialsPage = () => {
               transition={{ duration: 0.2 }}
               className="max-w-4xl max-h-[85vh] w-full"
               onClick={(e) => e.stopPropagation()}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
             >
               {currentItem.type === "video" ? (
                 <video
