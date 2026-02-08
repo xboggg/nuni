@@ -6,7 +6,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
-import { getWhatsAppLink, getWhatsAppLinkEurope, getProductOrderMessage, getProductOrderMessageEurope, productPrices } from "@/data/products";
+import { getWhatsAppLink, getWhatsAppLinkEurope, getProductOrderMessage, productPrices } from "@/data/products";
 import acneCream1 from "@/assets/acne-cream-1.png";
 import acneCream2 from "@/assets/acne-cream-2.png";
 import acneCream3 from "@/assets/acne-cream-3.png";
@@ -97,7 +97,7 @@ const ProductAcneCream = () => {
   };
 
   const handleOrderEurope = () => {
-    const message = getProductOrderMessageEurope(product.name, selectedSize);
+    const message = `Hello! I'm contacting from Europe and would like to order:\n\nProduct: ${product.name}\nSize: ${selectedSize}\n\nPlease let me know the price and delivery options to my location.`;
     window.open(getWhatsAppLinkEurope(message), "_blank");
   };
 

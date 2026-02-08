@@ -1,0 +1,9 @@
+# Root .htaccess - Place this in public_html/ (NOT in the nuni folder)
+# This redirects ngcosmetics.com.gh to serve from /nuni/ folder
+
+RewriteEngine On
+
+# Redirect ngcosmetics.com.gh to /nuni/ folder
+RewriteCond %{HTTP_HOST} ^(www\.)?ngcosmetics\.com\.gh$ [NC]
+RewriteCond %{REQUEST_URI} !^/nuni/
+RewriteRule ^(.*)$ /nuni/$1 [L]

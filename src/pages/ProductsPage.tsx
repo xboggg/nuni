@@ -112,8 +112,8 @@ const ProductsPage = () => {
     window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
   };
 
-  const handleEuropeOrder = (productName: string, size: string) => {
-    const message = `Hello! I'm contacting from Europe and would like to order:\n\nProduct: ${productName}\nSize: ${size}\n\nPlease let me know the price and delivery options to my location.`;
+  const handleEuropeOrder = (productName: string) => {
+    const message = `Hello! I'm contacting from Europe and interested in:\n\nProduct: ${productName}\n\nPlease let me know the available sizes, pricing, and delivery options to my location.`;
     window.open(getWhatsAppLinkEurope(message), "_blank");
   };
 
@@ -310,7 +310,7 @@ const ProductsPage = () => {
                         Ordering from Europe? Contact our European distributor:
                       </p>
                       <button
-                        onClick={() => handleEuropeOrder(product.name, product.prices[0].size)}
+                        onClick={() => handleEuropeOrder(product.name)}
                         className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-full hover:bg-blue-700 transition-colors"
                       >
                         <MessageCircle size={16} />

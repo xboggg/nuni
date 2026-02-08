@@ -110,11 +110,8 @@ export const getProductOrderMessage = (productName: string, size?: string, price
   return `Hello! I'm interested in ${productName}. Please let me know the available sizes and delivery options.`;
 };
 
-export const getProductOrderMessageEurope = (productName: string, size?: string) => {
-  if (size) {
-    return `Hello! I'm contacting from Europe and would like to order:\n\nProduct: ${productName}\nSize: ${size}\n\nPlease let me know the price and delivery options to my location.`;
-  }
-  return `Hello! I'm contacting from Europe and interested in ${productName}. Please let me know the available sizes, pricing, and delivery options.`;
+export const getProductOrderMessageEurope = (productName: string) => {
+  return `Hello! I'm contacting from Europe and interested in:\n\nProduct: ${productName}\n\nPlease let me know the available sizes, pricing, and delivery options to my location.`;
 };
 
 // Price lookup for individual product pages
