@@ -9,7 +9,7 @@ import { getWhatsAppLink, getWhatsAppLinkEurope, WHATSAPP_NUMBER_EUROPE } from "
 import { useLanguage } from "@/lib/i18n";
 
 // Import product images - retail
-import soapImage from "@/assets/nuni-darksoap25.png";
+import soapImage from "@/assets/nuni-darksoap25-new.png";
 import creamImage from "@/assets/nuni-facialacne28.jpeg";
 import butterImage from "@/assets/nuni-cocoabutter-product.jpeg";
 
