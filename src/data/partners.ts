@@ -31,6 +31,7 @@ export const regions: Region[] = [
   { id: "eastern", name: "Eastern Region" },
   { id: "northern", name: "Northern Region" },
   { id: "volta", name: "Volta Region" },
+  { id: "uk", name: "United Kingdom" },
 ];
 
 // Ambassador images
@@ -145,6 +146,9 @@ export const partners: Partner[] = [
   // New Ambassadors
   { id: "p74", name: "Truth Ofori", phone: ["0554753634"], locations: ["Ghana"], region: "greater-accra", roles: ["ambassador"], image: ambassador13 },
   { id: "p75", name: "Byzkit", phone: ["0554753634"], locations: ["Ghana"], region: "greater-accra", roles: ["ambassador"], image: ambassador14 },
+
+  // United Kingdom
+  { id: "p76", name: "Bridget", phone: ["+447861387824"], locations: ["East London"], region: "uk", roles: ["vendor"] },
 ];
 
 export const WHATSAPP_NUMBER = "233554753634";
