@@ -109,6 +109,7 @@ export const partners: Partner[] = [
   { id: "p49", name: "Ellen", phone: ["0551561808"], locations: ["Kenyase"], region: "ashanti" },
   { id: "p50", name: "Sandra", phone: ["0554829533"], locations: ["Obuasi"], region: "ashanti" },
   { id: "p73", name: "Napoleon", phone: ["0596513170"], locations: ["Tech"], region: "ashanti" },
+  { id: "p77", name: "Freda", phone: ["0248994812"], locations: ["Atwima Koforidua"], region: "ashanti" },
 
   // Bono East Region
   { id: "p51", name: "Mary", phone: ["0546400948"], locations: ["Techiman"], region: "bono-east" },
