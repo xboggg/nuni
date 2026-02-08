@@ -358,7 +358,7 @@ const Gallery = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background" style={{ touchAction: 'pan-y' }}>
       <SEO
         title="Gallery - Product Photos & Ambassadors"
         description="Browse our gallery of Nuni Global skincare products, brand ambassadors, and happy customers. See real results from our natural African skincare line."
@@ -446,6 +446,8 @@ const Gallery = () => {
                     <img
                       src={image.src}
                       alt={image.alt}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 bg-muted"
                     />
                     {/* Overlay */}
@@ -624,6 +626,8 @@ const Gallery = () => {
                   <img
                     src={image.src}
                     alt={image.alt}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover bg-muted"
                   />
                 </button>

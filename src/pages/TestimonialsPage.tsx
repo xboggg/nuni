@@ -163,7 +163,7 @@ const TestimonialsPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background" style={{ touchAction: 'pan-y' }}>
       <SEO
         title="Testimonials - Real Results from Real Customers"
         description="See real testimonials and before/after results from Nuni Global customers. Discover how our natural skincare products have transformed skin across Ghana."
@@ -359,6 +359,8 @@ const TestimonialsPage = () => {
                   <img
                     src={item.type === "video" && item.thumbnail ? item.thumbnail : item.src}
                     alt={`Customer testimonial ${index + 1}`}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
