@@ -46,7 +46,6 @@ import soap5 from "@/assets/gallery/nuni-darksoap5.jpeg";
 import soap6 from "@/assets/gallery/nuni-darksoap6.jpeg";
 import soap7 from "@/assets/gallery/nuni-darksoap7.png";
 import soap8 from "@/assets/gallery/nuni-darksoap8.png";
-import soap9 from "@/assets/gallery/nuni-darksoap9.png";
 import soap10 from "@/assets/gallery/nuni-darksoap10.png";
 import soap11 from "@/assets/gallery/nuni-darksoap11.jpeg";
 import soap12 from "@/assets/gallery/nuni-darksoap12.png";
@@ -197,7 +196,7 @@ const galleryImages: GalleryImage[] = [
   { id: "cb23", src: cocoaButter23, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
   { id: "cb24", src: cocoaButter24, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
 
-  // Acne Dark Soap (25 images)
+  // Acne Dark Soap (24 images)
   { id: "soap25", src: soap25, alt: "Nuni Global Acne Dark Soap", category: "soap" },
   { id: "soap1", src: soap1, alt: "Nuni Global Acne Dark Soap", category: "soap" },
   { id: "soap2", src: soap2, alt: "Nuni Global Acne Dark Soap", category: "soap" },
@@ -207,7 +206,6 @@ const galleryImages: GalleryImage[] = [
   { id: "soap6", src: soap6, alt: "Nuni Global Acne Dark Soap", category: "soap" },
   { id: "soap7", src: soap7, alt: "Nuni Global Acne Dark Soap", category: "soap" },
   { id: "soap8", src: soap8, alt: "Nuni Global Acne Dark Soap", category: "soap" },
-  { id: "soap9", src: soap9, alt: "Nuni Global Acne Dark Soap", category: "soap" },
   { id: "soap10", src: soap10, alt: "Nuni Global Acne Dark Soap", category: "soap" },
   { id: "soap11", src: soap11, alt: "Nuni Global Acne Dark Soap", category: "soap" },
   { id: "soap12", src: soap12, alt: "Nuni Global Acne Dark Soap", category: "soap" },
