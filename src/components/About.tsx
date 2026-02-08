@@ -1,14 +1,66 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
-import { Shield, Leaf, Heart, Sparkles, Package, ArrowRight } from "lucide-react";
+import { useRef, useState, useCallback, useEffect } from "react";
+import { Shield, Leaf, Heart, Sparkles, Package, ArrowRight, Award, X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/lib/i18n";
+
+// FDA Certificate images
+import cert1 from "@/assets/certificates/nuni-cert1.jpeg";
+import cert2 from "@/assets/certificates/nuni-cert2.jpeg";
+import cert3 from "@/assets/certificates/nuni-cert3.jpeg";
+import cert4 from "@/assets/certificates/nuni-cert4.jpeg";
+import cert5 from "@/assets/certificates/nuni-cert5.jpeg";
+import cert8 from "@/assets/certificates/nuni-cert8.jpeg";
+
+const fdaCertificates = [
+  { id: 1, src: cert1, alt: "FDA Certificate 1" },
+  { id: 2, src: cert2, alt: "FDA Certificate 2" },
+  { id: 3, src: cert3, alt: "FDA Certificate 3" },
+  { id: 4, src: cert4, alt: "FDA Certificate 4" },
+  { id: 5, src: cert5, alt: "FDA Certificate 5" },
+  { id: 6, src: cert8, alt: "FDA Certificate 6" },
+];
 
 const About = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { t } = useLanguage();
+
+  // Lightbox state for FDA certificates
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [currentCertIndex, setCurrentCertIndex] = useState(0);
+
+  const openLightbox = (index: number) => {
+    setCurrentCertIndex(index);
+    setLightboxOpen(true);
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeLightbox = () => {
+    setLightboxOpen(false);
+    document.body.style.overflow = "unset";
+  };
+
+  const nextCert = useCallback(() => {
+    setCurrentCertIndex((prev) => (prev + 1) % fdaCertificates.length);
+  }, []);
+
+  const prevCert = useCallback(() => {
+    setCurrentCertIndex((prev) => (prev - 1 + fdaCertificates.length) % fdaCertificates.length);
+  }, []);
+
+  // Keyboard navigation for lightbox
+  useEffect(() => {
+    if (!lightboxOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") prevCert();
+      if (e.key === "ArrowRight") nextCert();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [lightboxOpen, nextCert, prevCert]);
 
   const features = [
     {
@@ -88,11 +140,53 @@ const About = () => {
           ))}
         </div>
 
-        {/* Export Section */}
+        {/* FDA Certificates Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.7 }}
+          className="mb-16"
+        >
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-2xl mb-4">
+              <Award size={32} className="text-primary" />
+            </div>
+            <h3 className="text-2xl md:text-3xl font-serif font-bold text-foreground mb-3">
+              FDA Certified Products
+            </h3>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              All Nuni Global products are registered and approved by the Ghana Food and Drugs Authority (FDA), ensuring the highest standards of safety and quality.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {fdaCertificates.map((cert, index) => (
+              <motion.button
+                key={cert.id}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.3, delay: 0.8 + index * 0.05 }}
+                onClick={() => openLightbox(index)}
+                className="group relative aspect-[3/4] rounded-xl overflow-hidden shadow-card hover:shadow-elevated transition-all duration-300 border-2 border-border hover:border-primary"
+              >
+                <img
+                  src={cert.src}
+                  alt={cert.alt}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
+                  <ZoomIn className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" size={24} />
+                </div>
+              </motion.button>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Export Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.9 }}
           className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-3xl p-8 md:p-12 border border-primary/10"
         >
           <div className="flex flex-col md:flex-row items-center gap-8">
@@ -117,6 +211,64 @@ const About = () => {
           </div>
         </motion.div>
       </div>
+
+      {/* FDA Certificate Lightbox */}
+      <AnimatePresence>
+        {lightboxOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center"
+            onClick={closeLightbox}
+          >
+            {/* Close Button */}
+            <button
+              onClick={closeLightbox}
+              className="absolute top-4 right-4 z-50 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
+            >
+              <X className="text-white" size={24} />
+            </button>
+
+            {/* Navigation Buttons */}
+            <button
+              onClick={(e) => { e.stopPropagation(); prevCert(); }}
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-50 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
+            >
+              <ChevronLeft className="text-white" size={28} />
+            </button>
+
+            <button
+              onClick={(e) => { e.stopPropagation(); nextCert(); }}
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-50 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
+            >
+              <ChevronRight className="text-white" size={28} />
+            </button>
+
+            {/* Certificate Image */}
+            <motion.div
+              key={currentCertIndex}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.2 }}
+              className="max-w-4xl max-h-[85vh] px-4"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={fdaCertificates[currentCertIndex].src}
+                alt={fdaCertificates[currentCertIndex].alt}
+                className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
+              />
+            </motion.div>
+
+            {/* Certificate Counter */}
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/70 text-sm">
+              {currentCertIndex + 1} / {fdaCertificates.length}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
