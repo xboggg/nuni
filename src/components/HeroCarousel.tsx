@@ -16,8 +16,9 @@ import hero8 from "@/assets/hero-8.png";
 import hero9 from "@/assets/hero-9.png";
 import hero10 from "@/assets/hero-10.jpeg";
 import hero11 from "@/assets/hero-11.jpg";
+import hero12 from "@/assets/hero-12.jpg";
 
-const heroImages = [hero11, hero1, hero2, hero3, hero4, hero6, hero7, hero8, hero9, hero10];
+const heroImages = [hero11, hero12, hero1, hero2, hero3, hero4, hero6, hero7, hero8, hero9, hero10];
 
 const HeroCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
