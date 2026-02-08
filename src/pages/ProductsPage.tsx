@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
-import { getWhatsAppLink } from "@/data/products";
+import { getWhatsAppLink, getWhatsAppLinkEurope, WHATSAPP_NUMBER_EUROPE } from "@/data/products";
 import { useLanguage } from "@/lib/i18n";
 
 // Import product images - retail
@@ -110,6 +110,11 @@ const ProductsPage = () => {
   const handleWholesaleOrder = (productName: string, phoneNumber: string) => {
     const message = `[ WHOLESALE INQUIRY ]\n\nHello! I'm interested in wholesale ordering:\n\nProduct: ${productName}\n\nPlease provide wholesale pricing, minimum order quantities, and availability.`;
     window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
+  };
+
+  const handleEuropeOrder = (productName: string, size: string) => {
+    const message = `Hello! I'm contacting from Europe and would like to order:\n\nProduct: ${productName}\nSize: ${size}\n\nPlease let me know the price and delivery options to my location.`;
+    window.open(getWhatsAppLinkEurope(message), "_blank");
   };
 
   return (
@@ -295,6 +300,22 @@ const ProductsPage = () => {
                           0540501872
                         </button>
                       </div>
+                    </div>
+                  )}
+
+                  {/* Europe Order Option */}
+                  {!showWholesale && (
+                    <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-200 dark:border-blue-800">
+                      <p className="text-sm text-blue-800 dark:text-blue-200 font-medium mb-3">
+                        Ordering from Europe? Contact our European distributor:
+                      </p>
+                      <button
+                        onClick={() => handleEuropeOrder(product.name, product.prices[0].size)}
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-full hover:bg-blue-700 transition-colors"
+                      >
+                        <MessageCircle size={16} />
+                        Buy from Europe
+                      </button>
                     </div>
                   )}
 

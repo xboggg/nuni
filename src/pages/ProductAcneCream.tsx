@@ -6,7 +6,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
-import { getWhatsAppLink, getProductOrderMessage, productPrices } from "@/data/products";
+import { getWhatsAppLink, getWhatsAppLinkEurope, getProductOrderMessage, getProductOrderMessageEurope, productPrices } from "@/data/products";
 import acneCream1 from "@/assets/acne-cream-1.png";
 import acneCream2 from "@/assets/acne-cream-2.png";
 import acneCream3 from "@/assets/acne-cream-3.png";
@@ -94,6 +94,11 @@ const ProductAcneCream = () => {
     const price = productPrices["acne-facial-cream"]?.[selectedSize];
     const message = getProductOrderMessage(product.name, selectedSize, price);
     window.open(getWhatsAppLink(message), "_blank");
+  };
+
+  const handleOrderEurope = () => {
+    const message = getProductOrderMessageEurope(product.name, selectedSize);
+    window.open(getWhatsAppLinkEurope(message), "_blank");
   };
 
   const productStructuredData = {
@@ -277,13 +282,22 @@ const ProductAcneCream = () => {
                 </div>
               </div>
 
-              {/* Order Button */}
-              <Button
-                onClick={handleOrder}
-                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-lg py-6 rounded-xl shadow-green hover:shadow-elevated transition-all"
-              >
-                Order on WhatsApp
-              </Button>
+              {/* Order Buttons */}
+              <div className="space-y-3">
+                <Button
+                  onClick={handleOrder}
+                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-lg py-6 rounded-xl shadow-green hover:shadow-elevated transition-all"
+                >
+                  Order on WhatsApp (Ghana)
+                </Button>
+                <Button
+                  onClick={handleOrderEurope}
+                  variant="outline"
+                  className="w-full border-2 border-primary text-primary hover:bg-primary/10 text-lg py-6 rounded-xl transition-all"
+                >
+                  Buy from Europe
+                </Button>
+              </div>
 
               {/* View Pricing Link */}
               <Link
