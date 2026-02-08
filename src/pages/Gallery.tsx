@@ -98,17 +98,6 @@ import ambassador50 from "@/assets/gallery/nuni-ambassador50.jpeg";
 import ambassador52 from "@/assets/gallery/nuni-ambassador52.jpeg";
 import ambassador53 from "@/assets/gallery/nuni-ambassador53.jpeg";
 
-import products5 from "@/assets/gallery/nuni-products5.png";
-import products10 from "@/assets/gallery/nuni-products10.jpeg";
-import products11 from "@/assets/gallery/nuni-products11.png";
-import products12 from "@/assets/gallery/nuni-products12.jpeg";
-import products13 from "@/assets/gallery/nuni-products13.png";
-import products14 from "@/assets/gallery/nuni-products14.jpeg";
-import products15 from "@/assets/gallery/nuni-products15.png";
-import products16 from "@/assets/gallery/nuni-products16.jpeg";
-import products17 from "@/assets/gallery/nuni-products17.png";
-import products18 from "@/assets/gallery/nuni-products18.png";
-
 import kid1 from "@/assets/gallery/nuni-kid1.jpeg";
 import kid2 from "@/assets/gallery/nuni-kid2.jpeg";
 import kid3 from "@/assets/gallery/nuni-kid3.jpeg";
@@ -243,18 +232,6 @@ const galleryImages: GalleryImage[] = [
   { id: "cream25", src: cream25, alt: "Nuni Global Acne Facial Cream", category: "cream" },
   { id: "cream26", src: cream26, alt: "Nuni Global Acne Facial Cream", category: "cream" },
   { id: "cream27", src: cream27, alt: "Nuni Global Acne Facial Cream", category: "cream" },
-
-  // All Products (10 images - removed 1,2,3,4,6,7,8,9)
-  { id: "prod5", src: products5, alt: "Nuni Global Products", category: "products" },
-  { id: "prod10", src: products10, alt: "Nuni Global Products", category: "products" },
-  { id: "prod11", src: products11, alt: "Nuni Global Products", category: "products" },
-  { id: "prod12", src: products12, alt: "Nuni Global Products", category: "products" },
-  { id: "prod13", src: products13, alt: "Nuni Global Products", category: "products" },
-  { id: "prod14", src: products14, alt: "Nuni Global Products", category: "products" },
-  { id: "prod15", src: products15, alt: "Nuni Global Products", category: "products" },
-  { id: "prod16", src: products16, alt: "Nuni Global Products", category: "products" },
-  { id: "prod17", src: products17, alt: "Nuni Global Products", category: "products" },
-  { id: "prod18", src: products18, alt: "Nuni Global Products", category: "products" },
 
   // Kids (5 images)
   { id: "kid1", src: kid1, alt: "Nuni Global Kids", category: "kids" },
