@@ -11,7 +11,7 @@ import { WHATSAPP_NUMBER } from "@/data/products";
 
 // Import placeholder images - using existing assets
 import sheaButterImg from "@/assets/raw-shea-butter.png";
-import cocoaPowderImg from "@/assets/cocoa-butter-2.png";
+import cocoaPowderImg from "@/assets/cocoa-powder.png";
 import blackSoapImg from "@/assets/acne-soap-1.png";
 
 const ExportPage = () => {
