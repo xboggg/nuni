@@ -98,25 +98,6 @@ import ambassador50 from "@/assets/gallery/nuni-ambassador50.jpeg";
 import ambassador52 from "@/assets/gallery/nuni-ambassador52.jpeg";
 import ambassador53 from "@/assets/gallery/nuni-ambassador53.jpeg";
 
-import products1 from "@/assets/gallery/nuni-products1.jpeg";
-import products2 from "@/assets/gallery/nuni-products2.png";
-import products3 from "@/assets/gallery/nuni-products3.png";
-import products4 from "@/assets/gallery/nuni-products4.jpeg";
-import products5 from "@/assets/gallery/nuni-products5.png";
-import products6 from "@/assets/gallery/nuni-products6.jpeg";
-import products7 from "@/assets/gallery/nuni-products7.png";
-import products8 from "@/assets/gallery/nuni-products8.jpeg";
-import products9 from "@/assets/gallery/nuni-products9.png";
-import products10 from "@/assets/gallery/nuni-products10.jpeg";
-import products11 from "@/assets/gallery/nuni-products11.png";
-import products12 from "@/assets/gallery/nuni-products12.jpeg";
-import products13 from "@/assets/gallery/nuni-products13.png";
-import products14 from "@/assets/gallery/nuni-products14.jpeg";
-import products15 from "@/assets/gallery/nuni-products15.png";
-import products16 from "@/assets/gallery/nuni-products16.jpeg";
-import products17 from "@/assets/gallery/nuni-products17.png";
-import products18 from "@/assets/gallery/nuni-products18.png";
-
 import kid1 from "@/assets/gallery/nuni-kid1.jpeg";
 import kid2 from "@/assets/gallery/nuni-kid2.jpeg";
 import kid3 from "@/assets/gallery/nuni-kid3.jpeg";
@@ -145,7 +126,7 @@ interface GalleryImage {
   id: number | string;
   src: string;
   alt: string;
-  category: "events" | "partnership" | "soap" | "cream" | "cocoa-butter" | "products" | "partners" | "vendors" | "kids";
+  category: "events" | "partnership" | "soap" | "cream" | "cocoa-butter" | "partners" | "vendors" | "kids";
 }
 
 const galleryImages: GalleryImage[] = [
@@ -252,26 +233,6 @@ const galleryImages: GalleryImage[] = [
   { id: "cream26", src: cream26, alt: "Nuni Global Acne Facial Cream", category: "cream" },
   { id: "cream27", src: cream27, alt: "Nuni Global Acne Facial Cream", category: "cream" },
 
-  // All Products (18 images)
-  { id: "prod1", src: products1, alt: "Nuni Global Products", category: "products" },
-  { id: "prod2", src: products2, alt: "Nuni Global Products", category: "products" },
-  { id: "prod3", src: products3, alt: "Nuni Global Products", category: "products" },
-  { id: "prod4", src: products4, alt: "Nuni Global Products", category: "products" },
-  { id: "prod5", src: products5, alt: "Nuni Global Products", category: "products" },
-  { id: "prod6", src: products6, alt: "Nuni Global Products", category: "products" },
-  { id: "prod7", src: products7, alt: "Nuni Global Products", category: "products" },
-  { id: "prod8", src: products8, alt: "Nuni Global Products", category: "products" },
-  { id: "prod9", src: products9, alt: "Nuni Global Products", category: "products" },
-  { id: "prod10", src: products10, alt: "Nuni Global Products", category: "products" },
-  { id: "prod11", src: products11, alt: "Nuni Global Products", category: "products" },
-  { id: "prod12", src: products12, alt: "Nuni Global Products", category: "products" },
-  { id: "prod13", src: products13, alt: "Nuni Global Products", category: "products" },
-  { id: "prod14", src: products14, alt: "Nuni Global Products", category: "products" },
-  { id: "prod15", src: products15, alt: "Nuni Global Products", category: "products" },
-  { id: "prod16", src: products16, alt: "Nuni Global Products", category: "products" },
-  { id: "prod17", src: products17, alt: "Nuni Global Products", category: "products" },
-  { id: "prod18", src: products18, alt: "Nuni Global Products", category: "products" },
-
   // Kids (5 images)
   { id: "kid1", src: kid1, alt: "Nuni Global Kids", category: "kids" },
   { id: "kid2", src: kid2, alt: "Nuni Global Kids", category: "kids" },
@@ -297,7 +258,6 @@ const Gallery = () => {
     { id: "soap", label: t.galleryPage.soap },
     { id: "cream", label: t.galleryPage.cream },
     { id: "cocoa-butter", label: t.galleryPage.cocoaButter },
-    { id: "products", label: t.galleryPage.products },
     { id: "kids", label: t.galleryPage.kids },
   ];
 
