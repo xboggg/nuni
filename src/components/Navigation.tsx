@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback, useRef } from "react";
-import { motion, AnimatePresence, PanInfo, useAnimation } from "framer-motion";
+import { useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronRight } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "@/assets/nuni-logo.png";
@@ -8,24 +8,9 @@ import ThemeToggle from "./ThemeToggle";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useLanguage } from "@/lib/i18n";
 
-// Haptic feedback utility
-const triggerHaptic = (style: 'light' | 'medium' | 'heavy' = 'light') => {
-  if ('vibrate' in navigator) {
-    const patterns = {
-      light: [10],
-      medium: [20],
-      heavy: [30],
-    };
-    navigator.vibrate(patterns[style]);
-  }
-};
-
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeItem, setActiveItem] = useState<string | null>(null);
-  const menuControls = useAnimation();
-  const menuRef = useRef<HTMLDivElement>(null);
   const { t } = useLanguage();
 
   const navLinks = [
@@ -48,15 +33,14 @@ const Navigation = () => {
   const location = useLocation();
 
   const handleNavClick = useCallback((href: string, isRoute?: boolean) => {
-    triggerHaptic('medium');
     setIsMobileMenuOpen(false);
     if (isRoute) return;
-    
+
     if (location.pathname !== "/") {
       window.location.href = "/" + href;
       return;
     }
-    
+
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -64,54 +48,8 @@ const Navigation = () => {
   }, [location.pathname]);
 
   const handleMenuToggle = () => {
-    triggerHaptic('light');
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
-
-  const handleItemPress = (name: string) => {
-    setActiveItem(name);
-    triggerHaptic('light');
-  };
-
-  const handleItemRelease = () => {
-    setActiveItem(null);
-  };
-
-  // Swipe gesture handlers
-  const handleDragEnd = useCallback(
-    (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-      const threshold = 100;
-      const velocity = info.velocity.x;
-      const offset = info.offset.x;
-
-      // Close if swiped right with enough velocity or distance
-      if (offset > threshold || velocity > 500) {
-        triggerHaptic('medium');
-        setIsMobileMenuOpen(false);
-      } else {
-        // Snap back if not enough
-        menuControls.start({ x: 0 });
-      }
-    },
-    [menuControls]
-  );
-
-  const handleDrag = useCallback(
-    (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-      // Only allow dragging to the right
-      if (info.offset.x > 0) {
-        menuControls.set({ x: info.offset.x });
-      }
-    },
-    [menuControls]
-  );
-
-  // Reset animation when menu opens
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      menuControls.start({ x: 0 });
-    }
-  }, [isMobileMenuOpen, menuControls]);
 
   return (
     <>
@@ -216,23 +154,14 @@ const Navigation = () => {
               onClick={() => setIsMobileMenuOpen(false)}
             />
             
-            {/* Menu Panel with Swipe Gesture */}
+            {/* Menu Panel */}
             <motion.div
-              ref={menuRef}
               initial={{ x: "100%" }}
-              animate={menuControls}
+              animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              drag="x"
-              dragDirectionLock
-              dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={{ left: 0, right: 0.5 }}
-              onDrag={handleDrag}
-              onDragEnd={handleDragEnd}
-              className="fixed inset-y-0 right-0 w-[85%] max-w-sm z-50 bg-card shadow-2xl md:hidden touch-pan-y"
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="fixed inset-y-0 right-0 w-[85%] max-w-sm z-50 bg-card shadow-2xl md:hidden"
             >
-              {/* Swipe Indicator */}
-              <div className="absolute left-2 top-1/2 -translate-y-1/2 w-1 h-16 bg-muted-foreground/20 rounded-full" />
               {/* Menu Header */}
               <div className="flex items-center justify-between p-5 border-b border-border">
                 <div className="flex items-center gap-2">
@@ -241,84 +170,37 @@ const Navigation = () => {
                     NUNI GLOBAL
                   </span>
                 </div>
-                <motion.button
-                  onClick={() => {
-                    triggerHaptic('light');
-                    setIsMobileMenuOpen(false);
-                  }}
-                  whileTap={{ scale: 0.9, rotate: 90 }}
+                <button
+                  onClick={() => setIsMobileMenuOpen(false)}
                   className="p-2 rounded-full hover:bg-muted transition-colors text-foreground"
                 >
                   <X size={24} />
-                </motion.button>
+                </button>
               </div>
 
               {/* Navigation Links */}
               <div className="flex flex-col p-4">
-                {navLinks.map((link, index) => (
-                  <motion.div
-                    key={link.name}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                  >
-                    {link.isRoute ? (
-                      <Link
-                        to={link.href}
-                        onClick={() => handleNavClick(link.href, true)}
-                        onTouchStart={() => handleItemPress(link.name)}
-                        onTouchEnd={handleItemRelease}
-                        onMouseDown={() => handleItemPress(link.name)}
-                        onMouseUp={handleItemRelease}
-                        onMouseLeave={handleItemRelease}
-                        className="relative overflow-hidden"
-                      >
-                        <motion.div
-                          animate={{
-                            scale: activeItem === link.name ? 0.98 : 1,
-                            backgroundColor: activeItem === link.name ? 'hsl(var(--muted))' : 'transparent',
-                          }}
-                          transition={{ duration: 0.1 }}
-                          className="flex items-center justify-between py-4 px-3 text-foreground font-medium text-lg border-b border-border/50 rounded-lg"
-                        >
-                          <span>{link.name}</span>
-                          <motion.div
-                            animate={{ x: activeItem === link.name ? 4 : 0 }}
-                            transition={{ duration: 0.1 }}
-                          >
-                            <ChevronRight size={18} className="text-muted-foreground" />
-                          </motion.div>
-                        </motion.div>
-                      </Link>
-                    ) : (
-                      <button
-                        onClick={() => handleNavClick(link.href)}
-                        onTouchStart={() => handleItemPress(link.name)}
-                        onTouchEnd={handleItemRelease}
-                        onMouseDown={() => handleItemPress(link.name)}
-                        onMouseUp={handleItemRelease}
-                        onMouseLeave={handleItemRelease}
-                        className="relative overflow-hidden w-full text-left"
-                      >
-                        <motion.div
-                          animate={{
-                            scale: activeItem === link.name ? 0.98 : 1,
-                            backgroundColor: activeItem === link.name ? 'hsl(var(--muted))' : 'transparent',
-                          }}
-                          transition={{ duration: 0.1 }}
-                          className="flex items-center justify-between py-4 px-3 text-foreground font-medium text-lg border-b border-border/50 rounded-lg"
-                        >
-                          <span>{link.name}</span>
-                          <motion.div
-                            animate={{ x: activeItem === link.name ? 4 : 0 }}
-                            transition={{ duration: 0.1 }}
-                          >
-                            <ChevronRight size={18} className="text-muted-foreground" />
-                          </motion.div>
-                        </motion.div>
-                      </button>
-                    )}
-                  </motion.div>
+                {navLinks.map((link) => (
+                  link.isRoute ? (
+                    <Link
+                      key={link.name}
+                      to={link.href}
+                      onClick={() => handleNavClick(link.href, true)}
+                      className="flex items-center justify-between py-4 px-3 text-foreground font-medium text-lg border-b border-border/50 rounded-lg hover:bg-muted active:bg-muted transition-colors"
+                    >
+                      <span>{link.name}</span>
+                      <ChevronRight size={18} className="text-muted-foreground" />
+                    </Link>
+                  ) : (
+                    <button
+                      key={link.name}
+                      onClick={() => handleNavClick(link.href)}
+                      className="flex items-center justify-between py-4 px-3 text-foreground font-medium text-lg border-b border-border/50 rounded-lg hover:bg-muted active:bg-muted transition-colors w-full text-left"
+                    >
+                      <span>{link.name}</span>
+                      <ChevronRight size={18} className="text-muted-foreground" />
+                    </button>
+                  )
                 ))}
               </div>
 
@@ -328,25 +210,15 @@ const Navigation = () => {
                   <LanguageSwitcher />
                   <ThemeToggle />
                 </div>
-                <motion.a
+                <a
                   href={getWhatsAppLink(GENERAL_INQUIRY_MESSAGE)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => {
-                    triggerHaptic('heavy');
-                    setIsMobileMenuOpen(false);
-                  }}
-                  whileTap={{ scale: 0.97 }}
-                  whileHover={{ scale: 1.02 }}
-                  className="flex items-center justify-center gap-2 w-full px-6 py-4 bg-primary text-primary-foreground rounded-xl font-semibold text-lg transition-all duration-200 shadow-lg hover:shadow-green"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="flex items-center justify-center gap-2 w-full px-6 py-4 bg-primary text-primary-foreground rounded-xl font-semibold text-lg transition-all duration-200 shadow-lg hover:shadow-green active:scale-[0.98]"
                 >
-                  <motion.span
-                    animate={{ x: [0, 2, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                  >
-                    {t.nav.orderNow}
-                  </motion.span>
-                </motion.a>
+                  {t.nav.orderNow}
+                </a>
               </div>
             </motion.div>
           </>
