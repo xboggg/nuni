@@ -10,7 +10,7 @@ import { useLanguage } from "@/lib/i18n";
 import { WHATSAPP_NUMBER } from "@/data/products";
 
 // Import placeholder images - using existing assets
-import sheaButterImg from "@/assets/cocoa-butter-1.jpeg";
+import sheaButterImg from "@/assets/raw-shea-butter.png";
 import cocoaPowderImg from "@/assets/cocoa-butter-2.png";
 import blackSoapImg from "@/assets/acne-soap-1.png";
 
