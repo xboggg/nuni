@@ -11,6 +11,7 @@ import video2 from "@/assets/videos/nuni-vid2.mp4";
 import video3 from "@/assets/videos/nuni-vid3.mp4";
 import video4 from "@/assets/videos/nuni-vid4.mp4";
 import video5 from "@/assets/videos/nuni-vid5.mp4";
+import video6 from "@/assets/videos/nuni-vid6.mp4";
 
 const videos = [
   { id: 1, src: video1 },
@@ -18,6 +19,7 @@ const videos = [
   { id: 3, src: video3 },
   { id: 4, src: video4 },
   { id: 5, src: video5 },
+  { id: 6, src: video6 },
 ];
 
 const VideoCarousel = () => {
