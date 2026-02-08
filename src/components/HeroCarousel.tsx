@@ -154,12 +154,12 @@ const HeroCarousel = () => {
               transition={{ delay: 0.5 }}
               className="flex flex-wrap gap-4 mb-12"
             >
-              <a
-                href="#products"
+              <Link
+                to="/products"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-full font-semibold text-lg transition-all duration-300 hover:shadow-green hover:scale-105 shadow-lg"
               >
                 {t.hero.exploreProducts}
-              </a>
+              </Link>
               <Link
                 to="/contact"
                 className="inline-flex items-center gap-2 px-8 py-4 border-2 border-white bg-white/10 backdrop-blur-sm text-white rounded-full font-semibold text-lg transition-all duration-300 hover:bg-white hover:text-primary shadow-lg"
