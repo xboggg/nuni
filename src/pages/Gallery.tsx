@@ -112,6 +112,12 @@ import kid3 from "@/assets/gallery/nuni-kid3.jpeg";
 import kid4 from "@/assets/gallery/nuni-kid4.jpeg";
 import kid5 from "@/assets/gallery/nuni-kid5.jpeg";
 import kid6 from "@/assets/gallery/nuni-kid.jpeg";
+import kids1 from "@/assets/gallery/nuni-kids1.jpg";
+import kids2 from "@/assets/gallery/nuni-kids2.jpg";
+import kids3 from "@/assets/gallery/nuni-kids3.jpg";
+import kids4 from "@/assets/gallery/nuni-kids4.jpg";
+import kids5 from "@/assets/gallery/nuni-kids5.jpg";
+import kids6 from "@/assets/gallery/nuni-kids6.jpg";
 
 // Ambassador images from partners page
 import ambassador1 from "@/assets/gallery/nuni-ambassador1.jpeg";
@@ -249,7 +255,13 @@ const galleryImages: GalleryImage[] = [
   { id: "allprod4", src: allproducts4, alt: "Nuni Global Products", category: "products" },
   { id: "allprod5", src: allproducts5, alt: "Nuni Global Products", category: "products" },
 
-  // Kids (5 images)
+  // Kids (12 images)
+  { id: "kids1", src: kids1, alt: "Nuni Global Kids", category: "kids" },
+  { id: "kids2", src: kids2, alt: "Nuni Global Kids", category: "kids" },
+  { id: "kids3", src: kids3, alt: "Nuni Global Kids", category: "kids" },
+  { id: "kids4", src: kids4, alt: "Nuni Global Kids", category: "kids" },
+  { id: "kids5", src: kids5, alt: "Nuni Global Kids", category: "kids" },
+  { id: "kids6", src: kids6, alt: "Nuni Global Kids", category: "kids" },
   { id: "kid1", src: kid1, alt: "Nuni Global Kids", category: "kids" },
   { id: "kid2", src: kid2, alt: "Nuni Global Kids", category: "kids" },
   { id: "kid3", src: kid3, alt: "Nuni Global Kids", category: "kids" },
