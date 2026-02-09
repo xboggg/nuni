@@ -238,7 +238,9 @@ const galleryImages: GalleryImage[] = [
   { id: "cb23", src: cocoaButter23, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
   { id: "cb24", src: cocoaButter24, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
 
-  // Acne Dark Soap (24 images)
+  // Acne Dark Soap (26 images)
+  { id: "soap26", src: soap26, alt: "Nuni Global Acne Dark Soap", category: "soap" },
+  { id: "soap27", src: soap27, alt: "Nuni Global Acne Dark Soap", category: "soap" },
   { id: "soap25", src: soap25, alt: "Nuni Global Acne Dark Soap", category: "soap" },
   { id: "soap1", src: soap1, alt: "Nuni Global Acne Dark Soap", category: "soap" },
   { id: "soap2", src: soap2, alt: "Nuni Global Acne Dark Soap", category: "soap" },
@@ -263,8 +265,6 @@ const galleryImages: GalleryImage[] = [
   { id: "soap22", src: soap22, alt: "Nuni Global Acne Dark Soap", category: "soap" },
   { id: "soap23", src: soap23, alt: "Nuni Global Acne Dark Soap", category: "soap" },
   { id: "soap24", src: soap24, alt: "Nuni Global Acne Dark Soap", category: "soap" },
-  { id: "soap26", src: soap26, alt: "Nuni Global Acne Dark Soap", category: "soap" },
-  { id: "soap27", src: soap27, alt: "Nuni Global Acne Dark Soap", category: "soap" },
 
   // Acne Facial Cream (34 images)
   { id: "cream33", src: cream33, alt: "Nuni Global Acne Facial Cream", category: "cream" },
