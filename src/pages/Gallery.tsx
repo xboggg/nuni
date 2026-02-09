@@ -112,6 +112,7 @@ import allproducts2 from "@/assets/gallery/nuni-allproducts2.png";
 import allproducts3 from "@/assets/gallery/nuni-allproducts3.jpeg";
 import allproducts4 from "@/assets/gallery/nuni-allproducts4.jpeg";
 import allproducts5 from "@/assets/gallery/nuni-allproducts5.png";
+import allproducts6 from "@/assets/gallery/nuni-allproducts6.jpg";
 
 import kid1 from "@/assets/gallery/nuni-kid1.jpeg";
 import kid2 from "@/assets/gallery/nuni-kid2.jpeg";
@@ -306,6 +307,7 @@ const galleryImages: GalleryImage[] = [
   { id: "allprod3", src: allproducts3, alt: "Nuni Global Products", category: "products" },
   { id: "allprod4", src: allproducts4, alt: "Nuni Global Products", category: "products" },
   { id: "allprod5", src: allproducts5, alt: "Nuni Global Products", category: "products" },
+  { id: "allprod6", src: allproducts6, alt: "Nuni Global Products", category: "products" },
 
   // Kids (12 images)
   { id: "kids1", src: kids1, alt: "Nuni Global Kids", category: "kids" },
