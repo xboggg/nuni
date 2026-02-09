@@ -33,8 +33,8 @@ import cocoaButter21 from "@/assets/gallery/nuni-cocoabutter21.png";
 import cocoaButter22 from "@/assets/gallery/nuni-cocoabutter22.png";
 import cocoaButter23 from "@/assets/gallery/nuni-cocoabutter23.png";
 import cocoaButter24 from "@/assets/gallery/nuni-cocoabutter24.png";
-import cocoaButter25 from "@/assets/gallery/nuni-cocoabutter25.jpeg";
-import cocoaButter26 from "@/assets/gallery/nuni-cocoabutter26.jpeg";
+import cocoaButter25 from "@/assets/gallery/nuni-cocoabutter25.jpg";
+import cocoaButter26 from "@/assets/gallery/nuni-cocoabutter26.jpg";
 import cocoaButter27 from "@/assets/gallery/nuni-cocoabutter27.jpg";
 
 // Soap (PNG)
