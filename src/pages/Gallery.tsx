@@ -35,6 +35,7 @@ import cocoaButter23 from "@/assets/gallery/nuni-cocoabutter23.png";
 import cocoaButter24 from "@/assets/gallery/nuni-cocoabutter24.png";
 import cocoaButter25 from "@/assets/gallery/nuni-cocoabutter25.jpeg";
 import cocoaButter26 from "@/assets/gallery/nuni-cocoabutter26.jpeg";
+import cocoaButter27 from "@/assets/gallery/nuni-cocoabutter27.jpg";
 
 // Soap (PNG)
 import soap1 from "@/assets/gallery/nuni-darksoap1.png";
@@ -206,7 +207,8 @@ const galleryImages: GalleryImage[] = [
   { id: "partners17", src: partners17, alt: "Nuni Global Partner", category: "partners" },
   { id: "partners18", src: partners18, alt: "Nuni Global Partner", category: "partners" },
 
-  // Cocoa Butter (25 images)
+  // Cocoa Butter (26 images)
+  { id: "cb27", src: cocoaButter27, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
   { id: "cb25", src: cocoaButter25, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
   { id: "cb26", src: cocoaButter26, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
   { id: "cb1", src: cocoaButter1, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
