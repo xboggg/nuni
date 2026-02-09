@@ -1,9 +1,10 @@
-name: Deploy to Namecheap
+name: Build and Deploy to Contabo Server
 
 on:
   push:
     branches:
       - main
+      - master
 
 jobs:
   build-and-deploy:
@@ -25,11 +26,13 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Deploy to FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: Deploy to server via SCP
+        uses: appleboy/scp-action@v0.1.7
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./dist/
-          server-dir: /ngcosmetics.com.gh/
+          host: 38.242.195.0
+          username: root
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 80
+          source: "dist/*"
+          target: "/var/www/ngcosmetics.com.gh"
+          strip_components: 1
