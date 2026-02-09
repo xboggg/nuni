@@ -136,6 +136,26 @@ import ceo8 from "@/assets/gallery/nuni-ceo8.jpeg";
 import ambassador13 from "@/assets/gallery/nuni-ambassador13.jpeg";
 import ambassador14 from "@/assets/gallery/nuni-ambassador14.jpeg";
 
+// Partners images
+import partners1 from "@/assets/gallery/nuni-partners1.jpg";
+import partners2 from "@/assets/gallery/nuni-partners2.jpg";
+import partners3 from "@/assets/gallery/nuni-partners3.jpg";
+import partners4 from "@/assets/gallery/nuni-partners4.jpg";
+import partners5 from "@/assets/gallery/nuni-partners5.jpg";
+import partners6 from "@/assets/gallery/nuni-partners6.jpg";
+import partners7 from "@/assets/gallery/nuni-partners7.jpg";
+import partners8 from "@/assets/gallery/nuni-partners8.jpg";
+import partners9 from "@/assets/gallery/nuni-partners9.jpg";
+import partners10 from "@/assets/gallery/nuni-partners10.jpg";
+import partners11 from "@/assets/gallery/nuni-partners11.jpg";
+import partners12 from "@/assets/gallery/nuni-partners12.jpg";
+import partners13 from "@/assets/gallery/nuni-partners13.jpg";
+import partners14 from "@/assets/gallery/nuni-partners14.jpg";
+import partners15 from "@/assets/gallery/nuni-partners15.jpg";
+import partners16 from "@/assets/gallery/nuni-partners16.jpg";
+import partners17 from "@/assets/gallery/nuni-partners17.jpg";
+import partners18 from "@/assets/gallery/nuni-partners18.jpg";
+
 interface GalleryImage {
   id: number | string;
   src: string;
@@ -163,6 +183,24 @@ const galleryImages: GalleryImage[] = [
   { id: "pa2", src: pa2, alt: "Nuni Global PA", category: "partners" },
   { id: "hovendor", src: hovendor, alt: "Nuni Global Ambassador", category: "partners" },
   { id: "ceo", src: ceo, alt: "Nuni Global CEO", category: "partners" },
+  { id: "partners1", src: partners1, alt: "Nuni Global Partner", category: "partners" },
+  { id: "partners2", src: partners2, alt: "Nuni Global Partner", category: "partners" },
+  { id: "partners3", src: partners3, alt: "Nuni Global Partner", category: "partners" },
+  { id: "partners4", src: partners4, alt: "Nuni Global Partner", category: "partners" },
+  { id: "partners5", src: partners5, alt: "Nuni Global Partner", category: "partners" },
+  { id: "partners6", src: partners6, alt: "Nuni Global Partner", category: "partners" },
+  { id: "partners7", src: partners7, alt: "Nuni Global Partner", category: "partners" },
+  { id: "partners8", src: partners8, alt: "Nuni Global Partner", category: "partners" },
+  { id: "partners9", src: partners9, alt: "Nuni Global Partner", category: "partners" },
+  { id: "partners10", src: partners10, alt: "Nuni Global Partner", category: "partners" },
+  { id: "partners11", src: partners11, alt: "Nuni Global Partner", category: "partners" },
+  { id: "partners12", src: partners12, alt: "Nuni Global Partner", category: "partners" },
+  { id: "partners13", src: partners13, alt: "Nuni Global Partner", category: "partners" },
+  { id: "partners14", src: partners14, alt: "Nuni Global Partner", category: "partners" },
+  { id: "partners15", src: partners15, alt: "Nuni Global Partner", category: "partners" },
+  { id: "partners16", src: partners16, alt: "Nuni Global Partner", category: "partners" },
+  { id: "partners17", src: partners17, alt: "Nuni Global Partner", category: "partners" },
+  { id: "partners18", src: partners18, alt: "Nuni Global Partner", category: "partners" },
 
   // Cocoa Butter (25 images)
   { id: "cb25", src: cocoaButter25, alt: "Nuni Global Cocoa Butter", category: "cocoa-butter" },
