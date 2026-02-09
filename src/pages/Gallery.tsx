@@ -92,7 +92,11 @@ import cream24 from "@/assets/gallery/nuni-facialacne24.jpeg";
 import cream25 from "@/assets/gallery/nuni-facialacne25.jpeg";
 import cream26 from "@/assets/gallery/nuni-facialacne26.png";
 import cream27 from "@/assets/gallery/nuni-facialacne27.jpeg";
-import cream28 from "@/assets/gallery/nuni-facialacne28.jpeg";
+import cream28 from "@/assets/gallery/nuni-facialacne28.jpg";
+import cream29 from "@/assets/gallery/nuni-facialacne29.webp";
+import cream30 from "@/assets/gallery/nuni-facialacne30.jpg";
+import cream31 from "@/assets/gallery/nuni-facialacne31.webp";
+import cream32 from "@/assets/gallery/nuni-facialacne32.webp";
 import cream33 from "@/assets/gallery/nuni-facialacne33.jpg";
 
 import ambassador50 from "@/assets/gallery/nuni-ambassador50.jpeg";
@@ -255,8 +259,12 @@ const galleryImages: GalleryImage[] = [
   { id: "soap23", src: soap23, alt: "Nuni Global Acne Dark Soap", category: "soap" },
   { id: "soap24", src: soap24, alt: "Nuni Global Acne Dark Soap", category: "soap" },
 
-  // Acne Facial Cream (29 images)
+  // Acne Facial Cream (34 images)
   { id: "cream33", src: cream33, alt: "Nuni Global Acne Facial Cream", category: "cream" },
+  { id: "cream32", src: cream32, alt: "Nuni Global Acne Facial Cream", category: "cream" },
+  { id: "cream31", src: cream31, alt: "Nuni Global Acne Facial Cream", category: "cream" },
+  { id: "cream30", src: cream30, alt: "Nuni Global Acne Facial Cream", category: "cream" },
+  { id: "cream29", src: cream29, alt: "Nuni Global Acne Facial Cream", category: "cream" },
   { id: "cream28", src: cream28, alt: "Nuni Global Acne Facial Cream", category: "cream" },
   { id: "cream1", src: cream1, alt: "Nuni Global Acne Facial Cream", category: "cream" },
   { id: "cream2", src: cream2, alt: "Nuni Global Acne Facial Cream", category: "cream" },
