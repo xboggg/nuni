@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FileText, ShoppingCart, Truck, RefreshCw, AlertCircle, Scale, Mail, Phone } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import BackToTop from "@/components/BackToTop";
 import { useLanguage } from "@/lib/i18n";
@@ -114,6 +115,11 @@ const TermsOfServicePage = () => {
 
   return (
     <>
+      <SEO
+        title="Terms of Service"
+        description="Read Nuni Global's terms of service including orders, payments, shipping, returns, and product use policies."
+        url="/terms-of-service"
+      />
       <Navigation />
       <main className="pt-20">
         {/* Hero Section */}

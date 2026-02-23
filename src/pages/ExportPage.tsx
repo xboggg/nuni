@@ -5,6 +5,7 @@ import { ArrowLeft, Package, Leaf, Globe, Truck, Shield, MessageCircle, Check } 
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/lib/i18n";
 import { WHATSAPP_NUMBER } from "@/data/products";
@@ -85,6 +86,12 @@ const ExportPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="B2B Raw Materials Export - Shea Butter, Cocoa, Black Soap"
+        description="Export premium Ghanaian raw materials worldwide. Quality shea butter, cocoa powder, and African black soap for cosmetic manufacturers and businesses."
+        keywords="Ghana export, shea butter wholesale, cocoa powder export, African black soap bulk, B2B cosmetics, raw materials Ghana"
+        url="/export"
+      />
       <Navigation />
 
       {/* Hero Section */}

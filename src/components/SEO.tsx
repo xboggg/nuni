@@ -13,7 +13,7 @@ interface SEOProps {
 const DEFAULT_TITLE = "Nuni Global | Premium African Skincare from Ghana";
 const DEFAULT_DESCRIPTION =
   "Discover the power of African botanicals. Premium skincare crafted with 100% natural ingredients for visibly healthier, glowing skin. FDA Approved. Made in Ghana.";
-const DEFAULT_IMAGE = "/og-image.png";
+const DEFAULT_IMAGE = "/og-image.jpg";
 const SITE_NAME = "Nuni Global";
 const BASE_URL = "https://ngcosmetics.com.gh";
 
@@ -36,7 +36,7 @@ const SEO = ({
     "@type": "Organization",
     name: "Nuni Global",
     url: BASE_URL,
-    logo: `${BASE_URL}/src/assets/nuni-logo.png`,
+    logo: `${BASE_URL}/favicon.png`,
     description: DEFAULT_DESCRIPTION,
     address: {
       "@type": "PostalAddress",

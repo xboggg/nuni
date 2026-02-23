@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Shield, Lock, Eye, UserCheck, Mail, Phone } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import BackToTop from "@/components/BackToTop";
 import { useLanguage } from "@/lib/i18n";
@@ -88,6 +89,11 @@ const PrivacyPolicyPage = () => {
 
   return (
     <>
+      <SEO
+        title="Privacy Policy"
+        description="Learn how Nuni Global collects, uses, and protects your personal information. Your privacy is important to us."
+        url="/privacy-policy"
+      />
       <Navigation />
       <main className="pt-20">
         {/* Hero Section */}
