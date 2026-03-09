@@ -139,17 +139,15 @@ const ExportFooter = () => {
               >
                 Terms of Service
               </Link>
+              <a
+                href="https://wa.me/233245817973"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-white/60 hover:text-white transition-colors"
+              >
+                Designed by <span className="text-amber-400 hover:text-amber-300">NovaStream</span>
+              </a>
             </div>
-          </div>
-          <div className="text-center mt-6">
-            <a
-              href="https://wa.me/233245817973"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-white/60 hover:text-white transition-colors"
-            >
-              Designed by <span className="text-amber-400 hover:text-amber-300">NovaStream</span>
-            </a>
           </div>
         </div>
       </div>
