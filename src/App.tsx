@@ -19,9 +19,17 @@ import ProductsPage from "./pages/ProductsPage";
 import TestimonialsPage from "./pages/TestimonialsPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import TermsOfServicePage from "./pages/TermsOfServicePage";
-import ExportPage from "./pages/ExportPage";
 import ScrollToTop from "@/components/ScrollToTop";
 import PromoBar from "@/components/PromoBar";
+
+// Export Section Pages
+import ExportHome from "./pages/export/ExportHome";
+import ExportProducts from "./pages/export/ExportProducts";
+import ExportSheaButter from "./pages/export/ExportSheaButter";
+import ExportCocoa from "./pages/export/ExportCocoa";
+import ExportBlackSoap from "./pages/export/ExportBlackSoap";
+import ExportProcess from "./pages/export/ExportProcess";
+import ExportContact from "./pages/export/ExportContact";
 
 const queryClient = new QueryClient();
 
@@ -46,7 +54,16 @@ const AnimatedRoutes = () => {
           <Route path="/testimonials" element={<TestimonialsPage />} />
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="/terms-of-service" element={<TermsOfServicePage />} />
-          <Route path="/export" element={<ExportPage />} />
+
+          {/* Export Section Routes */}
+          <Route path="/export" element={<ExportHome />} />
+          <Route path="/export/products" element={<ExportProducts />} />
+          <Route path="/export/shea-butter" element={<ExportSheaButter />} />
+          <Route path="/export/cocoa" element={<ExportCocoa />} />
+          <Route path="/export/black-soap" element={<ExportBlackSoap />} />
+          <Route path="/export/process" element={<ExportProcess />} />
+          <Route path="/export/contact" element={<ExportContact />} />
+
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
