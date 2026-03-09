@@ -89,7 +89,7 @@ const ExportSheaButter = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Button variant="outline" className="border-2 border-white/30 text-white hover:bg-white/10 px-8 py-6 rounded-full text-lg font-semibold">
+                  <Button variant="outline" className="border-2 border-amber-400 text-amber-400 hover:bg-amber-500/20 px-8 py-6 rounded-full text-lg font-semibold">
                     WhatsApp Inquiry
                   </Button>
                 </a>

@@ -140,7 +140,7 @@ const ExportHome = () => {
                 </Button>
               </Link>
               <Link to="/export/contact">
-                <Button variant="outline" className="border-2 border-white/30 text-white hover:bg-white/10 px-8 py-6 rounded-full text-lg font-semibold transition-all">
+                <Button variant="outline" className="border-2 border-amber-400 text-amber-400 hover:bg-amber-500/20 px-8 py-6 rounded-full text-lg font-semibold transition-all">
                   Request Quote
                 </Button>
               </Link>
@@ -369,7 +369,7 @@ const ExportHome = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Button variant="outline" className="border-2 border-white text-white hover:bg-white/10 px-8 py-6 rounded-full text-lg font-semibold transition-all">
+                <Button variant="outline" className="border-2 border-[#0f1f17] text-[#0f1f17] hover:bg-[#0f1f17]/10 px-8 py-6 rounded-full text-lg font-semibold transition-all">
                   WhatsApp Us
                 </Button>
               </a>
