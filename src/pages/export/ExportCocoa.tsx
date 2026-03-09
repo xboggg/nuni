@@ -22,10 +22,9 @@ const ExportCocoa = () => {
   ];
 
   const packaging = [
-    "25kg kraft paper bags",
-    "25kg cartons with PE liner",
-    "50kg bags",
-    "Big bags (500kg/1000kg)",
+    "12kg drums",
+    "24kg drums",
+    "Minimum order: 12,000kg",
     "Custom packaging available",
   ];
 
