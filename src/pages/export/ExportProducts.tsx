@@ -29,8 +29,8 @@ const ExportProducts = () => {
       image: cocoaBanner,
       href: "/export/cocoa",
       origin: "Ashanti Region",
-      minOrder: "500kg",
-      packaging: ["25kg bags", "50kg bags", "Big bags"],
+      minOrder: "12,000kg",
+      packaging: ["12kg drums", "24kg drums"],
     },
     {
       id: "black-soap",
