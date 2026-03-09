@@ -126,6 +126,14 @@ const ExportFooter = () => {
             <p className="text-sm text-white/60">
               © {currentYear} Kofi Ideas Import & Export. All rights reserved.
             </p>
+            <a
+              href="https://wa.me/233245817973"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-white/60 hover:text-white transition-colors"
+            >
+              Designed by <span className="text-amber-400 hover:text-amber-300">NovaStream</span>
+            </a>
             <div className="flex items-center gap-6">
               <Link
                 to="/privacy-policy"
@@ -139,14 +147,6 @@ const ExportFooter = () => {
               >
                 Terms of Service
               </Link>
-              <a
-                href="https://wa.me/233245817973"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-white/60 hover:text-white transition-colors"
-              >
-                Designed by <span className="text-amber-400 hover:text-amber-300">NovaStream</span>
-              </a>
             </div>
           </div>
         </div>
