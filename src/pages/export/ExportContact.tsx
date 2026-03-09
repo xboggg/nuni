@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Phone, Mail, MapPin, Clock, Send, MessageCircle } from "lucide-react";
 import ExportNavigation from "@/components/ExportNavigation";
-import Footer from "@/components/Footer";
+import ExportFooter from "@/components/ExportFooter";
 import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -284,7 +284,7 @@ const ExportContact = () => {
         </div>
       </section>
 
-      <Footer />
+      <ExportFooter />
     </div>
   );
 };

@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Package, Globe, Truck, Shield, Leaf, Award, ArrowRight, Play, Phone, Mail } from "lucide-react";
 import ExportNavigation from "@/components/ExportNavigation";
-import Footer from "@/components/Footer";
+import ExportFooter from "@/components/ExportFooter";
 import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 
@@ -389,7 +389,7 @@ const ExportHome = () => {
         </div>
       </section>
 
-      <Footer />
+      <ExportFooter />
     </div>
   );
 };

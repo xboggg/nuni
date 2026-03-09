@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowLeft, MessageCircle, FileText, Package, Truck, CheckCircle, ArrowRight } from "lucide-react";
 import ExportNavigation from "@/components/ExportNavigation";
-import Footer from "@/components/Footer";
+import ExportFooter from "@/components/ExportFooter";
 import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 
@@ -277,7 +277,7 @@ const ExportProcess = () => {
         </div>
       </section>
 
-      <Footer />
+      <ExportFooter />
     </div>
   );
 };

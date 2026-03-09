@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Check, Package, Truck, Globe, ArrowRight } from "lucide-react";
 import ExportNavigation from "@/components/ExportNavigation";
-import Footer from "@/components/Footer";
+import ExportFooter from "@/components/ExportFooter";
 import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 
@@ -199,7 +199,7 @@ const ExportBlackSoap = () => {
               <img
                 src={containerLoaded}
                 alt="Black soap ready for shipping"
-                className="w-full rounded-2xl"
+                className="w-full h-80 object-cover rounded-2xl"
               />
             </motion.div>
             <motion.div
@@ -253,12 +253,12 @@ const ExportBlackSoap = () => {
           </h2>
           <div className="flex flex-wrap justify-center gap-4">
             <Link to="/export/shea-butter">
-              <Button variant="outline" className="border-white/20 text-white hover:bg-white/10 rounded-full">
+              <Button variant="outline" className="border-amber-500 text-amber-400 hover:bg-amber-500/20 rounded-full">
                 Raw Shea Butter
               </Button>
             </Link>
             <Link to="/export/cocoa">
-              <Button variant="outline" className="border-white/20 text-white hover:bg-white/10 rounded-full">
+              <Button variant="outline" className="border-amber-500 text-amber-400 hover:bg-amber-500/20 rounded-full">
                 Raw Cocoa Powder
               </Button>
             </Link>
@@ -266,7 +266,7 @@ const ExportBlackSoap = () => {
         </div>
       </section>
 
-      <Footer />
+      <ExportFooter />
     </div>
   );
 };

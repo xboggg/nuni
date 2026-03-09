@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import ExportNavigation from "@/components/ExportNavigation";
-import Footer from "@/components/Footer";
+import ExportFooter from "@/components/ExportFooter";
 import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 
@@ -142,7 +142,7 @@ const ExportProducts = () => {
                       </Button>
                     </Link>
                     <Link to="/export/contact">
-                      <Button variant="outline" className="border-white/20 text-white hover:bg-white/10 px-6 py-3 rounded-full font-semibold">
+                      <Button variant="outline" className="border-amber-500 text-amber-400 hover:bg-amber-500/20 px-6 py-3 rounded-full font-semibold">
                         Get Quote
                       </Button>
                     </Link>
@@ -179,7 +179,7 @@ const ExportProducts = () => {
         </div>
       </section>
 
-      <Footer />
+      <ExportFooter />
     </div>
   );
 };

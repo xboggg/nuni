@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Check, Package, Truck, Globe, ArrowRight } from "lucide-react";
 import ExportNavigation from "@/components/ExportNavigation";
-import Footer from "@/components/Footer";
+import ExportFooter from "@/components/ExportFooter";
 import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 
@@ -252,12 +252,12 @@ const ExportCocoa = () => {
           </h2>
           <div className="flex flex-wrap justify-center gap-4">
             <Link to="/export/shea-butter">
-              <Button variant="outline" className="border-white/20 text-white hover:bg-white/10 rounded-full">
+              <Button variant="outline" className="border-amber-500 text-amber-400 hover:bg-amber-500/20 rounded-full">
                 Raw Shea Butter
               </Button>
             </Link>
             <Link to="/export/black-soap">
-              <Button variant="outline" className="border-white/20 text-white hover:bg-white/10 rounded-full">
+              <Button variant="outline" className="border-amber-500 text-amber-400 hover:bg-amber-500/20 rounded-full">
                 African Black Soap
               </Button>
             </Link>
@@ -265,7 +265,7 @@ const ExportCocoa = () => {
         </div>
       </section>
 
-      <Footer />
+      <ExportFooter />
     </div>
   );
 };
