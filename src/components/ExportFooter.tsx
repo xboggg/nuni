@@ -127,7 +127,7 @@ const ExportFooter = () => {
               © {currentYear} Kofi Ideas Import & Export. All rights reserved.
             </p>
             <a
-              href="https://wa.me/233245817973"
+              href="https://www.novastreamdigital.com"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-white/60 hover:text-white transition-colors"
