@@ -126,7 +126,7 @@ const ExportFooter = () => {
             <p className="text-sm text-white/60">
               © {currentYear} Kofi Ideas Import & Export. All rights reserved.
             </p>
-            <div className="flex gap-6">
+            <div className="flex items-center gap-6">
               <Link
                 to="/privacy-policy"
                 className="text-sm text-white/60 hover:text-white transition-colors"
@@ -139,17 +139,15 @@ const ExportFooter = () => {
               >
                 Terms of Service
               </Link>
+              <a
+                href="https://wa.me/233245817973"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-amber-400 hover:text-amber-300 transition-colors"
+              >
+                Designed by NovaStream
+              </a>
             </div>
-          </div>
-          <div className="text-center mt-6">
-            <a
-              href="https://wa.me/233245817973"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-white/40 hover:text-white/70 transition-colors"
-            >
-              Designed by NovaStream
-            </a>
           </div>
         </div>
       </div>
