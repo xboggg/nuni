@@ -55,7 +55,7 @@ const ExportFooter = () => {
               </a>
               <div className="flex items-start gap-2 text-sm text-white/70">
                 <MapPin size={16} className="flex-shrink-0 mt-0.5" />
-                <span>Accra, Ghana</span>
+                <span>Ablekuma Agape, GC-161-2675, Accra</span>
               </div>
             </div>
           </div>

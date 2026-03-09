@@ -49,8 +49,8 @@ const ExportContact = () => {
     {
       icon: MapPin,
       title: "Location",
-      value: "Accra, Ghana",
-      secondary: "West Africa",
+      value: "Ablekuma Agape, GC-161-2675",
+      secondary: "Accra, Ghana",
     },
     {
       icon: Clock,
