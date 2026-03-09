@@ -182,6 +182,14 @@ const Footer = () => {
             <p className="text-sm text-cream/60">
               © {currentYear} Nuni Global. {t.footer.copyright}
             </p>
+            <a
+              href="https://www.novastreamdigital.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-cream/60 hover:text-cream transition-colors"
+            >
+              Designed by <span className="text-amber-400 hover:text-amber-300">NovaStream</span>
+            </a>
             <div className="flex gap-6">
               <Link
                 to="/privacy-policy"
@@ -196,16 +204,6 @@ const Footer = () => {
                 {t.footer.termsOfService}
               </Link>
             </div>
-          </div>
-          <div className="text-center mt-6">
-            <a
-              href="https://wa.me/233245817973"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-cream/40 hover:text-cream/70 transition-colors"
-            >
-              {t.footer.designedBy}
-            </a>
           </div>
         </div>
       </div>
