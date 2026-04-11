@@ -186,6 +186,24 @@ const ExportHome = () => {
         </div>
       </section>
 
+      {/* Credentials Poster */}
+      <section className="py-16 bg-[#0f1f17]">
+        <div className="container-custom">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="max-w-2xl mx-auto"
+          >
+            <img
+              src="/media/kofi-export-poster.jpg"
+              alt="Kofi Ideas Import & Export - Verified by Ghana Customs, Certified Exporter, FDA Verified"
+              className="w-full rounded-2xl shadow-2xl"
+            />
+          </motion.div>
+        </div>
+      </section>
+
       {/* Products Section */}
       <section className="py-20 lg:py-32 bg-[#0f1f17]">
         <div className="container-custom">

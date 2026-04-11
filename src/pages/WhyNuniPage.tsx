@@ -925,6 +925,59 @@ const WhyNuniPage = () => {
         )}
       </AnimatePresence>
 
+      {/* Community Impact Section */}
+      <section className="py-20 lg:py-32 bg-gradient-to-b from-background to-card">
+        <div className="container-custom">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <span className="inline-flex items-center gap-2 text-sm font-medium tracking-widest text-accent uppercase mb-4">
+              <Heart size={16} />
+              Giving Back
+            </span>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
+              Community <span className="text-gradient-gold">Impact</span>
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              At Nuni Global, we believe that true beauty extends beyond skincare — it's about caring for those around us. We support healthcare initiatives and charitable giving in our communities.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="grid md:grid-cols-2 gap-12 items-center max-w-3xl mx-auto"
+          >
+            <div className="relative rounded-2xl overflow-hidden shadow-xl max-w-[250px] mx-auto">
+              <img
+                src="/media/community/hospital-letter.jpg"
+                alt="Letter of Appreciation from St. Francis Xavier Catholic Hospital"
+                className="w-full h-auto"
+              />
+            </div>
+            <div>
+              <h3 className="text-2xl font-serif font-bold text-foreground mb-4">
+                Healthcare Partnership
+              </h3>
+              <p className="text-muted-foreground mb-6">
+                In partnership with St. Francis Xavier Catholic Hospital (Sisters Hospitallers), we've contributed to covering medical bills for patients in need, ensuring that quality healthcare remains accessible to all.
+              </p>
+              <Link
+                to="/community"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-full font-medium hover:bg-primary/90 transition-colors"
+              >
+                See Our Impact
+                <ArrowLeft size={16} className="rotate-180" />
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-br from-primary to-primary/80">
         <div className="container-custom text-center">

@@ -19,6 +19,7 @@ import ProductsPage from "./pages/ProductsPage";
 import TestimonialsPage from "./pages/TestimonialsPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import TermsOfServicePage from "./pages/TermsOfServicePage";
+import CommunityImpactPage from "./pages/CommunityImpactPage";
 import ScrollToTop from "@/components/ScrollToTop";
 import PromoBar from "@/components/PromoBar";
 
@@ -30,6 +31,9 @@ import ExportCocoa from "./pages/export/ExportCocoa";
 import ExportBlackSoap from "./pages/export/ExportBlackSoap";
 import ExportProcess from "./pages/export/ExportProcess";
 import ExportContact from "./pages/export/ExportContact";
+
+// Home Decor Section
+import HomeDecorHome from "./pages/homedecor/HomeDecorHome";
 
 const queryClient = new QueryClient();
 
@@ -54,6 +58,7 @@ const AnimatedRoutes = () => {
           <Route path="/testimonials" element={<TestimonialsPage />} />
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+          <Route path="/community" element={<CommunityImpactPage />} />
 
           {/* Export Section Routes */}
           <Route path="/export" element={<ExportHome />} />
@@ -63,6 +68,9 @@ const AnimatedRoutes = () => {
           <Route path="/export/black-soap" element={<ExportBlackSoap />} />
           <Route path="/export/process" element={<ExportProcess />} />
           <Route path="/export/contact" element={<ExportContact />} />
+
+          {/* Home Decor Section Routes */}
+          <Route path="/home-decor" element={<HomeDecorHome />} />
 
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
