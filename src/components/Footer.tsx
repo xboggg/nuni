@@ -30,6 +30,7 @@ const Footer = () => {
       { name: "Home Decor", href: "/home-decor", isRoute: true },
     ],
     support: [
+      { name: t.footer.contact, href: "/contact", isRoute: true },
       { name: t.footer.faq, href: "/contact", isRoute: true },
       { name: t.footer.shipping, href: "/contact", isRoute: true },
       { name: t.footer.returns, href: "/contact", isRoute: true },
