@@ -283,9 +283,9 @@ const WhyNuniPage = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="About Us - Why Choose Nuni Global"
-        description="Learn about Nuni Global's story, our commitment to natural skincare, and why we're Ghana's trusted skincare brand. FDA Certified, 100% natural ingredients."
-        keywords="about Nuni Global, Ghana skincare brand, natural skincare company, FDA certified skincare, African beauty brand"
+        title="About Us - Why Choose NG Cosmetics"
+        description="Learn about NG Cosmetics' story, our commitment to natural skincare, and why we're Ghana's trusted skincare brand. FDA Certified, 100% natural ingredients."
+        keywords="about NG Cosmetics, Ghana skincare brand, natural skincare company, FDA certified skincare, African beauty brand"
         url="/about-us"
       />
       <Navigation />
@@ -631,7 +631,7 @@ const WhyNuniPage = () => {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
-              Why Choose <span className="text-gradient-gold">Nuni Global</span>
+              Why Choose <span className="text-gradient-gold">NG Cosmetics</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Our commitment to quality, nature, and your skin's health sets us apart.
@@ -942,7 +942,7 @@ const WhyNuniPage = () => {
               Community <span className="text-gradient-gold">Impact</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              At Nuni Global, we believe that true beauty extends beyond skincare — it's about caring for those around us. We support healthcare initiatives and charitable giving in our communities.
+              At NG Cosmetics, we believe that true beauty extends beyond skincare — it's about caring for those around us. We support healthcare initiatives and charitable giving in our communities.
             </p>
           </motion.div>
 

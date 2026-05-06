@@ -114,7 +114,7 @@ const ExportFooter = () => {
                 to="/"
                 className="inline-flex items-center gap-2 text-sm text-amber-400 hover:text-amber-300 transition-colors"
               >
-                ← Back to Nuni Skincare
+                ← Back to NG Cosmetics
               </Link>
             </div>
           </div>

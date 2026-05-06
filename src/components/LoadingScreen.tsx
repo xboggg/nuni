@@ -34,7 +34,7 @@ const LoadingScreen = ({ isLoading }: LoadingScreenProps) => {
             >
               <img
                 src={logo}
-                alt="Nuni Global"
+                alt="NG Cosmetics"
                 className="w-24 h-24 md:w-32 md:h-32 object-contain"
               />
             </motion.div>
@@ -45,7 +45,7 @@ const LoadingScreen = ({ isLoading }: LoadingScreenProps) => {
               transition={{ delay: 0.3 }}
               className="mt-6 text-sm font-medium tracking-widest text-primary-foreground uppercase"
             >
-              From Nature To You
+              Proudly Ghanaian. Naturally Effective.
             </motion.p>
             
             <div className="mt-8 w-48 h-1 bg-primary-foreground/20 rounded-full overflow-hidden">

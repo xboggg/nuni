@@ -154,8 +154,8 @@ const PartnersPage = () => {
     <div className="min-h-screen bg-background">
       <SEO
         title="Partners & Distributors - Find Vendors Near You"
-        description="Find Nuni Global authorized vendors, distributors, and brand ambassadors across Ghana. Become a partner and join our growing network."
-        keywords="Nuni Global partners, Ghana skincare distributors, brand ambassadors, authorized vendors, wholesale partners"
+        description="Find NG Cosmetics authorized vendors, distributors, and brand ambassadors across Ghana. Become a partner and join our growing network."
+        keywords="NG Cosmetics partners, Ghana skincare distributors, brand ambassadors, authorized vendors, wholesale partners"
         url="/partners"
       />
       <Navigation />
@@ -272,7 +272,7 @@ const PartnersPage = () => {
               Our <span className="text-gradient-gold">Ambassadors</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Meet the faces behind Nuni Global. Our ambassadors represent the brand across Ghana.
+              Meet the faces behind NG Cosmetics. Our ambassadors represent the brand across Ghana.
             </p>
           </motion.div>
 

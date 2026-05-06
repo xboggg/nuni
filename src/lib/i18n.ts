@@ -28,8 +28,8 @@ export const translations = {
     // About
     about: {
       subtitle: "Our Story",
-      title: "From Nature",
-      titleHighlight: "To You",
+      title: "Proudly Ghanaian.",
+      titleHighlight: "Naturally Effective.",
       description: "NG Cosmetics is a proudly Ghanaian skincare company dedicated to bringing you premium, natural beauty solutions. Through our flagship brand Nuni Global, we offer three exceptional skincare products crafted with centuries-old African botanical wisdom and modern skincare science. Every ingredient is carefully sourced and crafted right here in Ghana, bringing you the authentic power of African beauty traditions.",
       exportTitle: "Beyond Skincare",
       exportDescription: "NG Cosmetics is also a trusted exporter of premium Ghanaian raw materials. We supply high-quality shea butter, cocoa powder, and traditional African black soap to international markets, connecting the world with Ghana's finest natural resources.",
@@ -57,25 +57,25 @@ export const translations = {
     // Benefits
     benefits: {
       subtitle: "Why Choose Us",
-      title: "The Nuni Global",
+      title: "The NG Cosmetics",
       titleHighlight: "Difference",
       description: "What sets us apart is our unwavering commitment to quality, nature, and your skin's health.",
       items: {
         fdaCertified: "FDA Certified",
-        fdaCertifiedDesc: "All Nuni Global products are approved by the Ghana Food and Drugs Authority, ensuring the highest standards of safety and quality.",
+        fdaCertifiedDesc: "All our products are approved by the Ghana Food and Drugs Authority, ensuring the highest standards of safety and quality.",
         natural: "100% Natural",
         naturalDesc: "We use only pure African botanicals and natural ingredients. No harsh chemicals, parabens, or artificial additives in any of our products.",
         visibleResults: "Visible Results",
         visibleResultsDesc: "Our customers see real improvements in their skin within weeks. From clearer complexion to faded dark spots, the results speak for themselves.",
         forEveryone: "For Everyone",
-        forEveryoneDesc: "Our gentle yet effective formulas are suitable for all skin types and ages. From teenagers to adults, everyone can benefit from Nuni Global.",
+        forEveryoneDesc: "Our gentle yet effective formulas are suitable for all skin types and ages. From teenagers to adults, everyone can benefit.",
       },
     },
     // How It Works
     howItWorks: {
       subtitle: "Simple Process",
       title: "How It Works",
-      description: "Getting your favorite Nuni Global products is easy. Just three simple steps to radiant, healthy skin.",
+      description: "Getting your favorite products is easy. Just three simple steps to radiant, healthy skin.",
       step1Title: "Choose Your Products",
       step1Desc: "Browse our collection of premium African skincare products. Each formulated with 100% natural ingredients.",
       step2Title: "Order via WhatsApp",
@@ -93,7 +93,7 @@ export const translations = {
     },
     // Trust Badges
     trust: {
-      title: "From Nature to You",
+      title: "Proudly Ghanaian. Naturally Effective.",
       subtitle: "Our Promise",
       fdaApproved: "FDA Approved",
       fdaDesc: "Certified Safe",
@@ -137,7 +137,7 @@ export const translations = {
       title: "What Our Customers Say",
       pageTitle: "What Our Customers",
       pageTitleHighlight: "Say",
-      description: "Real results from real people. See why thousands trust Nuni Global for their skincare journey.",
+      description: "Real results from real people. See why thousands trust NG Cosmetics for their skincare journey.",
       customerReviews: "Customer",
       customerReviewsHighlight: "Reviews",
       readyToJoin: "Ready to Join Our",
@@ -175,7 +175,7 @@ export const translations = {
           product: "Acne Facial Cream",
         },
         {
-          text: "My dark spots from years of sun exposure are visibly fading. The results are amazing! I recommend Nuni Global to everyone who asks about my glowing skin.",
+          text: "My dark spots from years of sun exposure are visibly fading. The results are amazing! I recommend NG Cosmetics to everyone who asks about my glowing skin.",
           name: "Ama K.",
           location: "Cape Coast, Ghana",
           product: "Acne Dark Soap + Facial Cream",
@@ -232,8 +232,8 @@ export const translations = {
     // Partners
     partners: {
       badge: "Partnership Opportunity",
-      title: "Become a Nuni Global",
-      titleHighlight: "Partner",
+      title: "Become an",
+      titleHighlight: "NG Cosmetics Partner",
       description: "Join our growing network of resellers across Ghana and beyond. Partner with us to bring premium African skincare to your community and build a profitable business.",
       cta: "Become a Partner",
       benefits: [
@@ -258,7 +258,7 @@ export const translations = {
         general: "General",
       },
       questions: {
-        q1: "What makes Nuni Global products different?",
+        q1: "What makes our products different?",
         a1: "Our products are crafted with 100% natural African botanicals including shea butter, cocoa butter, and activated charcoal. We combine traditional African skincare wisdom with modern formulation techniques. All our products are FDA approved in Ghana and suitable for all skin types.",
         q2: "Are your products safe for sensitive skin?",
         a2: "Yes! Our products are formulated with gentle, natural ingredients that are suitable for all skin types, including sensitive skin. We recommend starting with a small test area for the first use. Our Cocoa Butter is especially gentle and even safe for babies 6 months and older.",
@@ -267,7 +267,7 @@ export const translations = {
         q4: "Do you ship internationally?",
         a4: "Yes, we ship to customers across Ghana and internationally. Delivery times vary by location - typically 1-3 days within Accra, 3-5 days within Ghana, and 7-14 days for international orders.",
         q5: "Are your products FDA approved?",
-        a5: "Yes, all Nuni Global products are approved by the Ghana Food and Drugs Authority (FDA). We maintain strict quality control standards and use only certified, safe ingredients.",
+        a5: "Yes, all our products are approved by the Ghana Food and Drugs Authority (FDA). We maintain strict quality control standards and use only certified, safe ingredients.",
         q6: "Can I use multiple products together?",
         a6: "Absolutely! Our products are designed to work beautifully together. For best results, use the Acne Dark Soap as cleanser, followed by the Acne Facial Cream, and the Cocoa Butter for deep moisturizing.",
         q7: "What is your return policy?",
@@ -310,7 +310,7 @@ export const translations = {
     whyNuni: {
       badge: "NG COSMETICS",
       title: "Why Choose",
-      titleHighlight: "Nuni Global",
+      titleHighlight: "NG Cosmetics",
       description: "NG Cosmetics is the parent company behind the Nuni Global product line. Our commitment to quality, nature, and your skin's health makes us Ghana's trusted skincare brand.",
       meetVisionary: "MEET THE VISIONARY",
       ceoName: "Kofi Ideas",
@@ -335,11 +335,11 @@ export const translations = {
     // Partners Page
     partnersPage: {
       badge: "Our Partner Network",
-      title: "Nuni Global",
+      title: "NG Cosmetics",
       titleHighlight: "Partners",
-      description: "Find our trusted partners across Ghana. Connect with a partner near you for authentic Nuni Global products.",
+      description: "Find our trusted partners across Ghana. Connect with a partner near you for authentic NG Cosmetics products.",
       topPerformers: "Top Performing Partners",
-      becomePartner: "Become a Nuni Global Partner",
+      becomePartner: "Become an NG Cosmetics Partner",
       becomePartnerDesc: "Join our growing network of partners across Ghana. Whether you want to be a vendor or ambassador, we provide full support to help you succeed.",
       competitivePricing: "Competitive wholesale pricing",
       marketingMaterials: "Marketing materials provided",
@@ -395,7 +395,7 @@ export const translations = {
       wholesalePrices: "Wholesale Prices",
       wholesaleCta: "Interested in",
       wholesaleCtaHighlight: "Wholesale?",
-      wholesaleCtaDesc: "Become a Nuni Global partner and enjoy special wholesale pricing. Join our network of 68+ partners across Ghana.",
+      wholesaleCtaDesc: "Become an NG Cosmetics partner and enjoy special wholesale pricing. Join our network of 68+ partners across Ghana.",
       viewWholesalePrices: "View Wholesale Prices",
       becomePartner: "Become a Partner",
     },
@@ -504,13 +504,13 @@ export const translations = {
       medicalAdviceText: "Our products are not intended to diagnose, treat, cure, or prevent any disease. For serious skin conditions, please consult a qualified healthcare professional.",
       intellectualProperty: "Intellectual Property",
       trademarks: "Trademarks",
-      trademarksText: "Nuni Global, our logo, and product names are trademarks of Nuni Global. You may not use these without our written permission.",
+      trademarksText: "Nuni Global, our logo, and product names are trademarks of NG Cosmetics. You may not use these without our written permission.",
       content: "Content",
-      contentText: "All content on this website, including text, images, and videos, is the property of Nuni Global and protected by copyright laws. Unauthorized use is prohibited.",
+      contentText: "All content on this website, including text, images, and videos, is the property of NG Cosmetics and protected by copyright laws. Unauthorized use is prohibited.",
       userContent: "User Content",
-      userContentText: "By submitting testimonials, reviews, or photos to us, you grant Nuni Global permission to use this content for marketing purposes.",
+      userContentText: "By submitting testimonials, reviews, or photos to us, you grant NG Cosmetics permission to use this content for marketing purposes.",
       limitationLiability: "Limitation of Liability",
-      limitationText1: "Nuni Global shall not be liable for any indirect, incidental, special, or consequential damages resulting from the use or inability to use our products or services.",
+      limitationText1: "NG Cosmetics shall not be liable for any indirect, incidental, special, or consequential damages resulting from the use or inability to use our products or services.",
       limitationText2: "Our total liability to you for any claim arising from these terms or your use of our products shall not exceed the amount you paid for the product giving rise to the claim.",
       governingLaw: "Governing Law",
       governingLawText: "These Terms of Service shall be governed by and construed in accordance with the laws of the Republic of Ghana. Any disputes arising from these terms shall be resolved through the appropriate courts in Ghana.",
@@ -610,7 +610,7 @@ export const translations = {
     benefits: {
       subtitle: "Pourquoi Nous Choisir",
       title: "La Différence",
-      titleHighlight: "Nuni Global",
+      titleHighlight: "NG Cosmetics",
       description: "Ce qui nous distingue, c'est notre engagement indéfectible envers la qualité, la nature et la santé de votre peau.",
       items: {
         fdaCertified: "Certifié FDA",
@@ -785,7 +785,7 @@ export const translations = {
     partners: {
       badge: "Opportunité de Partenariat",
       title: "Devenez Partenaire",
-      titleHighlight: "Nuni Global",
+      titleHighlight: "NG Cosmetics",
       description: "Rejoignez notre réseau croissant de revendeurs au Ghana et au-delà. Associez-vous à nous pour apporter des soins premium à votre communauté.",
       cta: "Devenir Partenaire",
       benefits: [
@@ -862,7 +862,7 @@ export const translations = {
     whyNuni: {
       badge: "NG COSMETICS",
       title: "Pourquoi Choisir",
-      titleHighlight: "Nuni Global",
+      titleHighlight: "NG Cosmetics",
       description: "NG Cosmetics est la société mère derrière la gamme de produits Nuni Global. Notre engagement envers la qualité, la nature et la santé de votre peau fait de nous la marque de soins de confiance au Ghana.",
       meetVisionary: "RENCONTREZ LE VISIONNAIRE",
       ceoName: "Kofi Ideas",
@@ -888,7 +888,7 @@ export const translations = {
     partnersPage: {
       badge: "Notre Réseau de Partenaires",
       title: "Partenaires",
-      titleHighlight: "Nuni Global",
+      titleHighlight: "NG Cosmetics",
       description: "Trouvez nos partenaires de confiance à travers le Ghana. Connectez-vous avec un partenaire près de chez vous pour des produits Nuni Global authentiques.",
       topPerformers: "Partenaires les Plus Performants",
       becomePartner: "Devenez Partenaire Nuni Global",
@@ -1161,7 +1161,7 @@ export const translations = {
     // Benefits
     benefits: {
       subtitle: "Adɛn Nti Na Wopɛ Yɛn",
-      title: "Nuni Global",
+      title: "NG Cosmetics",
       titleHighlight: "Nsonsonoeɛ",
       description: "Deɛ ɛma yɛyɛ soronko ne sɛ yɛde yɛn ho hyɛ quality, abɔdeɛ, ne wo honam apɔmuden mu.",
       items: {
@@ -1414,7 +1414,7 @@ export const translations = {
     whyNuni: {
       badge: "NG COSMETICS",
       title: "Adɛn Nti Na Wopɛ",
-      titleHighlight: "Nuni Global",
+      titleHighlight: "NG Cosmetics",
       description: "NG Cosmetics yɛ kɔmpani a ɛwɔ Nuni Global nneɛma no akyiri. Yɛn commitment ma quality, abɔdeɛ, ne wo honam apɔmuden ma yɛyɛ Ghana skincare brand a wɔgye di.",
       meetVisionary: "HYIA VISIONARY NO",
       ceoName: "Kofi Ideas",
@@ -1439,7 +1439,7 @@ export const translations = {
     // Partners Page
     partnersPage: {
       badge: "Yɛn Ayɔnkofoɔ Network",
-      title: "Nuni Global",
+      title: "NG Cosmetics",
       titleHighlight: "Ayɔnkofoɔ",
       description: "Hwehwɛ yɛn ayɔnkofoɔ a wɔgye di wɔ Ghana nyinaa. Ka wo ho kyerɛ ayɔnko bi a ɔbɛn wo de anya Nuni Global nneɛma ankasa.",
       topPerformers: "Ayɔnkofoɔ A Wɔyɛ Papa",

@@ -48,9 +48,9 @@ const CommunityImpactPage = () => {
   return (
     <>
       <SEO
-        title="Community Impact | Nuni Global"
-        description="At Nuni Global, we believe in giving back. Discover our community initiatives, healthcare support, and charitable contributions across Ghana."
-        keywords="Nuni Global community, charity, healthcare support, Ghana community service, giving back"
+        title="Community Impact | NG Cosmetics"
+        description="At NG Cosmetics, we believe in giving back. Discover our community initiatives, healthcare support, and charitable contributions across Ghana."
+        keywords="NG Cosmetics community, charity, healthcare support, Ghana community service, giving back"
       />
       <Navigation />
 
@@ -75,7 +75,7 @@ const CommunityImpactPage = () => {
               Giving Back to <span className="text-gradient-gold">Our Community</span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              At Nuni Global, we believe that true beauty extends beyond skincare — it's about caring for those around us. We are committed to supporting our communities through healthcare initiatives and charitable giving.
+              At NG Cosmetics, we believe that true beauty extends beyond skincare — it's about caring for those around us. We are committed to supporting our communities through healthcare initiatives and charitable giving.
             </p>
           </motion.div>
         </div>
@@ -234,7 +234,7 @@ const CommunityImpactPage = () => {
               Join Us in Making a Difference
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-              When you choose Nuni Global, you're not just choosing quality skincare — you're supporting a brand that cares about community welfare.
+              When you choose NG Cosmetics, you're not just choosing quality skincare — you're supporting a brand that cares about community welfare.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link

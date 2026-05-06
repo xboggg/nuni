@@ -82,7 +82,7 @@ const ContactPage = () => {
       interestOptions.find((opt) => opt.value === formData.interest)?.label ||
       formData.interest;
 
-    const whatsappMessage = `Hello Nuni Global!
+    const whatsappMessage = `Hello NG Cosmetics!
 
 Name: ${formData.name}
 Email: ${formData.email}
@@ -108,8 +108,8 @@ Message: ${formData.message}`;
     <>
       <SEO
         title="Contact Us - Get in Touch"
-        description="Contact Nuni Global for product inquiries, wholesale orders, or partnership opportunities. Reach us via WhatsApp, email, or visit us in Ghana."
-        keywords="contact Nuni Global, Ghana skincare contact, wholesale inquiry, WhatsApp order"
+        description="Contact NG Cosmetics for product inquiries, wholesale orders, or partnership opportunities. Reach us via WhatsApp, email, or visit us in Ghana."
+        keywords="contact NG Cosmetics, Ghana skincare contact, wholesale inquiry, WhatsApp order"
         url="/contact"
       />
       <Navigation />

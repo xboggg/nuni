@@ -160,7 +160,7 @@ export const getPartnerApplicationWhatsAppLink = (formData: {
   region: string;
 }) => {
   const message = encodeURIComponent(
-    `Hello Nuni Global! I'd like to become a partner.\n\n` +
+    `Hello NG Cosmetics! I'd like to become a partner.\n\n` +
     `Name: ${formData.name}\n` +
     `Phone: ${formData.phone}\n` +
     `Location: ${formData.location}\n` +
