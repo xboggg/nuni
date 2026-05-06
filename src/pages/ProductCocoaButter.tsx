@@ -8,8 +8,8 @@ import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { getWhatsAppLink, getWhatsAppLinkEurope, getProductOrderMessage, productPrices } from "@/data/products";
 import cocoaButter1 from "@/assets/cocoa-butter-1.jpeg";
-import cocoaButter2 from "@/assets/cocoa-butter-2.png";
-import cocoaButter3 from "@/assets/cocoa-butter-3.png";
+import cocoaButter2 from "@/assets/cocoa-butter-2.jpg";
+import cocoaButter3 from "@/assets/cocoa-butter-3.jpg";
 
 const ProductCocoaButter = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);

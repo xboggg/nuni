@@ -43,7 +43,7 @@ import ambassador6 from "@/assets/ambassadors/nuni-ambassador6.jpeg"; // Midwife
 import ambassador9 from "@/assets/ambassadors/nuni-ambassador9.jpeg"; // Nana Yeboah
 import ambassador10 from "@/assets/ambassadors/nuni-ambassador10.jpeg"; // Ohemaa
 import ambassador11 from "@/assets/ambassadors/nuni-ambassador11.jpeg"; // Adwoa Konadu
-import pa1 from "@/assets/ambassadors/nuni-pa1.png"; // Tilly (PA)
+import pa1 from "@/assets/ambassadors/nuni-pa1.jpg"; // Tilly (PA)
 import ambassador13 from "@/assets/gallery/nuni-ambassador13.jpeg"; // Truth Ofori
 import ambassador14 from "@/assets/gallery/nuni-ambassador14.jpeg"; // Byzkit
 

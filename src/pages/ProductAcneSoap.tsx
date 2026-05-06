@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { getWhatsAppLink, getWhatsAppLinkEurope, getProductOrderMessage, productPrices } from "@/data/products";
-import acneSoap1 from "@/assets/acne-soap-1.png";
+import acneSoap1 from "@/assets/acne-soap-1.jpg";
 import acneSoap2 from "@/assets/acne-soap-2.jpeg";
 import acneSoap3 from "@/assets/acne-soap-3.jpeg";
 
