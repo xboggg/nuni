@@ -324,6 +324,7 @@ const WhyNuniPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
+            <div className="text-center">
             <Link
               to="/"
               className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mb-6"
@@ -331,6 +332,7 @@ const WhyNuniPage = () => {
               <ArrowLeft size={20} />
               <span className="font-medium">{t.common.backToHome}</span>
             </Link>
+            </div>
 
             <div className="text-center">
               <motion.span
