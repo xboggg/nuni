@@ -13,6 +13,7 @@ import TestimonialsCarousel from "@/components/TestimonialsCarousel";
 // import RealResults from "@/components/RealResults"; // Moved to dedicated /testimonials page
 // import BeforeAfterSlider from "@/components/BeforeAfterSlider"; // Moved to dedicated /testimonials page
 import Partners from "@/components/Partners";
+import AmbassadorTeaser from "@/components/AmbassadorTeaser";
 // import { useLanguage } from "@/lib/i18n"; // Only used for BeforeAfterSlider (moved to /testimonials)
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -66,6 +67,7 @@ const Index = () => {
               }}
             /> - Moved to dedicated /testimonials page */}
             <Partners />
+            <AmbassadorTeaser />
           </main>
         </PageTransition>
         <Footer />

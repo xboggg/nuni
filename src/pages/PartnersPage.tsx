@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
+import AmbassadorTeaser from "@/components/AmbassadorTeaser";
 import { partners, regions, getPartnerApplicationWhatsAppLink, Partner } from "@/data/partners";
 import { useLanguage } from "@/lib/i18n";
 
@@ -254,6 +255,8 @@ const PartnersPage = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <AmbassadorTeaser />
 
       {/* SECTION 1: Brand Ambassadors */}
       <section className="py-16 bg-gradient-to-b from-accent/10 to-transparent">
