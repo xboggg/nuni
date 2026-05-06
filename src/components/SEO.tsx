@@ -14,7 +14,7 @@ const DEFAULT_TITLE = "Nuni Global | Premium African Skincare from Ghana";
 const DEFAULT_DESCRIPTION =
   "Discover the power of African botanicals. Premium skincare crafted with 100% natural ingredients for visibly healthier, glowing skin. FDA Approved. Made in Ghana.";
 const DEFAULT_IMAGE = "/og-image.jpg";
-const SITE_NAME = "Nuni Global";
+const SITE_NAME = "NG Cosmetics";
 const BASE_URL = "https://ngcosmetics.com.gh";
 
 const SEO = ({
@@ -34,7 +34,7 @@ const SEO = ({
   const defaultStructuredData = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "Nuni Global",
+    name: "NG Cosmetics",
     url: BASE_URL,
     logo: `${BASE_URL}/favicon.png`,
     description: DEFAULT_DESCRIPTION,

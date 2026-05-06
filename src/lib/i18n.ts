@@ -114,7 +114,7 @@ export const translations = {
     },
     // Footer
     footer: {
-      tagline: "NG Cosmetics presents Nuni Global - premium African skincare crafted with 100% natural ingredients. From Nature To You.",
+      tagline: "NG Cosmetics — Proudly Ghanaian. Naturally Effective.",
       products: "Products",
       company: "Company",
       support: "Support",

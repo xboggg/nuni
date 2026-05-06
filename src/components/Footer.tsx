@@ -83,9 +83,9 @@ const Footer = () => {
           {/* Brand Column */}
           <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
-              <img src={logo} alt="Nuni Global" className="h-10 w-10 rounded-full object-cover" />
+              <img src={logo} alt="NG Cosmetics" className="h-10 w-10 rounded-full object-cover" />
               <span className="font-serif font-semibold text-lg">
-                NUNI GLOBAL
+                NG COSMETICS
               </span>
             </div>
             <p className="text-sm text-cream/60 leading-relaxed mb-4">
@@ -181,7 +181,7 @@ const Footer = () => {
         <div className="border-t border-cream/10 pt-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-cream/60">
-              © {currentYear} Nuni Global. {t.footer.copyright}
+              © {currentYear} NG Cosmetics. {t.footer.copyright}
             </p>
             <a
               href="https://www.novastreamdigital.com"
