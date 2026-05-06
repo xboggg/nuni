@@ -168,7 +168,6 @@ const PartnersPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="text-center">
             <Link
               to="/"
               className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mb-6"
@@ -176,7 +175,6 @@ const PartnersPage = () => {
               <ArrowLeft size={20} />
               <span className="font-medium">{t.common.backToHome}</span>
             </Link>
-            </div>
 
             <div className="text-center">
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent/10 rounded-full mb-6">
