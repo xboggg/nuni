@@ -555,10 +555,10 @@ const WhyNuniPage = () => {
             </h2>
             <p className="text-cream/70 max-w-3xl mx-auto leading-relaxed">
               Kofi Ideas' unwavering dedication to quality, innovation, and community empowerment has not gone unnoticed.
-              His tireless efforts in building NG Cosmetics and its flagship Nuni Global product line from the ground up, while creating opportunities for over 72 partners
+              His tireless efforts in building NG Cosmetics from the ground up, while creating opportunities for over 72 partners
               across Ghana, earned him the prestigious <strong className="text-accent">Outstanding CEO of the Year 2025</strong> award.
               This recognition celebrates his visionary leadership, commitment to African excellence, and the positive impact
-              NG Cosmetics and Nuni Global continue to make in communities nationwide.
+              NG Cosmetics continues to make in communities nationwide.
             </p>
           </motion.div>
 

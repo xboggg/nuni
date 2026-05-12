@@ -98,7 +98,7 @@ const AmbassadorTeaser = () => {
             </div>
 
             <p className="mt-6 text-white/30 text-xs tracking-widest uppercase">
-              Powered by Nuni Global × NG Cosmetics
+              Powered by NG Cosmetics
             </p>
           </motion.div>
         </div>

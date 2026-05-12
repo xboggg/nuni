@@ -78,7 +78,7 @@ export const testimonials: Testimonial[] = [
     initials: "AK",
     location: "Cape Coast, Ghana",
     rating: 5,
-    text: "My dark spots from years of sun exposure are visibly fading. The results are amazing! I recommend Nuni Global to everyone who asks about my glowing skin.",
+    text: "My dark spots from years of sun exposure are visibly fading. The results are amazing! I recommend NG Cosmetics to everyone who asks about my glowing skin.",
     product: "Acne Dark Soap + Facial Cream",
   },
 ];

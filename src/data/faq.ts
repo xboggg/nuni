@@ -51,7 +51,7 @@ export const faqData: FAQItem[] = [
   {
     id: "8",
     question: "How do I become a reseller?",
-    answer: "We're always looking for passionate partners to join our network! As a Nuni Global reseller, you'll receive competitive wholesale pricing, marketing materials, product training, and ongoing support. Contact us via WhatsApp to learn about partnership opportunities and start your skincare business journey.",
+    answer: "We're always looking for passionate partners to join our network! As an NG Cosmetics reseller, you'll receive competitive wholesale pricing, marketing materials, product training, and ongoing support. Contact us via WhatsApp to learn about partnership opportunities and start your skincare business journey.",
     category: "partnership",
   },
 ];
