@@ -19,7 +19,7 @@ const ProductAcneSoap = () => {
 
   const product = {
     id: "acne-dark-soap",
-    name: "Nuni Global Acne Dark Soap",
+    name: "NG Cosmetics Acne Dark Soap",
     category: "Cleansing",
     badge: "Bestseller",
     rating: 4.7,

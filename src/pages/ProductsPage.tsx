@@ -38,7 +38,7 @@ interface Product {
 const products: Product[] = [
   {
     id: "acne-dark-soap",
-    name: "Nuni Global Acne Dark Soap",
+    name: "NG Cosmetics Acne Dark Soap",
     description: "A powerful yet gentle soap formulated to combat acne and dark spots. Made with natural African botanicals, this soap deeply cleanses while nourishing your skin, leaving it clear and radiant.",
     image: soapImage,
     wholesaleImage: soapImageWholesale,
@@ -56,7 +56,7 @@ const products: Product[] = [
   },
   {
     id: "acne-facial-cream",
-    name: "Nuni Global Acne - Facial & Skin Cream",
+    name: "NG Cosmetics Acne - Facial & Skin Cream",
     description: "Our premium facial cream targets acne, dark spots, and uneven skin tone. Enriched with natural botanicals, it hydrates deeply while working to reveal your skin's natural glow.",
     image: creamImage,
     wholesaleImage: creamImageWholesale,
@@ -75,7 +75,7 @@ const products: Product[] = [
   },
   {
     id: "cocoa-butter",
-    name: "Nuni Global Cocoa Butter",
+    name: "NG Cosmetics Cocoa Butter",
     description: "Pure Ghanaian cocoa butter blended with nourishing oils to deeply moisturize and protect your skin. Perfect for maintaining soft, supple skin all day long.",
     image: butterImage,
     wholesaleImage: butterImageWholesale,

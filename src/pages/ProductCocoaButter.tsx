@@ -19,7 +19,7 @@ const ProductCocoaButter = () => {
 
   const product = {
     id: "cocoa-butter",
-    name: "Nuni Global Cocoa Butter",
+    name: "NG Cosmetics Cocoa Butter",
     category: "Moisturizing",
     rating: 4.9,
     reviewCount: 4,

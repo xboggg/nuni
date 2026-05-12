@@ -19,7 +19,7 @@ const ProductAcneCream = () => {
 
   const product = {
     id: "acne-facial-cream",
-    name: "Nuni Global Acne Facial & Skin Cream",
+    name: "NG Cosmetics Acne Facial & Skin Cream",
     category: "Treatment",
     badge: "New",
     rating: 4.8,
