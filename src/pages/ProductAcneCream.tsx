@@ -290,13 +290,7 @@ const ProductAcneCream = () => {
                 >
                   Order on WhatsApp (Ghana)
                 </Button>
-                <Button
-                  onClick={handleOrderEurope}
-                  variant="outline"
-                  className="w-full border-2 border-primary text-primary hover:bg-primary/10 text-lg py-6 rounded-xl transition-all"
-                >
-                  Buy from Europe
-                </Button>
+                {/* Buy from Europe button - temporarily disabled */}
               </div>
 
               {/* View Pricing Link */}

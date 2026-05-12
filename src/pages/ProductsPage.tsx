@@ -303,21 +303,7 @@ const ProductsPage = () => {
                     </div>
                   )}
 
-                  {/* Europe Order Option */}
-                  {!showWholesale && (
-                    <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-200 dark:border-blue-800">
-                      <p className="text-sm text-blue-800 dark:text-blue-200 font-medium mb-3">
-                        Ordering from Europe? Contact our European distributor:
-                      </p>
-                      <button
-                        onClick={() => handleEuropeOrder(product.name)}
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-full hover:bg-blue-700 transition-colors"
-                      >
-                        <MessageCircle size={16} />
-                        Buy from Europe
-                      </button>
-                    </div>
-                  )}
+                  {/* Europe Order Option - temporarily disabled */}
 
                   {/* Link to product detail page */}
                   <Link
