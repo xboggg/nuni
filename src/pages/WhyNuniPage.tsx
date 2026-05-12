@@ -171,7 +171,7 @@ const CoupleCard = ({ image, alt, onClick }: { image: string; alt: string; onCli
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
         <div className="absolute bottom-4 left-4 right-4">
           <p className="text-white font-serif text-lg md:text-xl font-semibold">The Power Couple</p>
-          <p className="text-white/80 text-sm">Building NG Cosmetics & Nuni Global together</p>
+          <p className="text-white/80 text-sm">Building NG Cosmetics together</p>
         </div>
       </div>
     </motion.div>
