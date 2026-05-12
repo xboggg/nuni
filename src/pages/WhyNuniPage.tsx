@@ -761,7 +761,7 @@ const WhyNuniPage = () => {
               FDA <span className="text-gradient-gold">Certified</span> Products
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              All Nuni Global products are registered and approved by the Ghana Food and Drugs Authority (FDA),
+              All NG Cosmetics products are registered and approved by the Ghana Food and Drugs Authority (FDA),
               ensuring the highest standards of safety, quality, and efficacy.
             </p>
           </motion.div>

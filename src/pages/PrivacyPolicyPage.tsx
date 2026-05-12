@@ -91,7 +91,7 @@ const PrivacyPolicyPage = () => {
     <>
       <SEO
         title="Privacy Policy"
-        description="Learn how Nuni Global collects, uses, and protects your personal information. Your privacy is important to us."
+        description="Learn how NG Cosmetics collects, uses, and protects your personal information. Your privacy is important to us."
         url="/privacy-policy"
       />
       <Navigation />
@@ -122,7 +122,7 @@ const PrivacyPolicyPage = () => {
                 {t.privacyPolicy?.title || "Privacy"} <span className="text-gradient-green">{t.privacyPolicy?.titleHighlight || "Policy"}</span>
               </h1>
               <p className="text-lg text-muted-foreground">
-                {t.privacyPolicy?.description || "Your privacy is important to us. This policy explains how Nuni Global collects, uses, and protects your personal information."}
+                {t.privacyPolicy?.description || "Your privacy is important to us. This policy explains how NG Cosmetics collects, uses, and protects your personal information."}
               </p>
               <p className="text-sm text-muted-foreground mt-4">
                 {t.privacyPolicy?.lastUpdated || "Last updated"}: {lastUpdated}

@@ -42,7 +42,7 @@ export const testimonials: Testimonial[] = [
     initials: "AM",
     location: "Accra, Ghana",
     rating: 5,
-    text: "I've struggled with acne and dark spots for years. After using Nuni Global products for just 6 weeks, my skin has never looked better. The natural ingredients are gentle but so effective!",
+    text: "I've struggled with acne and dark spots for years. After using NG Cosmetics products for just 6 weeks, my skin has never looked better. The natural ingredients are gentle but so effective!",
     product: "Acne Dark Soap + Facial Cream",
   },
   {

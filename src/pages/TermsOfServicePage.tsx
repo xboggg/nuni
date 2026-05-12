@@ -103,11 +103,11 @@ const TermsOfServicePage = () => {
         },
         {
           subtitle: t.termsOfService?.content || "Content",
-          text: t.termsOfService?.contentText || "All content on this website, including text, images, and videos, is the property of Nuni Global and protected by copyright laws. Unauthorized use is prohibited.",
+          text: t.termsOfService?.contentText || "All content on this website, including text, images, and videos, is the property of NG Cosmetics and protected by copyright laws. Unauthorized use is prohibited.",
         },
         {
           subtitle: t.termsOfService?.userContent || "User Content",
-          text: t.termsOfService?.userContentText || "By submitting testimonials, reviews, or photos to us, you grant Nuni Global permission to use this content for marketing purposes.",
+          text: t.termsOfService?.userContentText || "By submitting testimonials, reviews, or photos to us, you grant NG Cosmetics permission to use this content for marketing purposes.",
         },
       ],
     },
@@ -117,7 +117,7 @@ const TermsOfServicePage = () => {
     <>
       <SEO
         title="Terms of Service"
-        description="Read Nuni Global's terms of service including orders, payments, shipping, returns, and product use policies."
+        description="Read NG Cosmetics' terms of service including orders, payments, shipping, returns, and product use policies."
         url="/terms-of-service"
       />
       <Navigation />
@@ -171,7 +171,7 @@ const TermsOfServicePage = () => {
                   {t.termsOfService?.agreementTitle || "Agreement to Terms"}
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  {t.termsOfService?.agreementText1 || "By accessing our website or making a purchase from Nuni Global, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any part of these terms, you may not use our services."}
+                  {t.termsOfService?.agreementText1 || "By accessing our website or making a purchase from NG Cosmetics, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any part of these terms, you may not use our services."}
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
                   {t.termsOfService?.agreementText2 || "We reserve the right to modify these terms at any time. Changes will be effective immediately upon posting to this page. Your continued use of our services after any changes indicates your acceptance of the new terms."}
@@ -233,7 +233,7 @@ const TermsOfServicePage = () => {
                   {t.termsOfService?.limitationLiability || "Limitation of Liability"}
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  {t.termsOfService?.limitationText1 || "Nuni Global shall not be liable for any indirect, incidental, special, or consequential damages resulting from the use or inability to use our products or services."}
+                  {t.termsOfService?.limitationText1 || "NG Cosmetics shall not be liable for any indirect, incidental, special, or consequential damages resulting from the use or inability to use our products or services."}
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
                   {t.termsOfService?.limitationText2 || "Our total liability to you for any claim arising from these terms or your use of our products shall not exceed the amount you paid for the product giving rise to the claim."}

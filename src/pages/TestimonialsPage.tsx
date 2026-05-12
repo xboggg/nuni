@@ -166,8 +166,8 @@ const TestimonialsPage = () => {
     <div className="min-h-screen bg-background" style={{ touchAction: 'pan-y' }}>
       <SEO
         title="Testimonials - Real Results from Real Customers"
-        description="See real testimonials and before/after results from Nuni Global customers. Discover how our natural skincare products have transformed skin across Ghana."
-        keywords="Nuni Global reviews, skincare testimonials, before after results, customer reviews Ghana"
+        description="See real testimonials and before/after results from NG Cosmetics customers. Discover how our natural skincare products have transformed skin across Ghana."
+        keywords="NG Cosmetics reviews, skincare testimonials, before after results, customer reviews Ghana"
         url="/testimonials"
       />
       <Navigation />
@@ -202,7 +202,7 @@ const TestimonialsPage = () => {
                 {t.testimonials?.pageTitle || "What Our Customers"} <span className="text-gradient-gold">{t.testimonials?.pageTitleHighlight || "Say"}</span>
               </h1>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                {t.testimonials?.description || "Real results from real people. See why thousands trust Nuni Global for their skincare journey."}
+                {t.testimonials?.description || "Real results from real people. See why thousands trust NG Cosmetics for their skincare journey."}
               </p>
             </div>
           </motion.div>
@@ -299,7 +299,7 @@ const TestimonialsPage = () => {
               {t.realResults?.title || "See the"} <span className="text-gradient-gold">{t.realResults?.titleHighlight || "Transformation"}</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              {t.realResults?.description || "Real photos and videos from our customers showing their amazing skin transformations with Nuni Global products."}
+              {t.realResults?.description || "Real photos and videos from our customers showing their amazing skin transformations with NG Cosmetics products."}
             </p>
           </motion.div>
 

@@ -429,8 +429,8 @@ const Gallery = () => {
     <div className="min-h-screen bg-background" style={{ touchAction: 'pan-y' }}>
       <SEO
         title="Gallery - Product Photos & Ambassadors"
-        description="Browse our gallery of Nuni Global skincare products, brand ambassadors, and happy customers. See real results from our natural African skincare line."
-        keywords="Nuni Global gallery, skincare photos, product images, brand ambassadors, Ghana skincare"
+        description="Browse our gallery of NG Cosmetics skincare products, brand ambassadors, and happy customers. See real results from our natural African skincare line."
+        keywords="NG Cosmetics gallery, skincare photos, product images, brand ambassadors, Ghana skincare"
         url="/gallery"
       />
       <Navigation />

@@ -409,7 +409,7 @@ const PartnersPage = () => {
               Our <span className="text-foreground">Vendors</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Find our trusted retail vendors across Ghana. Connect with a vendor near you for authentic Nuni Global products.
+              Find our trusted retail vendors across Ghana. Connect with a vendor near you for authentic NG Cosmetics products.
             </p>
           </motion.div>
 

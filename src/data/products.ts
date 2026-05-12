@@ -121,8 +121,8 @@ export const productPrices: Record<string, Record<string, number>> = {
   "cocoa-butter": { "180ml": 110, "300ml": 150 },
 };
 
-export const GENERAL_INQUIRY_MESSAGE = "Hello! I'm interested in Nuni Global products.";
-export const PARTNER_INQUIRY_MESSAGE = "Hello! I'm interested in becoming a Nuni Global reseller/partner.";
+export const GENERAL_INQUIRY_MESSAGE = "Hello! I'm interested in NG Cosmetics products.";
+export const PARTNER_INQUIRY_MESSAGE = "Hello! I'm interested in becoming an NG Cosmetics reseller/partner.";
 
 export const tiktokVideos = [
   "https://www.tiktok.com/@nuniglobalc/video/7596655791784873238",

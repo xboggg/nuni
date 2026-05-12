@@ -48,7 +48,7 @@ const Testimonials = () => {
             {/* Quote Text */}
             <blockquote className="text-xl md:text-2xl lg:text-3xl font-serif text-foreground leading-relaxed mb-8">
               "I've struggled with acne and dark spots for years. After using
-              Nuni Global products for just 6 weeks, my skin has never looked
+              NG Cosmetics products for just 6 weeks, my skin has never looked
               better. The natural ingredients are gentle but so effective!"
             </blockquote>
 

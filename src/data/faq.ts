@@ -8,7 +8,7 @@ export interface FAQItem {
 export const faqData: FAQItem[] = [
   {
     id: "1",
-    question: "What makes Nuni Global products different?",
+    question: "What makes our products different?",
     answer: "Our products are crafted with 100% natural African botanicals including shea butter, cocoa butter, and activated charcoal. We combine traditional African skincare wisdom with modern formulation techniques. All our products are FDA approved in Ghana and suitable for all skin types.",
     category: "products",
   },
@@ -33,7 +33,7 @@ export const faqData: FAQItem[] = [
   {
     id: "5",
     question: "Are your products FDA approved?",
-    answer: "Yes, all Nuni Global products are approved by the Ghana Food and Drugs Authority (FDA). We maintain strict quality control standards and use only certified, safe ingredients in our formulations.",
+    answer: "Yes, all our products are approved by the Ghana Food and Drugs Authority (FDA). We maintain strict quality control standards and use only certified, safe ingredients in our formulations.",
     category: "general",
   },
   {

@@ -58,7 +58,7 @@ const RealResults = () => {
             {t.realResults?.title || "See the"} <span className="text-gradient-gold">{t.realResults?.titleHighlight || "Transformation"}</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            {t.realResults?.description || "Real photos and videos from our customers showing their amazing skin transformations with Nuni Global products."}
+            {t.realResults?.description || "Real photos and videos from our customers showing their amazing skin transformations with NG Cosmetics products."}
           </p>
         </motion.div>
 

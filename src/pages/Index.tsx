@@ -41,7 +41,7 @@ const Index = () => {
     <>
       <SEO
         url="/"
-        keywords="African skincare, natural skincare, Ghana skincare, acne treatment, dark spot removal, shea butter, cocoa butter, organic skincare, Nuni Global"
+        keywords="African skincare, natural skincare, Ghana skincare, acne treatment, dark spot removal, shea butter, cocoa butter, organic skincare, NG Cosmetics"
       />
       <LoadingScreen isLoading={isLoading} />
       
