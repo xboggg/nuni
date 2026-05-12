@@ -483,7 +483,7 @@ const WhyNuniPage = () => {
               Meet the <span className="text-gradient-gold">Leadership</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Behind every successful brand is a dedicated team. At NG Cosmetics, creators of the Nuni Global product line, it's a family united by passion, purpose, and the commitment to transform African skincare.
+              Behind every successful brand is a dedicated team. At NG Cosmetics, it's a family united by passion, purpose, and the commitment to transform African skincare.
             </p>
           </motion.div>
 
