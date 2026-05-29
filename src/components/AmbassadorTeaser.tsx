@@ -1,41 +1,7 @@
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-
-interface TimeLeft {
-  days: number;
-  hours: number;
-  minutes: number;
-  seconds: number;
-}
-
-const REVEAL_DATE = new Date("2026-05-23T20:00:00");
+import { Calendar, MapPin, Phone, Radio } from "lucide-react";
 
 const AmbassadorTeaser = () => {
-  const [timeLeft, setTimeLeft] = useState<TimeLeft>({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-  const [revealed, setRevealed] = useState(false);
-
-  useEffect(() => {
-    const calculate = () => {
-      const now = new Date();
-      const diff = REVEAL_DATE.getTime() - now.getTime();
-      if (diff <= 0) {
-        setRevealed(true);
-        return;
-      }
-      setTimeLeft({
-        days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-        minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
-        seconds: Math.floor((diff % (1000 * 60)) / 1000),
-      });
-    };
-    calculate();
-    const timer = setInterval(calculate, 1000);
-    return () => clearInterval(timer);
-  }, []);
-
-  if (revealed) return null;
-
   return (
     <motion.section
       initial={{ opacity: 0, y: 30 }}
@@ -43,7 +9,7 @@ const AmbassadorTeaser = () => {
       viewport={{ once: true }}
       className="py-16 bg-[#0a0a0a] overflow-hidden relative"
     >
-      {/* Gold shimmer background */}
+      {/* Subtle background glow */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(212,175,55,0.08),transparent_70%)]" />
 
       <div className="container-custom relative z-10">
@@ -56,11 +22,11 @@ const AmbassadorTeaser = () => {
             className="relative"
           >
             <img
-              src="/media/ambassador-teaser.jpg"
-              alt="New Brand Ambassador Teaser"
-              className="w-full max-w-sm mx-auto rounded-2xl shadow-2xl shadow-yellow-900/30"
+              src="/media/bigface-reveal.jpg"
+              alt="NG Cosmetics New Big Face - Unveiling Event"
+              className="w-full max-w-md mx-auto rounded-2xl shadow-2xl shadow-yellow-900/30"
             />
-            <div className="absolute inset-0 rounded-2xl ring-1 ring-yellow-500/20" />
+            <div className="absolute inset-0 rounded-2xl ring-1 ring-yellow-500/20 pointer-events-none" />
           </motion.div>
 
           {/* Content */}
@@ -70,35 +36,52 @@ const AmbassadorTeaser = () => {
             viewport={{ once: true }}
             className="text-center lg:text-left"
           >
-            <span className="inline-block text-xs font-semibold tracking-widest text-yellow-500 uppercase mb-3">
-              🎭 Guess Who?
+            <span className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-red-500 uppercase mb-3">
+              <Radio size={16} className="animate-pulse" />
+              ADOM TV LIVE COVERAGE
             </span>
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-3 leading-tight">
-              A New Era of Beauty <span className="text-yellow-400">Begins</span>
+
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-white mb-3 leading-tight">
+              The New <span className="text-yellow-400">Big Face</span>
             </h2>
+
             <p className="text-white/60 mb-8 text-sm md:text-base leading-relaxed">
-              A big name is officially part of NG Cosmetics. The reveal is coming on <span className="text-yellow-400 font-semibold">Saturday, May 23rd</span>. Stay tuned.
+              Experience the moment, the excitement, and the big unveiling live on your screens.
+              Join us as media, guests, and supporters gather for a remarkable launch event.
             </p>
 
-            {/* Countdown */}
-            <div className="grid grid-cols-4 gap-3 max-w-xs mx-auto lg:mx-0">
-              {[
-                { value: timeLeft.days, label: "Days" },
-                { value: timeLeft.hours, label: "Hours" },
-                { value: timeLeft.minutes, label: "Mins" },
-                { value: timeLeft.seconds, label: "Secs" },
-              ].map(({ value, label }) => (
-                <div key={label} className="bg-white/5 border border-yellow-500/20 rounded-xl p-3 text-center">
-                  <div className="text-2xl md:text-3xl font-bold text-yellow-400 tabular-nums">
-                    {String(value).padStart(2, "0")}
-                  </div>
-                  <div className="text-white/40 text-xs mt-1">{label}</div>
+            {/* Event details */}
+            <div className="space-y-3 mb-6 max-w-md mx-auto lg:mx-0">
+              <div className="flex items-center gap-3 bg-white/5 border border-yellow-500/20 rounded-xl p-3">
+                <Calendar className="w-5 h-5 text-yellow-400 flex-shrink-0" />
+                <div className="text-left">
+                  <div className="text-xs text-white/40 uppercase tracking-wider">Date & Time</div>
+                  <div className="text-white text-sm font-medium">29th May · 9:00 AM Sharp</div>
                 </div>
-              ))}
+              </div>
+
+              <div className="flex items-center gap-3 bg-white/5 border border-yellow-500/20 rounded-xl p-3">
+                <MapPin className="w-5 h-5 text-yellow-400 flex-shrink-0" />
+                <div className="text-left">
+                  <div className="text-xs text-white/40 uppercase tracking-wider">Location</div>
+                  <div className="text-white text-sm font-medium">Ablekuma Joma</div>
+                </div>
+              </div>
+
+              <a
+                href="tel:+233591782488"
+                className="flex items-center gap-3 bg-white/5 border border-yellow-500/20 rounded-xl p-3 hover:bg-white/10 transition-colors"
+              >
+                <Phone className="w-5 h-5 text-yellow-400 flex-shrink-0" />
+                <div className="text-left">
+                  <div className="text-xs text-white/40 uppercase tracking-wider">Contact for Direction</div>
+                  <div className="text-white text-sm font-medium">0591782488</div>
+                </div>
+              </a>
             </div>
 
-            <p className="mt-6 text-white/30 text-xs tracking-widest uppercase">
-              Powered by NG Cosmetics
+            <p className="text-yellow-400 text-sm font-semibold tracking-wide">
+              Be There. Be Seen. Be Part of the Big Face Launch.
             </p>
           </motion.div>
         </div>
