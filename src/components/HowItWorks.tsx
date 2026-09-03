@@ -54,7 +54,7 @@ const HowItWorks = () => {
   ];
 
   return (
-    <section className="py-20 lg:py-32 bg-background">
+    <section ref={ref} className="py-20 lg:py-32 bg-background">
       <div className="container-custom">
         {/* Section Header */}
         <motion.div
@@ -75,7 +75,7 @@ const HowItWorks = () => {
         </motion.div>
 
         {/* Steps - desktop grid */}
-        <div ref={ref} className="relative hidden md:block">
+        <div className="relative hidden md:block">
           {/* Connecting Line */}
           <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-0.5 bg-border -translate-y-1/2" />
 
