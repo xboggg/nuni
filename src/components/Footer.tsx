@@ -26,8 +26,8 @@ const Footer = () => {
       { name: t.footer.about, href: "/about-us", isRoute: true },
       { name: t.footer.gallery, href: "/gallery", isRoute: true },
       { name: t.footer.partners, href: "/partners", isRoute: true },
-      { name: "Raw Materials Export", href: "/export", isRoute: true },
-      { name: "Home Decor", href: "/home-decor", isRoute: true },
+      { name: t.footer.export, href: "/export", isRoute: true },
+      { name: t.footer.homeDecor, href: "/home-decor", isRoute: true },
     ],
     support: [
       { name: t.footer.contact, href: "/contact", isRoute: true },

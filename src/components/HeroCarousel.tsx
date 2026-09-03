@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Leaf, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -12,14 +12,11 @@ import hero3 from "@/assets/hero-3.jpeg";
 import hero4 from "@/assets/hero-4.png";
 import hero7 from "@/assets/hero-7.png";
 import hero8 from "@/assets/hero-8.png";
-import hero9 from "@/assets/hero-9.png";
-import hero10 from "@/assets/hero-10.jpeg";
-import hero11 from "@/assets/hero-11.jpg";
 import hero12 from "@/assets/hero-12.jpg";
 import hero13 from "@/assets/hero-13.jpeg";
 import heroLuxFar from "@/assets/hero-lux-far.jpg";
 
-const heroImages = [hero11, heroLuxFar, hero12, hero13, hero1, hero2, hero3, hero4, hero7, hero8, hero9, hero10];
+const heroImages = [heroLuxFar, hero12, hero13, hero1, hero2, hero3, hero4, hero7, hero8];
 
 const HeroCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -40,6 +37,36 @@ const HeroCarousel = () => {
     setTimeout(() => setIsAutoPlaying(true), 10000);
   };
 
+  // Touch swipe support
+  const touchStartX = useRef<number | null>(null);
+  const touchEndX = useRef<number | null>(null);
+  const SWIPE_THRESHOLD = 50;
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchEndX.current = null;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX.current === null || touchEndX.current === null) return;
+    const distance = touchStartX.current - touchEndX.current;
+    if (Math.abs(distance) > SWIPE_THRESHOLD) {
+      setIsAutoPlaying(false);
+      if (distance > 0) {
+        nextSlide();
+      } else {
+        prevSlide();
+      }
+      setTimeout(() => setIsAutoPlaying(true), 10000);
+    }
+    touchStartX.current = null;
+    touchEndX.current = null;
+  };
+
   // Auto-play functionality
   useEffect(() => {
     if (!isAutoPlaying) return;
@@ -58,7 +85,13 @@ const HeroCarousel = () => {
   }, [nextSlide, prevSlide]);
 
   return (
-    <section id="hero" className="relative min-h-screen overflow-hidden bg-neutral-900">
+    <section
+      id="hero"
+      className="relative min-h-screen overflow-hidden bg-neutral-900"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
       {/* Static background to prevent white flash */}
       <div
         className="absolute inset-0 bg-cover bg-center transition-none"
@@ -189,20 +222,20 @@ const HeroCarousel = () => {
         </div>
       </div>
 
-      {/* Navigation Arrows */}
+      {/* Navigation Arrows - small & transparent */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-card/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:bg-card transition-all duration-200 shadow-soft"
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/40 transition-all duration-200"
         aria-label="Previous slide"
       >
-        <ChevronLeft size={24} />
+        <ChevronLeft size={20} />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-card/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:bg-card transition-all duration-200 shadow-soft"
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/40 transition-all duration-200"
         aria-label="Next slide"
       >
-        <ChevronRight size={24} />
+        <ChevronRight size={20} />
       </button>
 
       {/* Dots Navigation */}

@@ -122,6 +122,7 @@ const ProductCocoaButter = () => {
         title="Cocoa Butter - Natural Moisturizer"
         description="Pure Ghanaian cocoa butter for deep moisturizing. Rich in antioxidants, soothes irritation, fades stretch marks. Safe for babies 6 months+. Made in Ghana."
         keywords="cocoa butter, natural moisturizer, stretch mark cream, Ghana cocoa butter, shea butter, baby safe skincare"
+        image="/og-image-products.jpg"
         url="/products/cocoa-butter"
         type="product"
         structuredData={productStructuredData}

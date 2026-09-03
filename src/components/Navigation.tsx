@@ -18,7 +18,7 @@ const Navigation = () => {
     { name: t.nav.products, href: "/products", isRoute: true },
     { name: t.nav.gallery, href: "/gallery", isRoute: true },
     { name: t.nav.partners, href: "/partners", isRoute: true },
-    { name: "Community", href: "/community", isRoute: true },
+    { name: t.nav.community, href: "/community", isRoute: true },
     { name: t.nav.contact, href: "/contact", isRoute: true },
   ];
 

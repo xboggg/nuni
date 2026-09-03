@@ -1,10 +1,13 @@
 import { motion } from "framer-motion";
 import { Calendar, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/lib/i18n";
 import launchLuxFar1 from "@/assets/launch-lux-far-1.jpg";
 import launchLuxFar2 from "@/assets/launch-lux-far-2.jpg";
 
 const AmbassadorTeaser = () => {
+  const { t } = useLanguage();
+
   return (
     <motion.section
       initial={{ opacity: 0, y: 30 }}
@@ -51,16 +54,15 @@ const AmbassadorTeaser = () => {
           >
             <span className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-yellow-400 uppercase mb-3">
               <Sparkles size={16} />
-              New Launch
+              {t.launchBanner.badge}
             </span>
 
             <h2 className="text-4xl md:text-5xl font-serif font-bold text-white mb-3 leading-tight">
-              Luxury &amp; <span className="text-yellow-400">Faraway</span> Body Butter
+              {t.launchBanner.title} <span className="text-yellow-400">{t.launchBanner.titleHighlight}</span> {t.launchBanner.titleEnd}
             </h2>
 
             <p className="text-white/60 mb-8 text-sm md:text-base leading-relaxed">
-              Rich, smooth, and luxurious body butter made with 100% natural shea butter.
-              Available in 150ml and 250ml, launching soon in stores and online.
+              {t.launchBanner.description}
             </p>
 
             {/* Launch date */}
@@ -68,8 +70,8 @@ const AmbassadorTeaser = () => {
               <div className="flex items-center gap-3 bg-white/5 border border-yellow-500/20 rounded-xl p-3">
                 <Calendar className="w-5 h-5 text-yellow-400 flex-shrink-0" />
                 <div className="text-left">
-                  <div className="text-xs text-white/40 uppercase tracking-wider">Launch Date</div>
-                  <div className="text-white text-sm font-medium">6th September</div>
+                  <div className="text-xs text-white/40 uppercase tracking-wider">{t.launchBanner.launchDateLabel}</div>
+                  <div className="text-white text-sm font-medium">{t.launchBanner.launchDate}</div>
                 </div>
               </div>
             </div>
@@ -78,7 +80,7 @@ const AmbassadorTeaser = () => {
               to="/products"
               className="inline-flex items-center gap-2 px-8 py-4 bg-yellow-400 text-black rounded-full font-semibold transition-all duration-300 hover:bg-yellow-300 hover:scale-105 shadow-lg"
             >
-              Shop the Collection
+              {t.launchBanner.cta}
             </Link>
           </motion.div>
         </div>

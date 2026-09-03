@@ -76,6 +76,7 @@ const ProductLuxuryBodyButter = () => {
         title="Luxury Body Butter - Rich, Smooth, Luxurious"
         description="NG Cosmetics Luxury Body Butter made with 100% natural shea butter. Deeply moisturizes and nourishes skin for a soft, radiant glow. Made in Ghana."
         keywords="luxury body butter, shea butter, natural moisturizer, Ghana skincare, NG Cosmetics"
+        image="/og-image-products.jpg"
         url="/products/luxury-body-butter"
         type="product"
         structuredData={productStructuredData}

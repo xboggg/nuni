@@ -2,8 +2,10 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Heart, Sparkles } from "lucide-react";
 import { getWhatsAppLink } from "@/data/products";
+import { useLanguage } from "@/lib/i18n";
 
 const PromoBar = () => {
+  const { t } = useLanguage();
   const [isVisible, setIsVisible] = useState(false);
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -67,8 +69,7 @@ const PromoBar = () => {
   };
 
   const handleShopNow = () => {
-    const message = "Hi! I'm interested in your Valentine's Day 5% discount offer on all products!";
-    window.open(getWhatsAppLink(message), "_blank");
+    window.open(getWhatsAppLink(t.promoBar.whatsappMessage), "_blank");
     handleDismiss();
   };
 
@@ -102,7 +103,7 @@ const PromoBar = () => {
               <button
                 onClick={handleDismiss}
                 className="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/80 hover:bg-white transition-colors shadow-md"
-                aria-label="Close"
+                aria-label={t.promoBar.closeLabel}
               >
                 <X size={18} className="text-gray-700" />
               </button>
@@ -130,23 +131,23 @@ const PromoBar = () => {
 
                 {/* Heading */}
                 <h2 className="text-3xl font-serif font-bold text-gray-900 mb-2">
-                  Valentine's Special
+                  {t.promoBar.heading}
                 </h2>
                 <p className="text-pink-600 font-semibold text-lg mb-6">
-                  💝 Get <span className="text-2xl font-bold text-red-600">5% OFF</span> All Products!
+                  💝 {t.promoBar.offerText} <span className="text-2xl font-bold text-red-600">{t.promoBar.offerPercent}</span> {t.promoBar.offerSuffix}
                 </p>
 
                 {/* Countdown Timer */}
                 <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 mb-6 shadow-md">
-                  <p className="text-sm text-gray-600 mb-3 font-medium">Offer Ends In:</p>
+                  <p className="text-sm text-gray-600 mb-3 font-medium">{t.promoBar.offerEndsIn}</p>
                   <div className="flex justify-center gap-3">
-                    <TimeUnit value={timeLeft.days} label="Days" isUrgent={isUrgent} />
+                    <TimeUnit value={timeLeft.days} label={t.promoBar.days} isUrgent={isUrgent} />
                     <span className="text-2xl font-bold text-gray-400 self-center">:</span>
-                    <TimeUnit value={timeLeft.hours} label="Hours" isUrgent={isUrgent} />
+                    <TimeUnit value={timeLeft.hours} label={t.promoBar.hours} isUrgent={isUrgent} />
                     <span className="text-2xl font-bold text-gray-400 self-center">:</span>
-                    <TimeUnit value={timeLeft.minutes} label="Min" isUrgent={isUrgent} />
+                    <TimeUnit value={timeLeft.minutes} label={t.promoBar.minutes} isUrgent={isUrgent} />
                     <span className="text-2xl font-bold text-gray-400 self-center">:</span>
-                    <TimeUnit value={timeLeft.seconds} label="Sec" isUrgent={isUrgent} />
+                    <TimeUnit value={timeLeft.seconds} label={t.promoBar.seconds} isUrgent={isUrgent} />
                   </div>
                 </div>
 
@@ -158,19 +159,19 @@ const PromoBar = () => {
                     whileTap={{ scale: 0.95 }}
                     className="w-full py-4 bg-gradient-to-r from-pink-600 to-red-600 text-white rounded-full font-bold text-lg shadow-lg hover:shadow-xl transition-shadow"
                   >
-                    Shop Now & Save 5%
+                    {t.promoBar.shopNow}
                   </motion.button>
                   <button
                     onClick={handleDismiss}
                     className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
                   >
-                    Maybe later
+                    {t.promoBar.maybeLater}
                   </button>
                 </div>
 
                 {/* Small Print */}
                 <p className="text-xs text-gray-500 mt-4">
-                  *Valid on all products until Feb 14, 2026
+                  {t.promoBar.finePrint}
                 </p>
               </div>
             </div>

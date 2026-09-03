@@ -117,6 +117,7 @@ const ProductAcneSoap = () => {
         title="Acne Dark Soap - Natural Acne Treatment"
         description="Powerful charcoal-based soap with shea butter, coconut oil, and salicylic acid. Fights acne, fades dark spots, and clears razor bumps. FDA Approved. Made in Ghana."
         keywords="acne soap, dark spot soap, natural acne treatment, charcoal soap, shea butter soap, Ghana skincare"
+        image="/og-image-products.jpg"
         url="/products/acne-dark-soap"
         type="product"
         structuredData={productStructuredData}

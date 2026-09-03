@@ -5,24 +5,39 @@ import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
+import { useLanguage } from "@/lib/i18n";
 
 // Community media - served from /media/community/
-const communityVideos = [
-  { id: 1, src: "/media/community/community-1.mp4", title: "Community Outreach" },
-  { id: 2, src: "/media/community/community-2.mp4", title: "Healthcare Support" },
-  { id: 3, src: "/media/community/community-3.mp4", title: "Charity Initiative" },
-  { id: 4, src: "/media/community/community-4.mp4", title: "Community Service" },
-  { id: 5, src: "/media/community/community-5.mp4", title: "Hospitality Activity" },
-  { id: 6, src: "/media/community/community-6.mp4", title: "Giving Back" },
+const communityVideoSrcs = [
+  "/media/community/community-1.mp4",
+  "/media/community/community-2.mp4",
+  "/media/community/community-3.mp4",
+  "/media/community/community-4.mp4",
+  "/media/community/community-5.mp4",
+  "/media/community/community-6.mp4",
 ];
 
-const appreciationLetter = {
-  src: "/media/community/hospital-letter.jpg",
-  title: "Letter of Appreciation from St. Francis Xavier Catholic Hospital",
-  description: "A heartfelt letter of appreciation from St. Francis Xavier Catholic Hospital recognizing our contribution towards patient medical bills."
-};
+const appreciationLetterSrc = "/media/community/hospital-letter.jpg";
 
 const CommunityImpactPage = () => {
+  const { t } = useLanguage();
+  const communityVideos = communityVideoSrcs.map((src, index) => ({
+    id: index + 1,
+    src,
+    title: [
+      t.community.videoOutreach,
+      t.community.videoHealthcare,
+      t.community.videoCharity,
+      t.community.videoService,
+      t.community.videoHospitality,
+      t.community.videoGiving,
+    ][index],
+  }));
+  const appreciationLetter = {
+    src: appreciationLetterSrc,
+    title: t.community.letterTitle,
+    description: t.community.letterDescription,
+  };
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
@@ -69,13 +84,13 @@ const CommunityImpactPage = () => {
           >
             <span className="inline-flex items-center gap-2 text-sm font-medium tracking-widest text-accent uppercase mb-4">
               <Heart className="w-4 h-4" />
-              Our Community
+              {t.community.badge}
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-6">
-              Giving Back to <span className="text-gradient-gold">Our Community</span>
+              {t.community.heroTitle} <span className="text-gradient-gold">{t.community.heroTitleHighlight}</span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              At NG Cosmetics, we believe that true beauty extends beyond skincare — it's about caring for those around us. We are committed to supporting our communities through healthcare initiatives and charitable giving.
+              {t.community.heroDescription}
             </p>
           </motion.div>
         </div>
@@ -94,22 +109,22 @@ const CommunityImpactPage = () => {
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Heart className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Healthcare Support</h3>
-              <p className="text-muted-foreground">Contributing to medical bills and healthcare access for those in need.</p>
+              <h3 className="text-xl font-semibold mb-2">{t.community.healthcareSupport}</h3>
+              <p className="text-muted-foreground">{t.community.healthcareSupportDesc}</p>
             </div>
             <div className="text-center p-6">
               <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Users className="w-8 h-8 text-accent" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Community Outreach</h3>
-              <p className="text-muted-foreground">Engaging with local communities through hospitality and charitable activities.</p>
+              <h3 className="text-xl font-semibold mb-2">{t.community.communityOutreach}</h3>
+              <p className="text-muted-foreground">{t.community.communityOutreachDesc}</p>
             </div>
             <div className="text-center p-6">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Building2 className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Institutional Partnerships</h3>
-              <p className="text-muted-foreground">Working with hospitals and institutions to make a lasting impact.</p>
+              <h3 className="text-xl font-semibold mb-2">{t.community.institutionalPartnerships}</h3>
+              <p className="text-muted-foreground">{t.community.institutionalPartnershipsDesc}</p>
             </div>
           </motion.div>
         </div>
@@ -125,13 +140,13 @@ const CommunityImpactPage = () => {
             className="text-center mb-12"
           >
             <span className="inline-block text-sm font-medium tracking-widest text-accent uppercase mb-4">
-              Healthcare Initiative
+              {t.community.healthcareInitiativeBadge}
             </span>
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
-              Supporting <span className="text-gradient-gold">Patient Care</span>
+              {t.community.healthcareTitle} <span className="text-gradient-gold">{t.community.healthcareTitleHighlight}</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              In partnership with St. Francis Xavier Catholic Hospital (Sisters Hospitallers), we've contributed to covering medical bills for patients in need, ensuring that quality healthcare remains accessible to all.
+              {t.community.healthcareDescription}
             </p>
           </motion.div>
 
@@ -158,7 +173,7 @@ const CommunityImpactPage = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
                     </svg>
                   </div>
-                  <p className="text-sm font-medium">Click to view</p>
+                  <p className="text-sm font-medium">{t.community.clickToView}</p>
                 </div>
               </div>
             </div>
@@ -179,13 +194,13 @@ const CommunityImpactPage = () => {
             className="text-center mb-12"
           >
             <span className="inline-block text-sm font-medium tracking-widest text-accent uppercase mb-4">
-              Our Activities
+              {t.community.activitiesBadge}
             </span>
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
-              Moments of <span className="text-gradient-gold">Giving</span>
+              {t.community.activitiesTitle} <span className="text-gradient-gold">{t.community.activitiesTitleHighlight}</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Watch our community outreach activities and see the impact we're making together.
+              {t.community.activitiesDescription}
             </p>
           </motion.div>
 
@@ -231,23 +246,23 @@ const CommunityImpactPage = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-6">
-              Join Us in Making a Difference
+              {t.community.ctaTitle}
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-              When you choose NG Cosmetics, you're not just choosing quality skincare — you're supporting a brand that cares about community welfare.
+              {t.community.ctaDescription}
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link
                 to="/products"
                 className="inline-flex items-center px-8 py-3 bg-primary text-white rounded-full font-medium hover:bg-primary/90 transition-colors"
               >
-                Shop Our Products
+                {t.community.shopProducts}
               </Link>
               <Link
                 to="/about-us"
                 className="inline-flex items-center px-8 py-3 border-2 border-primary text-primary rounded-full font-medium hover:bg-primary hover:text-white transition-colors"
               >
-                Learn About Us
+                {t.community.learnAboutUs}
               </Link>
             </div>
           </motion.div>
@@ -317,7 +332,7 @@ const CommunityImpactPage = () => {
           <div className="max-w-4xl w-full" onClick={(e) => e.stopPropagation()}>
             <img
               src={selectedImage}
-              alt="Appreciation Letter"
+              alt={t.community.appreciationLetterAlt}
               className="w-full h-auto rounded-lg"
             />
           </div>

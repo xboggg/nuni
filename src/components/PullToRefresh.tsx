@@ -1,6 +1,7 @@
 import { useState, useRef, useCallback, ReactNode } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { RefreshCw } from "lucide-react";
+import { useLanguage } from "@/lib/i18n";
 
 interface PullToRefreshProps {
   children: ReactNode;
@@ -9,6 +10,7 @@ interface PullToRefreshProps {
 }
 
 const PullToRefresh = ({ children, onRefresh, threshold = 80 }: PullToRefreshProps) => {
+  const { t } = useLanguage();
   const [pullDistance, setPullDistance] = useState(0);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -96,7 +98,7 @@ const PullToRefresh = ({ children, onRefresh, threshold = 80 }: PullToRefreshPro
           <RefreshCw size={20} />
         </motion.div>
         <span className="text-xs text-muted-foreground mt-2 font-medium">
-          {isRefreshing ? 'Refreshing...' : shouldTrigger ? 'Release to refresh' : 'Pull to refresh'}
+          {isRefreshing ? t.common.refreshing : shouldTrigger ? t.common.releaseToRefresh : t.common.pullToRefresh}
         </span>
       </motion.div>
 

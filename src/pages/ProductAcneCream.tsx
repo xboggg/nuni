@@ -130,6 +130,7 @@ const ProductAcneCream = () => {
         title="Acne Facial & Skin Cream - Dark Spot Treatment"
         description="Targeted acne treatment with salicylic acid and niacinamide. Reduces breakouts, fades hyperpigmentation, and promotes smoother skin. FDA Approved. Made in Ghana."
         keywords="acne cream, facial cream, dark spot treatment, hyperpigmentation cream, salicylic acid cream, Ghana skincare"
+        image="/og-image-products.jpg"
         url="/products/acne-facial-cream"
         type="product"
         structuredData={productStructuredData}

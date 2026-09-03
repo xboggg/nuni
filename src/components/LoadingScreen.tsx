@@ -1,11 +1,14 @@
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "@/assets/nuni-logo.png";
+import { useLanguage } from "@/lib/i18n";
 
 interface LoadingScreenProps {
   isLoading: boolean;
 }
 
 const LoadingScreen = ({ isLoading }: LoadingScreenProps) => {
+  const { t } = useLanguage();
+
   return (
     <AnimatePresence>
       {isLoading && (
@@ -45,7 +48,7 @@ const LoadingScreen = ({ isLoading }: LoadingScreenProps) => {
               transition={{ delay: 0.3 }}
               className="mt-6 text-sm font-medium tracking-widest text-primary-foreground uppercase"
             >
-              Proudly Ghanaian. Naturally Effective.
+              {t.common.tagline}
             </motion.p>
             
             <div className="mt-8 w-48 h-1 bg-primary-foreground/20 rounded-full overflow-hidden">

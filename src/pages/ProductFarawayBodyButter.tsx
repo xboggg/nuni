@@ -76,6 +76,7 @@ const ProductFarawayBodyButter = () => {
         title="Faraway Body Butter - Rich, Smooth, Luxurious"
         description="NG Cosmetics Faraway Body Butter with an exotic, long-lasting scent. Deeply moisturizes and softens dry skin. Made in Ghana."
         keywords="faraway body butter, shea butter, natural moisturizer, Ghana skincare, NG Cosmetics"
+        image="/og-image-products.jpg"
         url="/products/faraway-body-butter"
         type="product"
         structuredData={productStructuredData}
