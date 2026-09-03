@@ -88,17 +88,16 @@ const About = () => {
           ))}
         </div>
 
-        {/* Export Section - Artistic Design */}
+        {/* Export Section - Artistic Design (deactivated per request) */}
+        {/*
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={isInView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 0.7, delay: 0.7, ease: "easeOut" }}
           className="relative overflow-hidden rounded-3xl"
         >
-          {/* Animated Background Gradient */}
           <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-accent/70" />
 
-          {/* Decorative Elements */}
           <motion.div
             initial={{ opacity: 0, x: -100 }}
             animate={isInView ? { opacity: 0.1, x: 0 } : {}}
@@ -112,7 +111,6 @@ const About = () => {
             className="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-accent/30 blur-3xl"
           />
 
-          {/* Floating Decorative Shapes */}
           <motion.div
             animate={{
               y: [0, -15, 0],
@@ -138,10 +136,8 @@ const About = () => {
             className="absolute top-1/2 right-1/4 w-8 h-8 bg-white/10 rounded-lg rotate-45"
           />
 
-          {/* Content */}
           <div className="relative z-10 p-8 md:p-12 lg:p-16">
             <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
-              {/* Icon with Glow Effect */}
               <motion.div
                 initial={{ opacity: 0, scale: 0 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
@@ -159,7 +155,6 @@ const About = () => {
                 </div>
               </motion.div>
 
-              {/* Text Content */}
               <div className="flex-1 text-center lg:text-left">
                 <motion.span
                   initial={{ opacity: 0, y: 10 }}
@@ -210,6 +205,7 @@ const About = () => {
             </div>
           </div>
         </motion.div>
+        */}
       </div>
     </section>
   );
