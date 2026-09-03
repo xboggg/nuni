@@ -32,7 +32,7 @@ jobs:
           host: 38.242.195.0
           username: root
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: 80
+          port: 22
           source: "dist/*"
           target: "/var/www/ngcosmetics.com.gh"
           strip_components: 1
