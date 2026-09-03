@@ -17,8 +17,9 @@ import hero10 from "@/assets/hero-10.jpeg";
 import hero11 from "@/assets/hero-11.jpg";
 import hero12 from "@/assets/hero-12.jpg";
 import hero13 from "@/assets/hero-13.jpeg";
+import heroLuxFar from "@/assets/hero-lux-far.jpg";
 
-const heroImages = [hero11, hero12, hero13, hero1, hero2, hero3, hero4, hero7, hero8, hero9, hero10];
+const heroImages = [hero11, heroLuxFar, hero12, hero13, hero1, hero2, hero3, hero4, hero7, hero8, hero9, hero10];
 
 const HeroCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);

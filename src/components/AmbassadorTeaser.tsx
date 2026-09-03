@@ -1,5 +1,8 @@
 import { motion } from "framer-motion";
-import { Calendar, MapPin, Phone, Radio } from "lucide-react";
+import { Calendar, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
+import launchLuxFar1 from "@/assets/launch-lux-far-1.jpg";
+import launchLuxFar2 from "@/assets/launch-lux-far-2.jpg";
 
 const AmbassadorTeaser = () => {
   return (
@@ -14,19 +17,29 @@ const AmbassadorTeaser = () => {
 
       <div className="container-custom relative z-10">
         <div className="grid lg:grid-cols-2 gap-10 items-center">
-          {/* Poster */}
+          {/* Product Posters */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="relative"
+            className="relative grid grid-cols-2 gap-4 max-w-md mx-auto"
           >
-            <img
-              src="/media/bigface-reveal.jpg"
-              alt="NG Cosmetics New Big Face - Unveiling Event"
-              className="w-full max-w-md mx-auto rounded-2xl shadow-2xl shadow-yellow-900/30"
-            />
-            <div className="absolute inset-0 rounded-2xl ring-1 ring-yellow-500/20 pointer-events-none" />
+            <div className="relative">
+              <img
+                src={launchLuxFar1}
+                alt="NG Cosmetics Luxury and Faraway Body Butter"
+                className="w-full rounded-2xl shadow-2xl shadow-yellow-900/30 object-cover aspect-square"
+              />
+              <div className="absolute inset-0 rounded-2xl ring-1 ring-yellow-500/20 pointer-events-none" />
+            </div>
+            <div className="relative mt-8">
+              <img
+                src={launchLuxFar2}
+                alt="NG Cosmetics Faraway and Luxury Body Butter"
+                className="w-full rounded-2xl shadow-2xl shadow-yellow-900/30 object-cover aspect-square"
+              />
+              <div className="absolute inset-0 rounded-2xl ring-1 ring-yellow-500/20 pointer-events-none" />
+            </div>
           </motion.div>
 
           {/* Content */}
@@ -36,53 +49,37 @@ const AmbassadorTeaser = () => {
             viewport={{ once: true }}
             className="text-center lg:text-left"
           >
-            <span className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-red-500 uppercase mb-3">
-              <Radio size={16} className="animate-pulse" />
-              ADOM TV LIVE COVERAGE
+            <span className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-yellow-400 uppercase mb-3">
+              <Sparkles size={16} />
+              New Launch
             </span>
 
             <h2 className="text-4xl md:text-5xl font-serif font-bold text-white mb-3 leading-tight">
-              The New <span className="text-yellow-400">Big Face</span>
+              Luxury &amp; <span className="text-yellow-400">Faraway</span> Body Butter
             </h2>
 
             <p className="text-white/60 mb-8 text-sm md:text-base leading-relaxed">
-              Experience the moment, the excitement, and the big unveiling live on your screens.
-              Join us as media, guests, and supporters gather for a remarkable launch event.
+              Rich, smooth, and luxurious body butter made with 100% natural shea butter.
+              Available in 150ml and 250ml, launching soon in stores and online.
             </p>
 
-            {/* Event details */}
+            {/* Launch date */}
             <div className="space-y-3 mb-6 max-w-md mx-auto lg:mx-0">
               <div className="flex items-center gap-3 bg-white/5 border border-yellow-500/20 rounded-xl p-3">
                 <Calendar className="w-5 h-5 text-yellow-400 flex-shrink-0" />
                 <div className="text-left">
-                  <div className="text-xs text-white/40 uppercase tracking-wider">Date & Time</div>
-                  <div className="text-white text-sm font-medium">29th May · 9:00 AM Sharp</div>
+                  <div className="text-xs text-white/40 uppercase tracking-wider">Launch Date</div>
+                  <div className="text-white text-sm font-medium">6th September</div>
                 </div>
               </div>
-
-              <div className="flex items-center gap-3 bg-white/5 border border-yellow-500/20 rounded-xl p-3">
-                <MapPin className="w-5 h-5 text-yellow-400 flex-shrink-0" />
-                <div className="text-left">
-                  <div className="text-xs text-white/40 uppercase tracking-wider">Location</div>
-                  <div className="text-white text-sm font-medium">Ablekuma Joma</div>
-                </div>
-              </div>
-
-              <a
-                href="tel:+233591782488"
-                className="flex items-center gap-3 bg-white/5 border border-yellow-500/20 rounded-xl p-3 hover:bg-white/10 transition-colors"
-              >
-                <Phone className="w-5 h-5 text-yellow-400 flex-shrink-0" />
-                <div className="text-left">
-                  <div className="text-xs text-white/40 uppercase tracking-wider">Contact for Direction</div>
-                  <div className="text-white text-sm font-medium">0591782488</div>
-                </div>
-              </a>
             </div>
 
-            <p className="text-yellow-400 text-sm font-semibold tracking-wide">
-              Be There. Be Seen. Be Part of the Big Face Launch.
-            </p>
+            <Link
+              to="/products"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-yellow-400 text-black rounded-full font-semibold transition-all duration-300 hover:bg-yellow-300 hover:scale-105 shadow-lg"
+            >
+              Shop the Collection
+            </Link>
           </motion.div>
         </div>
       </div>
