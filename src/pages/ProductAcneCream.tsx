@@ -21,7 +21,6 @@ const ProductAcneCream = () => {
     id: "acne-facial-cream",
     name: "NG Cosmetics Acne Facial & Skin Cream",
     category: "Treatment",
-    badge: "New",
     rating: 4.8,
     reviewCount: 5,
     sizes: ["25ml", "50ml", "100ml"],

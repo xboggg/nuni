@@ -41,6 +41,42 @@ interface Product {
 
 const products: Product[] = [
   {
+    id: "luxury-body-butter",
+    name: "NG Cosmetics Luxury Body Butter",
+    description: "Rich, smooth, and luxurious body butter made with 100% natural shea butter. Deeply moisturizes and nourishes for soft, radiant skin every day.",
+    image: luxuryBodyButterImage,
+    wholesaleImage: luxuryBodyButterImage,
+    prices: [
+      { size: "250ml", retailPrice: 100, wholesalePrice: 80, wholesaleQty: "24 in a carton" },
+      { size: "150ml", retailPrice: 70, wholesalePrice: 55, wholesaleQty: "36 in a carton" },
+    ],
+    features: [
+      "Intense, long-lasting moisture",
+      "Deeply nourishes and repairs dry skin",
+      "Protects skin's natural barrier",
+      "Rich in antioxidants and Vitamin E",
+      "Suitable for all skin types",
+    ],
+  },
+  {
+    id: "faraway-body-butter",
+    name: "NG Cosmetics Faraway Body Butter",
+    description: "Rich, smooth, and luxurious body butter with an exotic, long-lasting scent. Deeply moisturizes, softens rough areas, and helps improve skin texture.",
+    image: farawayBodyButterImage,
+    wholesaleImage: farawayBodyButterImage,
+    prices: [
+      { size: "250ml", retailPrice: 100, wholesalePrice: 80, wholesaleQty: "24 in a carton" },
+      { size: "150ml", retailPrice: 70, wholesalePrice: 55, wholesaleQty: "36 in a carton" },
+    ],
+    features: [
+      "Deeply moisturizes and prevents moisture loss",
+      "Softens rough, dry areas like elbows and heels",
+      "Soothes dry, irritated skin",
+      "Helps reduce the appearance of stretch marks",
+      "Exotic, long-lasting scent",
+    ],
+  },
+  {
     id: "acne-dark-soap",
     name: "NG Cosmetics Acne Dark Soap",
     description: "A powerful yet gentle soap formulated to combat acne and dark spots. Made with natural African botanicals, this soap deeply cleanses while nourishing your skin, leaving it clear and radiant.",
@@ -93,42 +129,6 @@ const products: Product[] = [
       "Natural cocoa scent",
       "Prevents dry skin",
       "Long-lasting hydration",
-    ],
-  },
-  {
-    id: "luxury-body-butter",
-    name: "NG Cosmetics Luxury Body Butter",
-    description: "Rich, smooth, and luxurious body butter made with 100% natural shea butter. Deeply moisturizes and nourishes for soft, radiant skin every day.",
-    image: luxuryBodyButterImage,
-    wholesaleImage: luxuryBodyButterImage,
-    prices: [
-      { size: "250ml", retailPrice: 100, wholesalePrice: 80, wholesaleQty: "24 in a carton" },
-      { size: "150ml", retailPrice: 70, wholesalePrice: 55, wholesaleQty: "36 in a carton" },
-    ],
-    features: [
-      "Intense, long-lasting moisture",
-      "Deeply nourishes and repairs dry skin",
-      "Protects skin's natural barrier",
-      "Rich in antioxidants and Vitamin E",
-      "Suitable for all skin types",
-    ],
-  },
-  {
-    id: "faraway-body-butter",
-    name: "NG Cosmetics Faraway Body Butter",
-    description: "Rich, smooth, and luxurious body butter with an exotic, long-lasting scent. Deeply moisturizes, softens rough areas, and helps improve skin texture.",
-    image: farawayBodyButterImage,
-    wholesaleImage: farawayBodyButterImage,
-    prices: [
-      { size: "250ml", retailPrice: 100, wholesalePrice: 80, wholesaleQty: "24 in a carton" },
-      { size: "150ml", retailPrice: 70, wholesalePrice: 55, wholesaleQty: "36 in a carton" },
-    ],
-    features: [
-      "Deeply moisturizes and prevents moisture loss",
-      "Softens rough, dry areas like elbows and heels",
-      "Soothes dry, irritated skin",
-      "Helps reduce the appearance of stretch marks",
-      "Exotic, long-lasting scent",
     ],
   },
 ];
