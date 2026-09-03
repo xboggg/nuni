@@ -7,66 +7,43 @@ import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { getWhatsAppLink, getWhatsAppLinkEurope, getProductOrderMessage, productPrices } from "@/data/products";
+import { useLanguage } from "@/lib/i18n";
 import acneSoap1 from "@/assets/acne-soap-1.png";
 import acneSoap2 from "@/assets/acne-soap-2.jpeg";
 import acneSoap3 from "@/assets/acne-soap-3.jpeg";
 
+const reviewRatings = [5, 4, 5];
+
 const ProductAcneSoap = () => {
+  const { t } = useLanguage();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [selectedSize, setSelectedSize] = useState("500g");
 
   const productImages = [acneSoap1, acneSoap2, acneSoap3];
 
+  const content = t.productContent.acneDarkSoap;
+
   const product = {
     id: "acne-dark-soap",
-    name: "NG Cosmetics Acne Dark Soap",
-    category: "Cleansing",
-    badge: "Bestseller",
+    name: content.name,
+    category: t.productDetail.categoryCleansing,
+    badge: t.productDetail.bestsellerBadge,
     rating: 4.7,
     reviewCount: 3,
     sizes: ["500g", "750g"],
-    description: "Powerful charcoal-based soap with shea butter, coconut oil, and salicylic acid. Fights acne, fades dark spots, and clears razor bumps.",
-    benefits: [
-      "Fights acne-causing bacteria and reduces inflammation",
-      "Fades dark spots and evens out skin tone",
-      "Soothes irritated skin and calms redness",
-      "Fades stretch marks",
-      "Clears razor bumps and dark inner thighs"
-    ],
-    usage: "Lather in hands, massage on face for 90 seconds, rinse with cool water. Use daily for best results.",
-    ingredients: [
-      "Activated Charcoal",
-      "Raw Shea Butter",
-      "Coconut Oil",
-      "Salicylic Acid",
-      "Palm Kernel Oil",
-      "Vitamin E"
-    ],
+    description: content.description,
+    benefits: content.benefits,
+    usage: content.usage,
+    ingredients: content.ingredients,
   };
 
-  const reviews = [
-    {
-      id: 1,
-      name: "Akosua M.",
-      rating: 5,
-      date: "2 weeks ago",
-      comment: "This soap has transformed my skin! My dark spots are fading and my acne is finally under control.",
-    },
-    {
-      id: 2,
-      name: "Kwame A.",
-      rating: 4,
-      date: "1 month ago",
-      comment: "Great product! Noticed improvement in my razor bumps within the first week.",
-    },
-    {
-      id: 3,
-      name: "Ama D.",
-      rating: 5,
-      date: "3 weeks ago",
-      comment: "Best soap I've ever used. Natural ingredients and amazing results!",
-    },
-  ];
+  const reviews = content.reviews.map((review, index) => ({
+    id: index + 1,
+    name: review.name,
+    rating: reviewRatings[index],
+    date: review.date,
+    comment: review.comment,
+  }));
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % productImages.length);
@@ -133,7 +110,7 @@ const ProductAcneSoap = () => {
             className="mb-8"
           >
             <Link to="/#products" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-              Products
+              {t.productDetail.breadcrumbProducts}
             </Link>
             <span className="text-sm text-muted-foreground mx-2">/</span>
             <span className="text-sm text-foreground">{product.name}</span>
@@ -204,7 +181,7 @@ const ProductAcneSoap = () => {
                         : "border-border hover:border-primary/50"
                     }`}
                   >
-                    <img src={img} alt={`Thumbnail ${index + 1}`} className="w-full h-full object-cover" />
+                    <img src={img} alt={`${t.productDetail.thumbnail} ${index + 1}`} className="w-full h-full object-cover" />
                   </button>
                 ))}
               </div>
@@ -241,7 +218,7 @@ const ProductAcneSoap = () => {
                   ))}
                 </div>
                 <span className="text-sm text-muted-foreground">
-                  {product.rating} ({product.reviewCount} reviews)
+                  {product.rating} ({product.reviewCount} {t.productDetail.reviewsLabel})
                 </span>
               </div>
 
@@ -251,7 +228,7 @@ const ProductAcneSoap = () => {
 
               {/* Size Selection */}
               <div className="mb-8">
-                <h3 className="text-lg font-semibold text-foreground mb-3">Select Size</h3>
+                <h3 className="text-lg font-semibold text-foreground mb-3">{t.productDetail.selectSize}</h3>
                 <div className="flex gap-3">
                   {product.sizes.map((size) => (
                     <button
@@ -275,7 +252,7 @@ const ProductAcneSoap = () => {
                   onClick={handleOrder}
                   className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-lg py-6 rounded-xl shadow-green hover:shadow-elevated transition-all"
                 >
-                  Order on WhatsApp (Ghana)
+                  {t.productDetail.orderWhatsAppGhana}
                 </Button>
                 {/* Buy from Europe button - temporarily disabled */}
               </div>
@@ -285,12 +262,12 @@ const ProductAcneSoap = () => {
                 to="/products"
                 className="block text-center mt-4 text-primary hover:text-primary/80 font-medium transition-colors"
               >
-                View All Pricing Options
+                {t.productDetail.viewAllPricing}
               </Link>
 
               {/* Benefits */}
               <div className="mt-12">
-                <h3 className="text-2xl font-serif font-bold text-foreground mb-6">Benefits</h3>
+                <h3 className="text-2xl font-serif font-bold text-foreground mb-6">{t.productDetail.benefits}</h3>
                 <div className="space-y-3">
                   {product.benefits.map((benefit, index) => (
                     <motion.div
@@ -319,7 +296,7 @@ const ProductAcneSoap = () => {
               transition={{ delay: 0.3 }}
               className="bg-card p-8 rounded-3xl shadow-card"
             >
-              <h3 className="text-2xl font-serif font-bold text-foreground mb-4">How to Use</h3>
+              <h3 className="text-2xl font-serif font-bold text-foreground mb-4">{t.productDetail.howToUse}</h3>
               <p className="text-muted-foreground leading-relaxed">{product.usage}</p>
             </motion.div>
 
@@ -329,7 +306,7 @@ const ProductAcneSoap = () => {
               transition={{ delay: 0.4 }}
               className="bg-card p-8 rounded-3xl shadow-card"
             >
-              <h3 className="text-2xl font-serif font-bold text-foreground mb-4">Ingredients</h3>
+              <h3 className="text-2xl font-serif font-bold text-foreground mb-4">{t.productDetail.ingredients}</h3>
               <div className="flex flex-wrap gap-2">
                 {product.ingredients.map((ingredient, index) => (
                   <span
@@ -350,7 +327,7 @@ const ProductAcneSoap = () => {
             transition={{ delay: 0.5 }}
             className="max-w-4xl"
           >
-            <h3 className="text-3xl font-serif font-bold text-foreground mb-8">Customer Reviews</h3>
+            <h3 className="text-3xl font-serif font-bold text-foreground mb-8">{t.productDetail.customerReviews}</h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {reviews.map((review, index) => (
                 <motion.div

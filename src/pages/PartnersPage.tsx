@@ -219,7 +219,7 @@ const PartnersPage = () => {
               <option value="all">{t.common.allRegions}</option>
               {regions.map((region) => (
                 <option key={region.id} value={region.id}>
-                  {region.name} {region.isCity ? "(City)" : ""}
+                  {region.name} {region.isCity ? t.partnersPage.cityLabel : ""}
                 </option>
               ))}
             </select>
@@ -248,7 +248,7 @@ const PartnersPage = () => {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
               src={lightboxImage}
-              alt="Partner"
+              alt={t.partnersPage.partnerImageAlt}
               className="max-w-full max-h-[90vh] object-contain rounded-lg"
               onClick={(e) => e.stopPropagation()}
             />
@@ -269,13 +269,13 @@ const PartnersPage = () => {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent/20 rounded-full mb-4">
               <Star size={18} className="text-accent fill-accent" />
-              <span className="text-sm font-medium text-accent">Brand Representatives</span>
+              <span className="text-sm font-medium text-accent">{t.partnersPage.brandRepresentatives}</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-3">
-              Our <span className="text-gradient-gold">Ambassadors</span>
+              {t.partnersPage.ourAmbassadors} <span className="text-gradient-gold">{t.partnersPage.ambassadorsHighlight}</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Meet the faces behind NG Cosmetics. Our ambassadors represent the brand across Ghana.
+              {t.partnersPage.ambassadorsDesc}
             </p>
           </motion.div>
 
@@ -303,7 +303,7 @@ const PartnersPage = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                     <div className="absolute top-2 right-2 bg-accent text-white text-xs px-2 py-1 rounded-full font-medium flex items-center gap-1">
                       <Star size={10} className="fill-current" />
-                      {ambassador.roles?.includes("pa") ? "PA" : "Ambassador"}
+                      {ambassador.roles?.includes("pa") ? t.partnersPage.paRole : t.partnersPage.ambassadorRole}
                     </div>
                     <div className="absolute bottom-0 left-0 right-0 p-3 text-white">
                       <h3 className="font-semibold text-sm">{ambassador.name}</h3>
@@ -337,14 +337,14 @@ const PartnersPage = () => {
             </div>
           ) : (
             <p className="text-center text-muted-foreground py-8">
-              No ambassadors found matching your search criteria.
+              {t.partnersPage.noAmbassadors}
             </p>
           )}
 
           <div className="text-center mt-6">
             <span className="text-sm text-muted-foreground">
-              {filteredAmbassadors.length} Ambassador{filteredAmbassadors.length !== 1 ? 's' : ''}
-              {selectedRegion !== "all" && ` in ${getRegionName(selectedRegion)}`}
+              {filteredAmbassadors.length} {filteredAmbassadors.length !== 1 ? t.partnersPage.ambassadorCountPlural : t.partnersPage.ambassadorCount}
+              {selectedRegion !== "all" && ` ${t.partnersPage.inRegion} ${getRegionName(selectedRegion)}`}
             </span>
           </div>
         </div>
@@ -361,13 +361,13 @@ const PartnersPage = () => {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/20 rounded-full mb-4">
               <Package size={18} className="text-primary" />
-              <span className="text-sm font-medium text-primary">Wholesale Partners</span>
+              <span className="text-sm font-medium text-primary">{t.partnersPage.wholesalePartners}</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-3">
-              Our <span className="text-gradient-green">Distributors</span>
+              {t.partnersPage.ourDistributors} <span className="text-gradient-green">{t.partnersPage.distributorsHighlight}</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Our distributors handle bulk orders and wholesale supplies across their regions.
+              {t.partnersPage.distributorsDesc}
             </p>
           </motion.div>
 
@@ -379,14 +379,14 @@ const PartnersPage = () => {
             </div>
           ) : (
             <p className="text-center text-muted-foreground py-8">
-              No distributors found matching your search criteria.
+              {t.partnersPage.noDistributors}
             </p>
           )}
 
           <div className="text-center mt-6">
             <span className="text-sm text-muted-foreground">
-              {filteredDistributors.length} Distributor{filteredDistributors.length !== 1 ? 's' : ''}
-              {selectedRegion !== "all" && ` in ${getRegionName(selectedRegion)}`}
+              {filteredDistributors.length} {filteredDistributors.length !== 1 ? t.partnersPage.distributorCountPlural : t.partnersPage.distributorCount}
+              {selectedRegion !== "all" && ` ${t.partnersPage.inRegion} ${getRegionName(selectedRegion)}`}
             </span>
           </div>
         </div>
@@ -403,13 +403,13 @@ const PartnersPage = () => {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-muted rounded-full mb-4">
               <Store size={18} className="text-muted-foreground" />
-              <span className="text-sm font-medium text-muted-foreground">Retail Partners</span>
+              <span className="text-sm font-medium text-muted-foreground">{t.partnersPage.retailPartners}</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-3">
-              Our <span className="text-foreground">Vendors</span>
+              {t.partnersPage.ourVendors} <span className="text-foreground">{t.partnersPage.vendorsHighlight}</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Find our trusted retail vendors across Ghana. Connect with a vendor near you for authentic NG Cosmetics products.
+              {t.partnersPage.vendorsDesc}
             </p>
           </motion.div>
 
@@ -421,14 +421,14 @@ const PartnersPage = () => {
             </div>
           ) : (
             <p className="text-center text-muted-foreground py-8">
-              No vendors found matching your search criteria.
+              {t.partnersPage.noVendors}
             </p>
           )}
 
           <div className="text-center mt-6">
             <span className="text-sm text-muted-foreground">
-              {filteredVendors.length} Vendor{filteredVendors.length !== 1 ? 's' : ''}
-              {selectedRegion !== "all" && ` in ${getRegionName(selectedRegion)}`}
+              {filteredVendors.length} {filteredVendors.length !== 1 ? t.partnersPage.vendorCountPlural : t.partnersPage.vendorCount}
+              {selectedRegion !== "all" && ` ${t.partnersPage.inRegion} ${getRegionName(selectedRegion)}`}
             </span>
           </div>
         </div>

@@ -7,71 +7,42 @@ import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { getWhatsAppLink, getWhatsAppLinkEurope, getProductOrderMessage, productPrices } from "@/data/products";
+import { useLanguage } from "@/lib/i18n";
 import cocoaButter1 from "@/assets/cocoa-butter-1.jpeg";
 import cocoaButter2 from "@/assets/cocoa-butter-2.png";
 import cocoaButter3 from "@/assets/cocoa-butter-3.png";
 
+const reviewRatings = [5, 5, 5, 4];
+
 const ProductCocoaButter = () => {
+  const { t } = useLanguage();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [selectedSize, setSelectedSize] = useState("180ml");
 
   const productImages = [cocoaButter1, cocoaButter2, cocoaButter3];
 
+  const content = t.productContent.cocoaButter;
+
   const product = {
     id: "cocoa-butter",
-    name: "NG Cosmetics Cocoa Butter",
-    category: "Moisturizing",
+    name: content.name,
+    category: t.productDetail.categoryMoisturizing,
     rating: 4.9,
     reviewCount: 4,
     sizes: ["180ml", "300ml"],
-    description: "Rich in antioxidants and fatty acids. Deep moisturizing for dry skin, soothes irritation, and fades stretch marks. Safe for babies 6 months+.",
-    benefits: [
-      "Deep moisturizing for dry areas",
-      "Soothes skin irritation",
-      "Fades stretch marks effectively",
-      "Rich in antioxidants",
-      "100% natural — safe for all ages"
-    ],
-    usage: "Apply generously to clean, damp skin. Massage until absorbed. Can be used multiple times daily.",
-    ingredients: [
-      "Pure Cocoa Butter",
-      "Raw Shea Butter",
-      "Sweet Almond Oil",
-      "Vitamin E",
-      "Jojoba Oil"
-    ],
+    description: content.description,
+    benefits: content.benefits,
+    usage: content.usage,
+    ingredients: content.ingredients,
   };
 
-  const reviews = [
-    {
-      id: 1,
-      name: "Adjoa P.",
-      rating: 5,
-      date: "1 week ago",
-      comment: "Best cocoa butter I've ever used! My stretch marks are fading and my skin feels so soft and hydrated.",
-    },
-    {
-      id: 2,
-      name: "Mensah K.",
-      rating: 5,
-      date: "2 weeks ago",
-      comment: "I use this on my baby and myself. It's gentle, natural, and incredibly effective. Love the texture!",
-    },
-    {
-      id: 3,
-      name: "Esi A.",
-      rating: 5,
-      date: "3 weeks ago",
-      comment: "Perfect for my dry skin! Absorbs well without feeling greasy. The natural ingredients give me peace of mind.",
-    },
-    {
-      id: 4,
-      name: "Fiifi D.",
-      rating: 4,
-      date: "1 month ago",
-      comment: "Great product! Noticed improvement in my skin's elasticity. Will definitely repurchase.",
-    },
-  ];
+  const reviews = content.reviews.map((review, index) => ({
+    id: index + 1,
+    name: review.name,
+    rating: reviewRatings[index],
+    date: review.date,
+    comment: review.comment,
+  }));
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % productImages.length);
@@ -138,7 +109,7 @@ const ProductCocoaButter = () => {
             className="mb-8"
           >
             <Link to="/#products" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-              Products
+              {t.productDetail.breadcrumbProducts}
             </Link>
             <span className="text-sm text-muted-foreground mx-2">/</span>
             <span className="text-sm text-foreground">{product.name}</span>
@@ -201,7 +172,7 @@ const ProductCocoaButter = () => {
                         : "border-border hover:border-primary/50"
                     }`}
                   >
-                    <img src={img} alt={`Thumbnail ${index + 1}`} className="w-full h-full object-cover" />
+                    <img src={img} alt={`${t.productDetail.thumbnail} ${index + 1}`} className="w-full h-full object-cover" />
                   </button>
                 ))}
               </div>
@@ -238,7 +209,7 @@ const ProductCocoaButter = () => {
                   ))}
                 </div>
                 <span className="text-sm text-muted-foreground">
-                  {product.rating} ({product.reviewCount} reviews)
+                  {product.rating} ({product.reviewCount} {t.productDetail.reviewsLabel})
                 </span>
               </div>
 
@@ -248,7 +219,7 @@ const ProductCocoaButter = () => {
 
               {/* Size Selection */}
               <div className="mb-8">
-                <h3 className="text-lg font-semibold text-foreground mb-3">Select Size</h3>
+                <h3 className="text-lg font-semibold text-foreground mb-3">{t.productDetail.selectSize}</h3>
                 <div className="flex gap-3">
                   {product.sizes.map((size) => (
                     <button
@@ -272,7 +243,7 @@ const ProductCocoaButter = () => {
                   onClick={handleOrder}
                   className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-lg py-6 rounded-xl shadow-green hover:shadow-elevated transition-all"
                 >
-                  Order on WhatsApp (Ghana)
+                  {t.productDetail.orderWhatsAppGhana}
                 </Button>
                 {/* Buy from Europe button - temporarily disabled */}
               </div>
@@ -282,12 +253,12 @@ const ProductCocoaButter = () => {
                 to="/products"
                 className="block text-center mt-4 text-primary hover:text-primary/80 font-medium transition-colors"
               >
-                View All Pricing Options
+                {t.productDetail.viewAllPricing}
               </Link>
 
               {/* Benefits */}
               <div className="mt-12">
-                <h3 className="text-2xl font-serif font-bold text-foreground mb-6">Benefits</h3>
+                <h3 className="text-2xl font-serif font-bold text-foreground mb-6">{t.productDetail.benefits}</h3>
                 <div className="space-y-3">
                   {product.benefits.map((benefit, index) => (
                     <motion.div
@@ -316,7 +287,7 @@ const ProductCocoaButter = () => {
               transition={{ delay: 0.3 }}
               className="bg-card p-8 rounded-3xl shadow-card"
             >
-              <h3 className="text-2xl font-serif font-bold text-foreground mb-4">How to Use</h3>
+              <h3 className="text-2xl font-serif font-bold text-foreground mb-4">{t.productDetail.howToUse}</h3>
               <p className="text-muted-foreground leading-relaxed">{product.usage}</p>
             </motion.div>
 
@@ -326,7 +297,7 @@ const ProductCocoaButter = () => {
               transition={{ delay: 0.4 }}
               className="bg-card p-8 rounded-3xl shadow-card"
             >
-              <h3 className="text-2xl font-serif font-bold text-foreground mb-4">Ingredients</h3>
+              <h3 className="text-2xl font-serif font-bold text-foreground mb-4">{t.productDetail.ingredients}</h3>
               <div className="flex flex-wrap gap-2">
                 {product.ingredients.map((ingredient, index) => (
                   <span
@@ -347,7 +318,7 @@ const ProductCocoaButter = () => {
             transition={{ delay: 0.5 }}
             className="max-w-4xl"
           >
-            <h3 className="text-3xl font-serif font-bold text-foreground mb-8">Customer Reviews</h3>
+            <h3 className="text-3xl font-serif font-bold text-foreground mb-8">{t.productDetail.customerReviews}</h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {reviews.map((review, index) => (
                 <motion.div

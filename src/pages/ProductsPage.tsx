@@ -39,103 +39,73 @@ interface Product {
   features: string[];
 }
 
-const products: Product[] = [
-  {
-    id: "luxury-body-butter",
-    name: "NG Cosmetics Luxury Body Butter",
-    description: "Rich, smooth, and luxurious body butter made with 100% natural shea butter. Deeply moisturizes and nourishes for soft, radiant skin every day.",
-    image: luxuryBodyButterImage,
-    wholesaleImage: luxuryBodyButterImage,
-    prices: [
-      { size: "250ml", retailPrice: 100, wholesalePrice: 80, wholesaleQty: "24 in a carton" },
-      { size: "150ml", retailPrice: 70, wholesalePrice: 55, wholesaleQty: "36 in a carton" },
-    ],
-    features: [
-      "Intense, long-lasting moisture",
-      "Deeply nourishes and repairs dry skin",
-      "Protects skin's natural barrier",
-      "Rich in antioxidants and Vitamin E",
-      "Suitable for all skin types",
-    ],
-  },
-  {
-    id: "faraway-body-butter",
-    name: "NG Cosmetics Faraway Body Butter",
-    description: "Rich, smooth, and luxurious body butter with an exotic, long-lasting scent. Deeply moisturizes, softens rough areas, and helps improve skin texture.",
-    image: farawayBodyButterImage,
-    wholesaleImage: farawayBodyButterImage,
-    prices: [
-      { size: "250ml", retailPrice: 100, wholesalePrice: 80, wholesaleQty: "24 in a carton" },
-      { size: "150ml", retailPrice: 70, wholesalePrice: 55, wholesaleQty: "36 in a carton" },
-    ],
-    features: [
-      "Deeply moisturizes and prevents moisture loss",
-      "Softens rough, dry areas like elbows and heels",
-      "Soothes dry, irritated skin",
-      "Helps reduce the appearance of stretch marks",
-      "Exotic, long-lasting scent",
-    ],
-  },
-  {
-    id: "acne-dark-soap",
-    name: "NG Cosmetics Acne Dark Soap",
-    description: "A powerful yet gentle soap formulated to combat acne and dark spots. Made with natural African botanicals, this soap deeply cleanses while nourishing your skin, leaving it clear and radiant.",
-    image: soapImage,
-    wholesaleImage: soapImageWholesale,
-    prices: [
-      { size: "750g", retailPrice: 170, wholesalePrice: 140, wholesaleQty: "24 in a carton" },
-      { size: "500g", retailPrice: 100, wholesalePrice: 80, wholesaleQty: "36 in a carton" },
-    ],
-    features: [
-      "Fights acne and blemishes",
-      "Fades dark spots naturally",
-      "Deep cleansing formula",
-      "100% natural ingredients",
-      "FDA approved",
-    ],
-  },
-  {
-    id: "acne-facial-cream",
-    name: "NG Cosmetics Acne - Facial & Skin Cream",
-    description: "Our premium facial cream targets acne, dark spots, and uneven skin tone. Enriched with natural botanicals, it hydrates deeply while working to reveal your skin's natural glow.",
-    image: creamImage,
-    wholesaleImage: creamImageWholesale,
-    prices: [
-      { size: "100ml", retailPrice: 270, wholesalePrice: 240, wholesaleQty: "25 pieces per carton" },
-      { size: "50ml", retailPrice: 140, wholesalePrice: 110, wholesaleQty: "36 pieces per carton" },
-      { size: "25ml", retailPrice: 80, wholesalePrice: 60, wholesaleQty: "50 in a carton" },
-    ],
-    features: [
-      "Targets acne and dark spots",
-      "Evens skin tone",
-      "Deep hydration",
-      "Non-greasy formula",
-      "Suitable for all skin types",
-    ],
-  },
-  {
-    id: "cocoa-butter",
-    name: "NG Cosmetics Cocoa Butter",
-    description: "Pure Ghanaian cocoa butter blended with nourishing oils to deeply moisturize and protect your skin. Perfect for maintaining soft, supple skin all day long.",
-    image: butterImage,
-    wholesaleImage: butterImageWholesale,
-    prices: [
-      { size: "300ml", retailPrice: 150, wholesalePrice: 120, wholesaleQty: "24 in a carton" },
-      { size: "180ml", retailPrice: 110, wholesalePrice: 80, wholesaleQty: "24 in a carton" },
-    ],
-    features: [
-      "Deep moisturizing",
-      "Rich in vitamins",
-      "Natural cocoa scent",
-      "Prevents dry skin",
-      "Long-lasting hydration",
-    ],
-  },
-];
-
 const ProductsPage = () => {
   const [showWholesale, setShowWholesale] = useState(false);
   const { t } = useLanguage();
+
+  const products: Product[] = [
+    {
+      id: "luxury-body-butter",
+      name: t.productContent.luxuryBodyButter.name,
+      description: t.productContent.luxuryBodyButter.description,
+      image: luxuryBodyButterImage,
+      wholesaleImage: luxuryBodyButterImage,
+      prices: [
+        { size: "250ml", retailPrice: 100, wholesalePrice: 80, wholesaleQty: "24 in a carton" },
+        { size: "150ml", retailPrice: 70, wholesalePrice: 55, wholesaleQty: "36 in a carton" },
+      ],
+      features: t.productContent.luxuryBodyButter.benefits,
+    },
+    {
+      id: "faraway-body-butter",
+      name: t.productContent.farawayBodyButter.name,
+      description: t.productContent.farawayBodyButter.description,
+      image: farawayBodyButterImage,
+      wholesaleImage: farawayBodyButterImage,
+      prices: [
+        { size: "250ml", retailPrice: 100, wholesalePrice: 80, wholesaleQty: "24 in a carton" },
+        { size: "150ml", retailPrice: 70, wholesalePrice: 55, wholesaleQty: "36 in a carton" },
+      ],
+      features: t.productContent.farawayBodyButter.benefits,
+    },
+    {
+      id: "acne-dark-soap",
+      name: t.productContent.acneDarkSoap.name,
+      description: t.productContent.acneDarkSoap.description,
+      image: soapImage,
+      wholesaleImage: soapImageWholesale,
+      prices: [
+        { size: "750g", retailPrice: 170, wholesalePrice: 140, wholesaleQty: "24 in a carton" },
+        { size: "500g", retailPrice: 100, wholesalePrice: 80, wholesaleQty: "36 in a carton" },
+      ],
+      features: t.productContent.acneDarkSoap.features,
+    },
+    {
+      id: "acne-facial-cream",
+      name: t.productContent.acneFacialCream.name,
+      description: t.productContent.acneFacialCream.description,
+      image: creamImage,
+      wholesaleImage: creamImageWholesale,
+      prices: [
+        { size: "100ml", retailPrice: 270, wholesalePrice: 240, wholesaleQty: "25 pieces per carton" },
+        { size: "50ml", retailPrice: 140, wholesalePrice: 110, wholesaleQty: "36 pieces per carton" },
+        { size: "25ml", retailPrice: 80, wholesalePrice: 60, wholesaleQty: "50 in a carton" },
+      ],
+      features: t.productContent.acneFacialCream.features,
+    },
+    {
+      id: "cocoa-butter",
+      name: t.productContent.cocoaButter.name,
+      description: t.productContent.cocoaButter.description,
+      image: butterImage,
+      wholesaleImage: butterImageWholesale,
+      prices: [
+        { size: "300ml", retailPrice: 150, wholesalePrice: 120, wholesaleQty: "24 in a carton" },
+        { size: "180ml", retailPrice: 110, wholesalePrice: 80, wholesaleQty: "24 in a carton" },
+      ],
+      features: t.productContent.cocoaButter.features,
+    },
+  ];
 
   // Wholesale WhatsApp numbers (primary first)
   const WHOLESALE_NUMBERS = ["233554753634", "233540501872"];

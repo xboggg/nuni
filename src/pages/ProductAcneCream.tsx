@@ -7,79 +7,42 @@ import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { getWhatsAppLink, getWhatsAppLinkEurope, getProductOrderMessage, productPrices } from "@/data/products";
+import { useLanguage } from "@/lib/i18n";
 import acneCream1 from "@/assets/acne-cream-1.png";
 import acneCream2 from "@/assets/acne-cream-2.png";
 import acneCream3 from "@/assets/acne-cream-3.png";
 
+const reviewRatings = [5, 5, 4, 5, 5];
+
 const ProductAcneCream = () => {
+  const { t } = useLanguage();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [selectedSize, setSelectedSize] = useState("25ml");
 
   const productImages = [acneCream1, acneCream2, acneCream3];
 
+  const content = t.productContent.acneFacialCream;
+
   const product = {
     id: "acne-facial-cream",
-    name: "NG Cosmetics Acne Facial & Skin Cream",
-    category: "Treatment",
+    name: content.name,
+    category: t.productDetail.categoryTreatment,
     rating: 4.8,
     reviewCount: 5,
     sizes: ["25ml", "50ml", "100ml"],
-    description: "Targeted acne treatment with salicylic acid. Reduces breakouts, fades hyperpigmentation, and promotes smoother, unified skin tone.",
-    benefits: [
-      "Reduces acne and prevents breakouts",
-      "Fades dark spots and hyperpigmentation",
-      "Reduces stretch marks visibility",
-      "Lightens dark inner thighs",
-      "Reduces razor bumps"
-    ],
-    usage: "Apply small amount once or twice daily. Start with test dose for sensitive skin. Avoid eye area.",
-    ingredients: [
-      "Salicylic Acid",
-      "Niacinamide",
-      "Aloe Vera Extract",
-      "Vitamin C",
-      "Hyaluronic Acid",
-      "Green Tea Extract"
-    ],
+    description: content.description,
+    benefits: content.benefits,
+    usage: content.usage,
+    ingredients: content.ingredients,
   };
 
-  const reviews = [
-    {
-      id: 1,
-      name: "Efua K.",
-      rating: 5,
-      date: "1 week ago",
-      comment: "This cream is amazing! My hyperpigmentation has faded significantly and my skin looks so much brighter.",
-    },
-    {
-      id: 2,
-      name: "Kofi B.",
-      rating: 5,
-      date: "2 weeks ago",
-      comment: "Finally found a cream that actually works! My acne has cleared up and doesn't irritate my sensitive skin.",
-    },
-    {
-      id: 3,
-      name: "Yaa M.",
-      rating: 4,
-      date: "3 weeks ago",
-      comment: "Great results! Noticed improvement in my dark spots within two weeks. Highly recommend!",
-    },
-    {
-      id: 4,
-      name: "Kwabena S.",
-      rating: 5,
-      date: "1 month ago",
-      comment: "Best facial cream I've used. Non-greasy and absorbs quickly. My skin texture has improved dramatically.",
-    },
-    {
-      id: 5,
-      name: "Abena T.",
-      rating: 5,
-      date: "1 month ago",
-      comment: "Love this product! Gentle yet effective. Perfect for my combination skin.",
-    },
-  ];
+  const reviews = content.reviews.map((review, index) => ({
+    id: index + 1,
+    name: review.name,
+    rating: reviewRatings[index],
+    date: review.date,
+    comment: review.comment,
+  }));
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % productImages.length);
@@ -146,7 +109,7 @@ const ProductAcneCream = () => {
             className="mb-8"
           >
             <Link to="/#products" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-              Products
+              {t.productDetail.breadcrumbProducts}
             </Link>
             <span className="text-sm text-muted-foreground mx-2">/</span>
             <span className="text-sm text-foreground">{product.name}</span>
@@ -161,14 +124,6 @@ const ProductAcneCream = () => {
               className="relative"
             >
               <div className="relative aspect-square rounded-3xl overflow-hidden bg-card shadow-elevated">
-                {product.badge && (
-                  <div className="absolute top-6 left-6 z-10">
-                    <span className="inline-block px-4 py-2 bg-secondary text-secondary-foreground text-sm font-semibold rounded-full shadow-lg">
-                      {product.badge}
-                    </span>
-                  </div>
-                )}
-
                 <img
                   src={productImages[currentImageIndex]}
                   alt={`${product.name} - Image ${currentImageIndex + 1}`}
@@ -217,7 +172,7 @@ const ProductAcneCream = () => {
                         : "border-border hover:border-primary/50"
                     }`}
                   >
-                    <img src={img} alt={`Thumbnail ${index + 1}`} className="w-full h-full object-cover" />
+                    <img src={img} alt={`${t.productDetail.thumbnail} ${index + 1}`} className="w-full h-full object-cover" />
                   </button>
                 ))}
               </div>
@@ -254,7 +209,7 @@ const ProductAcneCream = () => {
                   ))}
                 </div>
                 <span className="text-sm text-muted-foreground">
-                  {product.rating} ({product.reviewCount} reviews)
+                  {product.rating} ({product.reviewCount} {t.productDetail.reviewsLabel})
                 </span>
               </div>
 
@@ -264,7 +219,7 @@ const ProductAcneCream = () => {
 
               {/* Size Selection */}
               <div className="mb-8">
-                <h3 className="text-lg font-semibold text-foreground mb-3">Select Size</h3>
+                <h3 className="text-lg font-semibold text-foreground mb-3">{t.productDetail.selectSize}</h3>
                 <div className="flex gap-3">
                   {product.sizes.map((size) => (
                     <button
@@ -288,7 +243,7 @@ const ProductAcneCream = () => {
                   onClick={handleOrder}
                   className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-lg py-6 rounded-xl shadow-green hover:shadow-elevated transition-all"
                 >
-                  Order on WhatsApp (Ghana)
+                  {t.productDetail.orderWhatsAppGhana}
                 </Button>
                 {/* Buy from Europe button - temporarily disabled */}
               </div>
@@ -298,12 +253,12 @@ const ProductAcneCream = () => {
                 to="/products"
                 className="block text-center mt-4 text-primary hover:text-primary/80 font-medium transition-colors"
               >
-                View All Pricing Options
+                {t.productDetail.viewAllPricing}
               </Link>
 
               {/* Benefits */}
               <div className="mt-12">
-                <h3 className="text-2xl font-serif font-bold text-foreground mb-6">Benefits</h3>
+                <h3 className="text-2xl font-serif font-bold text-foreground mb-6">{t.productDetail.benefits}</h3>
                 <div className="space-y-3">
                   {product.benefits.map((benefit, index) => (
                     <motion.div
@@ -332,7 +287,7 @@ const ProductAcneCream = () => {
               transition={{ delay: 0.3 }}
               className="bg-card p-8 rounded-3xl shadow-card"
             >
-              <h3 className="text-2xl font-serif font-bold text-foreground mb-4">How to Use</h3>
+              <h3 className="text-2xl font-serif font-bold text-foreground mb-4">{t.productDetail.howToUse}</h3>
               <p className="text-muted-foreground leading-relaxed">{product.usage}</p>
             </motion.div>
 
@@ -342,7 +297,7 @@ const ProductAcneCream = () => {
               transition={{ delay: 0.4 }}
               className="bg-card p-8 rounded-3xl shadow-card"
             >
-              <h3 className="text-2xl font-serif font-bold text-foreground mb-4">Ingredients</h3>
+              <h3 className="text-2xl font-serif font-bold text-foreground mb-4">{t.productDetail.ingredients}</h3>
               <div className="flex flex-wrap gap-2">
                 {product.ingredients.map((ingredient, index) => (
                   <span
@@ -363,7 +318,7 @@ const ProductAcneCream = () => {
             transition={{ delay: 0.5 }}
             className="max-w-4xl"
           >
-            <h3 className="text-3xl font-serif font-bold text-foreground mb-8">Customer Reviews</h3>
+            <h3 className="text-3xl font-serif font-bold text-foreground mb-8">{t.productDetail.customerReviews}</h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {reviews.map((review, index) => (
                 <motion.div

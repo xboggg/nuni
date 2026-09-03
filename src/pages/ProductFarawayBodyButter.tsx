@@ -7,36 +7,29 @@ import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { getWhatsAppLink, getProductOrderMessage, productPrices } from "@/data/products";
+import { useLanguage } from "@/lib/i18n";
 import farawayBodyButter1 from "@/assets/faraway-body-butter-1.jpg";
 import farawayBodyButter2 from "@/assets/faraway-body-butter-2.jpg";
 
 const ProductFarawayBodyButter = () => {
+  const { t } = useLanguage();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [selectedSize, setSelectedSize] = useState("250ml");
 
   const productImages = [farawayBodyButter1, farawayBodyButter2];
 
+  const content = t.productContent.farawayBodyButter;
+
   const product = {
     id: "faraway-body-butter",
-    name: "NG Cosmetics Faraway Body Butter",
-    category: "Moisturizing",
-    badge: "New",
+    name: content.name,
+    category: t.productDetail.categoryMoisturizing,
+    badge: t.productDetail.newBadge,
     sizes: ["150ml", "250ml"],
-    description: "Rich, smooth, and luxurious body butter with an exotic, long-lasting scent. Deeply moisturizes, softens rough areas, and helps improve skin texture.",
-    benefits: [
-      "Deeply moisturizes and prevents moisture loss",
-      "Softens rough, dry areas like elbows, knees, and heels",
-      "Soothes dry, irritated skin",
-      "Helps reduce the appearance of stretch marks",
-      "Exotic, long-lasting scent"
-    ],
-    usage: "Apply generously to clean skin, best after bathing. Massage in circular motions until fully absorbed. Use daily for smooth, glowing skin.",
-    ingredients: [
-      "100% Natural Shea Butter",
-      "Natural Oils",
-      "Coconut Oil",
-      "Vitamin E"
-    ],
+    description: content.description,
+    benefits: content.benefits,
+    usage: content.usage,
+    ingredients: content.ingredients,
   };
 
   const nextImage = () => {
@@ -92,7 +85,7 @@ const ProductFarawayBodyButter = () => {
             className="mb-8"
           >
             <Link to="/#products" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-              Products
+              {t.productDetail.breadcrumbProducts}
             </Link>
             <span className="text-sm text-muted-foreground mx-2">/</span>
             <span className="text-sm text-foreground">{product.name}</span>
@@ -163,7 +156,7 @@ const ProductFarawayBodyButter = () => {
                         : "border-border hover:border-primary/50"
                     }`}
                   >
-                    <img src={img} alt={`Thumbnail ${index + 1}`} className="w-full h-full object-cover" />
+                    <img src={img} alt={`${t.productDetail.thumbnail} ${index + 1}`} className="w-full h-full object-cover" />
                   </button>
                 ))}
               </div>
@@ -191,7 +184,7 @@ const ProductFarawayBodyButter = () => {
 
               {/* Size Selection */}
               <div className="mb-8">
-                <h3 className="text-lg font-semibold text-foreground mb-3">Select Size</h3>
+                <h3 className="text-lg font-semibold text-foreground mb-3">{t.productDetail.selectSize}</h3>
                 <div className="flex gap-3">
                   {product.sizes.map((size) => (
                     <button
@@ -215,7 +208,7 @@ const ProductFarawayBodyButter = () => {
                   onClick={handleOrder}
                   className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-lg py-6 rounded-xl shadow-green hover:shadow-elevated transition-all"
                 >
-                  Order on WhatsApp (Ghana)
+                  {t.productDetail.orderWhatsAppGhana}
                 </Button>
               </div>
 
@@ -224,12 +217,12 @@ const ProductFarawayBodyButter = () => {
                 to="/products"
                 className="block text-center mt-4 text-primary hover:text-primary/80 font-medium transition-colors"
               >
-                View All Pricing Options
+                {t.productDetail.viewAllPricing}
               </Link>
 
               {/* Benefits */}
               <div className="mt-12">
-                <h3 className="text-2xl font-serif font-bold text-foreground mb-6">Benefits</h3>
+                <h3 className="text-2xl font-serif font-bold text-foreground mb-6">{t.productDetail.benefits}</h3>
                 <div className="space-y-3">
                   {product.benefits.map((benefit, index) => (
                     <motion.div
@@ -258,7 +251,7 @@ const ProductFarawayBodyButter = () => {
               transition={{ delay: 0.3 }}
               className="bg-card p-8 rounded-3xl shadow-card"
             >
-              <h3 className="text-2xl font-serif font-bold text-foreground mb-4">How to Use</h3>
+              <h3 className="text-2xl font-serif font-bold text-foreground mb-4">{t.productDetail.howToUse}</h3>
               <p className="text-muted-foreground leading-relaxed">{product.usage}</p>
             </motion.div>
 
@@ -268,7 +261,7 @@ const ProductFarawayBodyButter = () => {
               transition={{ delay: 0.4 }}
               className="bg-card p-8 rounded-3xl shadow-card"
             >
-              <h3 className="text-2xl font-serif font-bold text-foreground mb-4">Ingredients</h3>
+              <h3 className="text-2xl font-serif font-bold text-foreground mb-4">{t.productDetail.ingredients}</h3>
               <div className="flex flex-wrap gap-2">
                 {product.ingredients.map((ingredient, index) => (
                   <span

@@ -29,14 +29,7 @@ import cert4 from "@/assets/certificates/nuni-cert4.jpeg";
 import cert5 from "@/assets/certificates/nuni-cert5.jpeg";
 import cert8 from "@/assets/certificates/nuni-cert8.jpeg";
 
-const fdaCertificates = [
-  { id: 1, src: cert1, title: "Product Registration Certificate" },
-  { id: 2, src: cert2, title: "FDA Approval Document" },
-  { id: 3, src: cert3, title: "Quality Assurance Certificate" },
-  { id: 4, src: cert4, title: "Safety Compliance Certificate" },
-  { id: 5, src: cert5, title: "Manufacturing License" },
-  { id: 6, src: cert8, title: "Export Authorization" },
-];
+const certImages = [cert1, cert2, cert3, cert4, cert5, cert8];
 
 // Animated floating card component
 const FloatingCard = ({
@@ -126,7 +119,19 @@ const FloatingCard = ({
 };
 
 // Rectangular card for couple photo
-const CoupleCard = ({ image, alt, onClick }: { image: string; alt: string; onClick?: () => void }) => (
+const CoupleCard = ({
+  image,
+  alt,
+  title,
+  subtitle,
+  onClick,
+}: {
+  image: string;
+  alt: string;
+  title: string;
+  subtitle: string;
+  onClick?: () => void;
+}) => (
   <motion.div
     initial={{ opacity: 0, y: 30 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -170,8 +175,8 @@ const CoupleCard = ({ image, alt, onClick }: { image: string; alt: string; onCli
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
         <div className="absolute bottom-4 left-4 right-4">
-          <p className="text-white font-serif text-lg md:text-xl font-semibold">The Power Couple</p>
-          <p className="text-white/80 text-sm">Building NG Cosmetics together</p>
+          <p className="text-white font-serif text-lg md:text-xl font-semibold">{title}</p>
+          <p className="text-white/80 text-sm">{subtitle}</p>
         </div>
       </div>
     </motion.div>
@@ -183,6 +188,15 @@ const WhyNuniPage = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { t } = useLanguage();
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
+
+  const fdaCertificates = [
+    { id: 1, src: certImages[0], title: t.whyNuni.cert1Title },
+    { id: 2, src: certImages[1], title: t.whyNuni.cert2Title },
+    { id: 3, src: certImages[2], title: t.whyNuni.cert3Title },
+    { id: 4, src: certImages[3], title: t.whyNuni.cert4Title },
+    { id: 5, src: certImages[4], title: t.whyNuni.cert5Title },
+    { id: 6, src: certImages[5], title: t.whyNuni.cert6Title },
+  ];
 
   // FDA Certificate carousel state
   const [currentCertIndex, setCurrentCertIndex] = useState(0);
@@ -477,13 +491,13 @@ const WhyNuniPage = () => {
             className="text-center mb-16"
           >
             <span className="inline-block text-sm font-medium tracking-widest text-accent uppercase mb-4">
-              The Faces Behind NG Cosmetics
+              {t.whyNuni.facesLabel}
             </span>
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
-              Meet the <span className="text-gradient-gold">Leadership</span>
+              {t.whyNuni.meetLeadership} <span className="text-gradient-gold">{t.whyNuni.leadershipHighlight}</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Behind every successful brand is a dedicated team. At NG Cosmetics, it's a family united by passion, purpose, and the commitment to transform African skincare.
+              {t.whyNuni.leadershipDesc}
             </p>
           </motion.div>
 
@@ -505,7 +519,9 @@ const WhyNuniPage = () => {
               <div className="order-1 md:order-2 w-full max-w-md md:max-w-lg">
                 <CoupleCard
                   image={coupleImage}
-                  alt="The Power Couple"
+                  alt={t.whyNuni.powerCouple}
+                  title={t.whyNuni.powerCouple}
+                  subtitle={t.whyNuni.buildingTogether}
                   onClick={() => setLightboxImage(coupleImage)}
                 />
               </div>
@@ -548,27 +564,23 @@ const WhyNuniPage = () => {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent/20 rounded-full mb-6">
               <Trophy size={18} className="text-accent" />
-              <span className="text-sm font-medium text-accent">Awards & Recognition</span>
+              <span className="text-sm font-medium text-accent">{t.whyNuni.awardsRecognitionBadge}</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-cream mb-4">
-              Excellence <span className="text-gradient-gold">Recognized</span>
+              {t.whyNuni.excellence} <span className="text-gradient-gold">{t.whyNuni.recognized}</span>
             </h2>
             <p className="text-cream/70 max-w-3xl mx-auto leading-relaxed">
-              Kofi Ideas' unwavering dedication to quality, innovation, and community empowerment has not gone unnoticed.
-              His tireless efforts in building NG Cosmetics from the ground up, while creating opportunities for over 72 partners
-              across Ghana, earned him the prestigious <strong className="text-accent">Outstanding CEO of the Year 2025</strong> award.
-              This recognition celebrates his visionary leadership, commitment to African excellence, and the positive impact
-              NG Cosmetics continues to make in communities nationwide.
+              {t.whyNuni.awardsDescription}
             </p>
           </motion.div>
 
           {/* Award Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
             {[
-              { icon: Trophy, label: "Outstanding CEO 2025", value: "Winner" },
-              { icon: Star, label: "Industry Citation", value: "Received" },
-              { icon: Award, label: "Years of Excellence", value: "5+" },
-              { icon: Heart, label: "Lives Impacted", value: "10K+" },
+              { icon: Trophy, label: t.whyNuni.outstandingCeoLabel, value: t.whyNuni.winner },
+              { icon: Star, label: t.whyNuni.industryCitationLabel, value: t.whyNuni.received },
+              { icon: Award, label: t.whyNuni.yearsExcellenceLabel, value: "5+" },
+              { icon: Heart, label: t.whyNuni.livesImpactedLabel, value: "10K+" },
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}
@@ -601,7 +613,7 @@ const WhyNuniPage = () => {
                 <div className="aspect-square rounded-2xl overflow-hidden border-2 border-cream/20 hover:border-accent/50 transition-colors shadow-lg">
                   <img
                     src={image}
-                    alt={`Award ceremony ${index + 1}`}
+                    alt={`${t.whyNuni.awardCeremonyAlt} ${index + 1}`}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -631,10 +643,10 @@ const WhyNuniPage = () => {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
-              Why Choose <span className="text-gradient-gold">NG Cosmetics</span>
+              {t.whyNuni.whyChoose} <span className="text-gradient-gold">NG Cosmetics</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Our commitment to quality, nature, and your skin's health sets us apart.
+              {t.whyNuni.whyChooseDesc}
             </p>
           </motion.div>
 
@@ -755,14 +767,13 @@ const WhyNuniPage = () => {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-6">
               <FileCheck size={18} className="text-primary" />
-              <span className="text-sm font-medium text-primary">Official Certifications</span>
+              <span className="text-sm font-medium text-primary">{t.whyNuni.officialCertifications}</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
-              FDA <span className="text-gradient-gold">Certified</span> Products
+              {t.whyNuni.fdaCertifiedProducts} <span className="text-gradient-gold">{t.whyNuni.certifiedProducts}</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              All NG Cosmetics products are registered and approved by the Ghana Food and Drugs Authority (FDA),
-              ensuring the highest standards of safety, quality, and efficacy.
+              {t.whyNuni.fdaDescription}
             </p>
           </motion.div>
 
@@ -793,7 +804,7 @@ const WhyNuniPage = () => {
 
                 {/* Click to enlarge hint */}
                 <div className="absolute bottom-4 right-4 bg-black/60 text-white text-xs px-3 py-1.5 rounded-full backdrop-blur-sm">
-                  Click to enlarge
+                  {t.whyNuni.clickToEnlarge}
                 </div>
               </div>
 
@@ -803,7 +814,9 @@ const WhyNuniPage = () => {
                   {fdaCertificates[currentCertIndex].title}
                 </h3>
                 <p className="text-sm text-muted-foreground mt-1">
-                  Certificate {currentCertIndex + 1} of {fdaCertificates.length}
+                  {t.whyNuni.certificateOf
+                    .replace("{current}", String(currentCertIndex + 1))
+                    .replace("{total}", String(fdaCertificates.length))}
                 </p>
               </div>
 
@@ -936,13 +949,13 @@ const WhyNuniPage = () => {
           >
             <span className="inline-flex items-center gap-2 text-sm font-medium tracking-widest text-accent uppercase mb-4">
               <Heart size={16} />
-              Giving Back
+              {t.whyNuni.givingBack}
             </span>
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
-              Community <span className="text-gradient-gold">Impact</span>
+              {t.whyNuni.communityImpact} <span className="text-gradient-gold">{t.whyNuni.communityImpactHighlight}</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              At NG Cosmetics, we believe that true beauty extends beyond skincare — it's about caring for those around us. We support healthcare initiatives and charitable giving in our communities.
+              {t.whyNuni.communityImpactDesc}
             </p>
           </motion.div>
 
@@ -955,22 +968,22 @@ const WhyNuniPage = () => {
             <div className="relative rounded-2xl overflow-hidden shadow-xl max-w-[250px] mx-auto">
               <img
                 src="/media/community/hospital-letter.jpg"
-                alt="Letter of Appreciation from St. Francis Xavier Catholic Hospital"
+                alt={t.whyNuni.healthcarePartnership}
                 className="w-full h-auto"
               />
             </div>
             <div>
               <h3 className="text-2xl font-serif font-bold text-foreground mb-4">
-                Healthcare Partnership
+                {t.whyNuni.healthcarePartnership}
               </h3>
               <p className="text-muted-foreground mb-6">
-                In partnership with St. Francis Xavier Catholic Hospital (Sisters Hospitallers), we've contributed to covering medical bills for patients in need, ensuring that quality healthcare remains accessible to all.
+                {t.whyNuni.healthcarePartnershipDesc}
               </p>
               <Link
                 to="/community"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-full font-medium hover:bg-primary/90 transition-colors"
               >
-                See Our Impact
+                {t.whyNuni.seeOurImpact}
                 <ArrowLeft size={16} className="rotate-180" />
               </Link>
             </div>

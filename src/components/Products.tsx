@@ -27,6 +27,14 @@ const productImages: Record<string, string> = {
   "faraway-body-butter-1": farawayBodyButter1,
 };
 
+const productContentKeys: Record<string, "luxuryBodyButter" | "farawayBodyButter" | "acneDarkSoap" | "acneFacialCream" | "cocoaButter"> = {
+  "luxury-body-butter": "luxuryBodyButter",
+  "faraway-body-butter": "farawayBodyButter",
+  "acne-dark-soap": "acneDarkSoap",
+  "acne-facial-cream": "acneFacialCream",
+  "cocoa-butter": "cocoaButter",
+};
+
 const Products = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -36,6 +44,31 @@ const Products = () => {
   const [canScrollNext, setCanScrollNext] = useState(false);
   const { t } = useLanguage();
   const navigate = useNavigate();
+
+  const categoryTranslations: Record<string, string> = {
+    Moisturizing: t.productDetail.categoryMoisturizing,
+    Cleansing: t.productDetail.categoryCleansing,
+    Treatment: t.productDetail.categoryTreatment,
+  };
+  const badgeTranslations: Record<string, string> = {
+    New: t.productDetail.newBadge,
+    Bestseller: t.productDetail.bestsellerBadge,
+  };
+
+  const translatedProducts: Product[] = products.map((product) => {
+    const contentKey = productContentKeys[product.id];
+    const content = contentKey ? t.productContent[contentKey] : null;
+    return {
+      ...product,
+      name: content?.name ?? product.name,
+      description: content?.description ?? product.description,
+      benefits: content?.benefits ?? product.benefits,
+      usage: content?.usage ?? product.usage,
+      ingredients: content?.ingredients ?? product.ingredients,
+      category: categoryTranslations[product.category] ?? product.category,
+      badge: product.badge ? badgeTranslations[product.badge] ?? product.badge : product.badge,
+    };
+  });
 
   const handleViewDetails = (product: Product) => {
     // Navigate to dedicated product page
@@ -105,7 +138,7 @@ const Products = () => {
               className="w-full"
             >
               <CarouselContent className="-ml-4 md:-ml-6">
-                {products.map((product, index) => (
+                {translatedProducts.map((product, index) => (
                   <CarouselItem
                     key={product.id}
                     className="pl-4 md:pl-6 basis-full sm:basis-1/2 lg:basis-1/3"
