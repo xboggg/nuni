@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { Check, Handshake, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/lib/i18n";
-import heroImage from "@/assets/hero-5.jpg";
+import heroImage from "@/assets/hero-5.jpeg";
 
 const Partners = () => {
   const ref = useRef(null);

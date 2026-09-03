@@ -11,9 +11,9 @@ import { useLanguage } from "@/lib/i18n";
 // Cocoa Butter (JPEG)
 import cocoaButter1 from "@/assets/gallery/nuni-cocoabutter1.jpeg";
 // Cocoa Butter (PNG)
-import cocoaButter2 from "@/assets/gallery/nuni-cocoabutter2.jpg";
-import cocoaButter3 from "@/assets/gallery/nuni-cocoabutter3.jpg";
-import cocoaButter4 from "@/assets/gallery/nuni-cocoabutter4.jpg";
+import cocoaButter2 from "@/assets/gallery/nuni-cocoabutter2.png";
+import cocoaButter3 from "@/assets/gallery/nuni-cocoabutter3.png";
+import cocoaButter4 from "@/assets/gallery/nuni-cocoabutter4.png";
 import cocoaButter6 from "@/assets/gallery/nuni-cocoabutter6.jpeg";
 import cocoaButter7 from "@/assets/gallery/nuni-cocoabutter7.jpeg";
 import cocoaButter8 from "@/assets/gallery/nuni-cocoabutter8.jpeg";
@@ -27,29 +27,29 @@ import cocoaButter15 from "@/assets/gallery/nuni-cocoabutter15.jpeg";
 import cocoaButter16 from "@/assets/gallery/nuni-cocoabutter16.jpeg";
 import cocoaButter17 from "@/assets/gallery/nuni-cocoabutter17.jpeg";
 import cocoaButter18 from "@/assets/gallery/nuni-cocoabutter18.jpeg";
-import cocoaButter19 from "@/assets/gallery/nuni-cocoabutter19.jpg";
-import cocoaButter20 from "@/assets/gallery/nuni-cocoabutter20.jpg";
-import cocoaButter21 from "@/assets/gallery/nuni-cocoabutter21.jpg";
-import cocoaButter22 from "@/assets/gallery/nuni-cocoabutter22.jpg";
-import cocoaButter23 from "@/assets/gallery/nuni-cocoabutter23.jpg";
-import cocoaButter24 from "@/assets/gallery/nuni-cocoabutter24.jpg";
+import cocoaButter19 from "@/assets/gallery/nuni-cocoabutter19.png";
+import cocoaButter20 from "@/assets/gallery/nuni-cocoabutter20.png";
+import cocoaButter21 from "@/assets/gallery/nuni-cocoabutter21.png";
+import cocoaButter22 from "@/assets/gallery/nuni-cocoabutter22.png";
+import cocoaButter23 from "@/assets/gallery/nuni-cocoabutter23.png";
+import cocoaButter24 from "@/assets/gallery/nuni-cocoabutter24.png";
 import cocoaButter25 from "@/assets/gallery/nuni-cocoabutter25.jpg";
 import cocoaButter26 from "@/assets/gallery/nuni-cocoabutter26.jpg";
 import cocoaButter27 from "@/assets/gallery/nuni-cocoabutter27.jpg";
 
 // Soap (PNG)
-import soap1 from "@/assets/gallery/nuni-darksoap1.jpg";
+import soap1 from "@/assets/gallery/nuni-darksoap1.png";
 // Soap (JPEG)
 import soap2 from "@/assets/gallery/nuni-darksoap2.jpeg";
 import soap3 from "@/assets/gallery/nuni-darksoap3.jpeg";
 import soap4 from "@/assets/gallery/nuni-darksoap4.jpeg";
 import soap5 from "@/assets/gallery/nuni-darksoap5.jpeg";
 import soap6 from "@/assets/gallery/nuni-darksoap6.jpeg";
-import soap7 from "@/assets/gallery/nuni-darksoap7.jpg";
-import soap8 from "@/assets/gallery/nuni-darksoap8.jpg";
-import soap10 from "@/assets/gallery/nuni-darksoap10.jpg";
+import soap7 from "@/assets/gallery/nuni-darksoap7.png";
+import soap8 from "@/assets/gallery/nuni-darksoap8.png";
+import soap10 from "@/assets/gallery/nuni-darksoap10.png";
 import soap11 from "@/assets/gallery/nuni-darksoap11.jpeg";
-import soap12 from "@/assets/gallery/nuni-darksoap12.jpg";
+import soap12 from "@/assets/gallery/nuni-darksoap12.png";
 import soap13 from "@/assets/gallery/nuni-darksoap13.jpeg";
 import soap14 from "@/assets/gallery/nuni-darksoap14.jpeg";
 import soap15 from "@/assets/gallery/nuni-darksoap15.jpeg";
@@ -62,22 +62,22 @@ import soap21 from "@/assets/gallery/nuni-darksoap21.jpeg";
 import soap22 from "@/assets/gallery/nuni-darksoap22.jpeg";
 import soap23 from "@/assets/gallery/nuni-darksoap23.jpeg";
 import soap24 from "@/assets/gallery/nuni-darksoap24.jpeg";
-import soap25 from "@/assets/gallery/nuni-darksoap25.jpg";
+import soap25 from "@/assets/gallery/nuni-darksoap25.jpeg";
 import soap26 from "@/assets/gallery/nuni-darksoap26.jpg";
 import soap27 from "@/assets/gallery/nuni-darksoap27.jpeg";
 
 // Cream (PNG)
-import cream1 from "@/assets/gallery/nuni-facialacne1.jpg";
-import cream2 from "@/assets/gallery/nuni-facialacne2.jpg";
-import cream3 from "@/assets/gallery/nuni-facialacne3.jpg";
-import cream4 from "@/assets/gallery/nuni-facialacne4.jpg";
-import cream5 from "@/assets/gallery/nuni-facialacne5.jpg";
+import cream1 from "@/assets/gallery/nuni-facialacne1.png";
+import cream2 from "@/assets/gallery/nuni-facialacne2.png";
+import cream3 from "@/assets/gallery/nuni-facialacne3.png";
+import cream4 from "@/assets/gallery/nuni-facialacne4.png";
+import cream5 from "@/assets/gallery/nuni-facialacne5.png";
 // Cream (JPEG)
 import cream6 from "@/assets/gallery/nuni-facialacne6.jpeg";
 import cream7 from "@/assets/gallery/nuni-facialacne7.jpeg";
-import cream8 from "@/assets/gallery/nuni-facialacne8.jpg";
-import cream9 from "@/assets/gallery/nuni-facialacne9.jpg";
-import cream10 from "@/assets/gallery/nuni-facialacne10.jpg";
+import cream8 from "@/assets/gallery/nuni-facialacne8.png";
+import cream9 from "@/assets/gallery/nuni-facialacne9.png";
+import cream10 from "@/assets/gallery/nuni-facialacne10.png";
 import cream11 from "@/assets/gallery/nuni-facialacne11.jpeg";
 import cream12 from "@/assets/gallery/nuni-facialacne12.jpeg";
 import cream13 from "@/assets/gallery/nuni-facialacne13.jpeg";
@@ -93,7 +93,7 @@ import cream22 from "@/assets/gallery/nuni-facialacne22.jpeg";
 import cream23 from "@/assets/gallery/nuni-facialacne23.jpeg";
 import cream24 from "@/assets/gallery/nuni-facialacne24.jpeg";
 import cream25 from "@/assets/gallery/nuni-facialacne25.jpeg";
-import cream26 from "@/assets/gallery/nuni-facialacne26.jpg";
+import cream26 from "@/assets/gallery/nuni-facialacne26.png";
 import cream27 from "@/assets/gallery/nuni-facialacne27.jpeg";
 import cream28 from "@/assets/gallery/nuni-facialacne28.jpg";
 import cream29 from "@/assets/gallery/nuni-facialacne29.webp";
@@ -108,10 +108,10 @@ import ambassador53 from "@/assets/gallery/nuni-ambassador53.jpeg";
 
 // All Products
 import allproducts1 from "@/assets/gallery/nuni-allproducts1.jpeg";
-import allproducts2 from "@/assets/gallery/nuni-allproducts2.jpg";
+import allproducts2 from "@/assets/gallery/nuni-allproducts2.png";
 import allproducts3 from "@/assets/gallery/nuni-allproducts3.jpeg";
 import allproducts4 from "@/assets/gallery/nuni-allproducts4.jpeg";
-import allproducts5 from "@/assets/gallery/nuni-allproducts5.jpg";
+import allproducts5 from "@/assets/gallery/nuni-allproducts5.png";
 import allproducts6 from "@/assets/gallery/nuni-allproducts6.jpg";
 
 import kid1 from "@/assets/gallery/nuni-kid1.jpeg";
@@ -136,8 +136,8 @@ import ambassador6 from "@/assets/gallery/nuni-ambassador6.jpeg";
 import ambassador9 from "@/assets/gallery/nuni-ambassador9.jpeg";
 import ambassador10 from "@/assets/gallery/nuni-ambassador10.jpeg";
 import ambassador11 from "@/assets/gallery/nuni-ambassador11.jpeg";
-import pa1 from "@/assets/gallery/nuni-pa1.jpg";
-import pa2 from "@/assets/gallery/nuni-pa2.jpg";
+import pa1 from "@/assets/gallery/nuni-pa1.png";
+import pa2 from "@/assets/gallery/nuni-pa2.png";
 import hovendor from "@/assets/gallery/nuni-hovendor.jpeg";
 import ceo from "@/assets/gallery/nuni-ceo.jpeg";
 import ceo8 from "@/assets/gallery/nuni-ceo8.jpeg";

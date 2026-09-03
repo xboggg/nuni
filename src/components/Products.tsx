@@ -2,24 +2,38 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { products, Product } from "@/data/products";
 import ProductCard from "./ProductCard";
 import PullToRefresh from "./PullToRefresh";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  type CarouselApi,
+} from "@/components/ui/carousel";
 import { useLanguage } from "@/lib/i18n";
-import product1 from "@/assets/product-1.jpg";
-import product2 from "@/assets/product-2.jpg";
-import product3 from "@/assets/product-3.jpg";
+import product1 from "@/assets/product-1.png";
+import product2 from "@/assets/product-2.png";
+import product3 from "@/assets/product-3.png";
+import luxuryBodyButter1 from "@/assets/luxury-body-butter-1.jpg";
+import farawayBodyButter1 from "@/assets/faraway-body-butter-1.jpg";
 
 const productImages: Record<string, string> = {
   "product-1": product1,
   "product-2": product2,
   "product-3": product3,
+  "luxury-body-butter-1": luxuryBodyButter1,
+  "faraway-body-butter-1": farawayBodyButter1,
 };
 
 const Products = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [refreshKey, setRefreshKey] = useState(0);
+  const [api, setApi] = useState<CarouselApi>();
+  const [canScrollPrev, setCanScrollPrev] = useState(false);
+  const [canScrollNext, setCanScrollNext] = useState(false);
   const { t } = useLanguage();
   const navigate = useNavigate();
 
@@ -32,6 +46,20 @@ const Products = () => {
     // Simulate refresh - in real app this would fetch new data
     await new Promise(resolve => setTimeout(resolve, 1000));
     setRefreshKey(prev => prev + 1);
+  }, []);
+
+  const onApiChange = useCallback((newApi: CarouselApi) => {
+    setApi(newApi);
+    if (!newApi) return;
+
+    const update = () => {
+      setCanScrollPrev(newApi.canScrollPrev());
+      setCanScrollNext(newApi.canScrollNext());
+    };
+
+    update();
+    newApi.on("select", update);
+    newApi.on("reInit", update);
   }, []);
 
 
@@ -70,17 +98,49 @@ const Products = () => {
 
         {/* Product Cards with Pull to Refresh */}
         <PullToRefresh onRefresh={handleRefresh}>
-          <div key={refreshKey} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {products.map((product, index) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                productImage={productImages[product.image]}
-                onViewDetails={handleViewDetails}
-                index={index}
-                isInView={isInView}
-              />
-            ))}
+          <div key={refreshKey} className="relative">
+            <Carousel
+              setApi={onApiChange}
+              opts={{ align: "start", loop: false }}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-4 md:-ml-6">
+                {products.map((product, index) => (
+                  <CarouselItem
+                    key={product.id}
+                    className="pl-4 md:pl-6 basis-full sm:basis-1/2 lg:basis-1/3"
+                  >
+                    <ProductCard
+                      product={product}
+                      productImage={productImages[product.image]}
+                      onViewDetails={handleViewDetails}
+                      index={index}
+                      isInView={isInView}
+                    />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+
+            {/* Slide arrows - small & transparent, sit over the product image */}
+            <button
+              type="button"
+              onClick={() => api?.scrollPrev()}
+              disabled={!canScrollPrev}
+              aria-label="Previous product"
+              className="absolute left-2 top-32 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/40 backdrop-blur-sm text-foreground shadow-sm transition-opacity hover:bg-white/60 disabled:opacity-0 disabled:pointer-events-none"
+            >
+              <ChevronLeft size={20} />
+            </button>
+            <button
+              type="button"
+              onClick={() => api?.scrollNext()}
+              disabled={!canScrollNext}
+              aria-label="Next product"
+              className="absolute right-2 top-32 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/40 backdrop-blur-sm text-foreground shadow-sm transition-opacity hover:bg-white/60 disabled:opacity-0 disabled:pointer-events-none"
+            >
+              <ChevronRight size={20} />
+            </button>
           </div>
         </PullToRefresh>
       </div>

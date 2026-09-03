@@ -9,7 +9,7 @@ import { getWhatsAppLink, getWhatsAppLinkEurope, WHATSAPP_NUMBER_EUROPE } from "
 import { useLanguage } from "@/lib/i18n";
 
 // Import product images - retail
-import soapImage from "@/assets/nuni-darksoap25-new.jpg";
+import soapImage from "@/assets/nuni-darksoap25-new.png";
 import creamImage from "@/assets/nuni-facialacne28.jpeg";
 import butterImage from "@/assets/nuni-cocoabutter-product.jpeg";
 
@@ -17,6 +17,10 @@ import butterImage from "@/assets/nuni-cocoabutter-product.jpeg";
 import soapImageWholesale from "@/assets/gallery/nuni-darksoap11.jpeg";
 import creamImageWholesale from "@/assets/gallery/nuni-facialacne15.jpeg";
 import butterImageWholesale from "@/assets/gallery/nuni-cocoabutter7.jpeg";
+
+// Import product images - new body butters
+import luxuryBodyButterImage from "@/assets/luxury-body-butter-1.jpg";
+import farawayBodyButterImage from "@/assets/faraway-body-butter-1.jpg";
 
 interface PriceOption {
   size: string;
@@ -89,6 +93,42 @@ const products: Product[] = [
       "Natural cocoa scent",
       "Prevents dry skin",
       "Long-lasting hydration",
+    ],
+  },
+  {
+    id: "luxury-body-butter",
+    name: "NG Cosmetics Luxury Body Butter",
+    description: "Rich, smooth, and luxurious body butter made with 100% natural shea butter. Deeply moisturizes and nourishes for soft, radiant skin every day.",
+    image: luxuryBodyButterImage,
+    wholesaleImage: luxuryBodyButterImage,
+    prices: [
+      { size: "250ml", retailPrice: 100, wholesalePrice: 80, wholesaleQty: "24 in a carton" },
+      { size: "150ml", retailPrice: 70, wholesalePrice: 55, wholesaleQty: "36 in a carton" },
+    ],
+    features: [
+      "Intense, long-lasting moisture",
+      "Deeply nourishes and repairs dry skin",
+      "Protects skin's natural barrier",
+      "Rich in antioxidants and Vitamin E",
+      "Suitable for all skin types",
+    ],
+  },
+  {
+    id: "faraway-body-butter",
+    name: "NG Cosmetics Faraway Body Butter",
+    description: "Rich, smooth, and luxurious body butter with an exotic, long-lasting scent. Deeply moisturizes, softens rough areas, and helps improve skin texture.",
+    image: farawayBodyButterImage,
+    wholesaleImage: farawayBodyButterImage,
+    prices: [
+      { size: "250ml", retailPrice: 100, wholesalePrice: 80, wholesaleQty: "24 in a carton" },
+      { size: "150ml", retailPrice: 70, wholesalePrice: 55, wholesaleQty: "36 in a carton" },
+    ],
+    features: [
+      "Deeply moisturizes and prevents moisture loss",
+      "Softens rough, dry areas like elbows and heels",
+      "Soothes dry, irritated skin",
+      "Helps reduce the appearance of stretch marks",
+      "Exotic, long-lasting scent",
     ],
   },
 ];

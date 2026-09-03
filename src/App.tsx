@@ -13,6 +13,8 @@ import NotFound from "./pages/NotFound";
 import ProductAcneSoap from "./pages/ProductAcneSoap";
 import ProductAcneCream from "./pages/ProductAcneCream";
 import ProductCocoaButter from "./pages/ProductCocoaButter";
+import ProductLuxuryBodyButter from "./pages/ProductLuxuryBodyButter";
+import ProductFarawayBodyButter from "./pages/ProductFarawayBodyButter";
 import PartnersPage from "./pages/PartnersPage";
 import WhyNuniPage from "./pages/WhyNuniPage";
 import ProductsPage from "./pages/ProductsPage";
@@ -46,6 +48,8 @@ const AnimatedRoutes = () => {
           <Route path="/products/acne-dark-soap" element={<ProductAcneSoap />} />
           <Route path="/products/acne-facial-cream" element={<ProductAcneCream />} />
           <Route path="/products/cocoa-butter" element={<ProductCocoaButter />} />
+          <Route path="/products/luxury-body-butter" element={<ProductLuxuryBodyButter />} />
+          <Route path="/products/faraway-body-butter" element={<ProductFarawayBodyButter />} />
           <Route path="/partners" element={<PartnersPage />} />
           <Route path="/about-us" element={<WhyNuniPage />} />
           <Route path="/products" element={<ProductsPage />} />

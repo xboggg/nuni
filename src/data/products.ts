@@ -84,6 +84,52 @@ export const products: Product[] = [
       "Jojoba Oil"
     ],
     image: "product-3"
+  },
+  {
+    id: "luxury-body-butter",
+    name: "Luxury Body Butter",
+    category: "Moisturizing",
+    badge: "New",
+    sizes: ["150ml", "250ml"],
+    description: "Rich, smooth, and luxurious body butter made with 100% natural shea butter. Deeply moisturizes and nourishes for soft, radiant skin every day.",
+    benefits: [
+      "Intense, long-lasting moisture",
+      "Deeply nourishes and repairs dry skin",
+      "Protects skin's natural barrier",
+      "Rich in antioxidants and Vitamin E",
+      "Suitable for all skin types, including sensitive skin"
+    ],
+    usage: "Apply generously to clean skin, best after bathing. Massage in circular motions until fully absorbed. Use daily for smooth, glowing skin.",
+    ingredients: [
+      "100% Natural Shea Butter",
+      "Natural Oils",
+      "Coconut Oil",
+      "Vitamin E"
+    ],
+    image: "luxury-body-butter-1"
+  },
+  {
+    id: "faraway-body-butter",
+    name: "Faraway Body Butter",
+    category: "Moisturizing",
+    badge: "New",
+    sizes: ["150ml", "250ml"],
+    description: "Rich, smooth, and luxurious body butter with an exotic, long-lasting scent. Deeply moisturizes, softens rough areas, and helps improve skin texture.",
+    benefits: [
+      "Deeply moisturizes and prevents moisture loss",
+      "Softens rough, dry areas like elbows, knees, and heels",
+      "Soothes dry, irritated skin",
+      "Helps reduce the appearance of stretch marks",
+      "Exotic, long-lasting scent"
+    ],
+    usage: "Apply generously to clean skin, best after bathing. Massage in circular motions until fully absorbed. Use daily for smooth, glowing skin.",
+    ingredients: [
+      "100% Natural Shea Butter",
+      "Natural Oils",
+      "Coconut Oil",
+      "Vitamin E"
+    ],
+    image: "faraway-body-butter-1"
   }
 ];
 
@@ -119,6 +165,8 @@ export const productPrices: Record<string, Record<string, number>> = {
   "acne-dark-soap": { "500g": 100, "750g": 170 },
   "acne-facial-cream": { "25ml": 80, "50ml": 140, "100ml": 270 },
   "cocoa-butter": { "180ml": 110, "300ml": 150 },
+  "luxury-body-butter": { "150ml": 70, "250ml": 100 },
+  "faraway-body-butter": { "150ml": 70, "250ml": 100 },
 };
 
 export const GENERAL_INQUIRY_MESSAGE = "Hello! I'm interested in NG Cosmetics products.";

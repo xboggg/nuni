@@ -7,9 +7,9 @@ import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { getWhatsAppLink, getWhatsAppLinkEurope, getProductOrderMessage, productPrices } from "@/data/products";
-import acneCream1 from "@/assets/acne-cream-1.jpg";
-import acneCream2 from "@/assets/acne-cream-2.jpg";
-import acneCream3 from "@/assets/acne-cream-3.jpg";
+import acneCream1 from "@/assets/acne-cream-1.png";
+import acneCream2 from "@/assets/acne-cream-2.png";
+import acneCream3 from "@/assets/acne-cream-3.png";
 
 const ProductAcneCream = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);

@@ -1,77 +1,43 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { ChevronLeft, ChevronRight, Star, Check } from "lucide-react";
+import { ChevronLeft, ChevronRight, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
-import { getWhatsAppLink, getWhatsAppLinkEurope, getProductOrderMessage, productPrices } from "@/data/products";
-import cocoaButter1 from "@/assets/cocoa-butter-1.jpeg";
-import cocoaButter2 from "@/assets/cocoa-butter-2.png";
-import cocoaButter3 from "@/assets/cocoa-butter-3.png";
+import { getWhatsAppLink, getProductOrderMessage, productPrices } from "@/data/products";
+import farawayBodyButter1 from "@/assets/faraway-body-butter-1.jpg";
+import farawayBodyButter2 from "@/assets/faraway-body-butter-2.jpg";
 
-const ProductCocoaButter = () => {
+const ProductFarawayBodyButter = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [selectedSize, setSelectedSize] = useState("180ml");
+  const [selectedSize, setSelectedSize] = useState("250ml");
 
-  const productImages = [cocoaButter1, cocoaButter2, cocoaButter3];
+  const productImages = [farawayBodyButter1, farawayBodyButter2];
 
   const product = {
-    id: "cocoa-butter",
-    name: "NG Cosmetics Cocoa Butter",
+    id: "faraway-body-butter",
+    name: "NG Cosmetics Faraway Body Butter",
     category: "Moisturizing",
-    rating: 4.9,
-    reviewCount: 4,
-    sizes: ["180ml", "300ml"],
-    description: "Rich in antioxidants and fatty acids. Deep moisturizing for dry skin, soothes irritation, and fades stretch marks. Safe for babies 6 months+.",
+    badge: "New",
+    sizes: ["150ml", "250ml"],
+    description: "Rich, smooth, and luxurious body butter with an exotic, long-lasting scent. Deeply moisturizes, softens rough areas, and helps improve skin texture.",
     benefits: [
-      "Deep moisturizing for dry areas",
-      "Soothes skin irritation",
-      "Fades stretch marks effectively",
-      "Rich in antioxidants",
-      "100% natural — safe for all ages"
+      "Deeply moisturizes and prevents moisture loss",
+      "Softens rough, dry areas like elbows, knees, and heels",
+      "Soothes dry, irritated skin",
+      "Helps reduce the appearance of stretch marks",
+      "Exotic, long-lasting scent"
     ],
-    usage: "Apply generously to clean, damp skin. Massage until absorbed. Can be used multiple times daily.",
+    usage: "Apply generously to clean skin, best after bathing. Massage in circular motions until fully absorbed. Use daily for smooth, glowing skin.",
     ingredients: [
-      "Pure Cocoa Butter",
-      "Raw Shea Butter",
-      "Sweet Almond Oil",
-      "Vitamin E",
-      "Jojoba Oil"
+      "100% Natural Shea Butter",
+      "Natural Oils",
+      "Coconut Oil",
+      "Vitamin E"
     ],
   };
-
-  const reviews = [
-    {
-      id: 1,
-      name: "Adjoa P.",
-      rating: 5,
-      date: "1 week ago",
-      comment: "Best cocoa butter I've ever used! My stretch marks are fading and my skin feels so soft and hydrated.",
-    },
-    {
-      id: 2,
-      name: "Mensah K.",
-      rating: 5,
-      date: "2 weeks ago",
-      comment: "I use this on my baby and myself. It's gentle, natural, and incredibly effective. Love the texture!",
-    },
-    {
-      id: 3,
-      name: "Esi A.",
-      rating: 5,
-      date: "3 weeks ago",
-      comment: "Perfect for my dry skin! Absorbs well without feeling greasy. The natural ingredients give me peace of mind.",
-    },
-    {
-      id: 4,
-      name: "Fiifi D.",
-      rating: 4,
-      date: "1 month ago",
-      comment: "Great product! Noticed improvement in my skin's elasticity. Will definitely repurchase.",
-    },
-  ];
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % productImages.length);
@@ -82,14 +48,9 @@ const ProductCocoaButter = () => {
   };
 
   const handleOrder = () => {
-    const price = productPrices["cocoa-butter"]?.[selectedSize];
+    const price = productPrices["faraway-body-butter"]?.[selectedSize];
     const message = getProductOrderMessage(product.name, selectedSize, price);
     window.open(getWhatsAppLink(message), "_blank");
-  };
-
-  const handleOrderEurope = () => {
-    const message = `Hello! I'm contacting from Europe and would like to order:\n\nProduct: ${product.name}\nSize: ${selectedSize}\n\nPlease let me know the price and delivery options to my location.`;
-    window.open(getWhatsAppLinkEurope(message), "_blank");
   };
 
   const productStructuredData = {
@@ -97,32 +58,25 @@ const ProductCocoaButter = () => {
     "@type": "Product",
     name: product.name,
     description: product.description,
-    brand: { "@type": "Brand", name: "Nuni Global" },
+    brand: { "@type": "Brand", name: "NG Cosmetics" },
     category: "Skincare",
     offers: {
       "@type": "AggregateOffer",
       priceCurrency: "GHS",
-      lowPrice: 110,
-      highPrice: 150,
+      lowPrice: 70,
+      highPrice: 100,
       offerCount: 2,
       availability: "https://schema.org/InStock",
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: product.rating,
-      reviewCount: product.reviewCount,
-      bestRating: 5,
-      worstRating: 1,
     },
   };
 
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="Cocoa Butter - Natural Moisturizer"
-        description="Pure Ghanaian cocoa butter for deep moisturizing. Rich in antioxidants, soothes irritation, fades stretch marks. Safe for babies 6 months+. Made in Ghana."
-        keywords="cocoa butter, natural moisturizer, stretch mark cream, Ghana cocoa butter, shea butter, baby safe skincare"
-        url="/products/cocoa-butter"
+        title="Faraway Body Butter - Rich, Smooth, Luxurious"
+        description="NG Cosmetics Faraway Body Butter with an exotic, long-lasting scent. Deeply moisturizes and softens dry skin. Made in Ghana."
+        keywords="faraway body butter, shea butter, natural moisturizer, Ghana skincare, NG Cosmetics"
+        url="/products/faraway-body-butter"
         type="product"
         structuredData={productStructuredData}
       />
@@ -144,7 +98,7 @@ const ProductCocoaButter = () => {
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-12 mb-16">
-            {/* Image Carousel */}
+            {/* Image */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
@@ -152,6 +106,14 @@ const ProductCocoaButter = () => {
               className="relative"
             >
               <div className="relative aspect-square rounded-3xl overflow-hidden bg-card shadow-elevated">
+                {product.badge && (
+                  <div className="absolute top-6 left-6 z-10">
+                    <span className="inline-block px-4 py-2 bg-secondary text-secondary-foreground text-sm font-semibold rounded-full shadow-lg">
+                      {product.badge}
+                    </span>
+                  </div>
+                )}
+
                 <img
                   src={productImages[currentImageIndex]}
                   alt={`${product.name} - Image ${currentImageIndex + 1}`}
@@ -189,7 +151,7 @@ const ProductCocoaButter = () => {
               </div>
 
               {/* Thumbnail Images */}
-              <div className="grid grid-cols-3 gap-4 mt-4">
+              <div className="grid grid-cols-2 gap-4 mt-4">
                 {productImages.map((img, index) => (
                   <button
                     key={index}
@@ -221,25 +183,6 @@ const ProductCocoaButter = () => {
               <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4">
                 {product.name}
               </h1>
-
-              {/* Rating */}
-              <div className="flex items-center gap-2 mb-6">
-                <div className="flex gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className={`w-5 h-5 ${
-                        i < Math.floor(product.rating)
-                          ? "fill-accent text-accent"
-                          : "fill-none text-border"
-                      }`}
-                    />
-                  ))}
-                </div>
-                <span className="text-sm text-muted-foreground">
-                  {product.rating} ({product.reviewCount} reviews)
-                </span>
-              </div>
 
               <p className="text-lg text-muted-foreground leading-relaxed mb-8">
                 {product.description}
@@ -273,7 +216,6 @@ const ProductCocoaButter = () => {
                 >
                   Order on WhatsApp (Ghana)
                 </Button>
-                {/* Buy from Europe button - temporarily disabled */}
               </div>
 
               {/* View Pricing Link */}
@@ -338,45 +280,6 @@ const ProductCocoaButter = () => {
               </div>
             </motion.div>
           </div>
-
-          {/* Reviews Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            className="max-w-4xl"
-          >
-            <h3 className="text-3xl font-serif font-bold text-foreground mb-8">Customer Reviews</h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {reviews.map((review, index) => (
-                <motion.div
-                  key={review.id}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.6 + index * 0.1 }}
-                  className="bg-card p-5 rounded-2xl shadow-card"
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <h4 className="font-semibold text-foreground text-sm">{review.name}</h4>
-                    <div className="flex gap-0.5">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className={`w-3.5 h-3.5 ${
-                            i < review.rating
-                              ? "fill-accent text-accent"
-                              : "fill-none text-border"
-                          }`}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{review.comment}</p>
-                  <p className="text-xs text-muted-foreground/70 mt-2">{review.date}</p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
         </div>
       </main>
 
@@ -385,4 +288,4 @@ const ProductCocoaButter = () => {
   );
 };
 
-export default ProductCocoaButter;
+export default ProductFarawayBodyButter;

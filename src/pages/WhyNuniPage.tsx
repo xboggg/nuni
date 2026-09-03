@@ -9,7 +9,7 @@ import SEO from "@/components/SEO";
 import { useLanguage } from "@/lib/i18n";
 
 // CEO and Family Images
-import ceoImage from "@/assets/nuni-kofi.jpg";
+import ceoImage from "@/assets/nuni-kofi.png";
 import ceoImage2 from "@/assets/ceo/nuni-ceo1.jpeg";
 import wifeImage1 from "@/assets/ceo/nuni-ceo7.jpeg";
 import coupleImage from "@/assets/ceo/nuni-ceo9.jpeg";
