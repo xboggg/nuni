@@ -1,13 +1,36 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
-import { ShoppingBag, MessageCircle, Truck } from "lucide-react";
+import { useCallback, useRef, useState } from "react";
+import { ShoppingBag, MessageCircle, Truck, ChevronLeft, ChevronRight } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  type CarouselApi,
+} from "@/components/ui/carousel";
 
 const HowItWorks = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { t } = useLanguage();
+  const [api, setApi] = useState<CarouselApi>();
+  const [canScrollPrev, setCanScrollPrev] = useState(false);
+  const [canScrollNext, setCanScrollNext] = useState(false);
+
+  const onApiChange = useCallback((newApi: CarouselApi) => {
+    setApi(newApi);
+    if (!newApi) return;
+
+    const update = () => {
+      setCanScrollPrev(newApi.canScrollPrev());
+      setCanScrollNext(newApi.canScrollNext());
+    };
+
+    update();
+    newApi.on("select", update);
+    newApi.on("reInit", update);
+  }, []);
 
   const steps = [
     {
@@ -51,8 +74,8 @@ const HowItWorks = () => {
           </p>
         </motion.div>
 
-        {/* Steps */}
-        <div ref={ref} className="relative">
+        {/* Steps - desktop grid */}
+        <div ref={ref} className="relative hidden md:block">
           {/* Connecting Line */}
           <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-0.5 bg-border -translate-y-1/2" />
 
@@ -131,6 +154,56 @@ const HowItWorks = () => {
               </motion.div>
             ))}
           </div>
+        </div>
+
+        {/* Steps - mobile carousel */}
+        <div className="relative md:hidden">
+          <Carousel setApi={onApiChange} opts={{ align: "start", loop: false }} className="w-full">
+            <CarouselContent className="-ml-4">
+              {steps.map((step, index) => (
+                <CarouselItem key={index} className="pl-4 basis-full">
+                  <div className="bg-card rounded-3xl p-8 text-center shadow-soft border border-border relative">
+                    <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-2xl mb-6 shadow-green">
+                      {step.icon}
+                    </div>
+
+                    <div className="absolute top-6 right-6 w-10 h-10 bg-accent rounded-full flex items-center justify-center shadow-gold">
+                      <span className="text-xs font-bold text-accent-foreground">
+                        {step.step}
+                      </span>
+                    </div>
+
+                    <h3 className="text-xl font-serif font-bold text-foreground mb-3">
+                      {step.title}
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {step.description}
+                    </p>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+
+          {/* Slide arrows - small & transparent */}
+          <button
+            type="button"
+            onClick={() => api?.scrollPrev()}
+            disabled={!canScrollPrev}
+            aria-label="Previous step"
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/40 backdrop-blur-sm text-foreground shadow-sm transition-opacity hover:bg-white/60 disabled:opacity-0 disabled:pointer-events-none"
+          >
+            <ChevronLeft size={20} />
+          </button>
+          <button
+            type="button"
+            onClick={() => api?.scrollNext()}
+            disabled={!canScrollNext}
+            aria-label="Next step"
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/40 backdrop-blur-sm text-foreground shadow-sm transition-opacity hover:bg-white/60 disabled:opacity-0 disabled:pointer-events-none"
+          >
+            <ChevronRight size={20} />
+          </button>
         </div>
 
         {/* CTA */}
