@@ -72,7 +72,7 @@ $routes = [
     "/testimonials" => [
         "title" => "Testimonials - Real Results from Real Customers | NG Cosmetics",
         "description" => "See real testimonials and before/after results from NG Cosmetics customers. Discover how our natural skincare products have transformed skin across Ghana.",
-        "image" => "/og-image.jpg",
+        "image" => "/og-testimonials.jpg",
     ],
     "/community" => [
         "title" => "Community Impact | NG Cosmetics",
