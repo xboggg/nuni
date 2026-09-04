@@ -103,7 +103,7 @@ $routes = [
     "/home-decor" => [
         "title" => "Kofi Ideas Home Decor - Turning Houses Into Beautiful Homes",
         "description" => "Professional home decoration, interior furnishing, room transformations, and luxury upgrades. We care about turning your house into a beautiful home.",
-        "image" => "/media/kofi-homedecor-og.jpg",
+        "image" => "/og-home-decor.jpg",
     ],
 ];
 
