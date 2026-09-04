@@ -52,7 +52,7 @@ $routes = [
     "/about-us" => [
         "title" => "About Us - Why Choose NG Cosmetics | NG Cosmetics",
         "description" => "Learn about NG Cosmetics' story, our commitment to natural skincare, and why we're Ghana's trusted skincare brand. FDA Certified, 100% natural ingredients.",
-        "image" => "/og-image.jpg",
+        "image" => "/og-about-us.jpg",
     ],
     "/partners" => [
         "title" => "Partners & Distributors - Find Vendors Near You | NG Cosmetics",
