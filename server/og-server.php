@@ -2,6 +2,9 @@
 /**
  * Social Media Crawler OG Meta Tag Server
  * Run with: php -S 127.0.0.1:9876 og-server.php
+ *
+ * Route table kept in sync with each page's own <SEO> component in
+ * src/pages/*.tsx — copy here should match, not be invented.
  */
 
 $base = "https://ngcosmetics.com.gh";
@@ -16,51 +19,6 @@ $routes = [
         "description" => "Discover the power of African botanicals. Premium skincare crafted with 100% natural ingredients for visibly healthier, glowing skin. FDA Approved. Made in Ghana.",
         "image" => "/og-image.jpg",
     ],
-    "/export" => [
-        "title" => "Kofi Ideas Import & Export | Premium African Commodities",
-        "description" => "Quality African commodities for the global market. Shea butter, cocoa, black soap and more. Ethically sourced from Ghana with full traceability.",
-        "image" => "/media/kofi-export-poster.jpg",
-    ],
-    "/export/products" => [
-        "title" => "Export Products | Kofi Ideas Import & Export",
-        "description" => "Browse our range of premium African export commodities - shea butter, cocoa, black soap and more. Ethically sourced from Ghana.",
-        "image" => "/media/kofi-export-poster.jpg",
-    ],
-    "/export/shea-butter" => [
-        "title" => "Premium Shea Butter | Kofi Ideas Import & Export",
-        "description" => "100% pure, unrefined shea butter sourced directly from Northern Ghana. Available in bulk for cosmetic and food industries.",
-        "image" => "/media/kofi-export-poster.jpg",
-    ],
-    "/export/cocoa" => [
-        "title" => "Ghana Cocoa Export | Kofi Ideas Import & Export",
-        "description" => "Premium Ghana cocoa beans and cocoa products. Ethically sourced with full traceability from farm to export.",
-        "image" => "/media/kofi-export-poster.jpg",
-    ],
-    "/export/black-soap" => [
-        "title" => "African Black Soap | Kofi Ideas Import & Export",
-        "description" => "Authentic African black soap made with traditional methods. Available in bulk for retail and wholesale markets.",
-        "image" => "/media/kofi-export-poster.jpg",
-    ],
-    "/export/process" => [
-        "title" => "Our Export Process | Kofi Ideas Import & Export",
-        "description" => "From sourcing to shipping - learn about our transparent export process ensuring quality African commodities reach global markets.",
-        "image" => "/media/kofi-export-poster.jpg",
-    ],
-    "/export/contact" => [
-        "title" => "Contact Export Team | Kofi Ideas Import & Export",
-        "description" => "Get in touch with our export team for inquiries, quotes, and partnerships. Premium African commodities for global markets.",
-        "image" => "/media/kofi-export-poster.jpg",
-    ],
-    "/home-decor" => [
-        "title" => "Kofi Ideas Home Decor | Handcrafted African Interiors",
-        "description" => "Beautiful handcrafted African home decor pieces. Transform your space with authentic Ghanaian artisan craftsmanship.",
-        "image" => "/media/kofi-homedecor-poster.jpg",
-    ],
-    "/community" => [
-        "title" => "Community Impact | NG Cosmetics",
-        "description" => "Empowering communities through sustainable business. See how NG Cosmetics gives back to Ghanaian communities through healthcare, education and employment.",
-        "image" => "/og-image.jpg",
-    ],
     "/products" => [
         "title" => "Products & Pricing - Retail & Wholesale | NG Cosmetics",
         "description" => "Browse NG Cosmetics skincare products with retail and wholesale pricing. Luxury & Faraway Body Butter, Acne Dark Soap, Acne Facial Cream, Cocoa Butter. Order via WhatsApp. Made in Ghana.",
@@ -69,27 +27,27 @@ $routes = [
     "/products/luxury-body-butter" => [
         "title" => "Luxury Body Butter - Rich, Smooth, Luxurious | NG Cosmetics",
         "description" => "NG Cosmetics Luxury Body Butter made with 100% natural shea butter. Deeply moisturizes and nourishes skin for a soft, radiant glow. Made in Ghana.",
-        "image" => "/og-image-products.jpg",
+        "image" => "/og-luxury-body-butter.jpg",
     ],
     "/products/faraway-body-butter" => [
         "title" => "Faraway Body Butter - Rich, Smooth, Luxurious | NG Cosmetics",
         "description" => "NG Cosmetics Faraway Body Butter with an exotic, long-lasting scent. Deeply moisturizes and softens dry skin. Made in Ghana.",
-        "image" => "/og-image-products.jpg",
+        "image" => "/og-faraway-body-butter.jpg",
     ],
     "/products/acne-dark-soap" => [
         "title" => "Acne Dark Soap - Natural Acne Treatment | NG Cosmetics",
         "description" => "Powerful charcoal-based soap with shea butter, coconut oil, and salicylic acid. Fights acne, fades dark spots, and clears razor bumps. FDA Approved. Made in Ghana.",
-        "image" => "/og-image-products.jpg",
+        "image" => "/og-acne-dark-soap.jpg",
     ],
     "/products/acne-facial-cream" => [
         "title" => "Acne Facial & Skin Cream - Dark Spot Treatment | NG Cosmetics",
         "description" => "Targeted acne treatment with salicylic acid and niacinamide. Reduces breakouts, fades hyperpigmentation, and promotes smoother skin. FDA Approved. Made in Ghana.",
-        "image" => "/og-image-products.jpg",
+        "image" => "/og-acne-facial-cream.jpg",
     ],
     "/products/cocoa-butter" => [
         "title" => "Cocoa Butter - Natural Moisturizer | NG Cosmetics",
         "description" => "Pure Ghanaian cocoa butter for deep moisturizing. Rich in antioxidants, soothes irritation, fades stretch marks. Safe for babies 6 months+. Made in Ghana.",
-        "image" => "/og-image-products.jpg",
+        "image" => "/og-cocoa-butter.jpg",
     ],
     "/about-us" => [
         "title" => "About Us - Why Choose NG Cosmetics | NG Cosmetics",
@@ -101,6 +59,52 @@ $routes = [
         "description" => "Find NG Cosmetics authorized vendors, distributors, and brand ambassadors across Ghana. Become a partner and join our growing network.",
         "image" => "/og-image.jpg",
     ],
+    "/gallery" => [
+        "title" => "Gallery - Product Photos & Ambassadors | NG Cosmetics",
+        "description" => "Browse our gallery of NG Cosmetics skincare products, brand ambassadors, and happy customers. See real results from our natural African skincare line.",
+        "image" => "/og-image.jpg",
+    ],
+    "/contact" => [
+        "title" => "Contact Us - Get in Touch | NG Cosmetics",
+        "description" => "Contact NG Cosmetics for product inquiries, wholesale orders, or partnership opportunities. Reach us via WhatsApp, email, or visit us in Ghana.",
+        "image" => "/og-image.jpg",
+    ],
+    "/testimonials" => [
+        "title" => "Testimonials - Real Results from Real Customers | NG Cosmetics",
+        "description" => "See real testimonials and before/after results from NG Cosmetics customers. Discover how our natural skincare products have transformed skin across Ghana.",
+        "image" => "/og-image.jpg",
+    ],
+    "/community" => [
+        "title" => "Community Impact | NG Cosmetics",
+        "description" => "Empowering communities through sustainable business. See how NG Cosmetics gives back to Ghanaian communities through healthcare, education and employment.",
+        "image" => "/media/community-og.jpg",
+    ],
+    "/privacy-policy" => [
+        "title" => "Privacy Policy | NG Cosmetics",
+        "description" => "Learn how NG Cosmetics collects, uses, and protects your personal information. Your privacy is important to us.",
+        "image" => "/og-image.jpg",
+    ],
+    "/terms-of-service" => [
+        "title" => "Terms of Service | NG Cosmetics",
+        "description" => "Read NG Cosmetics' terms of service including orders, payments, shipping, returns, and product use policies.",
+        "image" => "/og-image.jpg",
+    ],
+    // /export is currently a single "Coming Soon" page in the React app
+    // (src/pages/export/ExportComingSoon.tsx handles /export and /export/*).
+    // Do NOT reintroduce per-sub-page export routes here unless that page
+    // is rebuilt — this previously described a full export site that no
+    // longer exists, which is exactly the kind of drift this file is
+    // prone to. Keep this route table matched to the live app.
+    "/export" => [
+        "title" => "Kofi Ideas Import & Export - Coming Soon | NG Cosmetics",
+        "description" => "Our export division is moving to a dedicated website. We'll be back bigger and better very soon. Reach us directly for export inquiries.",
+        "image" => "/media/kofi-export-og.jpg",
+    ],
+    "/home-decor" => [
+        "title" => "Kofi Ideas Home Decor - Turning Houses Into Beautiful Homes",
+        "description" => "Professional home decoration, interior furnishing, room transformations, and luxury upgrades. We care about turning your house into a beautiful home.",
+        "image" => "/media/kofi-homedecor-og.jpg",
+    ],
 ];
 
 // Find matching route
@@ -108,6 +112,7 @@ $meta = null;
 if (isset($routes[$uri])) {
     $meta = $routes[$uri];
 } elseif (strpos($uri, "/export/") === 0) {
+    // All /export/* sub-paths currently render the same Coming Soon page
     $meta = $routes["/export"];
 }
 if (!$meta) {
