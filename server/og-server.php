@@ -77,7 +77,7 @@ $routes = [
     "/community" => [
         "title" => "Community Impact | NG Cosmetics",
         "description" => "Empowering communities through sustainable business. See how NG Cosmetics gives back to Ghanaian communities through healthcare, education and employment.",
-        "image" => "/media/community-og.jpg",
+        "image" => "/og-community.jpg",
     ],
     "/privacy-policy" => [
         "title" => "Privacy Policy | NG Cosmetics",
