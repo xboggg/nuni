@@ -57,17 +57,17 @@ $routes = [
     "/partners" => [
         "title" => "Partners & Distributors - Find Vendors Near You | NG Cosmetics",
         "description" => "Find NG Cosmetics authorized vendors, distributors, and brand ambassadors across Ghana. Become a partner and join our growing network.",
-        "image" => "/og-image.jpg",
+        "image" => "/og-partners.jpg",
     ],
     "/gallery" => [
         "title" => "Gallery - Product Photos & Ambassadors | NG Cosmetics",
         "description" => "Browse our gallery of NG Cosmetics skincare products, brand ambassadors, and happy customers. See real results from our natural African skincare line.",
-        "image" => "/og-image.jpg",
+        "image" => "/og-gallery.jpg",
     ],
     "/contact" => [
         "title" => "Contact Us - Get in Touch | NG Cosmetics",
         "description" => "Contact NG Cosmetics for product inquiries, wholesale orders, or partnership opportunities. Reach us via WhatsApp, email, or visit us in Ghana.",
-        "image" => "/og-image.jpg",
+        "image" => "/og-contact.jpg",
     ],
     "/testimonials" => [
         "title" => "Testimonials - Real Results from Real Customers | NG Cosmetics",
@@ -82,12 +82,12 @@ $routes = [
     "/privacy-policy" => [
         "title" => "Privacy Policy | NG Cosmetics",
         "description" => "Learn how NG Cosmetics collects, uses, and protects your personal information. Your privacy is important to us.",
-        "image" => "/og-image.jpg",
+        "image" => "/og-privacy-policy.jpg",
     ],
     "/terms-of-service" => [
         "title" => "Terms of Service | NG Cosmetics",
         "description" => "Read NG Cosmetics' terms of service including orders, payments, shipping, returns, and product use policies.",
-        "image" => "/og-image.jpg",
+        "image" => "/og-terms-of-service.jpg",
     ],
     // /export is currently a single "Coming Soon" page in the React app
     // (src/pages/export/ExportComingSoon.tsx handles /export and /export/*).
