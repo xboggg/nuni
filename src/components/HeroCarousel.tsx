@@ -9,14 +9,13 @@ import { useLanguage } from "@/lib/i18n";
 import hero1 from "@/assets/hero-1.jpeg";
 import hero2 from "@/assets/hero-2.jpeg";
 import hero3 from "@/assets/hero-3.jpeg";
-import hero4 from "@/assets/hero-4.png";
 import hero7 from "@/assets/hero-7.png";
-import hero8 from "@/assets/hero-8.png";
+import cocoaButterNew from "@/assets/cocoa-butter-new.jpg";
 import hero12 from "@/assets/hero-12.jpg";
 import hero13 from "@/assets/hero-13.jpeg";
 import heroLuxFar from "@/assets/hero-lux-far.jpg";
 
-const heroImages = [heroLuxFar, hero12, hero13, hero1, hero2, hero3, hero4, hero7, hero8];
+const heroImages = [heroLuxFar, hero12, hero13, hero1, hero2, hero3, cocoaButterNew, hero7];
 
 const HeroCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
