@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { ChevronLeft, ChevronRight, Star, Check } from "lucide-react";
+import { Star, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -8,18 +8,13 @@ import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { getWhatsAppLink, getWhatsAppLinkEurope, getProductOrderMessage, productPrices } from "@/data/products";
 import { useLanguage } from "@/lib/i18n";
-import cocoaButter1 from "@/assets/cocoa-butter-1.jpeg";
-import cocoaButter2 from "@/assets/cocoa-butter-2.png";
-import cocoaButter3 from "@/assets/cocoa-butter-3.png";
+import cocoaButterNew from "@/assets/cocoa-butter-new.jpg";
 
 const reviewRatings = [5, 5, 5, 4];
 
 const ProductCocoaButter = () => {
   const { t } = useLanguage();
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [selectedSize, setSelectedSize] = useState("180ml");
-
-  const productImages = [cocoaButter1, cocoaButter2, cocoaButter3];
 
   const content = t.productContent.cocoaButter;
 
@@ -43,14 +38,6 @@ const ProductCocoaButter = () => {
     date: review.date,
     comment: review.comment,
   }));
-
-  const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % productImages.length);
-  };
-
-  const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + productImages.length) % productImages.length);
-  };
 
   const handleOrder = () => {
     const price = productPrices["cocoa-butter"]?.[selectedSize];
@@ -93,7 +80,7 @@ const ProductCocoaButter = () => {
         title="Cocoa Butter - Natural Moisturizer"
         description="Pure Ghanaian cocoa butter for deep moisturizing. Rich in antioxidants, soothes irritation, fades stretch marks. Safe for babies 6 months+. Made in Ghana."
         keywords="cocoa butter, natural moisturizer, stretch mark cream, Ghana cocoa butter, shea butter, baby safe skincare"
-        image="/og-image-products.jpg"
+        image="/og-cocoa-butter.jpg"
         url="/products/cocoa-butter"
         type="product"
         structuredData={productStructuredData}
@@ -115,8 +102,27 @@ const ProductCocoaButter = () => {
             <span className="text-sm text-foreground">{product.name}</span>
           </motion.div>
 
+          {/* New Packaging Notice */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="flex items-center gap-3 bg-primary/5 border border-primary/20 rounded-2xl px-4 py-3 mb-8"
+          >
+            <img
+              src={cocoaButterNew}
+              alt=""
+              aria-hidden="true"
+              className="w-12 h-12 rounded-lg object-cover flex-shrink-0"
+            />
+            <p className="text-sm text-foreground">
+              <span className="font-semibold">{t.productDetail.newPackagingLabel}</span>{" "}
+              {t.productDetail.newPackagingNotice}
+            </p>
+          </motion.div>
+
           <div className="grid lg:grid-cols-2 gap-12 mb-16">
-            {/* Image Carousel */}
+            {/* Product Image */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
@@ -125,56 +131,10 @@ const ProductCocoaButter = () => {
             >
               <div className="relative aspect-square rounded-3xl overflow-hidden bg-card shadow-elevated">
                 <img
-                  src={productImages[currentImageIndex]}
-                  alt={`${product.name} - Image ${currentImageIndex + 1}`}
+                  src={cocoaButterNew}
+                  alt={product.name}
                   className="w-full h-full object-cover"
                 />
-
-                {/* Carousel Controls */}
-                <button
-                  onClick={prevImage}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-110"
-                >
-                  <ChevronLeft className="w-6 h-6 text-primary" />
-                </button>
-                <button
-                  onClick={nextImage}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-110"
-                >
-                  <ChevronRight className="w-6 h-6 text-primary" />
-                </button>
-
-                {/* Carousel Indicators */}
-                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
-                  {productImages.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentImageIndex(index)}
-                      className={`w-2 h-2 rounded-full transition-all ${
-                        index === currentImageIndex
-                          ? "bg-white w-8"
-                          : "bg-white/50 hover:bg-white/75"
-                      }`}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              {/* Thumbnail Images */}
-              <div className="grid grid-cols-3 gap-4 mt-4">
-                {productImages.map((img, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentImageIndex(index)}
-                    className={`aspect-square rounded-xl overflow-hidden border-2 transition-all ${
-                      index === currentImageIndex
-                        ? "border-primary shadow-green"
-                        : "border-border hover:border-primary/50"
-                    }`}
-                  >
-                    <img src={img} alt={`${t.productDetail.thumbnail} ${index + 1}`} className="w-full h-full object-cover" />
-                  </button>
-                ))}
               </div>
             </motion.div>
 

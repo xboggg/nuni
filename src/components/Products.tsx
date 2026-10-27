@@ -15,7 +15,7 @@ import {
 import { useLanguage } from "@/lib/i18n";
 import product1 from "@/assets/product-1.png";
 import product2 from "@/assets/product-2.png";
-import product3 from "@/assets/product-3.png";
+import product3 from "@/assets/product-3-new.jpg";
 import luxuryBodyButter1 from "@/assets/luxury-body-butter-1.jpg";
 import farawayBodyButter1 from "@/assets/faraway-body-butter-1.jpg";
 

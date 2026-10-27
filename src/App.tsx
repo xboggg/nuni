@@ -24,6 +24,7 @@ import TermsOfServicePage from "./pages/TermsOfServicePage";
 import CommunityImpactPage from "./pages/CommunityImpactPage";
 import ScrollToTop from "@/components/ScrollToTop";
 import PromoBar from "@/components/PromoBar";
+import NewPackagingToast from "@/components/NewPackagingToast";
 
 // Export Section - temporarily redirected to Coming Soon
 import ExportComingSoon from "./pages/export/ExportComingSoon";
@@ -39,6 +40,7 @@ const AnimatedRoutes = () => {
   return (
     <>
       <PromoBar />
+      <NewPackagingToast />
       <ScrollToTop />
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>

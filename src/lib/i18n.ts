@@ -83,6 +83,13 @@ export const translations = {
       whatsappMessage: "Hi! I'm interested in your Valentine's Day 5% discount offer on all products!",
       closeLabel: "Close",
     },
+    // New Packaging Toast
+    newPackagingToast: {
+      title: "New Cocoa Butter packaging!",
+      message: "This is how NG Cosmetics Cocoa Butter looks now.",
+      cta: "See it",
+      closeLabel: "Dismiss",
+    },
     // Benefits
     benefits: {
       subtitle: "Why Choose Us",
@@ -674,6 +681,8 @@ export const translations = {
       categoryMoisturizing: "Moisturizing",
       customerReviews: "Customer Reviews",
       reviewsLabel: "reviews",
+      newPackagingLabel: "New look, same quality:",
+      newPackagingNotice: "Your Cocoa Butter may arrive in this updated NG Cosmetics packaging.",
     },
     // Per-product content (detail pages)
     productContent: {
@@ -878,6 +887,13 @@ export const translations = {
       maybeLater: "Peut-être plus tard",
       finePrint: "*Valable sur tous les produits jusqu'au 14 février 2026",
       whatsappMessage: "Salut ! Je suis intéressé(e) par votre offre de réduction de 5% pour la Saint-Valentin sur tous les produits !",
+      closeLabel: "Fermer",
+    },
+    // New Packaging Toast
+    newPackagingToast: {
+      title: "Nouvel emballage du Beurre de Cacao !",
+      message: "Voici à quoi ressemble maintenant le Beurre de Cacao NG Cosmetics.",
+      cta: "Voir",
       closeLabel: "Fermer",
     },
     // Benefits
@@ -1471,6 +1487,8 @@ export const translations = {
       categoryMoisturizing: "Hydratation",
       customerReviews: "Avis Clients",
       reviewsLabel: "avis",
+      newPackagingLabel: "Nouveau look, même qualité :",
+      newPackagingNotice: "Votre Beurre de Cacao peut arriver dans ce nouvel emballage NG Cosmetics.",
     },
     // Per-product content (detail pages)
     productContent: {
@@ -1675,6 +1693,13 @@ export const translations = {
       maybeLater: "Ebia akyiri yi",
       finePrint: "*Ɛwɔ hɔ ma nneɛma nyinaa kosi Feb 14, 2026",
       whatsappMessage: "Hi! Me pɛ sɛ me nya Valentine Da 5% tesobea wɔ nneɛma nyinaa so!",
+      closeLabel: "To Mu",
+    },
+    // New Packaging Toast
+    newPackagingToast: {
+      title: "Cocoa Butter bɔbea foforo!",
+      message: "Eyi ne sɛnea NG Cosmetics Cocoa Butter te seesei.",
+      cta: "Hwɛ",
       closeLabel: "To Mu",
     },
     // Benefits
@@ -2268,6 +2293,8 @@ export const translations = {
       categoryMoisturizing: "Nsuosuo",
       customerReviews: "Adetɔfoɔ Nkyerɛkyerɛmu",
       reviewsLabel: "nkyerɛkyerɛmu",
+      newPackagingLabel: "Ɛho foforo, su koro:",
+      newPackagingNotice: "Wo Cocoa Butter betumi aba wɔ NG Cosmetics bɔbea foforo yi mu.",
     },
     // Per-product content (detail pages)
     productContent: {
