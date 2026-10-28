@@ -3,6 +3,7 @@ import { useInView } from "framer-motion";
 import { useRef, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Autoplay from "embla-carousel-autoplay";
 import { products, Product } from "@/data/products";
 import ProductCard from "./ProductCard";
 import PullToRefresh from "./PullToRefresh";
@@ -44,6 +45,10 @@ const Products = () => {
   const [canScrollNext, setCanScrollNext] = useState(false);
   const { t } = useLanguage();
   const navigate = useNavigate();
+
+  const autoplay = useRef(
+    Autoplay({ delay: 4000, stopOnInteraction: false, stopOnMouseEnter: true })
+  );
 
   const categoryTranslations: Record<string, string> = {
     Moisturizing: t.productDetail.categoryMoisturizing,
@@ -134,7 +139,8 @@ const Products = () => {
           <div key={refreshKey} className="relative">
             <Carousel
               setApi={onApiChange}
-              opts={{ align: "start", loop: false }}
+              opts={{ align: "start", loop: true }}
+              plugins={[autoplay.current]}
               className="w-full"
             >
               <CarouselContent className="-ml-4 md:-ml-6">
