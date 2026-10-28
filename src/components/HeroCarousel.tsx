@@ -6,16 +6,11 @@ import FallingLeaves from "./FallingLeaves";
 import { useLanguage } from "@/lib/i18n";
 
 // Import all hero images
-import hero1 from "@/assets/hero-1.jpeg";
-import hero2 from "@/assets/hero-2.jpeg";
-import hero3 from "@/assets/hero-3.jpeg";
-import hero7 from "@/assets/hero-7.png";
 import cocoaButterHero from "@/assets/cocoa-butter-hero.jpg";
-import hero12 from "@/assets/hero-12.jpg";
-import hero13 from "@/assets/hero-13.jpeg";
+import acneSoapHero from "@/assets/acne-soap-hero.jpg";
 import heroLuxFar from "@/assets/hero-lux-far.jpg";
 
-const heroImages = [heroLuxFar, hero12, hero13, hero1, hero2, hero3, cocoaButterHero, hero7];
+const heroImages = [heroLuxFar, acneSoapHero, cocoaButterHero];
 
 const HeroCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);

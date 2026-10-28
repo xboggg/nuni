@@ -683,6 +683,7 @@ export const translations = {
       reviewsLabel: "reviews",
       newPackagingLabel: "New look, same quality:",
       newPackagingNotice: "Your Cocoa Butter may arrive in this updated NG Cosmetics packaging.",
+      newPackagingNoticeSoap: "Your Acne Dark Soap may arrive in this updated NG Cosmetics packaging.",
     },
     // Per-product content (detail pages)
     productContent: {
@@ -1489,6 +1490,7 @@ export const translations = {
       reviewsLabel: "avis",
       newPackagingLabel: "Nouveau look, même qualité :",
       newPackagingNotice: "Votre Beurre de Cacao peut arriver dans ce nouvel emballage NG Cosmetics.",
+      newPackagingNoticeSoap: "Votre Savon Noir Anti-Acné peut arriver dans ce nouvel emballage NG Cosmetics.",
     },
     // Per-product content (detail pages)
     productContent: {
@@ -2295,6 +2297,7 @@ export const translations = {
       reviewsLabel: "nkyerɛkyerɛmu",
       newPackagingLabel: "Ɛho foforo, su koro:",
       newPackagingNotice: "Wo Cocoa Butter betumi aba wɔ NG Cosmetics bɔbea foforo yi mu.",
+      newPackagingNoticeSoap: "Wo Acne Dark Soap betumi aba wɔ NG Cosmetics bɔbea foforo yi mu.",
     },
     // Per-product content (detail pages)
     productContent: {

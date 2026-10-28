@@ -9,12 +9,12 @@ import { getWhatsAppLink, getWhatsAppLinkEurope, WHATSAPP_NUMBER_EUROPE } from "
 import { useLanguage } from "@/lib/i18n";
 
 // Import product images - retail
-import soapImage from "@/assets/nuni-darksoap25-new.png";
+import soapImage from "@/assets/acne-soap-new.jpg";
 import creamImage from "@/assets/nuni-facialacne28.jpeg";
 import butterImage from "@/assets/cocoa-butter-new.jpg";
 
 // Import product images - wholesale
-import soapImageWholesale from "@/assets/gallery/nuni-darksoap11.jpeg";
+import soapImageWholesale from "@/assets/acne-soap-new.jpg";
 import creamImageWholesale from "@/assets/gallery/nuni-facialacne15.jpeg";
 import butterImageWholesale from "@/assets/cocoa-butter-new.jpg";
 
