@@ -34,7 +34,10 @@ export async function login(username: string, password: string): Promise<string>
 }
 
 export async function apiGet(resource: string) {
-  const res = await fetch(`${API_BASE}/${resource}.php`);
+  const token = getToken();
+  const res = await fetch(`${API_BASE}/${resource}.php`, {
+    headers: token ? { Authorization: `Bearer ${token}` } : {},
+  });
   return handleResponse(res);
 }
 

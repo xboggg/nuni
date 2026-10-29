@@ -84,6 +84,8 @@ const PartnersManager = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [form, setForm] = useState<FormState>(emptyForm);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [hideAmbassadorPhotos, setHideAmbassadorPhotos] = useState(false);
+  const [settingSaving, setSettingSaving] = useState(false);
 
   const load = async () => {
     setLoading(true);
@@ -97,9 +99,32 @@ const PartnersManager = () => {
     }
   };
 
+  const loadSetting = async () => {
+    try {
+      const data = await apiGet("settings");
+      setHideAmbassadorPhotos(!!data.hideAmbassadorPhotos);
+    } catch {
+      // Non-critical; leave the toggle at its default.
+    }
+  };
+
   useEffect(() => {
     load();
+    loadSetting();
   }, []);
+
+  const toggleHideAmbassadorPhotos = async () => {
+    const next = !hideAmbassadorPhotos;
+    setSettingSaving(true);
+    try {
+      await apiPut("settings", { hideAmbassadorPhotos: next });
+      setHideAmbassadorPhotos(next);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to update setting");
+    } finally {
+      setSettingSaving(false);
+    }
+  };
 
   const openAddDialog = () => {
     setForm(emptyForm);
@@ -214,6 +239,31 @@ const PartnersManager = () => {
           <Plus className="mr-2" size={16} />
           Add Partner
         </Button>
+      </div>
+
+      <div className="flex items-start justify-between gap-4 rounded-xl border border-border bg-muted/30 px-4 py-3 mb-4">
+        <div>
+          <p className="text-sm font-medium text-foreground">Hide ambassador photos on the live site</p>
+          <p className="text-xs text-muted-foreground mt-0.5">
+            Turn this on while old product photos are being replaced with new ones. Visitors see a
+            default photo instead; admin still shows the real ones here so you know what to replace.
+          </p>
+        </div>
+        <button
+          type="button"
+          onClick={toggleHideAmbassadorPhotos}
+          disabled={settingSaving}
+          aria-pressed={hideAmbassadorPhotos}
+          className={`relative inline-flex h-6 w-11 flex-shrink-0 items-center rounded-full transition-colors disabled:opacity-50 ${
+            hideAmbassadorPhotos ? "bg-primary" : "bg-muted-foreground/30"
+          }`}
+        >
+          <span
+            className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+              hideAmbassadorPhotos ? "translate-x-6" : "translate-x-1"
+            }`}
+          />
+        </button>
       </div>
 
       <div className="flex flex-wrap items-center gap-3 mb-4">
