@@ -18,6 +18,7 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import { apiGet, apiPost, apiPut, apiDelete } from "@/lib/adminApi";
+import ambassadorDefault from "@/assets/ambassador-default.jpg";
 
 interface Partner {
   id: string;
@@ -262,17 +263,11 @@ const PartnersManager = () => {
             {filtered.map((p) => (
               <tr key={p.id} className="border-t border-border hover:bg-muted/30">
                 <td className="px-4 py-2.5">
-                  {p.image ? (
-                    <img
-                      src={p.image}
-                      alt={p.name}
-                      className="w-10 h-10 rounded-full object-cover border border-border"
-                    />
-                  ) : (
-                    <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center text-muted-foreground text-xs">
-                      —
-                    </div>
-                  )}
+                  <img
+                    src={p.image || ambassadorDefault}
+                    alt={p.name}
+                    className="w-10 h-10 rounded-full object-cover border border-border"
+                  />
                 </td>
                 <td className="px-4 py-2.5 font-medium text-foreground">{p.name}</td>
                 <td className="px-4 py-2.5 text-muted-foreground">{p.phone.join(", ") || "—"}</td>
@@ -388,13 +383,11 @@ const PartnersManager = () => {
             <div>
               <label className="block text-sm font-medium text-foreground mb-1.5">Photo (optional)</label>
               <div className="flex items-center gap-3">
-                {(form.imageFile || form.existingImage) && (
-                  <img
-                    src={form.imageFile ? URL.createObjectURL(form.imageFile) : form.existingImage!}
-                    alt="Preview"
-                    className="w-14 h-14 rounded-full object-cover border border-border"
-                  />
-                )}
+                <img
+                  src={form.imageFile ? URL.createObjectURL(form.imageFile) : form.existingImage || ambassadorDefault}
+                  alt="Preview"
+                  className="w-14 h-14 rounded-full object-cover border border-border"
+                />
                 <input
                   ref={fileInputRef}
                   type="file"

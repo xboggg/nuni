@@ -9,6 +9,7 @@ import AmbassadorTeaser from "@/components/AmbassadorTeaser";
 import { regions, getPartnerApplicationWhatsAppLink, Partner } from "@/data/partners";
 import { useLanguage } from "@/lib/i18n";
 import { apiGet } from "@/lib/adminApi";
+import ambassadorDefault from "@/assets/ambassador-default.jpg";
 
 // Partner Card Component
 const PartnerCard = ({ partner, openLightbox }: { partner: Partner; openLightbox: (img: string) => void }) => {
@@ -21,14 +22,12 @@ const PartnerCard = ({ partner, openLightbox }: { partner: Partner; openLightbox
     >
       <div className="flex items-start justify-between mb-2">
         <h4 className="font-semibold text-foreground">{partner.name}</h4>
-        {partner.image && (
-          <img
-            src={partner.image}
-            alt={partner.name}
-            className="w-10 h-10 rounded-full object-cover border-2 border-accent/30 cursor-pointer"
-            onClick={() => partner.image && openLightbox(partner.image)}
-          />
-        )}
+        <img
+          src={partner.image || ambassadorDefault}
+          alt={partner.name}
+          className="w-10 h-10 rounded-full object-cover border-2 border-accent/30 cursor-pointer"
+          onClick={() => openLightbox(partner.image || ambassadorDefault)}
+        />
       </div>
 
       {/* Locations */}
@@ -116,9 +115,9 @@ const PartnersPage = () => {
     );
   }, [partners]);
 
-  // Get ambassadors with photos for featured section (includes PA)
+  // Featured section: all ambassadors/PAs, falling back to a default photo when none is set
   const ambassadorsWithPhotos = useMemo(() => {
-    return partners.filter(p => (p.roles?.includes("ambassador") || p.roles?.includes("pa")) && p.image);
+    return partners.filter(p => p.roles?.includes("ambassador") || p.roles?.includes("pa"));
   }, [partners]);
 
   const openLightbox = (image: string) => {
@@ -310,11 +309,11 @@ const PartnersPage = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                   className="flex-shrink-0 w-[160px] md:w-full group cursor-pointer"
-                  onClick={() => ambassador.image && openLightbox(ambassador.image)}
+                  onClick={() => openLightbox(ambassador.image || ambassadorDefault)}
                 >
                   <div className="relative rounded-2xl overflow-hidden shadow-lg border-2 border-accent/30 aspect-[3/4]">
                     <img
-                      src={ambassador.image}
+                      src={ambassador.image || ambassadorDefault}
                       alt={ambassador.name}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
