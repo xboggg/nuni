@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { Trash2, Plus, Loader2 } from "lucide-react";
+import { Trash2, Plus, Loader2, CheckSquare, X, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -37,6 +37,9 @@ const GalleryManager = () => {
   const [newCategory, setNewCategory] = useState("cocoa-butter");
   const [newAlt, setNewAlt] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [selectMode, setSelectMode] = useState(false);
+  const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
+  const [bulkDeleting, setBulkDeleting] = useState(false);
 
   const load = async () => {
     setLoading(true);
@@ -95,6 +98,53 @@ const GalleryManager = () => {
     }
   };
 
+  const toggleSelectMode = () => {
+    setSelectMode((prev) => !prev);
+    setSelectedIds(new Set());
+  };
+
+  const toggleSelected = (id: number) => {
+    setSelectedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
+      return next;
+    });
+  };
+
+  const selectAllFiltered = () => {
+    setSelectedIds(new Set(filtered.map((img) => img.id)));
+  };
+
+  const clearSelection = () => {
+    setSelectedIds(new Set());
+  };
+
+  const handleBulkDelete = async () => {
+    const count = selectedIds.size;
+    if (count === 0) return;
+    if (!confirm(`Remove ${count} selected photo${count === 1 ? "" : "s"} from the gallery? This cannot be undone.`)) return;
+
+    setBulkDeleting(true);
+    setError("");
+    try {
+      for (const id of selectedIds) {
+        await apiDelete("gallery", id);
+      }
+      setSelectedIds(new Set());
+      setSelectMode(false);
+      await load();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Some photos could not be deleted");
+      await load();
+    } finally {
+      setBulkDeleting(false);
+    }
+  };
+
   const filtered =
     filterCategory === "all" ? images : images.filter((img) => img.category === filterCategory);
 
@@ -131,8 +181,36 @@ const GalleryManager = () => {
               </SelectContent>
             </Select>
           </div>
+          <Button variant={selectMode ? "default" : "outline"} onClick={toggleSelectMode}>
+            {selectMode ? <X className="mr-2" size={16} /> : <CheckSquare className="mr-2" size={16} />}
+            {selectMode ? "Cancel" : "Select"}
+          </Button>
         </div>
       </div>
+
+      {selectMode && (
+        <div className="flex flex-wrap items-center gap-3 bg-primary/5 border border-primary/20 rounded-xl px-4 py-3 mb-6">
+          <span className="text-sm font-medium text-foreground">
+            {selectedIds.size} selected
+          </span>
+          <Button variant="outline" size="sm" onClick={selectAllFiltered}>
+            Select all {filtered.length}
+          </Button>
+          <Button variant="outline" size="sm" onClick={clearSelection} disabled={selectedIds.size === 0}>
+            Clear
+          </Button>
+          <Button
+            variant="destructive"
+            size="sm"
+            onClick={handleBulkDelete}
+            disabled={selectedIds.size === 0 || bulkDeleting}
+            className="ml-auto"
+          >
+            {bulkDeleting ? <Loader2 className="animate-spin mr-2" size={16} /> : <Trash2 className="mr-2" size={16} />}
+            Delete {selectedIds.size > 0 ? selectedIds.size : ""} photo{selectedIds.size === 1 ? "" : "s"}
+          </Button>
+        </div>
+      )}
 
       <div className="bg-muted/50 border border-border rounded-xl p-4 mb-6">
         <p className="text-sm font-medium text-foreground mb-3">Add a new photo</p>
@@ -180,32 +258,59 @@ const GalleryManager = () => {
       )}
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-        {filtered.map((img) => (
-          <div key={img.id} className="group relative rounded-xl overflow-hidden border border-border bg-muted">
-            <img src={img.src} alt={img.alt} className="w-full aspect-square object-cover" loading="lazy" />
-            <button
-              onClick={() => handleDelete(img.id)}
-              className="absolute top-2 right-2 bg-destructive text-destructive-foreground rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity"
-              aria-label="Delete photo"
+        {filtered.map((img) => {
+          const isSelected = selectedIds.has(img.id);
+          return (
+            <div
+              key={img.id}
+              className={`group relative rounded-xl overflow-hidden border bg-muted ${
+                isSelected ? "border-primary ring-2 ring-primary" : "border-border"
+              } ${selectMode ? "cursor-pointer" : ""}`}
+              onClick={() => selectMode && toggleSelected(img.id)}
             >
-              <Trash2 size={14} />
-            </button>
-            <div className="p-1.5">
-              <Select value={img.category} onValueChange={(v) => handleCategoryChange(img.id, v)}>
-                <SelectTrigger className="h-7 text-xs">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {CATEGORIES.map((c) => (
-                    <SelectItem key={c.id} value={c.id} className="text-xs">
-                      {c.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <img src={img.src} alt={img.alt} className="w-full aspect-square object-cover" loading="lazy" />
+
+              {selectMode ? (
+                <div
+                  className={`absolute top-2 right-2 w-6 h-6 rounded-md flex items-center justify-center border-2 transition-colors ${
+                    isSelected
+                      ? "bg-primary border-primary text-primary-foreground"
+                      : "bg-card/90 border-border"
+                  }`}
+                >
+                  {isSelected && <Check size={14} />}
+                </div>
+              ) : (
+                <button
+                  onClick={() => handleDelete(img.id)}
+                  className="absolute top-2 right-2 bg-destructive text-destructive-foreground rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity"
+                  aria-label="Delete photo"
+                >
+                  <Trash2 size={14} />
+                </button>
+              )}
+
+              <div className="p-1.5" onClick={(e) => selectMode && e.stopPropagation()}>
+                <Select
+                  value={img.category}
+                  onValueChange={(v) => handleCategoryChange(img.id, v)}
+                  disabled={selectMode}
+                >
+                  <SelectTrigger className="h-7 text-xs">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {CATEGORIES.map((c) => (
+                      <SelectItem key={c.id} value={c.id} className="text-xs">
+                        {c.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       {filtered.length === 0 && (

@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronRight } from "lucide-react";
+import { Menu, X, ChevronRight, Shield } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "@/assets/nuni-logo.png";
 import { getWhatsAppLink, GENERAL_INQUIRY_MESSAGE } from "@/data/products";
@@ -111,6 +111,16 @@ const Navigation = () => {
             <div className="hidden md:flex items-center gap-3">
               <LanguageSwitcher />
               <ThemeToggle />
+              <Link
+                to="/admin"
+                aria-label="Admin"
+                title="Admin"
+                className={`p-2 rounded-full transition-colors duration-200 hover:text-primary ${
+                  isScrolled ? "text-muted-foreground hover:bg-muted" : "text-white/70 hover:bg-white/10"
+                }`}
+              >
+                <Shield size={18} />
+              </Link>
               <a
                 href={getWhatsAppLink(GENERAL_INQUIRY_MESSAGE)}
                 target="_blank"
@@ -210,6 +220,14 @@ const Navigation = () => {
                 <div className="flex items-center justify-between mb-4">
                   <LanguageSwitcher />
                   <ThemeToggle />
+                  <Link
+                    to="/admin"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    aria-label="Admin"
+                    className="p-2 rounded-full text-muted-foreground hover:bg-muted transition-colors"
+                  >
+                    <Shield size={18} />
+                  </Link>
                 </div>
                 <a
                   href={getWhatsAppLink(GENERAL_INQUIRY_MESSAGE)}
