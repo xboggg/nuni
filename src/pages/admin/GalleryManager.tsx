@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { Trash2, Plus, Loader2, CheckSquare, X, Check } from "lucide-react";
+import { Trash2, Plus, Loader2, CheckSquare, X, Check, GripVertical } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -40,6 +40,8 @@ const GalleryManager = () => {
   const [selectMode, setSelectMode] = useState(false);
   const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
   const [bulkDeleting, setBulkDeleting] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState({ done: 0, total: 0 });
+  const dragIndexRef = useRef<number | null>(null);
 
   const load = async () => {
     setLoading(true);
@@ -58,22 +60,27 @@ const GalleryManager = () => {
   }, []);
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
+    const files = Array.from(e.target.files || []);
+    if (files.length === 0) return;
     setUploading(true);
     setError("");
+    setUploadProgress({ done: 0, total: files.length });
     try {
-      const formData = new FormData();
-      formData.append("image", file);
-      formData.append("category", newCategory);
-      formData.append("alt", newAlt || "NG Cosmetics");
-      await apiPost("gallery", formData);
+      for (let i = 0; i < files.length; i++) {
+        const formData = new FormData();
+        formData.append("image", files[i]);
+        formData.append("category", newCategory);
+        formData.append("alt", newAlt || "NG Cosmetics");
+        await apiPost("gallery", formData);
+        setUploadProgress({ done: i + 1, total: files.length });
+      }
       setNewAlt("");
       await load();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Upload failed");
     } finally {
       setUploading(false);
+      setUploadProgress({ done: 0, total: 0 });
       if (fileInputRef.current) fileInputRef.current.value = "";
     }
   };
@@ -142,6 +149,48 @@ const GalleryManager = () => {
       await load();
     } finally {
       setBulkDeleting(false);
+    }
+  };
+
+  const handleDragStart = (index: number) => {
+    dragIndexRef.current = index;
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+  };
+
+  const handleDrop = async (dropIndex: number) => {
+    const fromIndex = dragIndexRef.current;
+    dragIndexRef.current = null;
+    if (fromIndex === null || fromIndex === dropIndex) return;
+
+    // Reorder within the currently filtered view...
+    const reorderedFiltered = [...filtered];
+    const [moved] = reorderedFiltered.splice(fromIndex, 1);
+    reorderedFiltered.splice(dropIndex, 0, moved);
+
+    // ...then splice that new order back into the full, unfiltered list so
+    // images outside the current filter keep their relative position and
+    // don't collide on sort_order with images from other categories. Each
+    // slot that belonged to the filtered set gets replaced, in order, with
+    // the next id from the freshly reordered filtered list.
+    const filteredIds = new Set(filtered.map((img) => img.id));
+    const reorderedFilteredQueue = [...reorderedFiltered];
+    const byId = new Map(images.map((img) => [img.id, img]));
+    const fullReordered = images.map((img) => {
+      if (!filteredIds.has(img.id)) return img;
+      const next = reorderedFilteredQueue.shift();
+      return next ? byId.get(next.id) ?? img : img;
+    });
+
+    setImages(fullReordered);
+
+    try {
+      await apiPut("gallery", { reorder: fullReordered.map((img) => img.id) });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Reorder failed");
+      load();
     }
   };
 
@@ -243,14 +292,20 @@ const GalleryManager = () => {
             ref={fileInputRef}
             type="file"
             accept="image/jpeg,image/png,image/webp"
+            multiple
             className="hidden"
             onChange={handleFileChange}
           />
           <Button onClick={() => fileInputRef.current?.click()} disabled={uploading}>
             {uploading ? <Loader2 className="animate-spin mr-2" size={16} /> : <Plus className="mr-2" size={16} />}
-            Upload Photo
+            {uploading && uploadProgress.total > 1
+              ? `Uploading ${uploadProgress.done}/${uploadProgress.total}...`
+              : "Upload Photos"}
           </Button>
         </div>
+        <p className="text-xs text-muted-foreground mt-2">
+          Tip: you can select several photos at once, and drag photos below to reorder them.
+        </p>
       </div>
 
       {error && (
@@ -258,14 +313,18 @@ const GalleryManager = () => {
       )}
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-        {filtered.map((img) => {
+        {filtered.map((img, index) => {
           const isSelected = selectedIds.has(img.id);
           return (
             <div
               key={img.id}
+              draggable={!selectMode}
+              onDragStart={() => handleDragStart(index)}
+              onDragOver={handleDragOver}
+              onDrop={() => handleDrop(index)}
               className={`group relative rounded-xl overflow-hidden border bg-muted ${
                 isSelected ? "border-primary ring-2 ring-primary" : "border-border"
-              } ${selectMode ? "cursor-pointer" : ""}`}
+              } ${selectMode ? "cursor-pointer" : "cursor-move"}`}
               onClick={() => selectMode && toggleSelected(img.id)}
             >
               <img src={img.src} alt={img.alt} className="w-full aspect-square object-cover" loading="lazy" />
@@ -281,13 +340,18 @@ const GalleryManager = () => {
                   {isSelected && <Check size={14} />}
                 </div>
               ) : (
-                <button
-                  onClick={() => handleDelete(img.id)}
-                  className="absolute top-2 right-2 bg-destructive text-destructive-foreground rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity"
-                  aria-label="Delete photo"
-                >
-                  <Trash2 size={14} />
-                </button>
+                <>
+                  <div className="absolute top-2 left-2 bg-card/90 rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <GripVertical size={14} className="text-muted-foreground" />
+                  </div>
+                  <button
+                    onClick={() => handleDelete(img.id)}
+                    className="absolute top-2 right-2 bg-destructive text-destructive-foreground rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity"
+                    aria-label="Delete photo"
+                  >
+                    <Trash2 size={14} />
+                  </button>
+                </>
               )}
 
               <div className="p-1.5" onClick={(e) => selectMode && e.stopPropagation()}>
