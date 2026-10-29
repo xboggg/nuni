@@ -245,8 +245,8 @@ const PartnersManager = () => {
         <p className="text-sm text-destructive bg-destructive/10 rounded-lg px-3 py-2 mb-4">{error}</p>
       )}
 
-      <div className="rounded-xl border border-border overflow-hidden">
-        <table className="w-full text-sm">
+      <div className="rounded-xl border border-border overflow-x-auto">
+        <table className="w-full min-w-[720px] text-sm">
           <thead className="bg-muted/50 text-left text-muted-foreground">
             <tr>
               <th className="px-4 py-2.5 font-medium">Photo</th>
