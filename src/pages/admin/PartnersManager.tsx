@@ -80,6 +80,7 @@ const PartnersManager = () => {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
   const [search, setSearch] = useState("");
+  const [roleFilter, setRoleFilter] = useState("all");
   const [dialogOpen, setDialogOpen] = useState(false);
   const [form, setForm] = useState<FormState>(emptyForm);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -185,12 +186,14 @@ const PartnersManager = () => {
     }
   };
 
-  const filtered = partners.filter(
-    (p) =>
-      p.name.toLowerCase().includes(search.toLowerCase()) ||
-      p.locations.some((l) => l.toLowerCase().includes(search.toLowerCase())) ||
-      p.phone.some((ph) => ph.includes(search))
-  );
+  const filtered = partners
+    .filter((p) => roleFilter === "all" || p.roles.includes(roleFilter))
+    .filter(
+      (p) =>
+        p.name.toLowerCase().includes(search.toLowerCase()) ||
+        p.locations.some((l) => l.toLowerCase().includes(search.toLowerCase())) ||
+        p.phone.some((ph) => ph.includes(search))
+    );
 
   if (loading) {
     return (
@@ -213,14 +216,29 @@ const PartnersManager = () => {
         </Button>
       </div>
 
-      <div className="relative mb-4 max-w-sm">
-        <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-        <Input
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search by name, location, or phone..."
-          className="pl-9"
-        />
+      <div className="flex flex-wrap items-center gap-3 mb-4">
+        <div className="relative max-w-sm flex-1 min-w-[220px]">
+          <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+          <Input
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search by name, location, or phone..."
+            className="pl-9"
+          />
+        </div>
+        <Select value={roleFilter} onValueChange={setRoleFilter}>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All Roles</SelectItem>
+            {ROLES.map((role) => (
+              <SelectItem key={role} value={role} className="capitalize">
+                {role}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
 
       {error && (
@@ -231,6 +249,7 @@ const PartnersManager = () => {
         <table className="w-full text-sm">
           <thead className="bg-muted/50 text-left text-muted-foreground">
             <tr>
+              <th className="px-4 py-2.5 font-medium">Photo</th>
               <th className="px-4 py-2.5 font-medium">Name</th>
               <th className="px-4 py-2.5 font-medium">Phone</th>
               <th className="px-4 py-2.5 font-medium">Location(s)</th>
@@ -242,6 +261,19 @@ const PartnersManager = () => {
           <tbody>
             {filtered.map((p) => (
               <tr key={p.id} className="border-t border-border hover:bg-muted/30">
+                <td className="px-4 py-2.5">
+                  {p.image ? (
+                    <img
+                      src={p.image}
+                      alt={p.name}
+                      className="w-10 h-10 rounded-full object-cover border border-border"
+                    />
+                  ) : (
+                    <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center text-muted-foreground text-xs">
+                      —
+                    </div>
+                  )}
+                </td>
                 <td className="px-4 py-2.5 font-medium text-foreground">{p.name}</td>
                 <td className="px-4 py-2.5 text-muted-foreground">{p.phone.join(", ") || "—"}</td>
                 <td className="px-4 py-2.5 text-muted-foreground">{p.locations.join(", ") || "—"}</td>
