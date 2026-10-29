@@ -1,13 +1,14 @@
-import { useState, useMemo, useRef } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, MapPin, Phone, Handshake, ArrowLeft, X, Star, Package, Store } from "lucide-react";
+import { Search, MapPin, Phone, Handshake, ArrowLeft, X, Star, Package, Store, Loader2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import AmbassadorTeaser from "@/components/AmbassadorTeaser";
-import { partners, regions, getPartnerApplicationWhatsAppLink, Partner } from "@/data/partners";
+import { regions, getPartnerApplicationWhatsAppLink, Partner } from "@/data/partners";
 import { useLanguage } from "@/lib/i18n";
+import { apiGet } from "@/lib/adminApi";
 
 // Partner Card Component
 const PartnerCard = ({ partner, openLightbox }: { partner: Partner; openLightbox: (img: string) => void }) => {
@@ -76,6 +77,8 @@ const PartnerCard = ({ partner, openLightbox }: { partner: Partner; openLightbox
 };
 
 const PartnersPage = () => {
+  const [partners, setPartners] = useState<Partner[]>([]);
+  const [partnersLoading, setPartnersLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("all");
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
@@ -90,26 +93,33 @@ const PartnersPage = () => {
     region: "",
   });
 
+  useEffect(() => {
+    apiGet("partners")
+      .then((data) => setPartners(data))
+      .catch(() => setPartners([]))
+      .finally(() => setPartnersLoading(false));
+  }, []);
+
   // Get partners by category
   const ambassadors = useMemo(() => {
     return partners.filter(p => p.roles?.includes("ambassador"));
-  }, []);
+  }, [partners]);
 
   const distributors = useMemo(() => {
     return partners.filter(p => p.roles?.includes("distributor"));
-  }, []);
+  }, [partners]);
 
   const vendors = useMemo(() => {
     return partners.filter(p =>
       !p.roles || p.roles.length === 0 ||
       (!p.roles.includes("distributor") && !p.roles.includes("ambassador"))
     );
-  }, []);
+  }, [partners]);
 
   // Get ambassadors with photos for featured section (includes PA)
   const ambassadorsWithPhotos = useMemo(() => {
     return partners.filter(p => (p.roles?.includes("ambassador") || p.roles?.includes("pa")) && p.image);
-  }, []);
+  }, [partners]);
 
   const openLightbox = (image: string) => {
     setLightboxImage(image);
@@ -258,7 +268,15 @@ const PartnersPage = () => {
 
       <AmbassadorTeaser />
 
+      {partnersLoading && (
+        <div className="flex items-center justify-center py-20">
+          <Loader2 className="animate-spin text-primary" size={32} />
+        </div>
+      )}
+
       {/* SECTION 1: Brand Ambassadors */}
+      {!partnersLoading && (
+      <>
       <section className="py-16 bg-gradient-to-b from-accent/10 to-transparent">
         <div className="container-custom">
           <motion.div
@@ -433,6 +451,8 @@ const PartnersPage = () => {
           </div>
         </div>
       </section>
+      </>
+      )}
 
       {/* Become a Partner Section */}
       <section className="py-20 bg-gradient-to-br from-primary to-primary/80">

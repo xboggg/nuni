@@ -4,26 +4,41 @@ import { ChevronLeft, ChevronRight, Leaf, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import FallingLeaves from "./FallingLeaves";
 import { useLanguage } from "@/lib/i18n";
+import { apiGet } from "@/lib/adminApi";
 
-// Import all hero images
+// Fallback images shown only if the live API is unreachable, so the hero
+// section is never blank for a real visitor.
 import cocoaButterHero from "@/assets/cocoa-butter-hero.jpg";
 import acneSoapHero from "@/assets/acne-soap-hero.jpg";
 import heroLuxFar from "@/assets/hero-lux-far.jpg";
 
-const heroImages = [heroLuxFar, acneSoapHero, cocoaButterHero];
+const fallbackHeroImages = [heroLuxFar, acneSoapHero, cocoaButterHero];
 
 const HeroCarousel = () => {
+  const [heroImages, setHeroImages] = useState<string[]>(fallbackHeroImages);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const { t } = useLanguage();
 
+  useEffect(() => {
+    apiGet("hero")
+      .then((slides: { src: string }[]) => {
+        if (slides.length > 0) {
+          setHeroImages(slides.map((s) => s.src));
+        }
+      })
+      .catch(() => {
+        // Keep showing the bundled fallback images.
+      });
+  }, []);
+
   const nextSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % heroImages.length);
-  }, []);
+  }, [heroImages.length]);
 
   const prevSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev - 1 + heroImages.length) % heroImages.length);
-  }, []);
+  }, [heroImages.length]);
 
   const goToSlide = (index: number) => {
     setCurrentIndex(index);

@@ -32,10 +32,32 @@ import ExportComingSoon from "./pages/export/ExportComingSoon";
 // Home Decor Section
 import HomeDecorHome from "./pages/homedecor/HomeDecorHome";
 
+// Admin panel
+import AdminLogin from "./pages/admin/AdminLogin";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import RequireAdminAuth from "./pages/admin/RequireAdminAuth";
+
 const queryClient = new QueryClient();
 
 const AnimatedRoutes = () => {
   const location = useLocation();
+  const isAdminRoute = location.pathname.startsWith("/admin");
+
+  if (isAdminRoute) {
+    return (
+      <Routes location={location} key={location.pathname}>
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route
+          path="/admin"
+          element={
+            <RequireAdminAuth>
+              <AdminDashboard />
+            </RequireAdminAuth>
+          }
+        />
+      </Routes>
+    );
+  }
 
   return (
     <>

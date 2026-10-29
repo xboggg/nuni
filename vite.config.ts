@@ -11,6 +11,16 @@ export default defineConfig(({ mode }) => ({
     hmr: {
       overlay: false,
     },
+    proxy: {
+      "/admin-api": {
+        target: "https://ngcosmetics.com.gh",
+        changeOrigin: true,
+      },
+      "/uploads": {
+        target: "https://ngcosmetics.com.gh",
+        changeOrigin: true,
+      },
+    },
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {
