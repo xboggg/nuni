@@ -12,7 +12,8 @@ import { apiGet } from "@/lib/adminApi";
 import ambassadorDefault from "@/assets/ambassador-default.jpg";
 
 // Partner Card Component
-const PartnerCard = ({ partner, openLightbox }: { partner: Partner; openLightbox: (img: string) => void }) => {
+const PartnerCard = ({ partner, openLightbox, useDefaultImage }: { partner: Partner; openLightbox: (img: string) => void; useDefaultImage?: boolean }) => {
+  const displayImage = partner.image || (useDefaultImage ? ambassadorDefault : null);
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -22,12 +23,14 @@ const PartnerCard = ({ partner, openLightbox }: { partner: Partner; openLightbox
     >
       <div className="flex items-start justify-between mb-2">
         <h4 className="font-semibold text-foreground">{partner.name}</h4>
-        <img
-          src={partner.image || ambassadorDefault}
-          alt={partner.name}
-          className="w-10 h-10 rounded-full object-cover border-2 border-accent/30 cursor-pointer"
-          onClick={() => openLightbox(partner.image || ambassadorDefault)}
-        />
+        {displayImage && (
+          <img
+            src={displayImage}
+            alt={partner.name}
+            className="w-10 h-10 rounded-full object-cover border-2 border-accent/30 cursor-pointer"
+            onClick={() => openLightbox(displayImage)}
+          />
+        )}
       </div>
 
       {/* Locations */}
@@ -349,7 +352,7 @@ const PartnersPage = () => {
           {filteredAmbassadors.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
               {filteredAmbassadors.map((partner) => (
-                <PartnerCard key={partner.id} partner={partner} openLightbox={openLightbox} />
+                <PartnerCard key={partner.id} partner={partner} openLightbox={openLightbox} useDefaultImage />
               ))}
             </div>
           ) : (
