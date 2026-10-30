@@ -62,7 +62,7 @@ const AnimatedRoutes = () => {
   return (
     <>
       <PromoBar />
-      <NewPackagingToast />
+      {/* <NewPackagingToast /> */}
       <ScrollToTop />
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
