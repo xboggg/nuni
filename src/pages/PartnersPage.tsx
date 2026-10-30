@@ -268,7 +268,7 @@ const PartnersPage = () => {
         )}
       </AnimatePresence>
 
-      <AmbassadorTeaser />
+      {/* <AmbassadorTeaser /> */}
 
       {partnersLoading && (
         <div className="flex items-center justify-center py-20">
