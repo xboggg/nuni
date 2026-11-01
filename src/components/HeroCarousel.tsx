@@ -12,19 +12,35 @@ import cocoaButterHero from "@/assets/cocoa-butter-hero.jpg";
 import acneSoapHero from "@/assets/acne-soap-hero.jpg";
 import heroLuxFar from "@/assets/hero-lux-far.jpg";
 
-const fallbackHeroImages = [heroLuxFar, acneSoapHero, cocoaButterHero];
+const fallbackHeroImages = [heroLuxFar, acneSoapHero, cocoaButterHero].map((src) => ({
+  src,
+  focalX: 50,
+  focalY: 50,
+}));
+
+interface HeroImage {
+  src: string;
+  focalX: number;
+  focalY: number;
+}
 
 const HeroCarousel = () => {
-  const [heroImages, setHeroImages] = useState<string[]>(fallbackHeroImages);
+  const [heroImages, setHeroImages] = useState<HeroImage[]>(fallbackHeroImages);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const { t } = useLanguage();
 
   useEffect(() => {
     apiGet("hero")
-      .then((slides: { src: string }[]) => {
+      .then((slides: { src: string; focalX?: number; focalY?: number }[]) => {
         if (slides.length > 0) {
-          setHeroImages(slides.map((s) => s.src));
+          setHeroImages(
+            slides.map((s) => ({
+              src: s.src,
+              focalX: s.focalX ?? 50,
+              focalY: s.focalY ?? 50,
+            }))
+          );
         }
       })
       .catch(() => {
@@ -103,8 +119,11 @@ const HeroCarousel = () => {
     >
       {/* Static background to prevent white flash */}
       <div
-        className="absolute inset-0 bg-cover bg-center transition-none"
-        style={{ backgroundImage: `url(${heroImages[currentIndex]})` }}
+        className="absolute inset-0 bg-cover transition-none"
+        style={{
+          backgroundImage: `url(${heroImages[currentIndex].src})`,
+          backgroundPosition: `${heroImages[currentIndex].focalX}% ${heroImages[currentIndex].focalY}%`,
+        }}
       />
 
       {/* Falling Leaves Overlay */}
@@ -132,8 +151,11 @@ const HeroCarousel = () => {
             className="absolute inset-0"
           >
             <div
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url(${heroImages[currentIndex]})` }}
+              className="absolute inset-0 bg-cover"
+              style={{
+                backgroundImage: `url(${heroImages[currentIndex].src})`,
+                backgroundPosition: `${heroImages[currentIndex].focalX}% ${heroImages[currentIndex].focalY}%`,
+              }}
             />
             {/* Gradient overlay for text readability - stronger on left side */}
             <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/10" />
