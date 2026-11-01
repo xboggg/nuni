@@ -13,7 +13,7 @@ import ambassadorDefault from "@/assets/ambassador-default.jpg";
 
 // Partner Card Component
 const PartnerCard = ({ partner, openLightbox, useDefaultImage }: { partner: Partner; openLightbox: (img: string) => void; useDefaultImage?: boolean }) => {
-  const displayImage = partner.image || (useDefaultImage ? ambassadorDefault : null);
+  const displayImage = useDefaultImage ? ambassadorDefault : partner.image || null;
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -312,11 +312,11 @@ const PartnersPage = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                   className="flex-shrink-0 w-[160px] md:w-full group cursor-pointer"
-                  onClick={() => openLightbox(ambassador.image || ambassadorDefault)}
+                  onClick={() => openLightbox(ambassadorDefault)}
                 >
                   <div className="relative rounded-2xl overflow-hidden shadow-lg border-2 border-accent/30 aspect-[3/4]">
                     <img
-                      src={ambassador.image || ambassadorDefault}
+                      src={ambassadorDefault}
                       alt={ambassador.name}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
