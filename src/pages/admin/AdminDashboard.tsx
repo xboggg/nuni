@@ -7,6 +7,7 @@ import HeroManager from "./HeroManager";
 import GalleryManager from "./GalleryManager";
 import PartnersManager from "./PartnersManager";
 import ProductsManager from "./ProductsManager";
+import TestimonialsManager from "./TestimonialsManager";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -40,6 +41,7 @@ const AdminDashboard = () => {
             <TabsTrigger value="products">Products</TabsTrigger>
             <TabsTrigger value="gallery">Gallery</TabsTrigger>
             <TabsTrigger value="partners">Partners</TabsTrigger>
+            <TabsTrigger value="testimonials">Testimonials</TabsTrigger>
           </TabsList>
           <TabsContent value="hero" className="mt-6">
             <HeroManager />
@@ -52,6 +54,9 @@ const AdminDashboard = () => {
           </TabsContent>
           <TabsContent value="partners" className="mt-6">
             <PartnersManager />
+          </TabsContent>
+          <TabsContent value="testimonials" className="mt-6">
+            <TestimonialsManager />
           </TabsContent>
         </Tabs>
       </main>

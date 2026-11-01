@@ -6,7 +6,24 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { useLanguage } from "@/lib/i18n";
-import { testimonials, visualTestimonials, videoTestimonials, imageTestimonials } from "@/data/testimonials";
+import { apiGet } from "@/lib/adminApi";
+
+interface ApiReview {
+  id: number;
+  name: string;
+  initials: string;
+  location: string;
+  rating: number;
+  text: string;
+  product: string;
+}
+
+interface ApiMedia {
+  id: number;
+  type: "image" | "video";
+  src: string;
+  thumbnail: string | null;
+}
 
 const REVIEWS_PER_PAGE = 6;
 const IMAGES_PER_PAGE = 8;
@@ -17,6 +34,21 @@ const TestimonialsPage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [activeFilter, setActiveFilter] = useState<"all" | "images" | "videos">("all");
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  const [testimonials, setTestimonials] = useState<ApiReview[]>([]);
+  const [visualTestimonials, setVisualTestimonials] = useState<ApiMedia[]>([]);
+
+  useEffect(() => {
+    apiGet("testimonials")
+      .then((data: ApiReview[]) => setTestimonials(data))
+      .catch(() => setTestimonials([]));
+    apiGet("testimonial-media")
+      .then((data: ApiMedia[]) => setVisualTestimonials(data))
+      .catch(() => setVisualTestimonials([]));
+  }, []);
+
+  const videoTestimonials = visualTestimonials.filter((m) => m.type === "video");
+  const imageTestimonials = visualTestimonials.filter((m) => m.type === "image");
 
   // Touch swipe support
   const touchStartX = useRef<number>(0);

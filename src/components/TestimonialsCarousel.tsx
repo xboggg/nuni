@@ -6,20 +6,30 @@ import { Link } from "react-router-dom";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { useLanguage } from "@/lib/i18n";
+import { apiGet } from "@/lib/adminApi";
+
+interface ApiReview {
+  id: number;
+  name: string;
+  initials: string;
+  location: string;
+  rating: number;
+  text: string;
+  product: string;
+}
 
 const TestimonialsCarousel = () => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
   const [selectedIndex, setSelectedIndex] = useState(0);
   const { t } = useLanguage();
+  const [testimonials, setTestimonials] = useState<ApiReview[]>([]);
 
-  // Get testimonials from translations
-  const testimonials = t.testimonials.reviews.map((review, index) => ({
-    id: String(index + 1),
-    ...review,
-    initials: review.name.split(' ').map(n => n[0]).join(''),
-    rating: 5,
-  }));
+  useEffect(() => {
+    apiGet("testimonials")
+      .then((data: ApiReview[]) => setTestimonials(data))
+      .catch(() => setTestimonials([]));
+  }, []);
 
   const autoplayPlugin = useRef(
     Autoplay({ delay: 5000, stopOnInteraction: true, stopOnMouseEnter: true })
