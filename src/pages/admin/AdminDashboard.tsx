@@ -6,6 +6,7 @@ import { clearToken } from "@/lib/adminApi";
 import HeroManager from "./HeroManager";
 import GalleryManager from "./GalleryManager";
 import PartnersManager from "./PartnersManager";
+import ProductsManager from "./ProductsManager";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -36,11 +37,15 @@ const AdminDashboard = () => {
         <Tabs defaultValue="hero">
           <TabsList>
             <TabsTrigger value="hero">Hero Slides</TabsTrigger>
+            <TabsTrigger value="products">Products</TabsTrigger>
             <TabsTrigger value="gallery">Gallery</TabsTrigger>
             <TabsTrigger value="partners">Partners</TabsTrigger>
           </TabsList>
           <TabsContent value="hero" className="mt-6">
             <HeroManager />
+          </TabsContent>
+          <TabsContent value="products" className="mt-6">
+            <ProductsManager />
           </TabsContent>
           <TabsContent value="gallery" className="mt-6">
             <GalleryManager />

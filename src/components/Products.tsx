@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Autoplay from "embla-carousel-autoplay";
-import { products, Product } from "@/data/products";
+import { Product } from "@/data/products";
 import ProductCard from "./ProductCard";
 import PullToRefresh from "./PullToRefresh";
 import {
@@ -14,27 +14,20 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel";
 import { useLanguage } from "@/lib/i18n";
-import product1 from "@/assets/product-1-new.jpg";
-import product2 from "@/assets/product-2.png";
-import product3 from "@/assets/product-3-new.jpg";
-import luxuryBodyButter1 from "@/assets/luxury-body-butter-1.jpg";
-import farawayBodyButter1 from "@/assets/faraway-body-butter-1.jpg";
+import { apiGet } from "@/lib/adminApi";
 
-const productImages: Record<string, string> = {
-  "product-1": product1,
-  "product-2": product2,
-  "product-3": product3,
-  "luxury-body-butter-1": luxuryBodyButter1,
-  "faraway-body-butter-1": farawayBodyButter1,
-};
-
-const productContentKeys: Record<string, "luxuryBodyButter" | "farawayBodyButter" | "acneDarkSoap" | "acneFacialCream" | "cocoaButter"> = {
-  "luxury-body-butter": "luxuryBodyButter",
-  "faraway-body-butter": "farawayBodyButter",
-  "acne-dark-soap": "acneDarkSoap",
-  "acne-facial-cream": "acneFacialCream",
-  "cocoa-butter": "cocoaButter",
-};
+interface ApiProduct {
+  id: string;
+  name: string;
+  category: string;
+  badge: string | null;
+  description: string;
+  benefits: string[];
+  usage: string;
+  ingredients: string[];
+  sizes: string[];
+  image: string | null;
+}
 
 const Products = () => {
   const ref = useRef(null);
@@ -43,8 +36,15 @@ const Products = () => {
   const [api, setApi] = useState<CarouselApi>();
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
+  const [apiProducts, setApiProducts] = useState<ApiProduct[]>([]);
   const { t } = useLanguage();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    apiGet("products")
+      .then((data: ApiProduct[]) => setApiProducts(data))
+      .catch(() => setApiProducts([]));
+  }, []);
 
   const autoplay = useRef(
     Autoplay({ delay: 4000, stopOnInteraction: false, stopOnMouseEnter: true })
@@ -60,20 +60,18 @@ const Products = () => {
     Bestseller: t.productDetail.bestsellerBadge,
   };
 
-  const translatedProducts: Product[] = products.map((product) => {
-    const contentKey = productContentKeys[product.id];
-    const content = contentKey ? t.productContent[contentKey] : null;
-    return {
-      ...product,
-      name: content?.name ?? product.name,
-      description: content?.description ?? product.description,
-      benefits: content?.benefits ?? product.benefits,
-      usage: content?.usage ?? product.usage,
-      ingredients: content?.ingredients ?? product.ingredients,
-      category: categoryTranslations[product.category] ?? product.category,
-      badge: product.badge ? badgeTranslations[product.badge] ?? product.badge : product.badge,
-    };
-  });
+  const translatedProducts: Product[] = apiProducts.map((product) => ({
+    id: product.id,
+    name: product.name,
+    description: product.description,
+    benefits: product.benefits,
+    usage: product.usage,
+    ingredients: product.ingredients,
+    sizes: product.sizes,
+    category: categoryTranslations[product.category] ?? product.category,
+    badge: product.badge ? badgeTranslations[product.badge] ?? product.badge : product.badge,
+    image: product.image || "",
+  }));
 
   const handleViewDetails = (product: Product) => {
     // Navigate to dedicated product page
@@ -81,8 +79,12 @@ const Products = () => {
   };
 
   const handleRefresh = useCallback(async () => {
-    // Simulate refresh - in real app this would fetch new data
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    try {
+      const data: ApiProduct[] = await apiGet("products");
+      setApiProducts(data);
+    } catch {
+      // Keep showing whatever was previously loaded.
+    }
     setRefreshKey(prev => prev + 1);
   }, []);
 
@@ -151,7 +153,7 @@ const Products = () => {
                   >
                     <ProductCard
                       product={product}
-                      productImage={productImages[product.image]}
+                      productImage={product.image}
                       onViewDetails={handleViewDetails}
                       index={index}
                       isInView={isInView}

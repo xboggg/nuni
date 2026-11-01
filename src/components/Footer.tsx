@@ -1,13 +1,26 @@
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "@/assets/nuni-logo.png";
-import { products } from "@/data/products";
 import { useLanguage } from "@/lib/i18n";
+import { apiGet } from "@/lib/adminApi";
+
+interface ApiProduct {
+  id: string;
+  name: string;
+}
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const location = useLocation();
   const { t } = useLanguage();
+  const [products, setProducts] = useState<ApiProduct[]>([]);
+
+  useEffect(() => {
+    apiGet("products")
+      .then((data: ApiProduct[]) => setProducts(data))
+      .catch(() => setProducts([]));
+  }, []);
 
   const handleNavClick = (href: string) => {
     if (location.pathname !== "/") {

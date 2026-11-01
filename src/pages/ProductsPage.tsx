@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, Package, ShoppingBag, Check, MessageCircle } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -7,20 +7,7 @@ import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { getWhatsAppLink, getWhatsAppLinkEurope, WHATSAPP_NUMBER_EUROPE } from "@/data/products";
 import { useLanguage } from "@/lib/i18n";
-
-// Import product images - retail
-import soapImage from "@/assets/acne-soap-new.jpg";
-import creamImage from "@/assets/nuni-facialacne28.jpeg";
-import butterImage from "@/assets/cocoa-butter-new.jpg";
-
-// Import product images - wholesale
-import soapImageWholesale from "@/assets/acne-soap-new.jpg";
-import creamImageWholesale from "@/assets/gallery/nuni-facialacne15.jpeg";
-import butterImageWholesale from "@/assets/cocoa-butter-new.jpg";
-
-// Import product images - new body butters
-import luxuryBodyButterImage from "@/assets/luxury-body-butter-1.jpg";
-import farawayBodyButterImage from "@/assets/faraway-body-butter-1.jpg";
+import { apiGet } from "@/lib/adminApi";
 
 interface PriceOption {
   size: string;
@@ -39,73 +26,47 @@ interface Product {
   features: string[];
 }
 
+interface ApiSizePrice {
+  retail: number;
+  wholesale?: number;
+  wholesaleQty?: string;
+}
+
+interface ApiProduct {
+  id: string;
+  name: string;
+  description: string;
+  benefits: string[];
+  sizes: string[];
+  prices: Record<string, ApiSizePrice>;
+  image: string | null;
+}
+
 const ProductsPage = () => {
   const [showWholesale, setShowWholesale] = useState(false);
+  const [apiProducts, setApiProducts] = useState<ApiProduct[]>([]);
   const { t } = useLanguage();
 
-  const products: Product[] = [
-    {
-      id: "luxury-body-butter",
-      name: t.productContent.luxuryBodyButter.name,
-      description: t.productContent.luxuryBodyButter.description,
-      image: luxuryBodyButterImage,
-      wholesaleImage: luxuryBodyButterImage,
-      prices: [
-        { size: "250ml", retailPrice: 100, wholesalePrice: 80, wholesaleQty: "24 in a carton" },
-        { size: "150ml", retailPrice: 70, wholesalePrice: 55, wholesaleQty: "36 in a carton" },
-      ],
-      features: t.productContent.luxuryBodyButter.benefits,
-    },
-    {
-      id: "faraway-body-butter",
-      name: t.productContent.farawayBodyButter.name,
-      description: t.productContent.farawayBodyButter.description,
-      image: farawayBodyButterImage,
-      wholesaleImage: farawayBodyButterImage,
-      prices: [
-        { size: "250ml", retailPrice: 100, wholesalePrice: 80, wholesaleQty: "24 in a carton" },
-        { size: "150ml", retailPrice: 70, wholesalePrice: 55, wholesaleQty: "36 in a carton" },
-      ],
-      features: t.productContent.farawayBodyButter.benefits,
-    },
-    {
-      id: "acne-dark-soap",
-      name: t.productContent.acneDarkSoap.name,
-      description: t.productContent.acneDarkSoap.description,
-      image: soapImage,
-      wholesaleImage: soapImageWholesale,
-      prices: [
-        { size: "750g", retailPrice: 170, wholesalePrice: 140, wholesaleQty: "24 in a carton" },
-        { size: "500g", retailPrice: 100, wholesalePrice: 80, wholesaleQty: "36 in a carton" },
-      ],
-      features: t.productContent.acneDarkSoap.features,
-    },
-    {
-      id: "acne-facial-cream",
-      name: t.productContent.acneFacialCream.name,
-      description: t.productContent.acneFacialCream.description,
-      image: creamImage,
-      wholesaleImage: creamImageWholesale,
-      prices: [
-        { size: "100ml", retailPrice: 270, wholesalePrice: 240, wholesaleQty: "25 pieces per carton" },
-        { size: "50ml", retailPrice: 140, wholesalePrice: 110, wholesaleQty: "36 pieces per carton" },
-        { size: "25ml", retailPrice: 80, wholesalePrice: 60, wholesaleQty: "50 in a carton" },
-      ],
-      features: t.productContent.acneFacialCream.features,
-    },
-    {
-      id: "cocoa-butter",
-      name: t.productContent.cocoaButter.name,
-      description: t.productContent.cocoaButter.description,
-      image: butterImage,
-      wholesaleImage: butterImageWholesale,
-      prices: [
-        { size: "300ml", retailPrice: 150, wholesalePrice: 120, wholesaleQty: "24 in a carton" },
-        { size: "180ml", retailPrice: 110, wholesalePrice: 80, wholesaleQty: "24 in a carton" },
-      ],
-      features: t.productContent.cocoaButter.features,
-    },
-  ];
+  useEffect(() => {
+    apiGet("products")
+      .then((data: ApiProduct[]) => setApiProducts(data))
+      .catch(() => setApiProducts([]));
+  }, []);
+
+  const products: Product[] = apiProducts.map((p) => ({
+    id: p.id,
+    name: p.name,
+    description: p.description,
+    image: p.image || "",
+    wholesaleImage: p.image || "",
+    prices: p.sizes.map((size) => ({
+      size,
+      retailPrice: p.prices[size]?.retail ?? 0,
+      wholesalePrice: p.prices[size]?.wholesale ?? p.prices[size]?.retail ?? 0,
+      wholesaleQty: p.prices[size]?.wholesaleQty || "",
+    })),
+    features: p.benefits,
+  }));
 
   // Wholesale WhatsApp numbers (primary first)
   const WHOLESALE_NUMBERS = ["233554753634", "233540501872"];
