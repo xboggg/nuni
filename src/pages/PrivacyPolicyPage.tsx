@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Shield, Lock, Eye, UserCheck, Mail, Phone } from "lucide-react";
 import Navigation from "@/components/Navigation";
@@ -8,11 +9,20 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import BackToTop from "@/components/BackToTop";
 import { useLanguage } from "@/lib/i18n";
 import { getContactInfo } from "@/lib/contactInfo";
+import { apiGet } from "@/lib/adminApi";
 
 const PrivacyPolicyPage = () => {
   const { t } = useLanguage();
   const contact = getContactInfo();
-  const lastUpdated = "February 5, 2026";
+  const [lastUpdated, setLastUpdated] = useState("February 5, 2026");
+
+  useEffect(() => {
+    apiGet("settings")
+      .then((data) => {
+        if (data.legalLastUpdated) setLastUpdated(data.legalLastUpdated);
+      })
+      .catch(() => {});
+  }, []);
 
   const sections = [
     {

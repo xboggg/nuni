@@ -8,6 +8,7 @@ const SettingsManager = () => {
   const [whatsapp, setWhatsapp] = useState("");
   const [email, setEmail] = useState("");
   const [location, setLocation] = useState("");
+  const [legalLastUpdated, setLegalLastUpdated] = useState("");
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
@@ -20,6 +21,7 @@ const SettingsManager = () => {
       setWhatsapp(data.contactWhatsapp || "");
       setEmail(data.contactEmail || "");
       setLocation(data.contactLocation || "");
+      setLegalLastUpdated(data.legalLastUpdated || "");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to load");
     } finally {
@@ -40,6 +42,7 @@ const SettingsManager = () => {
         contactWhatsapp: whatsapp.trim(),
         contactEmail: email.trim(),
         contactLocation: location.trim(),
+        legalLastUpdated: legalLastUpdated.trim(),
       });
       setSaved(true);
       setTimeout(() => setSaved(false), 2500);
@@ -98,6 +101,21 @@ const SettingsManager = () => {
           onChange={(e) => setLocation(e.target.value)}
           placeholder="Accra, Ghana"
         />
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-foreground mb-1.5">
+          Legal Pages "Last Updated" Date
+        </label>
+        <Input
+          value={legalLastUpdated}
+          onChange={(e) => setLegalLastUpdated(e.target.value)}
+          placeholder="February 5, 2026"
+        />
+        <p className="text-xs text-muted-foreground mt-1">
+          Shown on the Privacy Policy and Terms of Service pages. Update this whenever you change
+          the legal wording (ask me to edit the wording itself — this field only sets the date shown).
+        </p>
       </div>
 
       <Button onClick={handleSave} disabled={saving}>
