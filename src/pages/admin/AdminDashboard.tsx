@@ -8,6 +8,7 @@ import GalleryManager from "./GalleryManager";
 import PartnersManager from "./PartnersManager";
 import ProductsManager from "./ProductsManager";
 import TestimonialsManager from "./TestimonialsManager";
+import AboutManager from "./AboutManager";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -42,6 +43,7 @@ const AdminDashboard = () => {
             <TabsTrigger value="gallery">Gallery</TabsTrigger>
             <TabsTrigger value="partners">Partners</TabsTrigger>
             <TabsTrigger value="testimonials">Testimonials</TabsTrigger>
+            <TabsTrigger value="about">Why Nuni</TabsTrigger>
           </TabsList>
           <TabsContent value="hero" className="mt-6">
             <HeroManager />
@@ -57,6 +59,9 @@ const AdminDashboard = () => {
           </TabsContent>
           <TabsContent value="testimonials" className="mt-6">
             <TestimonialsManager />
+          </TabsContent>
+          <TabsContent value="about" className="mt-6">
+            <AboutManager />
           </TabsContent>
         </Tabs>
       </main>

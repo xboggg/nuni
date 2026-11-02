@@ -7,29 +7,24 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { useLanguage } from "@/lib/i18n";
+import { apiGet } from "@/lib/adminApi";
 
-// CEO and Family Images
-import ceoImage from "@/assets/nuni-kofi.png";
+import ceoFallback from "@/assets/nuni-kofi.png";
 import ceoImage2 from "@/assets/ceo/nuni-ceo1.jpeg";
 import wifeImage1 from "@/assets/ceo/nuni-ceo7.jpeg";
 import coupleImage from "@/assets/ceo/nuni-ceo9.jpeg";
 
-// Award Images
-import awardImage1 from "@/assets/ceo/nuni-award1.jpeg";
-import awardImage2 from "@/assets/ceo/nuni-award2.jpeg";
-import awardImage3 from "@/assets/ceo/nuni-ceo2.jpeg";
-import awardImage4 from "@/assets/ceo/nuni-ceo3.jpeg";
-import awardImage5 from "@/assets/ceo/nuni-ceo4.jpeg";
+interface AboutData {
+  [key: string]: string;
+}
 
-// FDA Certificate Images
-import cert1 from "@/assets/certificates/nuni-cert1.jpeg";
-import cert2 from "@/assets/certificates/nuni-cert2.jpeg";
-import cert3 from "@/assets/certificates/nuni-cert3.jpeg";
-import cert4 from "@/assets/certificates/nuni-cert4.jpeg";
-import cert5 from "@/assets/certificates/nuni-cert5.jpeg";
-import cert8 from "@/assets/certificates/nuni-cert8.jpeg";
+interface MediaItem {
+  id: number;
+  src: string;
+  title?: string;
+}
 
-const certImages = [cert1, cert2, cert3, cert4, cert5, cert8];
+const emptyAbout: AboutData = {};
 
 // Animated floating card component
 const FloatingCard = ({
@@ -188,27 +183,31 @@ const WhyNuniPage = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { t } = useLanguage();
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
+  const [about, setAbout] = useState<AboutData>(emptyAbout);
+  const [awardImages, setAwardImages] = useState<MediaItem[]>([]);
+  const [fdaCertificates, setFdaCertificates] = useState<MediaItem[]>([]);
 
-  const fdaCertificates = [
-    { id: 1, src: certImages[0], title: t.whyNuni.cert1Title },
-    { id: 2, src: certImages[1], title: t.whyNuni.cert2Title },
-    { id: 3, src: certImages[2], title: t.whyNuni.cert3Title },
-    { id: 4, src: certImages[3], title: t.whyNuni.cert4Title },
-    { id: 5, src: certImages[4], title: t.whyNuni.cert5Title },
-    { id: 6, src: certImages[5], title: t.whyNuni.cert6Title },
-  ];
+  useEffect(() => {
+    apiGet("about").then(setAbout).catch(() => setAbout(emptyAbout));
+    apiGet("about-awards").then(setAwardImages).catch(() => setAwardImages([]));
+    apiGet("about-certs").then(setFdaCertificates).catch(() => setFdaCertificates([]));
+  }, []);
+
+  const ceoImage = about.ceoImage || ceoFallback;
 
   // FDA Certificate carousel state
   const [currentCertIndex, setCurrentCertIndex] = useState(0);
   const [certLightboxOpen, setCertLightboxOpen] = useState(false);
 
   const nextCert = useCallback(() => {
-    setCurrentCertIndex((prev) => (prev + 1) % fdaCertificates.length);
-  }, []);
+    setCurrentCertIndex((prev) => (fdaCertificates.length ? (prev + 1) % fdaCertificates.length : 0));
+  }, [fdaCertificates.length]);
 
   const prevCert = useCallback(() => {
-    setCurrentCertIndex((prev) => (prev - 1 + fdaCertificates.length) % fdaCertificates.length);
-  }, []);
+    setCurrentCertIndex((prev) =>
+      fdaCertificates.length ? (prev - 1 + fdaCertificates.length) % fdaCertificates.length : 0
+    );
+  }, [fdaCertificates.length]);
 
   const openCertLightbox = (index: number) => {
     setCurrentCertIndex(index);
@@ -223,13 +222,14 @@ const WhyNuniPage = () => {
 
   // Auto-advance carousel
   useEffect(() => {
+    if (fdaCertificates.length < 2) return;
     const interval = setInterval(() => {
       if (!certLightboxOpen) {
         nextCert();
       }
     }, 4000);
     return () => clearInterval(interval);
-  }, [nextCert, certLightboxOpen]);
+  }, [nextCert, certLightboxOpen, fdaCertificates.length]);
 
   // Keyboard navigation for certificate lightbox
   useEffect(() => {
@@ -246,53 +246,46 @@ const WhyNuniPage = () => {
   const benefits = [
     {
       icon: ShieldCheck,
-      title: t.benefits.items.fdaCertified,
-      description: t.benefits.items.fdaCertifiedDesc,
+      title: about.benefit1Title,
+      description: about.benefit1Desc,
       cardClass: "benefit-card-blue",
       iconClass: "benefit-icon-blue",
     },
     {
       icon: Leaf,
-      title: t.benefits.items.natural,
-      description: t.benefits.items.naturalDesc,
+      title: about.benefit2Title,
+      description: about.benefit2Desc,
       cardClass: "benefit-card-green",
       iconClass: "benefit-icon-green",
     },
     {
       icon: TrendingUp,
-      title: t.benefits.items.visibleResults,
-      description: t.benefits.items.visibleResultsDesc,
+      title: about.benefit3Title,
+      description: about.benefit3Desc,
       cardClass: "benefit-card-purple",
       iconClass: "benefit-icon-purple",
     },
     {
       icon: Users,
-      title: t.benefits.items.forEveryone,
-      description: t.benefits.items.forEveryoneDesc,
+      title: about.benefit4Title,
+      description: about.benefit4Desc,
       cardClass: "benefit-card-orange",
       iconClass: "benefit-icon-orange",
     },
   ];
 
   const additionalReasons = [
-    {
-      icon: Award,
-      title: t.whyNuni.qualityAssurance,
-      description: t.whyNuni.qualityAssuranceDesc,
-    },
-    {
-      icon: Heart,
-      title: t.whyNuni.madeWithLove,
-      description: t.whyNuni.madeWithLoveDesc,
-    },
-    {
-      icon: Sparkles,
-      title: t.whyNuni.provenTrackRecord,
-      description: t.whyNuni.provenTrackRecordDesc,
-    },
+    { icon: Award, title: about.reason1Title, description: about.reason1Desc },
+    { icon: Heart, title: about.reason2Title, description: about.reason2Desc },
+    { icon: Sparkles, title: about.reason3Title, description: about.reason3Desc },
   ];
 
-  const awardImages = [awardImage1, awardImage2, awardImage3, awardImage4, awardImage5];
+  const awardStats = [
+    { icon: Trophy, label: about.awardStat1Label, value: about.awardStat1Value },
+    { icon: Star, label: about.awardStat2Label, value: about.awardStat2Value },
+    { icon: Award, label: about.awardStat3Label, value: about.awardStat3Value },
+    { icon: Heart, label: about.awardStat4Label, value: about.awardStat4Value },
+  ];
 
   return (
     <div className="min-h-screen bg-background">
@@ -353,14 +346,14 @@ const WhyNuniPage = () => {
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="inline-block text-sm font-medium tracking-widest text-accent uppercase mb-4"
               >
-                {t.whyNuni.badge}
+                {about.badge}
               </motion.span>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-4">
-                {t.whyNuni.title} <span className="text-gradient-gold">{t.whyNuni.titleHighlight}</span>
+                {about.title} <span className="text-gradient-gold">{about.titleHighlight}</span>
               </h1>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                {t.whyNuni.description}
+                {about.description}
               </p>
             </div>
           </motion.div>
@@ -427,7 +420,7 @@ const WhyNuniPage = () => {
                   >
                     <img
                       src={ceoImage}
-                      alt="Kofi Ideas - CEO of NG Cosmetics"
+                      alt={`${about.ceoName} - CEO of NG Cosmetics`}
                       className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
                     />
                   </div>
@@ -450,30 +443,30 @@ const WhyNuniPage = () => {
                 {t.whyNuni.meetVisionary}
               </span>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-foreground mb-6">
-                {t.whyNuni.ceoName}
+                {about.ceoName}
                 <span className="block text-xl md:text-2xl text-primary mt-2 font-normal">
-                  {t.whyNuni.ceoRole}
+                  {about.ceoRole}
                 </span>
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                {t.whyNuni.ceoBio}
+                {about.ceoBio}
               </p>
               <p className="text-muted-foreground leading-relaxed mb-8">
-                {t.whyNuni.ceoQuote}
+                {about.ceoQuote}
               </p>
 
               <div className="flex flex-wrap gap-6">
                 <div className="text-center">
-                  <span className="block text-3xl font-bold text-primary">72+</span>
-                  <span className="text-sm text-muted-foreground">{t.whyNuni.partnersNationwide}</span>
+                  <span className="block text-3xl font-bold text-primary">{about.statPartners}</span>
+                  <span className="text-sm text-muted-foreground">{about.statPartnersLabel}</span>
                 </div>
                 <div className="text-center">
-                  <span className="block text-3xl font-bold text-primary">3</span>
-                  <span className="text-sm text-muted-foreground">{t.whyNuni.premiumProducts}</span>
+                  <span className="block text-3xl font-bold text-primary">{about.statProducts}</span>
+                  <span className="text-sm text-muted-foreground">{about.statProductsLabel}</span>
                 </div>
                 <div className="text-center">
-                  <span className="block text-3xl font-bold text-primary">12</span>
-                  <span className="text-sm text-muted-foreground">{t.whyNuni.regionsCovered}</span>
+                  <span className="block text-3xl font-bold text-primary">{about.statRegions}</span>
+                  <span className="text-sm text-muted-foreground">{about.statRegionsLabel}</span>
                 </div>
               </div>
             </motion.div>
@@ -508,7 +501,7 @@ const WhyNuniPage = () => {
               <div className="order-2 md:order-1">
                 <FloatingCard
                   image={ceoImage2}
-                  alt="Kofi Ideas - CEO"
+                  alt={`${about.ceoName} - CEO`}
                   size="md"
                   delay={0}
                   onClick={() => setLightboxImage(ceoImage2)}
@@ -564,24 +557,19 @@ const WhyNuniPage = () => {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent/20 rounded-full mb-6">
               <Trophy size={18} className="text-accent" />
-              <span className="text-sm font-medium text-accent">{t.whyNuni.awardsRecognitionBadge}</span>
+              <span className="text-sm font-medium text-accent">{about.awardsBadge}</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-cream mb-4">
-              {t.whyNuni.excellence} <span className="text-gradient-gold">{t.whyNuni.recognized}</span>
+              {about.awardsTitle} <span className="text-gradient-gold">{about.awardsTitleHighlight}</span>
             </h2>
             <p className="text-cream/70 max-w-3xl mx-auto leading-relaxed">
-              {t.whyNuni.awardsDescription}
+              {about.awardsDescription}
             </p>
           </motion.div>
 
           {/* Award Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-            {[
-              { icon: Trophy, label: t.whyNuni.outstandingCeoLabel, value: t.whyNuni.winner },
-              { icon: Star, label: t.whyNuni.industryCitationLabel, value: t.whyNuni.received },
-              { icon: Award, label: t.whyNuni.yearsExcellenceLabel, value: "5+" },
-              { icon: Heart, label: t.whyNuni.livesImpactedLabel, value: "10K+" },
-            ].map((stat, index) => (
+            {awardStats.map((stat, index) => (
               <motion.div
                 key={stat.label}
                 initial={{ opacity: 0, y: 20 }}
@@ -598,38 +586,40 @@ const WhyNuniPage = () => {
           </div>
 
           {/* Award Images Gallery */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-            {awardImages.map((image, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ scale: 1.05, zIndex: 10 }}
-                className="relative group cursor-pointer"
-                onClick={() => setLightboxImage(image)}
-              >
-                <div className="aspect-square rounded-2xl overflow-hidden border-2 border-cream/20 hover:border-accent/50 transition-colors shadow-lg">
-                  <img
-                    src={image}
-                    alt={`${t.whyNuni.awardCeremonyAlt} ${index + 1}`}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                </div>
-
-                {/* Hover overlay */}
+          {awardImages.length > 0 && (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+              {awardImages.map((item, index) => (
                 <motion.div
-                  className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                  key={item.id}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ scale: 1.05, zIndex: 10 }}
+                  className="relative group cursor-pointer"
+                  onClick={() => setLightboxImage(item.src)}
                 >
-                  <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                    <Star size={20} className="text-white" />
+                  <div className="aspect-square rounded-2xl overflow-hidden border-2 border-cream/20 hover:border-accent/50 transition-colors shadow-lg">
+                    <img
+                      src={item.src}
+                      alt={`${t.whyNuni.awardCeremonyAlt} ${index + 1}`}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
+
+                  {/* Hover overlay */}
+                  <motion.div
+                    className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                  >
+                    <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                      <Star size={20} className="text-white" />
+                    </div>
+                  </motion.div>
                 </motion.div>
-              </motion.div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -757,133 +747,135 @@ const WhyNuniPage = () => {
       </section>
 
       {/* FDA Certificates Section */}
-      <section className="py-20 lg:py-32 bg-gradient-to-b from-background to-card overflow-hidden">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-6">
-              <FileCheck size={18} className="text-primary" />
-              <span className="text-sm font-medium text-primary">{t.whyNuni.officialCertifications}</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
-              {t.whyNuni.fdaCertifiedProducts} <span className="text-gradient-gold">{t.whyNuni.certifiedProducts}</span>
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              {t.whyNuni.fdaDescription}
-            </p>
-          </motion.div>
-
-          {/* Certificate Carousel */}
-          <div className="relative max-w-4xl mx-auto">
-            {/* Main Certificate Display */}
+      {fdaCertificates.length > 0 && (
+        <section className="py-20 lg:py-32 bg-gradient-to-b from-background to-card overflow-hidden">
+          <div className="container-custom">
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="relative bg-card rounded-3xl p-6 md:p-8 shadow-elevated border border-border"
+              className="text-center mb-12"
             >
-              {/* Certificate Image */}
-              <div className="relative aspect-[4/3] md:aspect-[16/10] rounded-2xl overflow-hidden bg-cream/50 mb-6">
-                <AnimatePresence mode="wait">
-                  <motion.img
-                    key={currentCertIndex}
-                    src={fdaCertificates[currentCertIndex].src}
-                    alt={fdaCertificates[currentCertIndex].title}
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -50 }}
-                    transition={{ duration: 0.3 }}
-                    className="w-full h-full object-contain cursor-pointer"
-                    onClick={() => openCertLightbox(currentCertIndex)}
-                  />
-                </AnimatePresence>
-
-                {/* Click to enlarge hint */}
-                <div className="absolute bottom-4 right-4 bg-black/60 text-white text-xs px-3 py-1.5 rounded-full backdrop-blur-sm">
-                  {t.whyNuni.clickToEnlarge}
-                </div>
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-6">
+                <FileCheck size={18} className="text-primary" />
+                <span className="text-sm font-medium text-primary">{about.fdaBadge}</span>
               </div>
-
-              {/* Certificate Title */}
-              <div className="text-center mb-6">
-                <h3 className="text-lg md:text-xl font-semibold text-foreground">
-                  {fdaCertificates[currentCertIndex].title}
-                </h3>
-                <p className="text-sm text-muted-foreground mt-1">
-                  {t.whyNuni.certificateOf
-                    .replace("{current}", String(currentCertIndex + 1))
-                    .replace("{total}", String(fdaCertificates.length))}
-                </p>
-              </div>
-
-              {/* Navigation Controls */}
-              <div className="flex items-center justify-center gap-4">
-                <button
-                  onClick={prevCert}
-                  className="w-12 h-12 rounded-full bg-primary/10 hover:bg-primary/20 flex items-center justify-center transition-colors"
-                >
-                  <ChevronLeft size={24} className="text-primary" />
-                </button>
-
-                {/* Dots Indicator */}
-                <div className="flex gap-2">
-                  {fdaCertificates.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentCertIndex(index)}
-                      className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                        index === currentCertIndex
-                          ? "bg-primary w-8"
-                          : "bg-border hover:bg-primary/50"
-                      }`}
-                    />
-                  ))}
-                </div>
-
-                <button
-                  onClick={nextCert}
-                  className="w-12 h-12 rounded-full bg-primary/10 hover:bg-primary/20 flex items-center justify-center transition-colors"
-                >
-                  <ChevronRight size={24} className="text-primary" />
-                </button>
-              </div>
+              <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
+                {about.fdaTitle} <span className="text-gradient-gold">{about.fdaTitleHighlight}</span>
+              </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                {about.fdaDescription}
+              </p>
             </motion.div>
 
-            {/* Thumbnail Strip */}
-            <div className="mt-6 flex justify-center gap-3 overflow-x-auto pb-2">
-              {fdaCertificates.map((cert, index) => (
-                <motion.button
-                  key={cert.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
-                  onClick={() => setCurrentCertIndex(index)}
-                  className={`flex-shrink-0 w-16 h-20 md:w-20 md:h-24 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
-                    index === currentCertIndex
-                      ? "border-primary shadow-green scale-105"
-                      : "border-border hover:border-primary/50 opacity-60 hover:opacity-100"
-                  }`}
-                >
-                  <img
-                    src={cert.src}
-                    alt={cert.title}
-                    className="w-full h-full object-cover"
-                  />
-                </motion.button>
-              ))}
+            {/* Certificate Carousel */}
+            <div className="relative max-w-4xl mx-auto">
+              {/* Main Certificate Display */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                className="relative bg-card rounded-3xl p-6 md:p-8 shadow-elevated border border-border"
+              >
+                {/* Certificate Image */}
+                <div className="relative aspect-[4/3] md:aspect-[16/10] rounded-2xl overflow-hidden bg-cream/50 mb-6">
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={currentCertIndex}
+                      src={fdaCertificates[currentCertIndex]?.src}
+                      alt={fdaCertificates[currentCertIndex]?.title || ""}
+                      initial={{ opacity: 0, x: 50 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -50 }}
+                      transition={{ duration: 0.3 }}
+                      className="w-full h-full object-contain cursor-pointer"
+                      onClick={() => openCertLightbox(currentCertIndex)}
+                    />
+                  </AnimatePresence>
+
+                  {/* Click to enlarge hint */}
+                  <div className="absolute bottom-4 right-4 bg-black/60 text-white text-xs px-3 py-1.5 rounded-full backdrop-blur-sm">
+                    {t.whyNuni.clickToEnlarge}
+                  </div>
+                </div>
+
+                {/* Certificate Title */}
+                <div className="text-center mb-6">
+                  <h3 className="text-lg md:text-xl font-semibold text-foreground">
+                    {fdaCertificates[currentCertIndex]?.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    {t.whyNuni.certificateOf
+                      .replace("{current}", String(currentCertIndex + 1))
+                      .replace("{total}", String(fdaCertificates.length))}
+                  </p>
+                </div>
+
+                {/* Navigation Controls */}
+                <div className="flex items-center justify-center gap-4">
+                  <button
+                    onClick={prevCert}
+                    className="w-12 h-12 rounded-full bg-primary/10 hover:bg-primary/20 flex items-center justify-center transition-colors"
+                  >
+                    <ChevronLeft size={24} className="text-primary" />
+                  </button>
+
+                  {/* Dots Indicator */}
+                  <div className="flex gap-2">
+                    {fdaCertificates.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setCurrentCertIndex(index)}
+                        className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                          index === currentCertIndex
+                            ? "bg-primary w-8"
+                            : "bg-border hover:bg-primary/50"
+                        }`}
+                      />
+                    ))}
+                  </div>
+
+                  <button
+                    onClick={nextCert}
+                    className="w-12 h-12 rounded-full bg-primary/10 hover:bg-primary/20 flex items-center justify-center transition-colors"
+                  >
+                    <ChevronRight size={24} className="text-primary" />
+                  </button>
+                </div>
+              </motion.div>
+
+              {/* Thumbnail Strip */}
+              <div className="mt-6 flex justify-center gap-3 overflow-x-auto pb-2">
+                {fdaCertificates.map((cert, index) => (
+                  <motion.button
+                    key={cert.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.05 }}
+                    onClick={() => setCurrentCertIndex(index)}
+                    className={`flex-shrink-0 w-16 h-20 md:w-20 md:h-24 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
+                      index === currentCertIndex
+                        ? "border-primary shadow-green scale-105"
+                        : "border-border hover:border-primary/50 opacity-60 hover:opacity-100"
+                    }`}
+                  >
+                    <img
+                      src={cert.src}
+                      alt={cert.title || ""}
+                      className="w-full h-full object-cover"
+                    />
+                  </motion.button>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* FDA Certificate Lightbox */}
       <AnimatePresence>
-        {certLightboxOpen && (
+        {certLightboxOpen && fdaCertificates[currentCertIndex] && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -926,7 +918,7 @@ const WhyNuniPage = () => {
             >
               <img
                 src={fdaCertificates[currentCertIndex].src}
-                alt={fdaCertificates[currentCertIndex].title}
+                alt={fdaCertificates[currentCertIndex].title || ""}
                 className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
               />
               <div className="text-center mt-4">
@@ -949,13 +941,13 @@ const WhyNuniPage = () => {
           >
             <span className="inline-flex items-center gap-2 text-sm font-medium tracking-widest text-accent uppercase mb-4">
               <Heart size={16} />
-              {t.whyNuni.givingBack}
+              {about.communityBadge}
             </span>
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
-              {t.whyNuni.communityImpact} <span className="text-gradient-gold">{t.whyNuni.communityImpactHighlight}</span>
+              {about.communityTitle} <span className="text-gradient-gold">{about.communityTitleHighlight}</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              {t.whyNuni.communityImpactDesc}
+              {about.communityDesc}
             </p>
           </motion.div>
 
@@ -968,16 +960,16 @@ const WhyNuniPage = () => {
             <div className="relative rounded-2xl overflow-hidden shadow-xl max-w-[250px] mx-auto">
               <img
                 src="/media/community/hospital-letter.jpg"
-                alt={t.whyNuni.healthcarePartnership}
+                alt={about.communityPartnershipTitle}
                 className="w-full h-auto"
               />
             </div>
             <div>
               <h3 className="text-2xl font-serif font-bold text-foreground mb-4">
-                {t.whyNuni.healthcarePartnership}
+                {about.communityPartnershipTitle}
               </h3>
               <p className="text-muted-foreground mb-6">
-                {t.whyNuni.healthcarePartnershipDesc}
+                {about.communityPartnershipDesc}
               </p>
               <Link
                 to="/community"
@@ -1001,10 +993,10 @@ const WhyNuniPage = () => {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-4">
-              {t.whyNuni.readyToTransform}
+              {about.ctaTitle}
             </h2>
             <p className="text-white/80 mb-8 max-w-xl mx-auto">
-              {t.whyNuni.readyToTransformDesc}
+              {about.ctaDesc}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
