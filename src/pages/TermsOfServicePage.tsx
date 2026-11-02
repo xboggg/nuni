@@ -7,9 +7,11 @@ import SEO from "@/components/SEO";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import BackToTop from "@/components/BackToTop";
 import { useLanguage } from "@/lib/i18n";
+import { getContactInfo } from "@/lib/contactInfo";
 
 const TermsOfServicePage = () => {
   const { t } = useLanguage();
+  const contact = getContactInfo();
   const lastUpdated = "February 5, 2026";
 
   const sections = [
@@ -281,14 +283,14 @@ const TermsOfServicePage = () => {
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4">
                 <a
-                  href="mailto:Kofiideas2017@gmail.com"
+                  href={`mailto:${contact.email}`}
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-white rounded-full font-medium hover:bg-primary/90 transition-colors"
                 >
                   <Mail size={18} />
                   {t.termsOfService?.emailUs || "Email Us"}
                 </a>
                 <a
-                  href="https://wa.me/233554753634"
+                  href={`https://wa.me/${contact.whatsapp}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#25D366] text-white rounded-full font-medium hover:bg-[#20BA5A] transition-colors"

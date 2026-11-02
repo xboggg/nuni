@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Send, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -7,7 +7,8 @@ import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import BackToTop from "@/components/BackToTop";
-import { getWhatsAppLink, WHATSAPP_NUMBER } from "@/data/products";
+import { getWhatsAppLink } from "@/data/products";
+import { getContactInfo, refreshContactInfo } from "@/lib/contactInfo";
 import { faqData, categoryLabels } from "@/data/faq";
 import { useLanguage, type Translations } from "@/lib/i18n";
 import {
@@ -27,12 +28,15 @@ const WhatsAppIcon = () => (
   </svg>
 );
 
-const getContactMethods = (t: Translations) => [
+const getContactMethods = (
+  t: Translations,
+  contact: { whatsapp: string; email: string; location: string }
+) => [
   {
     icon: Phone,
     title: t.contactPage.phoneWhatsApp,
-    value: "+233 55 475 3634",
-    href: "tel:+233554753634",
+    value: `+${contact.whatsapp.replace(/^0+/, "").replace(/(\d{3})(\d{2})(\d{3})(\d{4})/, "$1 $2 $3 $4")}`,
+    href: `tel:+${contact.whatsapp}`,
     whatsappHref: getWhatsAppLink("Hello! I'd like to inquire about your products."),
     isWhatsApp: true,
     callLabel: t.contactPage.call,
@@ -41,15 +45,15 @@ const getContactMethods = (t: Translations) => [
   {
     icon: Mail,
     title: t.contactPage.email,
-    value: "Kofiideas2017@gmail.com",
-    href: "mailto:Kofiideas2017@gmail.com",
+    value: contact.email,
+    href: `mailto:${contact.email}`,
     isWhatsApp: false,
     linkLabel: t.contactPage.emailUs,
   },
   {
     icon: MapPin,
     title: t.contactPage.locationLabel,
-    value: "Accra, Ghana",
+    value: contact.location,
     href: "#",
     isWhatsApp: false,
     linkLabel: t.contactPage.viewLocation,
@@ -71,8 +75,13 @@ const ContactPage = () => {
     interest: "",
     message: "",
   });
+  const [contact, setContact] = useState(getContactInfo());
 
-  const contactMethods = getContactMethods(t);
+  useEffect(() => {
+    refreshContactInfo().then(setContact);
+  }, []);
+
+  const contactMethods = getContactMethods(t, contact);
   const interestOptions = getInterestOptions(t);
 
   const handleSubmit = (e: React.FormEvent) => {

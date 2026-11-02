@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import { getContactInfo } from "@/lib/contactInfo";
 
 interface SEOProps {
   title?: string;
@@ -50,7 +51,7 @@ const SEO = ({
     },
     sameAs: [
       "https://www.tiktok.com/@nuniglobalc",
-      "https://wa.me/233554753634",
+      `https://wa.me/${getContactInfo().whatsapp}`,
     ],
   };
 

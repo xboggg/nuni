@@ -1,3 +1,5 @@
+import { getContactInfo } from "@/lib/contactInfo";
+
 export type PartnerRole = "distributor" | "ambassador" | "vendor" | "pa";
 
 export interface Partner {
@@ -34,8 +36,6 @@ export const regions: Region[] = [
   { id: "uk", name: "United Kingdom" },
 ];
 
-export const WHATSAPP_NUMBER = "233554753634";
-
 export const getPartnerApplicationWhatsAppLink = (formData: {
   name: string;
   phone: string;
@@ -50,5 +50,5 @@ export const getPartnerApplicationWhatsAppLink = (formData: {
     `Region: ${formData.region}\n\n` +
     `Please contact me with more information about the partnership opportunity.`
   );
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+  return `https://wa.me/${getContactInfo().whatsapp}?text=${message}`;
 };

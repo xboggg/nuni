@@ -1,3 +1,5 @@
+import { getContactInfo } from "@/lib/contactInfo";
+
 export interface Product {
   id: string;
   name: string;
@@ -132,12 +134,11 @@ export const products: Product[] = [
   }
 ];
 
-export const WHATSAPP_NUMBER = "233554753634";
 export const WHATSAPP_NUMBER_EUROPE = "447861387824";
 
 export const getWhatsAppLink = (message: string) => {
   const encodedMessage = encodeURIComponent(message);
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+  return `https://wa.me/${getContactInfo().whatsapp}?text=${encodedMessage}`;
 };
 
 export const getWhatsAppLinkEurope = (message: string) => {
