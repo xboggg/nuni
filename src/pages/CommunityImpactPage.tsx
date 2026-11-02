@@ -1,46 +1,35 @@
 import { motion } from "framer-motion";
-import { useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Heart, Users, Building2, X, ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
-import { useLanguage } from "@/lib/i18n";
+import { apiGet } from "@/lib/adminApi";
 
-// Community media - served from /media/community/
-const communityVideoSrcs = [
-  "/media/community/community-1.mp4",
-  "/media/community/community-2.mp4",
-  "/media/community/community-3.mp4",
-  "/media/community/community-4.mp4",
-  "/media/community/community-5.mp4",
-  "/media/community/community-6.mp4",
-];
+interface CommunityData {
+  [key: string]: string;
+}
 
-const appreciationLetterSrc = "/media/community/hospital-letter.jpg";
+interface VideoItem {
+  id: number;
+  src: string;
+  title: string;
+}
+
+const emptyData: CommunityData = {};
 
 const CommunityImpactPage = () => {
-  const { t } = useLanguage();
-  const communityVideos = communityVideoSrcs.map((src, index) => ({
-    id: index + 1,
-    src,
-    title: [
-      t.community.videoOutreach,
-      t.community.videoHealthcare,
-      t.community.videoCharity,
-      t.community.videoService,
-      t.community.videoHospitality,
-      t.community.videoGiving,
-    ][index],
-  }));
-  const appreciationLetter = {
-    src: appreciationLetterSrc,
-    title: t.community.letterTitle,
-    description: t.community.letterDescription,
-  };
+  const [data, setData] = useState<CommunityData>(emptyData);
+  const [communityVideos, setCommunityVideos] = useState<VideoItem[]>([]);
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+
+  useEffect(() => {
+    apiGet("community").then(setData).catch(() => setData(emptyData));
+    apiGet("community-videos").then(setCommunityVideos).catch(() => setCommunityVideos([]));
+  }, []);
 
   const openVideoLightbox = (src: string, index: number) => {
     setSelectedVideo(src);
@@ -53,6 +42,7 @@ const CommunityImpactPage = () => {
   };
 
   const navigateVideo = (direction: 'prev' | 'next') => {
+    if (communityVideos.length === 0) return;
     const newIndex = direction === 'prev'
       ? (currentVideoIndex - 1 + communityVideos.length) % communityVideos.length
       : (currentVideoIndex + 1) % communityVideos.length;
@@ -84,13 +74,13 @@ const CommunityImpactPage = () => {
           >
             <span className="inline-flex items-center gap-2 text-sm font-medium tracking-widest text-accent uppercase mb-4">
               <Heart className="w-4 h-4" />
-              {t.community.badge}
+              {data.badge}
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-6">
-              {t.community.heroTitle} <span className="text-gradient-gold">{t.community.heroTitleHighlight}</span>
+              {data.heroTitle} <span className="text-gradient-gold">{data.heroTitleHighlight}</span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              {t.community.heroDescription}
+              {data.heroDescription}
             </p>
           </motion.div>
         </div>
@@ -109,133 +99,137 @@ const CommunityImpactPage = () => {
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Heart className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">{t.community.healthcareSupport}</h3>
-              <p className="text-muted-foreground">{t.community.healthcareSupportDesc}</p>
+              <h3 className="text-xl font-semibold mb-2">{data.healthcareSupport}</h3>
+              <p className="text-muted-foreground">{data.healthcareSupportDesc}</p>
             </div>
             <div className="text-center p-6">
               <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Users className="w-8 h-8 text-accent" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">{t.community.communityOutreach}</h3>
-              <p className="text-muted-foreground">{t.community.communityOutreachDesc}</p>
+              <h3 className="text-xl font-semibold mb-2">{data.communityOutreach}</h3>
+              <p className="text-muted-foreground">{data.communityOutreachDesc}</p>
             </div>
             <div className="text-center p-6">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Building2 className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">{t.community.institutionalPartnerships}</h3>
-              <p className="text-muted-foreground">{t.community.institutionalPartnershipsDesc}</p>
+              <h3 className="text-xl font-semibold mb-2">{data.institutionalPartnerships}</h3>
+              <p className="text-muted-foreground">{data.institutionalPartnershipsDesc}</p>
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* Healthcare Partnership Section */}
-      <section className="py-20 bg-gradient-to-b from-background to-card">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <span className="inline-block text-sm font-medium tracking-widest text-accent uppercase mb-4">
-              {t.community.healthcareInitiativeBadge}
-            </span>
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
-              {t.community.healthcareTitle} <span className="text-gradient-gold">{t.community.healthcareTitleHighlight}</span>
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              {t.community.healthcareDescription}
-            </p>
-          </motion.div>
-
-          {/* Appreciation Letter - Thumbnail */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="max-w-sm mx-auto"
-          >
-            <div
-              className="relative group cursor-pointer overflow-hidden rounded-2xl shadow-xl border-4 border-primary/20 hover:border-primary/40 transition-colors"
-              onClick={() => setSelectedImage(appreciationLetter.src)}
+      {data.letterImage && (
+        <section className="py-20 bg-gradient-to-b from-background to-card">
+          <div className="container-custom">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
             >
-              <img
-                src={appreciationLetter.src}
-                alt={appreciationLetter.title}
-                className="w-full h-auto transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/20 transition-colors duration-300">
-                <div className="text-center text-white">
-                  <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center mx-auto mb-2">
-                    <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                    </svg>
+              <span className="inline-block text-sm font-medium tracking-widest text-accent uppercase mb-4">
+                {data.healthcareInitiativeBadge}
+              </span>
+              <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
+                {data.healthcareTitle} <span className="text-gradient-gold">{data.healthcareTitleHighlight}</span>
+              </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                {data.healthcareDescription}
+              </p>
+            </motion.div>
+
+            {/* Appreciation Letter - Thumbnail */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="max-w-sm mx-auto"
+            >
+              <div
+                className="relative group cursor-pointer overflow-hidden rounded-2xl shadow-xl border-4 border-primary/20 hover:border-primary/40 transition-colors"
+                onClick={() => setSelectedImage(data.letterImage)}
+              >
+                <img
+                  src={data.letterImage}
+                  alt={data.letterTitle}
+                  className="w-full h-auto transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/20 transition-colors duration-300">
+                  <div className="text-center text-white">
+                    <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center mx-auto mb-2">
+                      <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                      </svg>
+                    </div>
+                    <p className="text-sm font-medium">Click to view</p>
                   </div>
-                  <p className="text-sm font-medium">{t.community.clickToView}</p>
                 </div>
               </div>
-            </div>
-            <p className="text-center text-muted-foreground mt-4 text-sm italic">
-              {appreciationLetter.description}
-            </p>
-          </motion.div>
-        </div>
-      </section>
+              <p className="text-center text-muted-foreground mt-4 text-sm italic">
+                {data.letterDescription}
+              </p>
+            </motion.div>
+          </div>
+        </section>
+      )}
 
       {/* Video Gallery Section */}
-      <section className="py-20 bg-card">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <span className="inline-block text-sm font-medium tracking-widest text-accent uppercase mb-4">
-              {t.community.activitiesBadge}
-            </span>
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
-              {t.community.activitiesTitle} <span className="text-gradient-gold">{t.community.activitiesTitleHighlight}</span>
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              {t.community.activitiesDescription}
-            </p>
-          </motion.div>
+      {communityVideos.length > 0 && (
+        <section className="py-20 bg-card">
+          <div className="container-custom">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <span className="inline-block text-sm font-medium tracking-widest text-accent uppercase mb-4">
+                {data.activitiesBadge}
+              </span>
+              <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
+                {data.activitiesTitle} <span className="text-gradient-gold">{data.activitiesTitleHighlight}</span>
+              </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                {data.activitiesDescription}
+              </p>
+            </motion.div>
 
-          {/* Video Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {communityVideos.map((video, index) => (
-              <motion.div
-                key={video.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="relative group cursor-pointer overflow-hidden rounded-xl shadow-lg bg-black aspect-video"
-                onClick={() => openVideoLightbox(video.src, index)}
-              >
-                <video
-                  src={video.src}
-                  className="w-full h-full object-cover"
-                  muted
-                  playsInline
-                  preload="metadata"
-                />
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/30 transition-colors duration-300">
-                  <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
-                    <Play className="w-8 h-8 text-primary ml-1" />
+            {/* Video Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {communityVideos.map((video, index) => (
+                <motion.div
+                  key={video.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="relative group cursor-pointer overflow-hidden rounded-xl shadow-lg bg-black aspect-video"
+                  onClick={() => openVideoLightbox(video.src, index)}
+                >
+                  <video
+                    src={video.src}
+                    className="w-full h-full object-cover"
+                    muted
+                    playsInline
+                    preload="metadata"
+                  />
+                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/30 transition-colors duration-300">
+                    <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
+                      <Play className="w-8 h-8 text-primary ml-1" />
+                    </div>
                   </div>
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
-                  <p className="text-white text-sm font-medium">{video.title}</p>
-                </div>
-              </motion.div>
-            ))}
+                  <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
+                    <p className="text-white text-sm font-medium">{video.title}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Call to Action */}
       <section className="py-20 bg-gradient-to-br from-primary/10 via-background to-accent/10">
@@ -246,23 +240,23 @@ const CommunityImpactPage = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-6">
-              {t.community.ctaTitle}
+              {data.ctaTitle}
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-              {t.community.ctaDescription}
+              {data.ctaDescription}
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link
                 to="/products"
                 className="inline-flex items-center px-8 py-3 bg-primary text-white rounded-full font-medium hover:bg-primary/90 transition-colors"
               >
-                {t.community.shopProducts}
+                Shop Products
               </Link>
               <Link
                 to="/about-us"
                 className="inline-flex items-center px-8 py-3 border-2 border-primary text-primary rounded-full font-medium hover:bg-primary hover:text-white transition-colors"
               >
-                {t.community.learnAboutUs}
+                Learn About Us
               </Link>
             </div>
           </motion.div>
@@ -332,7 +326,7 @@ const CommunityImpactPage = () => {
           <div className="max-w-4xl w-full" onClick={(e) => e.stopPropagation()}>
             <img
               src={selectedImage}
-              alt={t.community.appreciationLetterAlt}
+              alt="Letter of appreciation"
               className="w-full h-auto rounded-lg"
             />
           </div>
