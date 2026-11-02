@@ -157,7 +157,7 @@ const PrivacyPolicyPage = () => {
                   {t.privacyPolicy?.introduction || "Introduction"}
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  {t.privacyPolicy?.introText1 || "Nuni Global (\"we\", \"us\", or \"our\") is committed to protecting your privacy. This Privacy Policy describes how we collect, use, and safeguard your personal information when you visit our website, make a purchase, or contact us."}
+                  {t.privacyPolicy?.introText1 || "NG Cosmetics (\"we\", \"us\", or \"our\") is committed to protecting your privacy. This Privacy Policy describes how we collect, use, and safeguard your personal information when you visit our website, make a purchase, or contact us."}
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
                   {t.privacyPolicy?.introText2 || "By using our website and services, you consent to the data practices described in this policy. If you do not agree with our practices, please do not use our services."}

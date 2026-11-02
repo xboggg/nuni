@@ -85,7 +85,7 @@ const Partners = () => {
             >
               <motion.img
                 src={heroImage}
-                alt="Nuni Global Product Collection"
+                alt="NG Cosmetics Product Collection"
                 className="w-full h-[500px] object-cover"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.4 }}

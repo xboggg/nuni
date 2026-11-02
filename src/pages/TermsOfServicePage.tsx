@@ -111,7 +111,7 @@ const TermsOfServicePage = () => {
       content: [
         {
           subtitle: t.termsOfService?.trademarks || "Trademarks",
-          text: t.termsOfService?.trademarksText || "Nuni Global, our logo, and product names are trademarks of Nuni Global. You may not use these without our written permission.",
+          text: t.termsOfService?.trademarksText || "NG Cosmetics, our logo, and product names are trademarks of NG Cosmetics. You may not use these without our written permission.",
         },
         {
           subtitle: t.termsOfService?.content || "Content",

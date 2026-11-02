@@ -84,7 +84,7 @@ const ProductDetailPage = () => {
     "@type": "Product",
     name: product.name,
     description: product.description,
-    brand: { "@type": "Brand", name: "Nuni Global" },
+    brand: { "@type": "Brand", name: "NG Cosmetics" },
     category: "Skincare",
     ...(lowPrice !== undefined
       ? {
