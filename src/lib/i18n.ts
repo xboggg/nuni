@@ -18,10 +18,10 @@ export const translations = {
     },
     // Hero
     hero: {
-      badge: "Premium African Skincare",
-      headline: "Radiant Skin,",
-      headlineHighlight: "Naturally Yours",
-      subheadline: "Discover the power of African botanicals. Premium skincare crafted with 100% natural ingredients for visibly healthier, glowing skin.",
+      badge: "Natural Grace",
+      headline: "A New Definition of",
+      headlineHighlight: "Beauty",
+      subheadline: "Rooted in nature, defined by grace, created for confidence.",
       exploreProducts: "Explore Products",
       contactUs: "Contact Us",
       naturalBadge: "100% Natural Ingredients",
@@ -825,10 +825,10 @@ export const translations = {
     },
     // Hero
     hero: {
-      badge: "Soins Africains Premium",
-      headline: "Une Peau Radieuse,",
-      headlineHighlight: "Naturellement Vôtre",
-      subheadline: "Découvrez le pouvoir des plantes africaines. Des soins premium formulés avec des ingrédients 100% naturels pour une peau visiblement plus saine et éclatante.",
+      badge: "Grâce Naturelle",
+      headline: "Une Nouvelle Définition de",
+      headlineHighlight: "la Beauté",
+      subheadline: "Enracinée dans la nature, définie par la grâce, créée pour la confiance.",
       exploreProducts: "Découvrir",
       contactUs: "Contactez-Nous",
       naturalBadge: "Ingrédients 100% Naturels",
@@ -1632,10 +1632,10 @@ export const translations = {
     },
     // Hero
     hero: {
-      badge: "Afrika Honam Nhweren Titiriw",
-      headline: "Honam A Ɛhyerɛn,",
-      headlineHighlight: "Wo Dea Ankasa",
-      subheadline: "Hwehwɛ Afrika afifide tumi. Nhweren a wɔde nneɛma a ɛfiri asase so ayɛ de ma honam a ɛyɛ fɛ ne a ɛhyerɛn.",
+      badge: "Abɔde Mu Yiyedi",
+      headline: "Ahoɔfɛ Foforo",
+      headlineHighlight: "Nkyerɛase",
+      subheadline: "Egyina abɔde so, yiyedi kyerɛ no, wɔyɛɛ no maa ahotoso.",
       exploreProducts: "Hwehwɛ Nneɛma",
       contactUs: "Ka Kyerɛ Yɛn",
       naturalBadge: "Nneɛma A Ɛfiri Asase So 100%",
