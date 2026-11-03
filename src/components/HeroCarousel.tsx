@@ -183,14 +183,14 @@ const HeroCarousel = () => {
                   x: { delay: 0.1, duration: 0.6 },
                   y: { delay: 0.8, duration: 4, repeat: Infinity, ease: "easeInOut" },
                 }}
-                className="hidden sm:block w-12 h-12 lg:w-14 lg:h-14 object-contain drop-shadow-lg"
+                className="w-8 h-8 sm:w-12 sm:h-12 lg:w-14 lg:h-14 object-contain drop-shadow-lg flex-shrink-0"
               />
 
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-white/90 backdrop-blur-sm rounded-full border border-white/20 shadow-lg"
+                className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 bg-white/90 backdrop-blur-sm rounded-full border border-white/20 shadow-lg"
               >
                 <Sparkles size={16} className="text-primary" />
                 <span className="text-sm font-medium text-neutral-800">
@@ -209,7 +209,7 @@ const HeroCarousel = () => {
                   x: { delay: 0.1, duration: 0.6 },
                   y: { delay: 1.2, duration: 4, repeat: Infinity, ease: "easeInOut" },
                 }}
-                className="hidden sm:block w-12 h-12 lg:w-14 lg:h-14 object-contain drop-shadow-lg"
+                className="w-8 h-8 sm:w-12 sm:h-12 lg:w-14 lg:h-14 object-contain drop-shadow-lg flex-shrink-0"
               />
             </div>
 
