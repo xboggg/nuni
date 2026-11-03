@@ -214,7 +214,7 @@ const HowItWorks = () => {
           className="text-center mt-12"
         >
           <a
-            href="https://wa.me/233540501872?text=Hello%20Nuni%20Global!%20I'm%20interested%20in%20your%20products."
+            href="https://wa.me/233540501872?text=Hello%20NG%20Cosmetics!%20I'm%20interested%20in%20your%20products."
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-full font-semibold text-lg transition-all duration-300 hover:shadow-green hover:scale-105"

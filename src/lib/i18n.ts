@@ -263,7 +263,7 @@ export const translations = {
       description: "Drag the slider to see the incredible before and after results from our natural skincare products.",
       before: "Before",
       after: "After",
-      testimonialQuote: "After just 4 weeks of using Nuni products, my skin has completely transformed. The natural glow is incredible!",
+      testimonialQuote: "After just 4 weeks of using NG Cosmetics products, my skin has completely transformed. The natural glow is incredible!",
       testimonialAuthor: "Akua M., Accra",
     },
     // Partners
@@ -345,7 +345,7 @@ export const translations = {
       title: "See the",
       titleHighlight: "Transformation",
       description: "Watch how NG Cosmetics products are changing lives across Ghana",
-      discoverWhyNuni: "Discover Why Nuni",
+      discoverWhyNuni: "Discover Why NG Cosmetics",
     },
     // Why Nuni Page
     whyNuni: {
@@ -1070,7 +1070,7 @@ export const translations = {
       description: "Faites glisser le curseur pour voir les résultats avant et après de nos produits naturels.",
       before: "Avant",
       after: "Après",
-      testimonialQuote: "Après seulement 4 semaines d'utilisation des produits Nuni, ma peau s'est complètement transformée. L'éclat naturel est incroyable!",
+      testimonialQuote: "Après seulement 4 semaines d'utilisation des produits NG Cosmetics, ma peau s'est complètement transformée. L'éclat naturel est incroyable!",
       testimonialAuthor: "Akua M., Accra",
     },
     // Partners
@@ -1152,7 +1152,7 @@ export const translations = {
       title: "Voyez la",
       titleHighlight: "Transformation",
       description: "Regardez comment les produits NG Cosmetics changent des vies à travers le Ghana",
-      discoverWhyNuni: "Découvrez Pourquoi Nuni",
+      discoverWhyNuni: "Découvrez Pourquoi NG Cosmetics",
     },
     // Why Nuni Page
     whyNuni: {
@@ -1877,7 +1877,7 @@ export const translations = {
       description: "Twe slider no hwɛ nsunsuansoɔ a edi kan ne akyire firi yɛn nneɛma ankasa.",
       before: "Ansa",
       after: "Akyire",
-      testimonialQuote: "Nnawɔtwe 4 pɛ akyi a mede Nuni nneɛma no dii dwuma, me honam asakra koraa. Hyerɛn ankasa no yɛ nwanwa!",
+      testimonialQuote: "Nnawɔtwe 4 pɛ akyi a mede NG Cosmetics nneɛma no dii dwuma, me honam asakra koraa. Hyerɛn ankasa no yɛ nwanwa!",
       testimonialAuthor: "Akua M., Nkran",
     },
     // Partners
@@ -1959,7 +1959,7 @@ export const translations = {
       title: "Hwɛ",
       titleHighlight: "Nsakraeɛ",
       description: "Hwɛ sɛnea NG Cosmetics nneɛma resesa nkwa wɔ Ghana nyinaa",
-      discoverWhyNuni: "Hu Adɛn Nti Nuni",
+      discoverWhyNuni: "Hu Adɛn Nti NG Cosmetics",
     },
     // Why Nuni Page
     whyNuni: {
