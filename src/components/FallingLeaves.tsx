@@ -49,15 +49,15 @@ const FallingLeaves = () => {
   const [leaves, setLeaves] = useState<Leaf[]>([]);
 
   useEffect(() => {
-    // Create initial leaves - increased count and made more visible
-    const initialLeaves: Leaf[] = Array.from({ length: 25 }, (_, i) => ({
+    // Calm, sparse leaves - a quiet accent, not the focal motion of the hero
+    const initialLeaves: Leaf[] = Array.from({ length: 8 }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       delay: Math.random() * 10,
-      duration: 8 + Math.random() * 8,
-      size: 24 + Math.random() * 24, // Larger size (24-48px)
+      duration: 16 + Math.random() * 10,
+      size: 18 + Math.random() * 14, // Smaller size (18-32px)
       rotation: Math.random() * 360,
-      opacity: 0.6 + Math.random() * 0.4, // Higher opacity (0.6-1.0)
+      opacity: 0.25 + Math.random() * 0.2, // Subtler (0.25-0.45)
       type: ["leaf1", "leaf2"][Math.floor(Math.random() * 2)] as Leaf["type"],
     }));
     setLeaves(initialLeaves);
@@ -76,7 +76,7 @@ const FallingLeaves = () => {
           }}
           animate={{
             y: "110vh",
-            rotate: leaf.rotation + 360,
+            rotate: leaf.rotation,
             opacity: [0, leaf.opacity, leaf.opacity, 0],
           }}
           transition={{
@@ -90,18 +90,7 @@ const FallingLeaves = () => {
             left: 0,
           }}
         >
-          <motion.div
-            animate={{
-              x: [0, 30, -20, 40, 0],
-            }}
-            transition={{
-              duration: leaf.duration / 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          >
-            <LeafSVG type={leaf.type} size={leaf.size} />
-          </motion.div>
+          <LeafSVG type={leaf.type} size={leaf.size} />
         </motion.div>
       ))}
     </div>
