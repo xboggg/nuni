@@ -1,35 +1,48 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef, useState } from "react";
-import { Leaf, Sparkles, Flame } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/lib/i18n";
+import sheaButterImg from "@/assets/raw-shea-butter.png";
+import cocoaButterImg from "@/assets/cocoa-powder.png";
+
+const AUTO_SLIDE_MS = 5000;
 
 const IngredientsSpotlight = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   const ingredients = [
     {
       key: "shea" as const,
-      icon: Leaf,
+      image: sheaButterImg,
       swatch: "linear-gradient(145deg, #f3dba8, #c98a3c)",
       accentColor: "text-primary",
     },
     {
       key: "cocoa" as const,
-      icon: Sparkles,
+      image: cocoaButterImg,
       swatch: "linear-gradient(145deg, #8a5a2f, #4a2d12)",
       accentColor: "text-accent",
     },
     {
       key: "charcoal" as const,
-      icon: Flame,
+      // TODO: swap in a matching raw-activated-charcoal photo once available.
+      image: null,
       swatch: "linear-gradient(145deg, #4a4a4a, #1a1a1a)",
       accentColor: "text-charcoal",
     },
   ];
+
+  useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(() => {
+      setActiveTab((prev) => (prev + 1) % ingredients.length);
+    }, AUTO_SLIDE_MS);
+    return () => clearInterval(timer);
+  }, [isPaused, ingredients.length]);
 
   return (
     <section className="py-20 lg:py-32 bg-muted/30">
@@ -98,6 +111,8 @@ const IngredientsSpotlight = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.2 }}
           className="hidden lg:block max-w-4xl mx-auto"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
         >
           <div className="flex gap-2 border-b border-border">
             {ingredients.map((ingredient, index) => {
@@ -107,13 +122,21 @@ const IngredientsSpotlight = () => {
                 <button
                   key={ingredient.key}
                   onClick={() => setActiveTab(index)}
-                  className={`font-medium text-sm px-6 py-3 border-b-2 transition-colors -mb-px ${
-                    isActive
-                      ? "border-accent text-foreground"
-                      : "border-transparent text-muted-foreground hover:text-foreground"
-                  }`}
+                  className={`relative font-medium text-sm px-6 py-3 transition-colors`}
                 >
-                  {data.name}
+                  <span className={isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"}>
+                    {data.name}
+                  </span>
+                  <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-border" />
+                  {isActive && (
+                    <motion.span
+                      layoutId="ingredient-tab-underline"
+                      className="absolute left-0 right-0 bottom-0 h-0.5 bg-accent"
+                      initial={false}
+                      animate={{ scaleX: 1 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  )}
                 </button>
               );
             })}
@@ -148,10 +171,20 @@ const IngredientsSpotlight = () => {
                       ))}
                     </div>
                   </div>
-                  <div
-                    className="aspect-square rounded-3xl shadow-card"
-                    style={{ background: ingredient.swatch }}
-                  />
+                  {ingredient.image ? (
+                    <div className="aspect-square rounded-3xl shadow-card overflow-hidden">
+                      <img
+                        src={ingredient.image}
+                        alt={data.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <div
+                      className="aspect-square rounded-3xl shadow-card"
+                      style={{ background: ingredient.swatch }}
+                    />
+                  )}
                 </motion.div>
               );
             })}
