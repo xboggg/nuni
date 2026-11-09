@@ -159,13 +159,13 @@ const VideoCarousel = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="grid grid-cols-3 gap-2.5"
+            className="flex gap-2.5 overflow-x-auto snap-x snap-mandatory scroll-px-0 -mx-4 px-4 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
-            {videos.slice(0, 3).map((video, index) => (
+            {videos.map((video, index) => (
               <button
                 key={video.id}
                 onClick={() => openModal(index)}
-                className={`relative aspect-[9/16] rounded-xl overflow-hidden bg-black/40 ${index > 0 ? "opacity-70" : ""}`}
+                className={`relative flex-shrink-0 w-[30%] aspect-[9/16] rounded-xl overflow-hidden bg-black/40 snap-start ${index > 0 ? "opacity-70" : ""}`}
               >
                 <ThumbnailVideo src={video.src} className="absolute inset-0 w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-black/20" />
