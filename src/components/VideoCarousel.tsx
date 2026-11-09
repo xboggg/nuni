@@ -255,7 +255,7 @@ const VideoCarousel = () => {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.25 }}
-              className="relative w-full max-w-sm sm:max-w-md"
+              className="relative w-full max-w-2xl"
             >
               <button
                 onClick={closeModal}
@@ -265,7 +265,7 @@ const VideoCarousel = () => {
                 <X size={20} />
               </button>
 
-              <div className="relative aspect-[9/16] rounded-2xl overflow-hidden bg-black shadow-2xl">
+              <div className="relative aspect-video max-h-[80vh] rounded-2xl overflow-hidden bg-black shadow-2xl">
                 {videos.map((video, index) => (
                   <video
                     key={video.id}
@@ -275,7 +275,7 @@ const VideoCarousel = () => {
                     playsInline
                     loop={false}
                     onEnded={handleVideoEnd}
-                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+                    className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-500 ${
                       index === currentIndex ? "opacity-100" : "opacity-0"
                     }`}
                   />
