@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { Check, Handshake, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/lib/i18n";
-import { useHomepageContent } from "@/hooks/useHomepageContent";
+import { useHomepageContent, usePartnersImage } from "@/hooks/useHomepageContent";
 import heroImage from "@/assets/hero-5.jpeg";
 
 const Partners = () => {
@@ -12,6 +12,7 @@ const Partners = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { t } = useLanguage();
   const partnersContent = useHomepageContent("partners");
+  const adminImage = usePartnersImage();
 
   const badge = partnersContent?.badge ?? t.partners.badge;
   const title = partnersContent?.title ?? t.partners.title;
@@ -93,7 +94,7 @@ const Partners = () => {
               }}
             >
               <motion.img
-                src={heroImage}
+                src={adminImage || heroImage}
                 alt="NG Cosmetics Product Collection"
                 className="w-full h-[500px] object-cover"
                 whileHover={{ scale: 1.05 }}

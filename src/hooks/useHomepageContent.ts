@@ -83,6 +83,10 @@ export interface HomepagePartners {
   benefits: string[];
 }
 
+export interface HomepagePartnersSection extends Record<Language, HomepagePartners> {
+  imageFilename?: string;
+}
+
 export interface HomepageContent {
   hero?: Record<Language, HomepageHero>;
   about?: Record<Language, HomepageAbout>;
@@ -90,7 +94,15 @@ export interface HomepageContent {
   stats?: Record<Language, HomepageStats>;
   howItWorks?: Record<Language, HomepageHowItWorks>;
   ingredients?: HomepageIngredientsSection;
-  partners?: Record<Language, HomepagePartners>;
+  partners?: HomepagePartnersSection;
+}
+
+const UPLOAD_URL_BASE = "/uploads";
+
+/** Turns a bare uploaded filename (as stored by the admin API) into a servable URL. */
+export function uploadUrl(filename: string | null | undefined): string | null {
+  if (!filename) return null;
+  return `${UPLOAD_URL_BASE}/${filename}`;
 }
 
 let cachedContent: HomepageContent | null = null;
@@ -198,5 +210,42 @@ export function useIngredientImages(): { shea: string; cocoa: string; charcoal: 
     };
   }, []);
 
-  return content?.ingredients?.images ?? null;
+  const images = content?.ingredients?.images;
+  if (!images) return null;
+  return {
+    shea: uploadUrl(images.shea) ?? "",
+    cocoa: uploadUrl(images.cocoa) ?? "",
+    charcoal: uploadUrl(images.charcoal) ?? "",
+  };
+}
+
+/** partners.imageFilename is shared across all languages (not per-language), so it's read separately. */
+export function usePartnersImage(): string | null {
+  const [content, setContent] = useState<HomepageContent | null>(cachedContent);
+
+  useEffect(() => {
+    let active = true;
+    if (cachedContent) {
+      setContent(cachedContent);
+      return;
+    }
+    fetchHomepageContent()
+      .then((data) => {
+        if (active) setContent(data);
+      })
+      .catch(() => {});
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    const listener = () => setContent(cachedContent);
+    listeners.add(listener);
+    return () => {
+      listeners.delete(listener);
+    };
+  }, []);
+
+  return uploadUrl(content?.partners?.imageFilename);
 }

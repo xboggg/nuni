@@ -11,6 +11,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { apiGet, apiPost } from "@/lib/adminApi";
+import { uploadUrl } from "@/hooks/useHomepageContent";
 
 type Lang = "en" | "fr" | "tw";
 const LANGS: { key: Lang; label: string }[] = [
@@ -117,6 +118,8 @@ const HomepageContentManager = () => {
   const [ingredientImages, setIngredientImages] = useState<{ shea: string; cocoa: string; charcoal: string }>({ shea: "", cocoa: "", charcoal: "" });
   const [ingredientImageFiles, setIngredientImageFiles] = useState<{ shea?: File; cocoa?: File; charcoal?: File }>({});
   const [partners, setPartners] = useState<LangRecord<PartnersLang>>(emptyPartners);
+  const [partnersImage, setPartnersImage] = useState<string>("");
+  const [partnersImageFile, setPartnersImageFile] = useState<File | undefined>(undefined);
 
   const [loading, setLoading] = useState(true);
   const [savingSection, setSavingSection] = useState<string | null>(null);
@@ -126,6 +129,7 @@ const HomepageContentManager = () => {
   const sheaFileRef = useRef<HTMLInputElement>(null);
   const cocoaFileRef = useRef<HTMLInputElement>(null);
   const charcoalFileRef = useRef<HTMLInputElement>(null);
+  const partnersFileRef = useRef<HTMLInputElement>(null);
 
   const load = async () => {
     setLoading(true);
@@ -140,9 +144,19 @@ const HomepageContentManager = () => {
       if (data.ingredients) {
         const { images, ...langs } = data.ingredients;
         setIngredients((prev) => ({ ...prev, ...langs }));
-        if (images) setIngredientImages(images);
+        if (images) {
+          setIngredientImages({
+            shea: uploadUrl(images.shea) ?? "",
+            cocoa: uploadUrl(images.cocoa) ?? "",
+            charcoal: uploadUrl(images.charcoal) ?? "",
+          });
+        }
       }
-      if (data.partners) setPartners(data.partners);
+      if (data.partners) {
+        const { imageFilename, ...langs } = data.partners;
+        setPartners((prev) => ({ ...prev, ...langs }));
+        setPartnersImage(uploadUrl(imageFilename) ?? "");
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to load");
     } finally {
@@ -176,6 +190,10 @@ const HomepageContentManager = () => {
       setTimeout(() => setSavedSection(null), 2500);
       if (sectionKey === "ingredients") {
         setIngredientImageFiles({});
+        await load();
+      }
+      if (sectionKey === "partners") {
+        setPartnersImageFile(undefined);
         await load();
       }
     } catch (err) {
@@ -577,8 +595,40 @@ const HomepageContentManager = () => {
                 </>
               )}
             </LangTabs>
+
+            <p className="text-sm font-medium text-foreground pt-4 mb-2">Side Photo (shared across all 3 languages)</p>
+            <div className="max-w-[220px]">
+              {(() => {
+                const preview = partnersImageFile ? URL.createObjectURL(partnersImageFile) : partnersImage;
+                return preview ? (
+                  <img src={preview} alt="Partnership" className="w-full aspect-square object-cover rounded-lg border border-border mb-2" />
+                ) : (
+                  <div className="w-full aspect-square rounded-lg border border-dashed border-border flex items-center justify-center text-xs text-muted-foreground mb-2">
+                    No photo yet
+                  </div>
+                );
+              })()}
+              <input
+                ref={partnersFileRef}
+                type="file"
+                accept="image/jpeg,image/png,image/webp"
+                className="hidden"
+                onChange={(e) => {
+                  const f = e.target.files?.[0];
+                  if (f) setPartnersImageFile(f);
+                }}
+              />
+              <Button type="button" variant="outline" size="sm" className="w-full" onClick={() => partnersFileRef.current?.click()}>
+                <Plus className="mr-2" size={14} />
+                Change Photo
+              </Button>
+            </div>
+
             <div className="flex justify-end mt-4">
-              <SaveButton sectionKey="partners" onClick={() => saveSection("partners", partners)} />
+              <SaveButton
+                sectionKey="partners"
+                onClick={() => saveSection("partners", partners, partnersImageFile ? { image: partnersImageFile } : undefined)}
+              />
             </div>
           </AccordionContent>
         </AccordionItem>
