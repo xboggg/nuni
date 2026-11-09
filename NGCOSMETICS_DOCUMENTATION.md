@@ -25,7 +25,9 @@ Repo: `xboggg/nuni` on GitHub.
 
 React admin UI lives under `src/pages/admin/`, reachable at `/admin` on the live site. Everything is intended to be fully admin-manageable per standing instruction — "everything on the site front end managed from the admin."
 
-**Admin-managed content is English-only** by design decision (not translated into French/Twi) — matches the pattern across Products, Testimonials, Why NG Cosmetics (About), and Community sections. Only the surrounding static UI chrome (buttons, labels, legal pages) is translated via `src/lib/i18n.ts`.
+**Most admin-managed content is English-only** by design decision (not translated into French/Twi) — matches the pattern across Products, Testimonials, Why NG Cosmetics (About, when managed via `about_content`), and Community sections. Only the surrounding static UI chrome (buttons, labels, legal pages) is translated via `src/lib/i18n.ts`.
+
+**Exception — Homepage Content (Nov 2026):** the 7 sections below are the one place admin content IS trilingual (EN/FR/Twi), edited from the "Homepage Content" tab in `/admin`, each with language sub-tabs. See "Homepage Content system" below.
 
 ### Database tables (MySQL `ngcosmetics_admin`)
 
@@ -44,6 +46,7 @@ React admin UI lives under `src/pages/admin/`, reachable at `/admin` on the live
 | `gallery_images` | General photo gallery |
 | `settings` | Key-value store: `contact_whatsapp`, `contact_email`, `contact_location`, `hide_ambassador_photos`, `legal_last_updated` |
 | `admin_users` / `admin_sessions` | Admin login + bearer-token sessions |
+| `homepage_content` | Trilingual (EN/FR/Twi) text for 7 homepage sections — see "Homepage Content system" below |
 
 ### Upload pipeline (`admin-api/upload.php`)
 
@@ -67,6 +70,22 @@ Each content type typically has: `GET` (public reads active rows only; admin rea
 - Hero **text** (badge, headline, subheadline) is hardcoded in `src/lib/i18n.ts` under `hero: { ... }` for each language — **not** admin-managed.
 - As of Nov 2026: hero reads "Natural Grace" / "A New Definition of Beauty" / "Rooted in nature, defined by grace, created for confidence." — matches the client's rebrand poster. Two dove graphics (`src/assets/doves/dove-left.png`, `dove-right.png`, cropped + background-removed from that same poster) flank the badge, with a gentle float animation. Visible at all screen sizes (small on mobile, larger on desktop).
 - `FallingLeaves.tsx` renders a sparse, slow, low-opacity leaf-drift overlay — deliberately kept subtle (8 leaves, no sway/rotation) so it doesn't compete with the carousel, doves, and text animations already running in the hero. If asked to adjust hero motion again, this is the first place to look — the hero already has several animated layers (carousel crossfade + "breathing" zoom, falling leaves, dove float, staggered text fade-ins) and adding more on top risks feeling busy.
+
+## Homepage Content system (Nov 2026)
+
+Seven homepage sections that used to be hardcoded in `src/lib/i18n.ts` are now admin-editable, in all 3 languages (EN/FR/Twi) — this is the one place on the site where admin content isn't English-only.
+
+**Sections:** `hero` (badge/headline/headlineHighlight/subheadline — text only, hero background images stay in `hero_slides`), `about` (subtitle/title/titleHighlight/description + 4 feature cards), `videoCarousel` (badge/title/titleHighlight/description/discoverWhyNuni — text only, the 6 video clips themselves are still hardcoded/manual-upload), `stats` (4 stat items: value/suffix/label — these are hardcoded display numbers, not computed from real counts), `howItWorks` (subtitle/title/description/cta + 3 steps), `ingredients` (subtitle/title/titleHighlight/description/bottomNote + shea/cocoa/charcoal, each with name/origin/description/benefits), `partners` (badge/title/titleHighlight/description/cta/benefits — this is the "Become an NG Cosmetics Partner" homepage promo text, *not* the partner directory, which is the separate already-admin-managed `partners` table/`PartnersManager.tsx`).
+
+**Database:** `homepage_content` table, one row per section (`section_key` primary key, `data` JSON column). Each row's JSON is shaped `{ en: {...}, fr: {...}, tw: {...} }`. The `ingredients` row is the one exception: it also carries a sibling `images` key (`{ shea, cocoa, charcoal }` filenames) that is *not* per-language, since the ingredient photos are the same for every visitor regardless of language — mirrors how `about_content` keeps `ceo_image_filename` as a column separate from its JSON `data`.
+
+**API:** `admin-api/homepage.php`. `GET` with no query returns every section in one response (`{hero: {...}, about: {...}, ...}`) — the frontend fetches once and shares it. `GET ?section=<key>` returns just that section. `POST`/`PUT` (bearer auth required) take `section` + `data` (JSON string) as multipart fields; the `ingredients` section additionally accepts `sheaImage`/`cocoaImage`/`charcoalImage` file fields, each processed through `handle_image_upload()` exactly like `about.php`'s `ceoImage`, with the old file deleted on replacement.
+
+**Nginx gotcha:** this server allowlists admin API PHP filenames by name in `/etc/nginx/sites-enabled/ngcosmetics.com.gh` (`location ~ ^/admin-api/(login|gallery|hero|...)\.php$`) — anything not on that list gets a blanket `deny all` from a later `\.php$` block. **Any new `admin-api/*.php` endpoint must be added to that regex and nginx reloaded (`nginx -t && systemctl reload nginx`), or it 403s with no PHP error to debug.** `homepage` was added to this list when `homepage.php` was created.
+
+**Frontend:** `src/hooks/useHomepageContent.ts` exports `useHomepageContent(sectionKey)` — fetches all 7 sections once (shared across every component that calls it, not re-fetched per-component), returns the current-language slice for the requested section, or `null` while loading/on failure. Every wired component (`HeroCarousel`, `About`, `VideoCarousel`, `StatsCounter`, `HowItWorks`, `IngredientsSpotlight`, `Partners`) falls back to its original bundled `i18n.ts` copy whenever the hook returns `null`, so a DB outage or empty table never blanks the homepage. `useIngredientImages()` is a separate export for the non-per-language `images` object. `invalidateHomepageContent()` clears the shared cache (call after an admin save if you want other open tabs to refetch, though the admin page itself just re-`load()`s its own form state).
+
+**Admin UI:** `src/pages/admin/HomepageContentManager.tsx`, wired in as the "Homepage Content" tab in `AdminDashboard.tsx`. One accordion item per section, each with EN/FR/Twi sub-tabs (`Tabs`/`TabsList`/`TabsTrigger` per language) and its own Save button — sections save independently of each other.
 
 ## Branding note — "Nuni" → "NG Cosmetics"
 
