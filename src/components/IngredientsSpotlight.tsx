@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/lib/i18n";
 import sheaButterImg from "@/assets/raw-shea-butter.png";
 import cocoaButterImg from "@/assets/cocoa-powder.png";
+import charcoalImg from "@/assets/raw-activated-charcoal.jpg";
 
 const AUTO_SLIDE_MS = 5000;
 
@@ -29,8 +30,7 @@ const IngredientsSpotlight = () => {
     },
     {
       key: "charcoal" as const,
-      // TODO: swap in a matching raw-activated-charcoal photo once available.
-      image: null,
+      image: charcoalImg,
       swatch: "linear-gradient(145deg, #4a4a4a, #1a1a1a)",
       accentColor: "text-charcoal",
     },
