@@ -67,7 +67,7 @@ const Index = () => {
               }}
             /> - Moved to dedicated /testimonials page */}
             <Partners />
-            <AmbassadorTeaser />
+            {/* <AmbassadorTeaser /> */}
           </main>
         </PageTransition>
         <Footer />
