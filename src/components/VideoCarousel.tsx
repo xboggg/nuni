@@ -22,6 +22,33 @@ const videos = [
   { id: 6, src: video6 },
 ];
 
+// Many mobile browsers never paint a frame for a muted <video> with
+// preload="metadata" until it's told to seek — without this it just
+// renders black. Seeking slightly into the clip forces a real frame
+// to decode and show as the thumbnail.
+const ThumbnailVideo = ({ src, className }: { src: string; className?: string }) => {
+  const ref = useRef<HTMLVideoElement>(null);
+
+  return (
+    <video
+      ref={ref}
+      src={src}
+      muted
+      playsInline
+      preload="metadata"
+      onLoadedMetadata={(e) => {
+        const video = e.currentTarget;
+        try {
+          video.currentTime = Math.min(1, video.duration / 4 || 1);
+        } catch {
+          /* ignore */
+        }
+      }}
+      className={className}
+    />
+  );
+};
+
 const VideoCarousel = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [startIndex, setStartIndex] = useState(0);
@@ -140,13 +167,7 @@ const VideoCarousel = () => {
                 onClick={() => openModal(index)}
                 className={`relative aspect-[9/16] rounded-xl overflow-hidden bg-black/40 ${index > 0 ? "opacity-70" : ""}`}
               >
-                <video
-                  src={video.src}
-                  muted
-                  playsInline
-                  preload="metadata"
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
+                <ThumbnailVideo src={video.src} className="absolute inset-0 w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-black/20" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className={`${index === 0 ? "w-11 h-11" : "w-9 h-9"} rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center`}>
@@ -187,11 +208,8 @@ const VideoCarousel = () => {
             </span>
           </div>
           <div className="relative w-64 xl:w-80 flex-shrink-0 bg-black overflow-hidden">
-            <video
+            <ThumbnailVideo
               src={videos[0].src}
-              muted
-              playsInline
-              preload="metadata"
               className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
             />
             <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-charcoal/40" />
