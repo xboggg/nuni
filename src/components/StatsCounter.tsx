@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { Users, Leaf, Award, Heart } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
+import { useHomepageContent } from "@/hooks/useHomepageContent";
 
 interface StatItem {
   icon: React.ReactNode;
@@ -55,33 +56,26 @@ const StatsCounter = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { t } = useLanguage();
+  const statsContent = useHomepageContent("stats");
 
-  const stats: StatItem[] = [
-    {
-      icon: <Users className="w-8 h-8" />,
-      value: 5000,
-      suffix: "+",
-      label: t.stats.happyCustomers,
-    },
-    {
-      icon: <Leaf className="w-8 h-8" />,
-      value: 100,
-      suffix: "%",
-      label: t.stats.naturalIngredients,
-    },
-    {
-      icon: <Award className="w-8 h-8" />,
-      value: 3,
-      suffix: "+",
-      label: t.stats.yearsExcellence,
-    },
-    {
-      icon: <Heart className="w-8 h-8" />,
-      value: 98,
-      suffix: "%",
-      label: t.stats.customerSatisfaction,
-    },
+  const statIcons = [Users, Leaf, Award, Heart];
+  const fallbackStats: StatItem[] = [
+    { icon: <Users className="w-8 h-8" />, value: 5000, suffix: "+", label: t.stats.happyCustomers },
+    { icon: <Leaf className="w-8 h-8" />, value: 100, suffix: "%", label: t.stats.naturalIngredients },
+    { icon: <Award className="w-8 h-8" />, value: 3, suffix: "+", label: t.stats.yearsExcellence },
+    { icon: <Heart className="w-8 h-8" />, value: 98, suffix: "%", label: t.stats.customerSatisfaction },
   ];
+  const stats: StatItem[] = statsContent?.items
+    ? statsContent.items.map((item, i) => {
+        const Icon = statIcons[i] ?? Users;
+        return {
+          icon: <Icon className="w-8 h-8" />,
+          value: Number(item.value) || 0,
+          suffix: item.suffix,
+          label: item.label,
+        };
+      })
+    : fallbackStats;
 
   return (
     <section className="py-20 bg-gradient-to-br from-primary via-primary to-navy relative overflow-hidden">

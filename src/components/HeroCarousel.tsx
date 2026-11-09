@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import FallingLeaves from "./FallingLeaves";
 import { useLanguage } from "@/lib/i18n";
 import { apiGet } from "@/lib/adminApi";
+import { useHomepageContent } from "@/hooks/useHomepageContent";
 
 // Fallback images shown only if the live API is unreachable, so the hero
 // section is never blank for a real visitor.
@@ -31,6 +32,11 @@ const HeroCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const { t } = useLanguage();
+  const heroContent = useHomepageContent("hero");
+  const badge = heroContent?.badge ?? t.hero.badge;
+  const headline = heroContent?.headline ?? t.hero.headline;
+  const headlineHighlight = heroContent?.headlineHighlight ?? t.hero.headlineHighlight;
+  const subheadline = heroContent?.subheadline ?? t.hero.subheadline;
 
   useEffect(() => {
     apiGet("hero")
@@ -194,7 +200,7 @@ const HeroCarousel = () => {
               >
                 <Sparkles size={16} className="text-primary" />
                 <span className="text-sm font-medium text-neutral-800">
-                  {t.hero.badge}
+                  {badge}
                 </span>
               </motion.div>
 
@@ -221,7 +227,7 @@ const HeroCarousel = () => {
               className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-bold text-white leading-tight mb-6"
               style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.5), 0 0 40px rgba(0,0,0,0.3)' }}
             >
-              {t.hero.headline}{" "}
+              {headline}{" "}
               <span
                 className="text-transparent bg-clip-text"
                 style={{
@@ -231,7 +237,7 @@ const HeroCarousel = () => {
                   filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.5))'
                 }}
               >
-                {t.hero.headlineHighlight}
+                {headlineHighlight}
               </span>
             </motion.h1>
 
@@ -243,7 +249,7 @@ const HeroCarousel = () => {
               className="text-lg md:text-xl text-white/90 leading-relaxed mb-8 max-w-xl"
               style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.5)' }}
             >
-              {t.hero.subheadline}
+              {subheadline}
             </motion.p>
 
             {/* CTA Buttons */}

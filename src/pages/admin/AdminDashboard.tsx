@@ -11,6 +11,7 @@ import TestimonialsManager from "./TestimonialsManager";
 import AboutManager from "./AboutManager";
 import SettingsManager from "./SettingsManager";
 import CommunityManager from "./CommunityManager";
+import HomepageContentManager from "./HomepageContentManager";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -41,6 +42,7 @@ const AdminDashboard = () => {
         <Tabs defaultValue="hero">
           <TabsList>
             <TabsTrigger value="hero">Hero Slides</TabsTrigger>
+            <TabsTrigger value="homepage">Homepage Content</TabsTrigger>
             <TabsTrigger value="products">Products</TabsTrigger>
             <TabsTrigger value="gallery">Gallery</TabsTrigger>
             <TabsTrigger value="partners">Partners</TabsTrigger>
@@ -51,6 +53,9 @@ const AdminDashboard = () => {
           </TabsList>
           <TabsContent value="hero" className="mt-6">
             <HeroManager />
+          </TabsContent>
+          <TabsContent value="homepage" className="mt-6">
+            <HomepageContentManager />
           </TabsContent>
           <TabsContent value="products" className="mt-6">
             <ProductsManager />

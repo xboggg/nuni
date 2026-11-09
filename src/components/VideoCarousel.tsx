@@ -4,6 +4,7 @@ import { useInView } from "framer-motion";
 import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/lib/i18n";
+import { useHomepageContent } from "@/hooks/useHomepageContent";
 
 // Import videos
 import video1 from "@/assets/videos/nuni-vid1.mp4";
@@ -59,6 +60,12 @@ const VideoCarousel = () => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
   const { t } = useLanguage();
+  const videoContent = useHomepageContent("videoCarousel");
+  const vcBadge = videoContent?.badge ?? t.videoCarousel.badge;
+  const vcTitle = videoContent?.title ?? t.videoCarousel.title;
+  const vcTitleHighlight = videoContent?.titleHighlight ?? t.videoCarousel.titleHighlight;
+  const vcDescription = videoContent?.description ?? t.videoCarousel.description;
+  const vcDiscoverWhy = videoContent?.discoverWhyNuni ?? t.videoCarousel.discoverWhyNuni;
 
   const openModal = (index: number) => {
     setStartIndex(index);
@@ -144,10 +151,10 @@ const VideoCarousel = () => {
           >
             <div>
               <span className="inline-block text-[11px] font-medium tracking-widest text-accent uppercase mb-2">
-                {t.videoCarousel.badge}
+                {vcBadge}
               </span>
               <h2 className="font-serif font-bold text-2xl text-cream leading-tight">
-                {t.videoCarousel.title} <span className="text-gradient-gold">{t.videoCarousel.titleHighlight}</span>
+                {vcTitle} <span className="text-gradient-gold">{vcTitleHighlight}</span>
               </h2>
             </div>
             <span className="text-cream/50 text-xs font-medium whitespace-nowrap">
@@ -184,7 +191,7 @@ const VideoCarousel = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-cream/60 text-sm text-center mt-4"
           >
-            {t.videoCarousel.description}
+            {vcDescription}
           </motion.p>
         </div>
 
@@ -198,13 +205,13 @@ const VideoCarousel = () => {
         >
           <div className="flex-1 flex flex-col justify-center px-12 py-10">
             <span className="text-xs font-medium tracking-widest text-accent uppercase mb-3">
-              {t.videoCarousel.badge}
+              {vcBadge}
             </span>
             <h2 className="font-serif font-bold text-3xl xl:text-4xl text-cream mb-2">
-              {t.videoCarousel.title} <span className="text-gradient-gold">{t.videoCarousel.titleHighlight}</span>
+              {vcTitle} <span className="text-gradient-gold">{vcTitleHighlight}</span>
             </h2>
             <span className="text-cream/60 text-sm">
-              {t.videoCarousel.description} &middot; {t.videoCarousel.tapToWatch}
+              {vcDescription} &middot; {t.videoCarousel.tapToWatch}
             </span>
           </div>
           <div className="relative w-64 xl:w-80 flex-shrink-0 bg-black overflow-hidden">
@@ -232,7 +239,7 @@ const VideoCarousel = () => {
             to="/about-us"
             className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-full font-semibold transition-all duration-200 hover:shadow-green hover:scale-105"
           >
-            {t.videoCarousel.discoverWhyNuni}
+            {vcDiscoverWhy}
             <ChevronRight size={20} />
           </Link>
         </motion.div>

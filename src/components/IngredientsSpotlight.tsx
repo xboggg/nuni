@@ -2,35 +2,50 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/lib/i18n";
+import { useHomepageContent, useIngredientImages } from "@/hooks/useHomepageContent";
 import sheaButterImg from "@/assets/raw-shea-butter.png";
 import cocoaButterImg from "@/assets/cocoa-powder.png";
 import charcoalImg from "@/assets/raw-activated-charcoal.jpg";
 
 const AUTO_SLIDE_MS = 5000;
 
+const bundledImages = {
+  shea: sheaButterImg,
+  cocoa: cocoaButterImg,
+  charcoal: charcoalImg,
+};
+
 const IngredientsSpotlight = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { t } = useLanguage();
+  const ingredientsContent = useHomepageContent("ingredients");
+  const adminImages = useIngredientImages();
   const [activeTab, setActiveTab] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+
+  const subtitle = ingredientsContent?.subtitle ?? t.ingredients.subtitle;
+  const title = ingredientsContent?.title ?? t.ingredients.title;
+  const titleHighlight = ingredientsContent?.titleHighlight ?? t.ingredients.titleHighlight;
+  const description = ingredientsContent?.description ?? t.ingredients.description;
+  const bottomNote = ingredientsContent?.bottomNote ?? t.ingredients.bottomNote;
 
   const ingredients = [
     {
       key: "shea" as const,
-      image: sheaButterImg,
+      image: adminImages?.shea || bundledImages.shea,
       swatch: "linear-gradient(145deg, #f3dba8, #c98a3c)",
       accentColor: "text-primary",
     },
     {
       key: "cocoa" as const,
-      image: cocoaButterImg,
+      image: adminImages?.cocoa || bundledImages.cocoa,
       swatch: "linear-gradient(145deg, #8a5a2f, #4a2d12)",
       accentColor: "text-accent",
     },
     {
       key: "charcoal" as const,
-      image: charcoalImg,
+      image: adminImages?.charcoal || bundledImages.charcoal,
       swatch: "linear-gradient(145deg, #4a4a4a, #1a1a1a)",
       accentColor: "text-charcoal",
     },
@@ -55,7 +70,7 @@ const IngredientsSpotlight = () => {
             transition={{ duration: 0.5 }}
             className="inline-block text-sm font-medium tracking-widest text-accent uppercase mb-4"
           >
-            {t.ingredients.subtitle}
+            {subtitle}
           </motion.span>
 
           <motion.h2
@@ -64,7 +79,7 @@ const IngredientsSpotlight = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-foreground mb-6"
           >
-            {t.ingredients.title} <span className="text-gradient-green">{t.ingredients.titleHighlight}</span>
+            {title} <span className="text-gradient-green">{titleHighlight}</span>
           </motion.h2>
 
           <motion.p
@@ -73,7 +88,7 @@ const IngredientsSpotlight = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-lg text-muted-foreground max-w-2xl mx-auto"
           >
-            {t.ingredients.description}
+            {description}
           </motion.p>
         </div>
 
@@ -85,7 +100,7 @@ const IngredientsSpotlight = () => {
           className="lg:hidden max-w-xl mx-auto border-t border-border"
         >
           {ingredients.map((ingredient, index) => {
-            const data = t.ingredients[ingredient.key];
+            const data = ingredientsContent?.[ingredient.key] ?? t.ingredients[ingredient.key];
             return (
               <div key={ingredient.key} className="flex gap-4 items-baseline py-5 border-b border-border">
                 <span className="font-serif font-semibold text-sm text-accent w-7 flex-shrink-0">
@@ -116,7 +131,7 @@ const IngredientsSpotlight = () => {
         >
           <div className="flex gap-2 border-b border-border">
             {ingredients.map((ingredient, index) => {
-              const data = t.ingredients[ingredient.key];
+              const data = ingredientsContent?.[ingredient.key] ?? t.ingredients[ingredient.key];
               const isActive = activeTab === index;
               return (
                 <button
@@ -145,7 +160,7 @@ const IngredientsSpotlight = () => {
           <AnimatePresence mode="wait">
             {ingredients.map((ingredient, index) => {
               if (activeTab !== index) return null;
-              const data = t.ingredients[ingredient.key];
+              const data = ingredientsContent?.[ingredient.key] ?? t.ingredients[ingredient.key];
               return (
                 <motion.div
                   key={ingredient.key}
@@ -199,7 +214,7 @@ const IngredientsSpotlight = () => {
           className="mt-12 text-center"
         >
           <p className="text-muted-foreground text-sm">
-            {t.ingredients.bottomNote}
+            {bottomNote}
           </p>
         </motion.div>
       </div>

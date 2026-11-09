@@ -4,34 +4,29 @@ import { useRef } from "react";
 import { Shield, Leaf, Heart, Sparkles, Package, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/lib/i18n";
+import { useHomepageContent } from "@/hooks/useHomepageContent";
 
 const About = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { t } = useLanguage();
+  const aboutContent = useHomepageContent("about");
 
-  const features = [
-    {
-      icon: Shield,
-      title: t.about.features.fdaApproved,
-      description: t.about.features.fdaDesc,
-    },
-    {
-      icon: Leaf,
-      title: t.about.features.natural,
-      description: t.about.features.naturalDesc,
-    },
-    {
-      icon: Heart,
-      title: t.about.features.allSkinTypes,
-      description: t.about.features.allSkinTypesDesc,
-    },
-    {
-      icon: Sparkles,
-      title: t.about.features.visibleResults,
-      description: t.about.features.visibleResultsDesc,
-    },
+  const subtitle = aboutContent?.subtitle ?? t.about.subtitle;
+  const title = aboutContent?.title ?? t.about.title;
+  const titleHighlight = aboutContent?.titleHighlight ?? t.about.titleHighlight;
+  const description = aboutContent?.description ?? t.about.description;
+
+  const fallbackFeatures = [
+    { icon: Shield, title: t.about.features.fdaApproved, description: t.about.features.fdaDesc },
+    { icon: Leaf, title: t.about.features.natural, description: t.about.features.naturalDesc },
+    { icon: Heart, title: t.about.features.allSkinTypes, description: t.about.features.allSkinTypesDesc },
+    { icon: Sparkles, title: t.about.features.visibleResults, description: t.about.features.visibleResultsDesc },
   ];
+  const featureIcons = [Shield, Leaf, Heart, Sparkles];
+  const features = aboutContent?.features
+    ? aboutContent.features.map((f, i) => ({ icon: featureIcons[i] ?? Shield, title: f.title, description: f.description }))
+    : fallbackFeatures;
 
   return (
     <section id="about" className="py-20 lg:py-32 bg-card">
@@ -56,7 +51,7 @@ const About = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="inline-block font-display text-xs font-semibold tracking-[0.18em] text-accent uppercase mb-4"
           >
-            {t.about.subtitle}
+            {subtitle}
           </motion.span>
 
           <motion.h2
@@ -65,7 +60,7 @@ const About = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="font-serif italic font-medium text-3xl sm:text-4xl leading-tight text-foreground mb-5 max-w-xs mx-auto"
           >
-            {t.about.title} {t.about.titleHighlight}
+            {title} {titleHighlight}
           </motion.h2>
 
           <motion.p
@@ -74,7 +69,7 @@ const About = () => {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="text-base text-muted-foreground leading-relaxed max-w-md mx-auto mb-10"
           >
-            {t.about.description}
+            {description}
           </motion.p>
 
           <div className="flex flex-wrap justify-center gap-x-9 gap-y-6">
@@ -105,7 +100,7 @@ const About = () => {
             transition={{ duration: 0.5 }}
             className="inline-block font-display text-xs font-semibold tracking-[0.12em] text-accent uppercase mb-4"
           >
-            {t.about.subtitle}
+            {subtitle}
           </motion.span>
 
           <motion.h2
@@ -114,7 +109,7 @@ const About = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="font-display font-bold text-4xl leading-tight text-foreground mb-5"
           >
-            {t.about.title} {t.about.titleHighlight}
+            {title} {titleHighlight}
           </motion.h2>
 
           <motion.p
@@ -123,7 +118,7 @@ const About = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-base text-muted-foreground leading-relaxed max-w-2xl mb-10"
           >
-            {t.about.description}
+            {description}
           </motion.p>
 
           <div className="grid grid-cols-4 gap-px bg-border rounded-2xl overflow-hidden border border-border">

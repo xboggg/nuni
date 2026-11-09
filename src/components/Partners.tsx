@@ -4,12 +4,21 @@ import { useRef } from "react";
 import { Check, Handshake, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/lib/i18n";
+import { useHomepageContent } from "@/hooks/useHomepageContent";
 import heroImage from "@/assets/hero-5.jpeg";
 
 const Partners = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { t } = useLanguage();
+  const partnersContent = useHomepageContent("partners");
+
+  const badge = partnersContent?.badge ?? t.partners.badge;
+  const title = partnersContent?.title ?? t.partners.title;
+  const titleHighlight = partnersContent?.titleHighlight ?? t.partners.titleHighlight;
+  const description = partnersContent?.description ?? t.partners.description;
+  const cta = partnersContent?.cta ?? t.partners.cta;
+  const benefits = partnersContent?.benefits ?? t.partners.benefits;
 
   return (
     <section id="partners" className="py-20 lg:py-32 bg-card overflow-hidden">
@@ -24,22 +33,22 @@ const Partners = () => {
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent/10 rounded-full mb-6">
               <Handshake size={18} className="text-accent" />
               <span className="text-sm font-medium text-accent">
-                {t.partners.badge}
+                {badge}
               </span>
             </div>
 
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-foreground mb-6">
-              {t.partners.title}{" "}
-              <span className="text-gradient-gold">{t.partners.titleHighlight}</span>
+              {title}{" "}
+              <span className="text-gradient-gold">{titleHighlight}</span>
             </h2>
 
             <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-              {t.partners.description}
+              {description}
             </p>
 
             {/* Benefits */}
             <ul className="space-y-4 mb-8">
-              {t.partners.benefits.map((benefit: string, index: number) => (
+              {benefits.map((benefit: string, index: number) => (
                 <motion.li
                   key={benefit}
                   initial={{ opacity: 0, x: -20 }}
@@ -60,7 +69,7 @@ const Partners = () => {
               to="/partners"
               className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-full font-semibold transition-all duration-200 hover:shadow-green hover:scale-105"
             >
-              {t.partners.cta}
+              {cta}
               <ArrowRight size={20} />
             </Link>
           </motion.div>
