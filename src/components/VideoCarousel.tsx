@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "framer-motion";
-import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX } from "lucide-react";
+import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/lib/i18n";
 
@@ -23,6 +23,8 @@ const videos = [
 ];
 
 const VideoCarousel = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [startIndex, setStartIndex] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
@@ -30,6 +32,18 @@ const VideoCarousel = () => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
   const { t } = useLanguage();
+
+  const openModal = (index: number) => {
+    setStartIndex(index);
+    setCurrentIndex(index);
+    setIsPlaying(true);
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    videoRefs.current.forEach((video) => video?.pause());
+    setIsOpen(false);
+  };
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % videos.length);
@@ -60,8 +74,9 @@ const VideoCarousel = () => {
     setIsMuted(!isMuted);
   };
 
-  // Play current video when index changes
+  // Play current video when index changes (only while modal is open)
   useEffect(() => {
+    if (!isOpen) return;
     videoRefs.current.forEach((video, index) => {
       if (video) {
         if (index === currentIndex) {
@@ -74,139 +89,126 @@ const VideoCarousel = () => {
         }
       }
     });
-  }, [currentIndex, isPlaying]);
+  }, [currentIndex, isPlaying, isOpen]);
 
   // Auto-advance when video ends
   const handleVideoEnd = () => {
     nextSlide();
   };
 
+  // Lock page scroll while modal is open
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   return (
-    <section ref={sectionRef} className="py-20 lg:py-32 bg-charcoal overflow-hidden">
+    <section ref={sectionRef} className="py-16 lg:py-20 bg-charcoal overflow-hidden">
       <div className="container-custom">
-        {/* Header */}
-        <div className="max-w-3xl mx-auto text-center mb-12">
-          <motion.span
+        {/* ============ MOBILE / TABLET (below lg): "Three-up Film Strip" teaser ============ */}
+        <div className="lg:hidden">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
-            className="inline-block text-sm font-medium tracking-widest text-accent uppercase mb-4"
+            className="flex items-end justify-between gap-3 mb-5"
           >
-            {t.videoCarousel.badge}
-          </motion.span>
+            <div>
+              <span className="inline-block text-[11px] font-medium tracking-widest text-accent uppercase mb-2">
+                {t.videoCarousel.badge}
+              </span>
+              <h2 className="font-serif font-bold text-2xl text-cream leading-tight">
+                {t.videoCarousel.title} <span className="text-gradient-gold">{t.videoCarousel.titleHighlight}</span>
+              </h2>
+            </div>
+            <span className="text-cream/50 text-xs font-medium whitespace-nowrap">
+              {t.videoCarousel.clipsCount}
+            </span>
+          </motion.div>
 
-          <motion.h2
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-cream mb-6"
+            className="grid grid-cols-3 gap-2.5"
           >
-            {t.videoCarousel.title} <span className="text-gradient-gold">{t.videoCarousel.titleHighlight}</span>
-          </motion.h2>
+            {videos.slice(0, 3).map((video, index) => (
+              <button
+                key={video.id}
+                onClick={() => openModal(index)}
+                className={`relative aspect-[9/16] rounded-xl overflow-hidden bg-black/40 ${index > 0 ? "opacity-70" : ""}`}
+              >
+                <video
+                  src={video.src}
+                  muted
+                  playsInline
+                  preload="metadata"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/20" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className={`${index === 0 ? "w-11 h-11" : "w-9 h-9"} rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center`}>
+                    <Play size={index === 0 ? 16 : 14} className="text-white ml-0.5" fill="white" />
+                  </div>
+                </div>
+              </button>
+            ))}
+          </motion.div>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-lg text-cream/70 leading-relaxed"
+            className="text-cream/60 text-sm text-center mt-4"
           >
             {t.videoCarousel.description}
           </motion.p>
         </div>
 
-        {/* Video Carousel */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="relative max-w-4xl mx-auto"
+        {/* ============ DESKTOP (lg and up): "Edge-to-edge Teaser Band" ============ */}
+        <motion.button
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5 }}
+          onClick={() => openModal(0)}
+          className="hidden lg:flex w-full items-stretch rounded-3xl overflow-hidden bg-background/5 hover:bg-background/10 transition-colors group text-left"
         >
-          {/* Video Container */}
-          <div className="relative aspect-[9/16] md:aspect-video rounded-3xl overflow-hidden bg-black shadow-2xl">
-            {videos.map((video, index) => (
-              <video
-                key={video.id}
-                ref={(el) => (videoRefs.current[index] = el)}
-                src={video.src}
-                muted={isMuted}
-                playsInline
-                loop={false}
-                onEnded={handleVideoEnd}
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
-                  index === currentIndex ? "opacity-100" : "opacity-0"
-                }`}
-              />
-            ))}
-
-            {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30" />
-
-            {/* Controls Overlay */}
-            <div className="absolute inset-0 flex items-center justify-between p-4 md:p-8">
-              {/* Left Arrow */}
-              <button
-                onClick={prevSlide}
-                className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/30 transition-colors"
-              >
-                <ChevronLeft size={24} />
-              </button>
-
-              {/* Center Play/Pause */}
-              <button
-                onClick={togglePlay}
-                className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/30 transition-colors"
-              >
-                {isPlaying ? <Pause size={32} /> : <Play size={32} className="ml-1" />}
-              </button>
-
-              {/* Right Arrow */}
-              <button
-                onClick={nextSlide}
-                className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/30 transition-colors"
-              >
-                <ChevronRight size={24} />
-              </button>
-            </div>
-
-            {/* Bottom Controls */}
-            <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
-              {/* Mute Button */}
-              <button
-                onClick={toggleMute}
-                className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/30 transition-colors"
-              >
-                {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
-              </button>
-
-              {/* Dots Indicator */}
-              <div className="flex gap-2">
-                {videos.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentIndex(index)}
-                    className={`w-2 h-2 rounded-full transition-all ${
-                      index === currentIndex
-                        ? "w-8 bg-white"
-                        : "bg-white/50 hover:bg-white/70"
-                    }`}
-                  />
-                ))}
+          <div className="flex-1 flex flex-col justify-center px-12 py-10">
+            <span className="text-xs font-medium tracking-widest text-accent uppercase mb-3">
+              {t.videoCarousel.badge}
+            </span>
+            <h2 className="font-serif font-bold text-3xl xl:text-4xl text-cream mb-2">
+              {t.videoCarousel.title} <span className="text-gradient-gold">{t.videoCarousel.titleHighlight}</span>
+            </h2>
+            <span className="text-cream/60 text-sm">
+              {t.videoCarousel.description} &middot; {t.videoCarousel.tapToWatch}
+            </span>
+          </div>
+          <div className="relative w-64 xl:w-80 flex-shrink-0 bg-black overflow-hidden">
+            <video
+              src={videos[0].src}
+              muted
+              playsInline
+              preload="metadata"
+              className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-charcoal/40" />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:bg-white/30 transition-colors">
+                <Play size={22} className="text-white ml-1" fill="white" />
               </div>
-
-              {/* Video Counter */}
-              <span className="text-white/70 text-sm font-medium">
-                {currentIndex + 1} / {videos.length}
-              </span>
             </div>
           </div>
-        </motion.div>
+        </motion.button>
 
         {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          className="text-center mt-10"
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="text-center mt-8"
         >
           <Link
             to="/about-us"
@@ -217,6 +219,104 @@ const VideoCarousel = () => {
           </Link>
         </motion.div>
       </div>
+
+      {/* ============ Lightbox Modal (shared by both layouts) ============ */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
+            onClick={(e) => {
+              if (e.target === e.currentTarget) closeModal();
+            }}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.25 }}
+              className="relative w-full max-w-sm sm:max-w-md"
+            >
+              <button
+                onClick={closeModal}
+                className="absolute -top-12 right-0 sm:-right-2 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-colors z-10"
+                aria-label="Close"
+              >
+                <X size={20} />
+              </button>
+
+              <div className="relative aspect-[9/16] rounded-2xl overflow-hidden bg-black shadow-2xl">
+                {videos.map((video, index) => (
+                  <video
+                    key={video.id}
+                    ref={(el) => (videoRefs.current[index] = el)}
+                    src={video.src}
+                    muted={isMuted}
+                    playsInline
+                    loop={false}
+                    onEnded={handleVideoEnd}
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+                      index === currentIndex ? "opacity-100" : "opacity-0"
+                    }`}
+                  />
+                ))}
+
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 pointer-events-none" />
+
+                <div className="absolute inset-0 flex items-center justify-between p-3 sm:p-4">
+                  <button
+                    onClick={prevSlide}
+                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/30 transition-colors"
+                  >
+                    <ChevronLeft size={22} />
+                  </button>
+
+                  <button
+                    onClick={togglePlay}
+                    className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/30 transition-colors"
+                  >
+                    {isPlaying ? <Pause size={28} /> : <Play size={28} className="ml-1" />}
+                  </button>
+
+                  <button
+                    onClick={nextSlide}
+                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/30 transition-colors"
+                  >
+                    <ChevronRight size={22} />
+                  </button>
+                </div>
+
+                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+                  <button
+                    onClick={toggleMute}
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/30 transition-colors"
+                  >
+                    {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+                  </button>
+
+                  <div className="flex gap-1.5">
+                    {videos.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setCurrentIndex(index)}
+                        className={`h-1.5 rounded-full transition-all ${
+                          index === currentIndex ? "w-6 bg-white" : "w-1.5 bg-white/50 hover:bg-white/70"
+                        }`}
+                      />
+                    ))}
+                  </div>
+
+                  <span className="text-white/70 text-xs font-medium">
+                    {currentIndex + 1} / {videos.length}
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

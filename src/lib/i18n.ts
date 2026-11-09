@@ -346,6 +346,8 @@ export const translations = {
       titleHighlight: "Transformation",
       description: "Watch how NG Cosmetics products are changing lives across Ghana",
       discoverWhyNuni: "Discover Why NG Cosmetics",
+      tapToWatch: "Tap to watch",
+      clipsCount: "6 clips",
     },
     // Why Nuni Page
     whyNuni: {
@@ -1153,6 +1155,8 @@ export const translations = {
       titleHighlight: "Transformation",
       description: "Regardez comment les produits NG Cosmetics changent des vies à travers le Ghana",
       discoverWhyNuni: "Découvrez Pourquoi NG Cosmetics",
+      tapToWatch: "Appuyez pour regarder",
+      clipsCount: "6 clips",
     },
     // Why Nuni Page
     whyNuni: {
@@ -1960,6 +1964,8 @@ export const translations = {
       titleHighlight: "Nsakraeɛ",
       description: "Hwɛ sɛnea NG Cosmetics nneɛma resesa nkwa wɔ Ghana nyinaa",
       discoverWhyNuni: "Hu Adɛn Nti NG Cosmetics",
+      tapToWatch: "Fa wo nsa ka na hwɛ",
+      clipsCount: "Video 6",
     },
     // Why Nuni Page
     whyNuni: {
