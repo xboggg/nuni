@@ -1,58 +1,33 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useCallback, useRef, useState } from "react";
-import { Leaf, Sparkles, Flame, ChevronLeft, ChevronRight } from "lucide-react";
+import { useRef, useState } from "react";
+import { Leaf, Sparkles, Flame } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  type CarouselApi,
-} from "@/components/ui/carousel";
 
 const IngredientsSpotlight = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { t } = useLanguage();
-  const [api, setApi] = useState<CarouselApi>();
-  const [canScrollPrev, setCanScrollPrev] = useState(false);
-  const [canScrollNext, setCanScrollNext] = useState(false);
-
-  const onApiChange = useCallback((newApi: CarouselApi) => {
-    setApi(newApi);
-    if (!newApi) return;
-
-    const update = () => {
-      setCanScrollPrev(newApi.canScrollPrev());
-      setCanScrollNext(newApi.canScrollNext());
-    };
-
-    update();
-    newApi.on("select", update);
-    newApi.on("reInit", update);
-  }, []);
+  const [activeTab, setActiveTab] = useState(0);
 
   const ingredients = [
     {
       key: "shea" as const,
       icon: Leaf,
-      color: "from-primary/20 to-secondary/10",
+      swatch: "linear-gradient(145deg, #f3dba8, #c98a3c)",
       accentColor: "text-primary",
-      bgAccent: "bg-primary/10",
     },
     {
       key: "cocoa" as const,
       icon: Sparkles,
-      color: "from-accent/20 to-amber-100/50",
+      swatch: "linear-gradient(145deg, #8a5a2f, #4a2d12)",
       accentColor: "text-accent",
-      bgAccent: "bg-accent/10",
     },
     {
       key: "charcoal" as const,
       icon: Flame,
-      color: "from-charcoal/10 to-slate-100/50",
+      swatch: "linear-gradient(145deg, #4a4a4a, #1a1a1a)",
       accentColor: "text-charcoal",
-      bgAccent: "bg-charcoal/10",
     },
   ];
 
@@ -89,142 +64,105 @@ const IngredientsSpotlight = () => {
           </motion.p>
         </div>
 
-        {/* Ingredient Cards - desktop grid */}
-        <div className="hidden md:grid md:grid-cols-3 gap-8">
+        {/* ============ MOBILE / TABLET (below lg): "Ingredient Ledger" ============ */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="lg:hidden max-w-xl mx-auto border-t border-border"
+        >
           {ingredients.map((ingredient, index) => {
-            const ingredientData = t.ingredients[ingredient.key];
+            const data = t.ingredients[ingredient.key];
             return (
-              <motion.div
-                key={ingredient.key}
-                initial={{ opacity: 0, y: 40 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.2 + index * 0.15 }}
-                className="group relative"
-              >
-                <div
-                  className={`relative h-full bg-gradient-to-br ${ingredient.color} rounded-3xl p-8 overflow-hidden transition-all duration-500 hover:shadow-card`}
-                >
-                  {/* Decorative circles */}
-                  <div className="absolute -top-20 -right-20 w-40 h-40 bg-card/30 rounded-full blur-2xl" />
-                  <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-card/20 rounded-full blur-xl" />
-
-                  {/* Icon */}
-                  <div
-                    className={`relative w-16 h-16 ${ingredient.bgAccent} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}
-                  >
-                    <ingredient.icon size={32} className={ingredient.accentColor} />
+              <div key={ingredient.key} className="flex gap-4 items-baseline py-5 border-b border-border">
+                <span className="font-serif font-semibold text-sm text-accent w-7 flex-shrink-0">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-baseline gap-2 flex-wrap">
+                    <h3 className="font-serif font-bold text-lg text-foreground">{data.name}</h3>
+                    <span className="text-xs text-muted-foreground">&mdash; {data.origin}</span>
                   </div>
-
-                  {/* Name & Origin */}
-                  <h3 className="text-2xl font-serif font-bold text-foreground mb-2">
-                    {ingredientData.name}
-                  </h3>
-                  <span className="inline-block text-xs font-medium text-muted-foreground bg-card/50 px-3 py-1 rounded-full mb-4">
-                    {ingredientData.origin}
-                  </span>
-
-                  {/* Description */}
-                  <p className="text-muted-foreground leading-relaxed mb-6">
-                    {ingredientData.description}
+                  <p className="text-sm text-muted-foreground mt-1.5 leading-relaxed">
+                    {data.benefits.join(" · ")}
                   </p>
-
-                  {/* Benefits */}
-                  <div className="space-y-2">
-                    {ingredientData.benefits.map((benefit: string) => (
-                      <div
-                        key={benefit}
-                        className="flex items-center gap-2 text-sm text-foreground"
-                      >
-                        <div
-                          className={`w-1.5 h-1.5 rounded-full ${ingredient.accentColor} bg-current`}
-                        />
-                        {benefit}
-                      </div>
-                    ))}
-                  </div>
                 </div>
-              </motion.div>
+              </div>
             );
           })}
-        </div>
+        </motion.div>
 
-        {/* Ingredient Cards - mobile carousel */}
-        <div className="relative md:hidden">
-          <Carousel setApi={onApiChange} opts={{ align: "start", loop: false }} className="w-full">
-            <CarouselContent className="-ml-4">
-              {ingredients.map((ingredient) => {
-                const ingredientData = t.ingredients[ingredient.key];
-                return (
-                  <CarouselItem key={ingredient.key} className="pl-4 basis-full">
-                    <div
-                      className={`relative h-full bg-gradient-to-br ${ingredient.color} rounded-3xl p-8 overflow-hidden`}
-                    >
-                      <div className="absolute -top-20 -right-20 w-40 h-40 bg-card/30 rounded-full blur-2xl" />
-                      <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-card/20 rounded-full blur-xl" />
+        {/* ============ DESKTOP (lg and up): "Accordion Tabs" ============ */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="hidden lg:block max-w-4xl mx-auto"
+        >
+          <div className="flex gap-2 border-b border-border">
+            {ingredients.map((ingredient, index) => {
+              const data = t.ingredients[ingredient.key];
+              const isActive = activeTab === index;
+              return (
+                <button
+                  key={ingredient.key}
+                  onClick={() => setActiveTab(index)}
+                  className={`font-medium text-sm px-6 py-3 border-b-2 transition-colors -mb-px ${
+                    isActive
+                      ? "border-accent text-foreground"
+                      : "border-transparent text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {data.name}
+                </button>
+              );
+            })}
+          </div>
 
-                      <div
-                        className={`relative w-16 h-16 ${ingredient.bgAccent} rounded-2xl flex items-center justify-center mb-6`}
-                      >
-                        <ingredient.icon size={32} className={ingredient.accentColor} />
-                      </div>
-
-                      <h3 className="text-2xl font-serif font-bold text-foreground mb-2">
-                        {ingredientData.name}
-                      </h3>
-                      <span className="inline-block text-xs font-medium text-muted-foreground bg-card/50 px-3 py-1 rounded-full mb-4">
-                        {ingredientData.origin}
-                      </span>
-
-                      <p className="text-muted-foreground leading-relaxed mb-6">
-                        {ingredientData.description}
-                      </p>
-
-                      <div className="space-y-2">
-                        {ingredientData.benefits.map((benefit: string) => (
-                          <div
-                            key={benefit}
-                            className="flex items-center gap-2 text-sm text-foreground"
-                          >
-                            <div
-                              className={`w-1.5 h-1.5 rounded-full ${ingredient.accentColor} bg-current`}
-                            />
-                            {benefit}
-                          </div>
-                        ))}
-                      </div>
+          <AnimatePresence mode="wait">
+            {ingredients.map((ingredient, index) => {
+              if (activeTab !== index) return null;
+              const data = t.ingredients[ingredient.key];
+              return (
+                <motion.div
+                  key={ingredient.key}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="grid grid-cols-2 gap-12 items-center pt-10"
+                >
+                  <div>
+                    <span className="inline-block text-xs font-semibold tracking-wider uppercase text-accent mb-3">
+                      {data.origin}
+                    </span>
+                    <p className="text-foreground/80 text-[15px] leading-relaxed mb-6">
+                      {data.description}
+                    </p>
+                    <div className="flex flex-wrap gap-x-6 gap-y-2">
+                      {data.benefits.map((benefit: string) => (
+                        <span key={benefit} className="font-medium text-sm text-foreground flex items-center gap-2">
+                          <span className={`w-1.5 h-1.5 rounded-full ${ingredient.accentColor} bg-current`} />
+                          {benefit}
+                        </span>
+                      ))}
                     </div>
-                  </CarouselItem>
-                );
-              })}
-            </CarouselContent>
-          </Carousel>
-
-          {/* Slide arrows - small & transparent */}
-          <button
-            type="button"
-            onClick={() => api?.scrollPrev()}
-            disabled={!canScrollPrev}
-            aria-label="Previous ingredient"
-            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/40 backdrop-blur-sm text-foreground shadow-sm transition-opacity hover:bg-white/60 disabled:opacity-0 disabled:pointer-events-none"
-          >
-            <ChevronLeft size={20} />
-          </button>
-          <button
-            type="button"
-            onClick={() => api?.scrollNext()}
-            disabled={!canScrollNext}
-            aria-label="Next ingredient"
-            className="absolute right-2 top-1/2 -translate-y-1/2 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/40 backdrop-blur-sm text-foreground shadow-sm transition-opacity hover:bg-white/60 disabled:opacity-0 disabled:pointer-events-none"
-          >
-            <ChevronRight size={20} />
-          </button>
-        </div>
+                  </div>
+                  <div
+                    className="aspect-square rounded-3xl shadow-card"
+                    style={{ background: ingredient.swatch }}
+                  />
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
+        </motion.div>
 
         {/* Bottom Note */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.8 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
           className="mt-12 text-center"
         >
           <p className="text-muted-foreground text-sm">
