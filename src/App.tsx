@@ -22,8 +22,14 @@ import ScrollToTop from "@/components/ScrollToTop";
 import PromoBar from "@/components/PromoBar";
 import NewPackagingToast from "@/components/NewPackagingToast";
 
-// Export Section - temporarily redirected to Coming Soon
-import ExportComingSoon from "./pages/export/ExportComingSoon";
+// Export Section
+import ExportHome from "./pages/export/ExportHome";
+import ExportProducts from "./pages/export/ExportProducts";
+import ExportSheaButter from "./pages/export/ExportSheaButter";
+import ExportCocoa from "./pages/export/ExportCocoa";
+import ExportBlackSoap from "./pages/export/ExportBlackSoap";
+import ExportProcess from "./pages/export/ExportProcess";
+import ExportContact from "./pages/export/ExportContact";
 
 // Home Decor Section
 import HomeDecorHome from "./pages/homedecor/HomeDecorHome";
@@ -74,9 +80,14 @@ const AnimatedRoutes = () => {
           <Route path="/terms-of-service" element={<TermsOfServicePage />} />
           <Route path="/community" element={<CommunityImpactPage />} />
 
-          {/* Export Section - Coming Soon */}
-          <Route path="/export" element={<ExportComingSoon />} />
-          <Route path="/export/*" element={<ExportComingSoon />} />
+          {/* Export Section */}
+          <Route path="/export" element={<ExportHome />} />
+          <Route path="/export/products" element={<ExportProducts />} />
+          <Route path="/export/shea-butter" element={<ExportSheaButter />} />
+          <Route path="/export/cocoa" element={<ExportCocoa />} />
+          <Route path="/export/black-soap" element={<ExportBlackSoap />} />
+          <Route path="/export/process" element={<ExportProcess />} />
+          <Route path="/export/contact" element={<ExportContact />} />
 
           {/* Home Decor Section Routes */}
           <Route path="/home-decor" element={<HomeDecorHome />} />
