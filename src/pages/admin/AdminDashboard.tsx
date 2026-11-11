@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { LogOut, Leaf } from "lucide-react";
+import { LogOut, Leaf, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -44,12 +44,23 @@ const AdminDashboard = () => {
             <div className="w-9 h-9 bg-primary rounded-full flex items-center justify-center">
               <Leaf size={18} className="text-primary-foreground" />
             </div>
-            <span className="font-serif font-bold text-foreground">NG Cosmetics Admin</span>
+            <span className="font-serif font-bold text-foreground whitespace-nowrap">
+              <span className="hidden sm:inline">NG Cosmetics Admin</span>
+              <span className="sm:hidden">Admin</span>
+            </span>
           </div>
-          <Button variant="outline" size="sm" onClick={handleLogout}>
-            <LogOut size={16} className="mr-2" />
-            Log Out
-          </Button>
+          <div className="flex items-center gap-2">
+            <a href="/" target="_blank" rel="noopener noreferrer">
+              <Button variant="outline" size="sm">
+                <ExternalLink size={16} className="mr-1.5 sm:mr-2" />
+                View Site
+              </Button>
+            </a>
+            <Button variant="outline" size="sm" onClick={handleLogout}>
+              <LogOut size={16} className="mr-1.5 sm:mr-2" />
+              Log Out
+            </Button>
+          </div>
         </div>
       </header>
 
