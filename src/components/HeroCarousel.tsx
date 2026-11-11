@@ -233,10 +233,10 @@ const HeroCarousel = () => {
               <span
                 className="text-transparent bg-clip-text"
                 style={{
-                  backgroundImage: 'linear-gradient(135deg, #8dc63f 0%, #3d7a52 50%, #8dc63f 100%)',
+                  backgroundImage: 'linear-gradient(135deg, #a3e635 0%, #65c97f 50%, #a3e635 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
-                  filter: 'drop-shadow(0 0 6px rgba(0,0,0,0.85)) drop-shadow(0 0 16px rgba(0,0,0,0.6)) drop-shadow(2px 2px 4px rgba(0,0,0,0.9))'
+                  filter: 'drop-shadow(1px 2px 3px rgba(0,0,0,0.9))'
                 }}
               >
                 {headlineHighlight}
