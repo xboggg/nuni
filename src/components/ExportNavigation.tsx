@@ -23,6 +23,9 @@ const ExportNavigation = () => {
     { name: "Contact", href: "/export/contact" },
   ];
 
+  const productLinks = navLinks.slice(0, 4);
+  const companyLinks = navLinks.slice(4);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -130,9 +133,9 @@ const ExportNavigation = () => {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.2, ease: "easeOut" }}
-              className="fixed inset-y-0 right-0 w-[85%] max-w-sm z-50 bg-[#1a3a2a] shadow-2xl lg:hidden"
+              className="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm z-50 bg-[#1a3a2a] shadow-2xl lg:hidden flex flex-col max-h-screen"
             >
-              <div className="flex items-center justify-between p-5 border-b border-white/10">
+              <div className="flex items-center justify-between p-5 border-b border-white/10 flex-shrink-0">
                 <div className="flex items-center gap-2">
                   <KofiideasMark className="h-10 w-10" />
                   <div className="flex flex-col">
@@ -148,25 +151,49 @@ const ExportNavigation = () => {
                 </button>
               </div>
 
-              <div className="flex flex-col p-4">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.name}
-                    to={link.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className={`flex items-center justify-between py-4 px-3 font-medium text-lg border-b border-white/10 rounded-lg transition-colors ${
-                      isActive(link.href)
-                        ? "text-amber-400 bg-white/5"
-                        : "text-white hover:bg-white/5"
-                    }`}
-                  >
-                    <span>{link.name}</span>
-                    <ChevronRight size={18} className="text-white/50" />
-                  </Link>
-                ))}
+              <div className="overflow-y-auto">
+                <div className="flex flex-col px-5 pt-4 pb-2">
+                  <span className="text-[11px] font-bold tracking-widest text-white/40 uppercase mb-1">
+                    Products
+                  </span>
+                  {productLinks.map((link) => (
+                    <Link
+                      key={link.name}
+                      to={link.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={`flex items-center justify-between py-3 px-1 font-medium text-base transition-colors ${
+                        isActive(link.href) ? "text-amber-400" : "text-white hover:text-amber-400"
+                      }`}
+                    >
+                      <span>{link.name}</span>
+                      <ChevronRight size={15} className="text-white/40" />
+                    </Link>
+                  ))}
+                </div>
+
+                <div className="h-px bg-white/10 mx-5 my-1" />
+
+                <div className="flex flex-col px-5 pt-3 pb-5">
+                  <span className="text-[11px] font-bold tracking-widest text-white/40 uppercase mb-1">
+                    Company
+                  </span>
+                  {companyLinks.map((link) => (
+                    <Link
+                      key={link.name}
+                      to={link.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={`flex items-center justify-between py-3 px-1 font-medium text-base transition-colors ${
+                        isActive(link.href) ? "text-amber-400" : "text-white hover:text-amber-400"
+                      }`}
+                    >
+                      <span>{link.name}</span>
+                      <ChevronRight size={15} className="text-white/40" />
+                    </Link>
+                  ))}
+                </div>
               </div>
 
-              <div className="absolute bottom-0 left-0 right-0 p-5 border-t border-white/10 bg-[#152a20]">
+              <div className="p-5 border-t border-white/10 bg-[#152a20] flex-shrink-0">
                 <Link
                   to="/"
                   onClick={() => setIsMobileMenuOpen(false)}
