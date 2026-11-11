@@ -31,16 +31,15 @@ const About = () => {
   return (
     <section id="about" className="py-20 lg:py-32 bg-card">
       <div ref={ref} className="container-custom">
-        {/* ============ MOBILE / TABLET (below lg): "Stamp & Seal" heritage layout ============ */}
-        <div className="lg:hidden text-center">
+        <div className="max-w-5xl mx-auto text-center lg:text-left">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.5 }}
-            className="relative w-20 h-20 mx-auto mb-6 rounded-full border-2 border-accent flex items-center justify-center"
+            className="relative w-16 h-16 mx-auto lg:mx-0 mb-6 rounded-full border-2 border-accent flex items-center justify-center"
           >
             <div className="absolute inset-[6px] rounded-full border border-dashed border-accent/60" />
-            <span className="font-display font-bold text-[9px] tracking-wider text-accent leading-tight">
+            <span className="font-serif font-bold text-xs tracking-wider text-accent leading-tight">
               EST.<br />GHANA
             </span>
           </motion.div>
@@ -49,7 +48,7 @@ const About = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="inline-block font-display text-xs font-semibold tracking-[0.18em] text-accent uppercase mb-4"
+            className="inline-block text-sm font-medium tracking-widest text-accent uppercase mb-4"
           >
             {subtitle}
           </motion.span>
@@ -58,7 +57,7 @@ const About = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="font-serif italic font-medium text-3xl sm:text-4xl leading-tight text-foreground mb-5 max-w-xs mx-auto"
+            className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold leading-tight text-foreground mb-5"
           >
             {title} {titleHighlight}
           </motion.h2>
@@ -67,73 +66,24 @@ const About = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="text-base text-muted-foreground leading-relaxed max-w-md mx-auto mb-10"
+            className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto lg:mx-0 mb-10"
           >
             {description}
           </motion.p>
 
-          <div className="flex flex-wrap justify-center gap-x-9 gap-y-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-border rounded-2xl overflow-hidden border border-border text-left">
             {features.map((feature, index) => (
               <motion.div
                 key={feature.title}
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                className="max-w-[140px]"
+                className="bg-background p-5 lg:p-6"
               >
-                <div className="font-display text-sm font-bold text-foreground mb-1">
-                  {feature.title}
-                </div>
-                <div className="font-sans text-xs text-muted-foreground leading-snug">
-                  {feature.description}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* ============ DESKTOP (lg and up): "Minimal Clinical" grid-table layout ============ */}
-        <div className="hidden lg:block max-w-5xl mx-auto">
-          <motion.span
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5 }}
-            className="inline-block font-display text-xs font-semibold tracking-[0.12em] text-accent uppercase mb-4"
-          >
-            {subtitle}
-          </motion.span>
-
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="font-display font-bold text-4xl leading-tight text-foreground mb-5"
-          >
-            {title} {titleHighlight}
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-base text-muted-foreground leading-relaxed max-w-2xl mb-10"
-          >
-            {description}
-          </motion.p>
-
-          <div className="grid grid-cols-4 gap-px bg-border rounded-2xl overflow-hidden border border-border">
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                className="bg-background p-6"
-              >
-                <h3 className="font-display font-bold text-[15px] text-foreground mb-1.5">
+                <h3 className="font-serif font-bold text-lg text-foreground mb-1.5">
                   {feature.title}
                 </h3>
-                <p className="text-[13px] text-muted-foreground leading-relaxed">
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   {feature.description}
                 </p>
               </motion.div>

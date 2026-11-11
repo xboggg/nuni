@@ -54,10 +54,10 @@ const RealResults = () => {
           <span className="inline-block text-sm font-medium tracking-widest text-accent uppercase mb-4">
             {t.realResults?.badge || "Real Results"}
           </span>
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-foreground mb-4">
             {t.realResults?.title || "See the"} <span className="text-gradient-gold">{t.realResults?.titleHighlight || "Transformation"}</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             {t.realResults?.description || "Real photos and videos from our customers showing their amazing skin transformations with NG Cosmetics products."}
           </p>
         </motion.div>

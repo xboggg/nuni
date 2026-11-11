@@ -33,7 +33,7 @@ const Partners = () => {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent/10 rounded-full mb-6">
               <Handshake size={18} className="text-accent" />
-              <span className="text-sm font-medium text-accent">
+              <span className="text-sm font-medium tracking-widest text-accent uppercase">
                 {badge}
               </span>
             </div>

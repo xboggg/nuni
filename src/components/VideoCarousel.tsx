@@ -150,7 +150,7 @@ const VideoCarousel = () => {
             className="flex items-end justify-between gap-3 mb-5"
           >
             <div>
-              <span className="inline-block text-[11px] font-medium tracking-widest text-accent uppercase mb-2">
+              <span className="inline-block text-xs font-medium tracking-widest text-accent uppercase mb-2">
                 {vcBadge}
               </span>
               <h2 className="font-serif font-bold text-2xl text-cream leading-tight">

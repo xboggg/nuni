@@ -59,10 +59,10 @@ const BeforeAfterSlider = ({
           <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
             {t.transformation.subtitle}
           </span>
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-foreground mb-4">
             {t.transformation.title} <span className="text-gradient-gold">{t.transformation.titleHighlight}</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             {t.transformation.description}
           </p>
         </motion.div>
