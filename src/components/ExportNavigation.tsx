@@ -17,7 +17,7 @@ const ExportNavigation = () => {
   const navLinks = [
     { name: "Products", href: "/export/products" },
     { name: "Shea Butter", href: "/export/shea-butter" },
-    { name: "Cocoa", href: "/export/cocoa" },
+    { name: "Cocoa Powder", href: "/export/cocoa" },
     { name: "Black Soap", href: "/export/black-soap" },
     { name: "Our Process", href: "/export/process" },
     { name: "Contact", href: "/export/contact" },
