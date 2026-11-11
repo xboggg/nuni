@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LogOut, Leaf } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { clearToken } from "@/lib/adminApi";
 import HeroManager from "./HeroManager";
 import GalleryManager from "./GalleryManager";
@@ -13,8 +15,21 @@ import SettingsManager from "./SettingsManager";
 import CommunityManager from "./CommunityManager";
 import HomepageContentManager from "./HomepageContentManager";
 
+const SECTIONS = [
+  { value: "hero", label: "Hero Slides" },
+  { value: "homepage", label: "Homepage Content" },
+  { value: "products", label: "Products" },
+  { value: "gallery", label: "Gallery" },
+  { value: "partners", label: "Partners" },
+  { value: "testimonials", label: "Testimonials" },
+  { value: "about", label: "Why Nuni" },
+  { value: "settings", label: "Contact Details" },
+  { value: "community", label: "Community" },
+];
+
 const AdminDashboard = () => {
   const navigate = useNavigate();
+  const [activeTab, setActiveTab] = useState("hero");
 
   const handleLogout = () => {
     clearToken();
@@ -39,18 +54,32 @@ const AdminDashboard = () => {
       </header>
 
       <main className="container-custom py-8">
-        <Tabs defaultValue="hero">
-          <TabsList>
-            <TabsTrigger value="hero">Hero Slides</TabsTrigger>
-            <TabsTrigger value="homepage">Homepage Content</TabsTrigger>
-            <TabsTrigger value="products">Products</TabsTrigger>
-            <TabsTrigger value="gallery">Gallery</TabsTrigger>
-            <TabsTrigger value="partners">Partners</TabsTrigger>
-            <TabsTrigger value="testimonials">Testimonials</TabsTrigger>
-            <TabsTrigger value="about">Why Nuni</TabsTrigger>
-            <TabsTrigger value="settings">Contact Details</TabsTrigger>
-            <TabsTrigger value="community">Community</TabsTrigger>
+        <Tabs value={activeTab} onValueChange={setActiveTab}>
+          {/* Mobile: dropdown selector so every section is reachable in one tap */}
+          <div className="sm:hidden mb-6">
+            <Select value={activeTab} onValueChange={setActiveTab}>
+              <SelectTrigger>
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {SECTIONS.map((section) => (
+                  <SelectItem key={section.value} value={section.value}>
+                    {section.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* Desktop/tablet: tab row */}
+          <TabsList className="hidden sm:inline-flex">
+            {SECTIONS.map((section) => (
+              <TabsTrigger key={section.value} value={section.value}>
+                {section.label}
+              </TabsTrigger>
+            ))}
           </TabsList>
+
           <TabsContent value="hero" className="mt-6">
             <HeroManager />
           </TabsContent>
