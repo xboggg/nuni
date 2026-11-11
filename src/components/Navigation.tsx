@@ -20,6 +20,7 @@ const Navigation = () => {
     { name: t.nav.partners, href: "/partners", isRoute: true },
     { name: t.nav.community, href: "/community", isRoute: true },
     { name: t.nav.contact, href: "/contact", isRoute: true },
+    { name: "Export", href: "/export", isRoute: true },
   ];
 
   useEffect(() => {
