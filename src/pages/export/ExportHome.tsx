@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Package, Globe, Truck, Shield, Leaf, Award, ArrowRight, Play, Phone, Mail } from "lucide-react";
+import { Package, Globe, Truck, Shield, Leaf, Award, ArrowRight, Play, Phone, Mail, ShieldCheck, BadgeCheck } from "lucide-react";
 import ExportNavigation from "@/components/ExportNavigation";
 import ExportFooter from "@/components/ExportFooter";
 import SEO from "@/components/SEO";
@@ -10,10 +10,11 @@ import { Button } from "@/components/ui/button";
 import containerLoaded1 from "@/assets/export/container-loaded-1.jpg";
 import containerLoaded2 from "@/assets/export/container-loaded-2.jpg";
 import shippingPort from "@/assets/export/shipping-port.jpg";
-import sheaButterBanner from "@/assets/export/shea-butter-banner.jpg";
-import cocoaBanner from "@/assets/export/cocoa-banner.jpg";
-import blackSoapBanner from "@/assets/export/black-soap-banner.jpg";
+import sheaButterBanner from "@/assets/export/shea-butter-product.jpg";
+import cocoaBanner from "@/assets/export/cocoa-product.jpg";
+import blackSoapBanner from "@/assets/export/black-soap-product.jpg";
 import exportVideo from "@/assets/export/export-video-1.mp4";
+import exportVideoPoster from "@/assets/export/export-video-poster.jpg";
 
 const ExportHome = () => {
   const products = [
@@ -86,9 +87,9 @@ const ExportHome = () => {
   return (
     <div className="min-h-screen bg-[#0f1f17]">
       <SEO
-        title="Kofi Ideas Export - Premium Ghanaian Raw Materials"
+        title="Kofiideas Export - Premium Ghanaian Raw Materials"
         description="Export premium raw shea butter, cocoa powder, and African black soap from Ghana. Bulk orders, worldwide shipping, quality certified. Contact us for wholesale pricing."
-        keywords="Ghana export, shea butter wholesale, cocoa powder export, African black soap bulk, B2B cosmetics, raw materials Ghana, Kofi Ideas"
+        keywords="Ghana export, shea butter wholesale, cocoa powder export, African black soap bulk, B2B cosmetics, raw materials Ghana, Kofiideas"
         url="/export"
       />
       <ExportNavigation />
@@ -102,6 +103,7 @@ const ExportHome = () => {
             muted
             loop
             playsInline
+            poster={exportVideoPoster}
             className="w-full h-full object-cover"
           >
             <source src={exportVideo} type="video/mp4" />
@@ -186,21 +188,40 @@ const ExportHome = () => {
         </div>
       </section>
 
-      {/* Credentials Poster */}
+      {/* Credentials */}
       <section className="py-16 bg-[#0f1f17]">
         <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="max-w-2xl mx-auto"
-          >
-            <img
-              src="/media/kofi-export-poster.jpg"
-              alt="Kofi Ideas Import & Export - Verified by Ghana Customs, Certified Exporter, FDA Verified"
-              className="w-full rounded-2xl shadow-2xl"
-            />
-          </motion.div>
+          <div className="grid sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="flex items-center gap-4 bg-[#1a3a2a] border border-amber-500/20 rounded-2xl p-5"
+            >
+              <div className="w-11 h-11 bg-amber-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                <ShieldCheck size={22} className="text-amber-400" />
+              </div>
+              <div>
+                <p className="text-white font-semibold text-sm">Ghana Customs Certified Exporter</p>
+                <p className="text-white/50 text-xs">Registration number available on request</p>
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="flex items-center gap-4 bg-[#1a3a2a] border border-amber-500/20 rounded-2xl p-5"
+            >
+              <div className="w-11 h-11 bg-amber-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                <BadgeCheck size={22} className="text-amber-400" />
+              </div>
+              <div>
+                <p className="text-white font-semibold text-sm">FDA Verified Products</p>
+                <p className="text-white/50 text-xs">Certificate number available on request</p>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -338,7 +359,7 @@ const ExportHome = () => {
             </h2>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
             {benefits.map((benefit, index) => (
               <motion.div
                 key={benefit.title}
@@ -346,13 +367,14 @@ const ExportHome = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-[#1a3a2a] p-6 rounded-2xl border border-white/5 hover:border-amber-500/30 transition-all"
+                className="bg-[#1a3a2a] p-4 sm:p-6 rounded-2xl border border-white/5 hover:border-amber-500/30 transition-all"
               >
-                <div className="w-12 h-12 bg-amber-500/20 rounded-xl flex items-center justify-center mb-4">
-                  <benefit.icon size={24} className="text-amber-400" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-amber-500/20 rounded-xl flex items-center justify-center mb-3 sm:mb-4">
+                  <benefit.icon size={20} className="text-amber-400 sm:hidden" />
+                  <benefit.icon size={24} className="text-amber-400 hidden sm:block" />
                 </div>
-                <h3 className="text-lg font-semibold text-white mb-2">{benefit.title}</h3>
-                <p className="text-white/60 text-sm leading-relaxed">{benefit.description}</p>
+                <h3 className="text-sm sm:text-lg font-semibold text-white mb-1.5 sm:mb-2">{benefit.title}</h3>
+                <p className="text-white/60 text-xs sm:text-sm leading-relaxed">{benefit.description}</p>
               </motion.div>
             ))}
           </div>

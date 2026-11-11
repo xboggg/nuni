@@ -6,7 +6,7 @@ import ExportFooter from "@/components/ExportFooter";
 import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 
-import sheaButterBanner from "@/assets/export/shea-butter-banner.jpg";
+import sheaButterBanner from "@/assets/export/shea-butter-product.jpg";
 import containerLoaded from "@/assets/export/container-loaded-3.jpg";
 
 const ExportSheaButter = () => {

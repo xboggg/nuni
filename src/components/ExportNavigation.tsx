@@ -1,8 +1,13 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronRight, Package, ArrowLeft } from "lucide-react";
+import { Menu, X, ChevronRight, Globe, ArrowLeft } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
-import logo from "@/assets/nuni-logo.png";
+
+const KofiideasMark = ({ className }: { className?: string }) => (
+  <div className={`flex items-center justify-center rounded-xl bg-[#0f1f17] border border-amber-500/50 ${className ?? ""}`}>
+    <Globe className="text-amber-400" size="55%" strokeWidth={1.75} />
+  </div>
+);
 
 const ExportNavigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -44,18 +49,13 @@ const ExportNavigation = () => {
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo & Brand */}
             <Link to="/export" className="flex items-center gap-3">
-              <div className="relative">
-                <img src={logo} alt="Kofi Ideas Export" className="h-10 md:h-12 w-10 md:w-12 rounded-full object-cover border-2 border-amber-500/50" />
-                <div className="absolute -bottom-1 -right-1 bg-amber-500 rounded-full p-0.5">
-                  <Package size={12} className="text-white" />
-                </div>
-              </div>
+              <KofiideasMark className="h-10 md:h-12 w-10 md:w-12" />
               <div className="flex flex-col">
                 <span className="font-serif font-bold text-lg md:text-xl text-white leading-tight">
-                  KOFI IDEAS
+                  KOFIIDEAS
                 </span>
                 <span className="text-[10px] md:text-xs text-amber-400 font-medium tracking-wider">
-                  IMPORTS & EXPORTS
+                  IMPORT &amp; EXPORT
                 </span>
               </div>
             </Link>
@@ -98,6 +98,7 @@ const ExportNavigation = () => {
             <motion.button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               whileTap={{ scale: 0.9 }}
+              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
               className="lg:hidden p-2 rounded-lg text-white"
             >
               <motion.div
@@ -133,10 +134,10 @@ const ExportNavigation = () => {
             >
               <div className="flex items-center justify-between p-5 border-b border-white/10">
                 <div className="flex items-center gap-2">
-                  <img src={logo} alt="Kofi Ideas" className="h-10 w-10 rounded-full object-cover" />
+                  <KofiideasMark className="h-10 w-10" />
                   <div className="flex flex-col">
-                    <span className="font-serif font-bold text-white">KOFI IDEAS</span>
-                    <span className="text-[10px] text-amber-400">IMPORTS & EXPORTS</span>
+                    <span className="font-serif font-bold text-white">KOFIIDEAS</span>
+                    <span className="text-[10px] text-amber-400">IMPORT &amp; EXPORT</span>
                   </div>
                 </div>
                 <button

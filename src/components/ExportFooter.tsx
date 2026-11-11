@@ -11,7 +11,7 @@ const ExportFooter = () => {
       { name: "African Black Soap", href: "/export/black-soap" },
     ],
     company: [
-      { name: "About Kofi Ideas", href: "/export" },
+      { name: "About Kofiideas", href: "/export" },
       { name: "Our Process", href: "/export/process" },
       { name: "All Products", href: "/export/products" },
       { name: "Contact", href: "/export/contact" },
@@ -31,9 +31,9 @@ const ExportFooter = () => {
           <div className="col-span-2 md:col-span-1">
             <div className="mb-4">
               <span className="font-serif font-bold text-xl text-white">
-                KOFI IDEAS
+                KOFIIDEAS
               </span>
-              <p className="text-amber-400 text-sm font-medium">IMPORTS & EXPORTS</p>
+              <p className="text-amber-400 text-sm font-medium">IMPORT &amp; EXPORT</p>
             </div>
             <p className="text-sm text-white/60 leading-relaxed mb-6">
               Premium Ghanaian raw materials for global businesses. Shea butter, cocoa, and African black soap - ethically sourced, quality certified.
@@ -55,7 +55,7 @@ const ExportFooter = () => {
               </a>
               <div className="flex items-start gap-2 text-sm text-white/70">
                 <MapPin size={16} className="flex-shrink-0 mt-0.5" />
-                <span>Ablekuma Agape, GC-161-2675, Accra</span>
+                <span>Ablekuma Joma, GC-161-2675, Accra</span>
               </div>
             </div>
           </div>
@@ -63,12 +63,12 @@ const ExportFooter = () => {
           {/* Products */}
           <div>
             <h4 className="font-semibold text-white mb-4">Products</h4>
-            <ul className="space-y-2">
+            <ul className="space-y-1">
               {footerLinks.products.map((link) => (
                 <li key={link.name}>
                   <Link
                     to={link.href}
-                    className="text-sm text-white/60 hover:text-amber-400 transition-colors"
+                    className="inline-block py-2.5 text-sm text-white/60 hover:text-amber-400 transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -80,12 +80,12 @@ const ExportFooter = () => {
           {/* Company */}
           <div>
             <h4 className="font-semibold text-white mb-4">Company</h4>
-            <ul className="space-y-2">
+            <ul className="space-y-1">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
                   <Link
                     to={link.href}
-                    className="text-sm text-white/60 hover:text-amber-400 transition-colors"
+                    className="inline-block py-2.5 text-sm text-white/60 hover:text-amber-400 transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -97,12 +97,12 @@ const ExportFooter = () => {
           {/* Support */}
           <div>
             <h4 className="font-semibold text-white mb-4">Support</h4>
-            <ul className="space-y-2">
+            <ul className="space-y-1">
               {footerLinks.support.map((link) => (
                 <li key={link.name}>
                   <Link
                     to={link.href}
-                    className="text-sm text-white/60 hover:text-amber-400 transition-colors"
+                    className="inline-block py-2.5 text-sm text-white/60 hover:text-amber-400 transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -124,7 +124,7 @@ const ExportFooter = () => {
         <div className="border-t border-white/10 pt-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-white/60">
-              © {currentYear} Kofi Ideas Import & Export. All rights reserved.
+              © {currentYear} Kofiideas Import &amp; Export. All rights reserved.
             </p>
             <a
               href="https://www.novastreamdigital.com"

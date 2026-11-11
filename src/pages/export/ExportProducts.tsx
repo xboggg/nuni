@@ -6,9 +6,9 @@ import ExportFooter from "@/components/ExportFooter";
 import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 
-import sheaButterBanner from "@/assets/export/shea-butter-banner.jpg";
-import cocoaBanner from "@/assets/export/cocoa-banner.jpg";
-import blackSoapBanner from "@/assets/export/black-soap-banner.jpg";
+import sheaButterBanner from "@/assets/export/shea-butter-product.jpg";
+import cocoaBanner from "@/assets/export/cocoa-product.jpg";
+import blackSoapBanner from "@/assets/export/black-soap-product.jpg";
 
 const ExportProducts = () => {
   const products = [
@@ -47,7 +47,7 @@ const ExportProducts = () => {
   return (
     <div className="min-h-screen bg-[#0f1f17]">
       <SEO
-        title="Export Products - Shea Butter, Cocoa, Black Soap | Kofi Ideas"
+        title="Export Products - Shea Butter, Cocoa, Black Soap | Kofiideas"
         description="View our full range of export products: raw shea butter, cocoa powder, and African black soap. Premium quality from Ghana with worldwide shipping."
         keywords="Ghana export products, shea butter wholesale, cocoa powder export, African black soap bulk"
         url="/export/products"

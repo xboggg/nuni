@@ -63,8 +63,8 @@ const ExportContact = () => {
   return (
     <div className="min-h-screen bg-[#0f1f17]">
       <SEO
-        title="Contact Us - Export Inquiry | Kofi Ideas Export"
-        description="Get in touch for export inquiries, pricing, and orders. Contact Kofi Ideas Import & Export for premium Ghanaian raw materials."
+        title="Contact Us - Export Inquiry | Kofiideas Export"
+        description="Get in touch for export inquiries, pricing, and orders. Contact Kofiideas Import & Export for premium Ghanaian raw materials."
         keywords="contact Ghana export, export inquiry, Ghana raw materials contact, shea butter supplier contact"
         url="/export/contact"
       />

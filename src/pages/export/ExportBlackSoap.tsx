@@ -6,7 +6,7 @@ import ExportFooter from "@/components/ExportFooter";
 import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 
-import blackSoapBanner from "@/assets/export/black-soap-banner.jpg";
+import blackSoapBanner from "@/assets/export/black-soap-product.jpg";
 import containerLoaded from "@/assets/export/container-loading-2.jpg";
 
 const ExportBlackSoap = () => {

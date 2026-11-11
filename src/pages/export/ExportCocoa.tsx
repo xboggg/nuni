@@ -6,7 +6,7 @@ import ExportFooter from "@/components/ExportFooter";
 import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 
-import cocoaBanner from "@/assets/export/cocoa-banner.jpg";
+import cocoaBanner from "@/assets/export/cocoa-product.jpg";
 import containerLoaded from "@/assets/export/container-loaded-4.jpg";
 
 const ExportCocoa = () => {
