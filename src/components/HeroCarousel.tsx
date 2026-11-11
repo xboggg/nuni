@@ -167,9 +167,9 @@ const HeroCarousel = () => {
                 backgroundPosition: `${heroImages[currentIndex].focalX}% ${heroImages[currentIndex].focalY}%`,
               }}
             />
-            {/* Gradient overlay for text readability - stronger on left side */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/10" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20" />
+            {/* Gradient overlay for text readability - stronger on left side, extended on mobile since the text column spans full width there */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/15 md:from-black/70 md:via-black/40 md:to-black/10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-black/25 md:from-black/40 md:via-transparent md:to-black/20" />
           </motion.div>
         </motion.div>
       </AnimatePresence>
@@ -236,7 +236,7 @@ const HeroCarousel = () => {
                   backgroundImage: 'linear-gradient(135deg, #8dc63f 0%, #3d7a52 50%, #8dc63f 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
-                  filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.5))'
+                  filter: 'drop-shadow(0 0 6px rgba(0,0,0,0.85)) drop-shadow(0 0 16px rgba(0,0,0,0.6)) drop-shadow(2px 2px 4px rgba(0,0,0,0.9))'
                 }}
               >
                 {headlineHighlight}
@@ -293,17 +293,17 @@ const HeroCarousel = () => {
         </div>
       </div>
 
-      {/* Navigation Arrows - small & transparent */}
+      {/* Navigation Arrows - desktop only; mobile relies on swipe + dots, arrows there clipped the subtext */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/40 transition-all duration-200"
+        className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full items-center justify-center text-white hover:bg-white/40 transition-all duration-200"
         aria-label="Previous slide"
       >
         <ChevronLeft size={20} />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/40 transition-all duration-200"
+        className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full items-center justify-center text-white hover:bg-white/40 transition-all duration-200"
         aria-label="Next slide"
       >
         <ChevronRight size={20} />
