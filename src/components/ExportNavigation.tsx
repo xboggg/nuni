@@ -133,7 +133,7 @@ const ExportNavigation = () => {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.2, ease: "easeOut" }}
-              className="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm z-50 bg-[#1a3a2a] shadow-2xl lg:hidden flex flex-col max-h-screen"
+              className="fixed top-0 right-0 w-[85%] max-w-sm z-50 bg-[#1a3a2a] shadow-2xl lg:hidden flex flex-col max-h-[100dvh]"
             >
               <div className="flex items-center justify-between p-5 border-b border-white/10 flex-shrink-0">
                 <div className="flex items-center gap-2">
