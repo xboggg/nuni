@@ -134,8 +134,10 @@ const HeroCarousel = () => {
         }}
       />
 
-      {/* Falling Leaves Overlay */}
-      <FallingLeaves />
+      {/* Falling Leaves Overlay - desktop only, kept off mobile to reduce clutter */}
+      <div className="hidden md:block">
+        <FallingLeaves />
+      </div>
 
       {/* Background Images with Breathing Effect */}
       <AnimatePresence mode="sync">
