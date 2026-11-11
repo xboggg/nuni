@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronRight, Shield } from "lucide-react";
+import { Menu, X, ChevronRight, ChevronDown, Shield } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "@/assets/nuni-logo.png";
 import { getWhatsAppLink, GENERAL_INQUIRY_MESSAGE } from "@/data/products";
@@ -11,17 +11,22 @@ import { useLanguage } from "@/lib/i18n";
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isNetworkOpen, setIsNetworkOpen] = useState(false);
   const { t } = useLanguage();
 
   const navLinks = [
     { name: t.nav.aboutUs, href: "/about-us", isRoute: true },
     { name: t.nav.products, href: "/products", isRoute: true },
     { name: t.nav.gallery, href: "/gallery", isRoute: true },
-    { name: t.nav.partners, href: "/partners", isRoute: true },
-    { name: t.nav.community, href: "/community", isRoute: true },
-    { name: t.nav.contact, href: "/contact", isRoute: true },
-    { name: "Export", href: "/export", isRoute: true },
   ];
+
+  const networkLinks = [
+    { name: t.nav.partners, href: "/partners", isRoute: true },
+    { name: "Export", href: "/export", isRoute: true },
+    { name: t.nav.community, href: "/community", isRoute: true },
+  ];
+
+  const contactLink = { name: t.nav.contact, href: "/contact", isRoute: true };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,6 +41,7 @@ const Navigation = () => {
 
   const handleNavClick = useCallback((href: string, isRoute?: boolean) => {
     setIsMobileMenuOpen(false);
+    setIsNetworkOpen(false);
     if (isRoute) return;
 
     if (location.pathname !== "/") {
@@ -51,6 +57,7 @@ const Navigation = () => {
 
   const handleMenuToggle = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+    setIsNetworkOpen(false);
   };
 
   return (
@@ -82,30 +89,53 @@ const Navigation = () => {
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-8">
               {navLinks.map((link) => (
-                link.isRoute ? (
-                  <Link
-                    key={link.name}
-                    to={link.href}
-                    className={`text-sm font-medium transition-colors duration-200 hover:text-primary ${
-                      isScrolled ? "text-foreground" : "text-white"
-                    }`}
-                    style={{ textShadow: isScrolled ? 'none' : '1px 1px 3px rgba(0,0,0,0.5)' }}
-                  >
-                    {link.name}
-                  </Link>
-                ) : (
-                  <button
-                    key={link.name}
-                    onClick={() => handleNavClick(link.href)}
-                    className={`text-sm font-medium transition-colors duration-200 hover:text-primary ${
-                      isScrolled ? "text-foreground" : "text-white"
-                    }`}
-                    style={{ textShadow: isScrolled ? 'none' : '1px 1px 3px rgba(0,0,0,0.5)' }}
-                  >
-                    {link.name}
-                  </button>
-                )
+                <Link
+                  key={link.name}
+                  to={link.href}
+                  className={`text-sm font-medium transition-colors duration-200 hover:text-primary ${
+                    isScrolled ? "text-foreground" : "text-white"
+                  }`}
+                  style={{ textShadow: isScrolled ? 'none' : '1px 1px 3px rgba(0,0,0,0.5)' }}
+                >
+                  {link.name}
+                </Link>
               ))}
+
+              {/* Our Network - hover dropdown */}
+              <div className="relative group">
+                <button
+                  className={`flex items-center gap-1 text-sm font-medium transition-colors duration-200 hover:text-primary ${
+                    isScrolled ? "text-foreground" : "text-white"
+                  }`}
+                  style={{ textShadow: isScrolled ? 'none' : '1px 1px 3px rgba(0,0,0,0.5)' }}
+                >
+                  Our Network
+                  <ChevronDown size={14} className="transition-transform duration-200 group-hover:rotate-180" />
+                </button>
+                <div className="absolute left-0 top-full pt-3 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200">
+                  <div className="bg-card rounded-xl shadow-soft border border-border py-2 min-w-[160px]">
+                    {networkLinks.map((link) => (
+                      <Link
+                        key={link.name}
+                        to={link.href}
+                        className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-muted hover:text-primary transition-colors"
+                      >
+                        {link.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <Link
+                to={contactLink.href}
+                className={`text-sm font-medium transition-colors duration-200 hover:text-primary ${
+                  isScrolled ? "text-foreground" : "text-white"
+                }`}
+                style={{ textShadow: isScrolled ? 'none' : '1px 1px 3px rgba(0,0,0,0.5)' }}
+              >
+                {contactLink.name}
+              </Link>
             </div>
 
             {/* Language Switcher, Theme Toggle & CTA Button */}
@@ -163,7 +193,7 @@ const Navigation = () => {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
               className="fixed inset-0 bg-black/50 z-40 md:hidden"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={() => { setIsMobileMenuOpen(false); setIsNetworkOpen(false); }}
             />
             
             {/* Menu Panel */}
@@ -172,10 +202,10 @@ const Navigation = () => {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.2, ease: "easeOut" }}
-              className="fixed inset-y-0 right-0 w-[85%] max-w-sm z-50 bg-card shadow-2xl md:hidden"
+              className="fixed inset-y-0 right-0 w-[85%] max-w-sm z-50 bg-card shadow-2xl md:hidden flex flex-col"
             >
               {/* Menu Header */}
-              <div className="flex items-center justify-between p-5 border-b border-border">
+              <div className="flex items-center justify-between p-5 border-b border-border flex-shrink-0">
                 <div className="flex items-center gap-2">
                   <img src={logo} alt="NG Cosmetics" className="h-10 w-10 rounded-full object-cover" />
                   <span className="font-serif font-semibold text-lg text-primary">
@@ -183,7 +213,7 @@ const Navigation = () => {
                   </span>
                 </div>
                 <button
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={() => { setIsMobileMenuOpen(false); setIsNetworkOpen(false); }}
                   className="p-2 rounded-full hover:bg-muted transition-colors text-foreground"
                 >
                   <X size={24} />
@@ -191,33 +221,68 @@ const Navigation = () => {
               </div>
 
               {/* Navigation Links */}
-              <div className="flex flex-col p-4">
+              <div className="flex flex-col p-4 overflow-y-auto flex-1">
                 {navLinks.map((link) => (
-                  link.isRoute ? (
-                    <Link
-                      key={link.name}
-                      to={link.href}
-                      onClick={() => handleNavClick(link.href, true)}
-                      className="flex items-center justify-between py-4 px-3 text-foreground font-medium text-lg border-b border-border/50 rounded-lg hover:bg-muted active:bg-muted transition-colors"
-                    >
-                      <span>{link.name}</span>
-                      <ChevronRight size={18} className="text-muted-foreground" />
-                    </Link>
-                  ) : (
-                    <button
-                      key={link.name}
-                      onClick={() => handleNavClick(link.href)}
-                      className="flex items-center justify-between py-4 px-3 text-foreground font-medium text-lg border-b border-border/50 rounded-lg hover:bg-muted active:bg-muted transition-colors w-full text-left"
-                    >
-                      <span>{link.name}</span>
-                      <ChevronRight size={18} className="text-muted-foreground" />
-                    </button>
-                  )
+                  <Link
+                    key={link.name}
+                    to={link.href}
+                    onClick={() => handleNavClick(link.href, true)}
+                    className="flex items-center justify-between py-4 px-3 text-foreground font-medium text-lg border-b border-border/50 rounded-lg hover:bg-muted active:bg-muted transition-colors"
+                  >
+                    <span>{link.name}</span>
+                    <ChevronRight size={18} className="text-muted-foreground" />
+                  </Link>
                 ))}
+
+                {/* Our Network - accordion group */}
+                <button
+                  onClick={() => setIsNetworkOpen(!isNetworkOpen)}
+                  className="flex items-center justify-between py-4 px-3 text-primary font-medium text-lg border-b border-border/50 rounded-lg hover:bg-muted active:bg-muted transition-colors w-full text-left"
+                >
+                  <span>Our Network</span>
+                  <ChevronDown
+                    size={18}
+                    className={`text-primary transition-transform duration-200 ${isNetworkOpen ? "rotate-180" : ""}`}
+                  />
+                </button>
+                <AnimatePresence>
+                  {isNetworkOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="pl-4 border-l-2 border-border ml-3 my-1">
+                        {networkLinks.map((link) => (
+                          <Link
+                            key={link.name}
+                            to={link.href}
+                            onClick={() => handleNavClick(link.href, true)}
+                            className="flex items-center justify-between py-3 px-3 text-foreground/90 font-medium border-b border-border/50 last:border-0 rounded-lg hover:bg-muted active:bg-muted transition-colors"
+                          >
+                            <span>{link.name}</span>
+                            <ChevronRight size={16} className="text-muted-foreground" />
+                          </Link>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                <Link
+                  to={contactLink.href}
+                  onClick={() => handleNavClick(contactLink.href, true)}
+                  className="flex items-center justify-between py-4 px-3 text-foreground font-medium text-lg border-b border-border/50 rounded-lg hover:bg-muted active:bg-muted transition-colors"
+                >
+                  <span>{contactLink.name}</span>
+                  <ChevronRight size={18} className="text-muted-foreground" />
+                </Link>
               </div>
 
               {/* Bottom Section */}
-              <div className="absolute bottom-0 left-0 right-0 p-5 border-t border-border bg-muted/30">
+              <div className="p-5 border-t border-border bg-muted/30 flex-shrink-0">
                 <div className="flex items-center justify-between mb-4">
                   <LanguageSwitcher />
                   <ThemeToggle />
