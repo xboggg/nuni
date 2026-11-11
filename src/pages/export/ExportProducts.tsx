@@ -48,6 +48,7 @@ const ExportProducts = () => {
     <div className="min-h-screen bg-[#0f1f17]">
       <SEO
         title="Export Products - Shea Butter, Cocoa, Black Soap | Kofiideas"
+        image="/og-export.jpg"
         description="View our full range of export products: raw shea butter, cocoa powder, and African black soap. Premium quality from Ghana with worldwide shipping."
         keywords="Ghana export products, shea butter wholesale, cocoa powder export, African black soap bulk"
         url="/export/products"

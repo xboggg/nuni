@@ -42,6 +42,7 @@ const ExportSheaButter = () => {
     <div className="min-h-screen bg-[#0f1f17]">
       <SEO
         title="Raw Shea Butter Export - Premium Grade A from Ghana"
+        image="/og-export.jpg"
         description="Export premium raw unrefined shea butter from Northern Ghana. Grade A quality, cold-pressed, wholesale pricing. Contact for bulk orders and international shipping."
         keywords="shea butter export, raw shea butter wholesale, Ghana shea butter, unrefined shea butter bulk, Grade A shea butter"
         url="/export/shea-butter"

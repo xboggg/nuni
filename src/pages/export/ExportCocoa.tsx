@@ -41,6 +41,7 @@ const ExportCocoa = () => {
     <div className="min-h-screen bg-[#0f1f17]">
       <SEO
         title="Raw Cocoa Powder Export - Premium Ghanaian Cocoa"
+        image="/og-export.jpg"
         description="Export premium raw cocoa powder from Ghana's Ashanti Region. Natural, alkalized, and Dutch-processed varieties. Bulk orders with worldwide shipping."
         keywords="cocoa powder export, Ghana cocoa, raw cocoa wholesale, cocoa powder bulk, Ashanti cocoa"
         url="/export/cocoa"

@@ -96,6 +96,7 @@ const ExportProcess = () => {
     <div className="min-h-screen bg-[#0f1f17]">
       <SEO
         title="Export Process - How We Work | Kofiideas Export"
+        image="/og-export.jpg"
         description="Learn about our export process from inquiry to delivery. We handle sourcing, quality control, packaging, documentation, and shipping for Ghanaian raw materials."
         keywords="export process Ghana, how to import from Ghana, Ghana export procedure, shea butter import process"
         url="/export/process"

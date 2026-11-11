@@ -43,6 +43,7 @@ const ExportBlackSoap = () => {
     <div className="min-h-screen bg-[#0f1f17]">
       <SEO
         title="African Black Soap Export - Traditional Ghanaian Black Soap"
+        image="/og-export.jpg"
         description="Export authentic African black soap from Ghana. Handcrafted using traditional methods. Bulk orders, wholesale pricing, worldwide shipping available."
         keywords="African black soap export, Ghana black soap wholesale, traditional black soap bulk, natural black soap export"
         url="/export/black-soap"
