@@ -22,7 +22,7 @@ const SECTIONS = [
   { value: "gallery", label: "Gallery" },
   { value: "partners", label: "Partners" },
   { value: "testimonials", label: "Testimonials" },
-  { value: "about", label: "Why Nuni" },
+  { value: "about", label: "Why NG Cosmetics" },
   { value: "settings", label: "Contact Details" },
   { value: "community", label: "Community" },
 ];

@@ -248,7 +248,7 @@ const AboutManager = () => {
     <div className="space-y-10">
       <div className="flex flex-wrap items-center justify-between gap-4 sticky top-0 bg-background/95 backdrop-blur py-3 z-10 -mx-1 px-1">
         <div>
-          <h2 className="text-lg font-semibold text-foreground">Why Nuni / About Page</h2>
+          <h2 className="text-lg font-semibold text-foreground">Why NG Cosmetics / About Page</h2>
           <p className="text-sm text-muted-foreground">English text shown to all visitors on this page.</p>
         </div>
         <Button onClick={handleSave} disabled={saving}>
