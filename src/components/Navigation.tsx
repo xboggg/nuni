@@ -76,7 +76,7 @@ const Navigation = () => {
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2">
-              <img src={logo} alt="NG Cosmetics" className="h-10 md:h-12 w-10 md:w-12 rounded-full object-cover" />
+              <img src={logo} alt="NG Cosmetics" className="h-10 md:h-12 w-10 md:w-12 object-contain" />
               <span className={`font-serif font-semibold text-lg md:text-xl transition-colors duration-300 ${
                 isScrolled ? "text-primary" : "text-white"
               }`}
@@ -207,7 +207,7 @@ const Navigation = () => {
               {/* Menu Header */}
               <div className="flex items-center justify-between p-5 border-b border-border flex-shrink-0">
                 <div className="flex items-center gap-2">
-                  <img src={logo} alt="NG Cosmetics" className="h-10 w-10 rounded-full object-cover" />
+                  <img src={logo} alt="NG Cosmetics" className="h-10 w-10 object-contain" />
                   <span className="font-serif font-semibold text-lg text-primary">
                     NG COSMETICS
                   </span>
